@@ -37,7 +37,6 @@ return {
     -- Spec registers groups and extra labels for your existing leader mappings
     spec = {
       -- groups
-      { "<leader>g", group = "+git" },
       { "<leader>l", group = "+lazy" },
       { "<leader>t", group = "+theme" },
       { "<leader>s", group = "+showkeys" },

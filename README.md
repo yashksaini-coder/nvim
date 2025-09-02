@@ -19,23 +19,14 @@ Leader key: **`<Space>`**
 | ----------- | ---- | ------------------------------------- |
 | `<leader>` | Utility | Press Space to open all commands options using which-key |
 | `<leader>ex` | File Explorer | Open file explorer (netrw by default) |
-| `<leader>ct` | Theme | Switch to **Chai** theme   |
-| `<leader>tt` | Theme | Switch to **TokyoNight**   |
+| `<leader>ct` | Theme | Switch to **Catppuccin** theme   |
 | `<leader>sk` | ShowKeys | Show key mappings   |
 | `<leader><Esc>` | Normal | Clear search highlights (`:nohlsearch`) |
 | `<C-c>` | Visual | Copy selected text to system clipboard (uses `wl-copy`) |
 | `"+y` / `"+p` | Any | Yank/Paste to system clipboard (enabled via `unnamedplus`) |
 
 
-### Git Blame
 
-| Key / CMD      | Command                   | Description                                 |
-| ------------ | ------------------------- | ------------------------------------------- |
-| `<leader>gb` | `:GitBlameToggle`         | Toggle blame on/off (show/hide blame info)  |
-| `<leader>gc` | `:GitBlameCopySHA`        | Copy the commit SHA of the current line     |
-| `<leader>gu` | `:GitBlameCopyCommitURL`  | Copy the commit URL (if repo has remote)    |
-| `<leader>gU` | `:GitBlameCopyFileURL`    | Copy file URL (current file at current line)|
-| `<leader>go` | `:GitBlameOpenFileURL`    | Open file in browser (GitHub/GitLab, etc.)  |
 
 ### Lazy.nvim Shortcuts
 
@@ -148,7 +139,7 @@ Here are the custom commands and key mappings I use inside Neovim.
 
 ### 🔭 Telescope Features
 - **Simplified Setup** - Focused on essential functionality without complex actions
-- **TokyoNight Theme Integration** - Ivy theme with custom borders and centered layout
+- **Catppuccin Theme Integration** - Clean and modern theme with excellent contrast
 - **FZF Performance** - Native FZF integration for faster fuzzy finding
 - **UI Select** - Dropdown interface for enhanced selection experience
 - **Core Extensions** - Symbols, live grep args, and essential pickers
@@ -172,10 +163,10 @@ c:/Users/yashk/AppData/Local/nvim/
 │       ├── lazy.lua
 │       ├── options.lua
 │       ├── plugins/
-│       │   ├── chai.lua
+
 │       │   ├── colorscheme.lua
 │       │   ├── dashboard.lua
-│       │   ├── gitblame.lua
+
 │       │   ├── lsp.lua
 │       │   ├── lualine.lua
 │       │   ├── mini.lua
@@ -198,8 +189,7 @@ c:/Users/yashk/AppData/Local/nvim/
   - Progress + location  
 
 **Extra Integrations:**
-- 📜 **Git Blame** → shows who last modified the current line.  
-- ✍️ **Word Count + Reading Time** → shown for Markdown / text files.  
+- ✍️ **File information** → shows encoding, format, and file type  
 
 ---
 
@@ -207,6 +197,6 @@ c:/Users/yashk/AppData/Local/nvim/
 
 * Built & tested on **Windows 11 (CMD/Terminal)**.
 * Minimal & evolving config as I learn.
-* **Simplified Telescope Integration:** Streamlined configuration with 4 core extensions (FZF, UI-Select, Symbols, Live Grep Args) and TokyoNight theme integration.
-* **Theme Integration:** Telescope automatically adapts to your current colorscheme (Chai/TokyoNight).
+* **Simplified Telescope Integration:** Streamlined configuration with 4 core extensions (FZF, UI-Select, Symbols, Live Grep Args) and Catppuccin theme integration.
+* **Theme Integration:** Telescope automatically adapts to your current colorscheme (Catppuccin).
 * Contributions and suggestions are welcome.
