@@ -37,24 +37,6 @@ return {
                 selection_caret = " ❯ ",
                 path_display = { "truncate" },
 
-                file_ignore_patterns = {
-                    "node_modules",
-                    ".git",
-                    ".cache",
-                    "%.pyc",
-                    "__pycache__",
-                    "%.o",
-                    "%.so",
-                    "%.dylib",
-                    "%.class",
-                    "%.exe",
-                    "%.bin",
-                    "%.tmp",
-                    "%.temp",
-                    ".DS_Store",
-                    "Thumbs.db",
-                },
-
                 mappings = {
                     i = {
                         ["<esc>"] = actions.close,
