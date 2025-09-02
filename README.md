@@ -48,6 +48,62 @@ Leader key: **`<Space>`**
 | `<leader>lc` | `:Lazy check`   | Check plugin health          |
 | `<leader>lx` | `:Lazy clean`   | Remove unused plugins        |
 
+### 🔭 Telescope Keymaps
+
+#### **File Searching**
+| Key / CMD     | Command                                    | Description                           |
+| ----------- | ------------------------------------------ | ------------------------------------- |
+| `<leader>ff` | `:Telescope find_files`                    | Find files in project                |
+| `<leader>fF` | `:Telescope find_files hidden=true`        | Find all files (including hidden)    |
+| `<leader>fg` | `:Telescope live_grep`                     | Live grep across project             |
+| `<leader>fG` | `:Telescope live_grep_args`                | Live grep with advanced arguments    |
+| `<leader>fs` | `:Telescope grep_string`                   | Grep string under cursor             |
+
+#### **Buffer & Navigation**
+| Key / CMD     | Command                           | Description                           |
+| ----------- | --------------------------------- | ------------------------------------- |
+| `<leader>fb` | `:Telescope buffers`              | Find and switch between buffers       |
+| `<leader>fh` | `:Telescope help_tags`            | Search help documentation             |
+| `<leader>fc` | `:Telescope commands`             | Find and execute commands             |
+| `<leader>fk` | `:Telescope keymaps`              | Search keymaps                       |
+| `<leader>ft` | `:Telescope colorscheme`          | Switch between colorschemes           |
+
+#### **LSP Integration**
+| Key / CMD     | Command                              | Description                           |
+| ----------- | ------------------------------------ | ------------------------------------- |
+| `<leader>fl` | `:Telescope lsp_references`          | Find LSP references                  |
+| `<leader>fd` | `:Telescope lsp_definitions`         | Go to LSP definitions                |
+| `<leader>fi` | `:Telescope lsp_implementations`     | Find LSP implementations             |
+| `<leader>fy` | `:Telescope lsp_type_definitions`    | Find LSP type definitions            |
+| `<leader>fa` | `:Telescope lsp_diagnostics`         | Show LSP diagnostics                 |
+
+#### **Extensions & Tools**
+| Key / CMD     | Command                           | Description                           |
+| ----------- | --------------------------------- | ------------------------------------- |
+| `<leader>fs` | `:Telescope symbols`               | Search symbols in workspace          |
+
+> [!Note]
+> **Simplified Configuration:** This telescope setup focuses on core functionality with 4 essential extensions:
+> - **FZF Native** - Enhanced fuzzy finding performance
+> - **UI Select** - Dropdown selection interface  
+> - **Symbols** - Workspace symbol search
+> - **Live Grep Args** - Advanced text search with arguments
+
+#### **Quick Access & Utilities**
+| Key / CMD     | Command                                    | Description                           |
+| ----------- | ------------------------------------------ | ------------------------------------- |
+| `<leader>f.` | `:Telescope find_files cwd=%:p:h`         | Find files in current directory       |
+| `<leader>f/` | `:Telescope live_grep cwd=%:p:h`          | Live grep in current directory        |
+| `<leader>fr` | `:Telescope resume`                        | Resume last telescope search          |
+
+#### **Git Integration**
+| Key / CMD     | Command                           | Description                           |
+| ----------- | --------------------------------- | ------------------------------------- |
+| `<leader>fgc` | `:Telescope git_commits`          | Browse git commit history             |
+| `<leader>fgb` | `:Telescope git_bcommits`         | Browse commits for current buffer     |
+| `<leader>fgr` | `:Telescope git_branches`         | Switch between git branches           |
+| `<leader>fgs` | `:Telescope git_status`            | Show git status and changes           |
+
 ## 🛠️ Commands & Keymaps
 
 Here are the custom commands and key mappings I use inside Neovim.
@@ -84,10 +140,19 @@ Here are the custom commands and key mappings I use inside Neovim.
 
 ### 🔑 WhichKey Integration
 - Press `<Space>` (leader) and pause to see a popup of available keymaps.
-- Group headers configured: `+git`, `+lazy`, `+theme`, `+showkeys`, `+explorer`, `+colors`.
+- Group headers configured: `+git`, `+lazy`, `+theme`, `+showkeys`, `+explorer`, `+colors`, `+telescope`.
+- Telescope functions are organized under `<leader>f` with subgroups for git integration (`<leader>fg`).
 - Notes:
   - WhichKey shows your existing mappings; it doesn’t create them.
   - Trigger is set to leader in normal/visual mode with a short delay (200ms).
+
+### 🔭 Telescope Features
+- **Simplified Setup** - Focused on essential functionality without complex actions
+- **TokyoNight Theme Integration** - Ivy theme with custom borders and centered layout
+- **FZF Performance** - Native FZF integration for faster fuzzy finding
+- **UI Select** - Dropdown interface for enhanced selection experience
+- **Core Extensions** - Symbols, live grep args, and essential pickers
+- **Safe Extension Loading** - Uses `pcall` for graceful fallback if extensions fail
 
 ### 🧠 LSP (Language Server) Setup
 - Managed via `mason.nvim` and `mason-lspconfig.nvim`.
@@ -115,6 +180,7 @@ c:/Users/yashk/AppData/Local/nvim/
 │       │   ├── lualine.lua
 │       │   ├── mini.lua
 │       │   ├── showkeys.lua
+│       │   ├── telescope.lua
 │       │   ├── treesitter.lua
 │       │   └── which-key.lua
 │       └── remap.lua
@@ -141,4 +207,6 @@ c:/Users/yashk/AppData/Local/nvim/
 
 * Built & tested on **Windows 11 (CMD/Terminal)**.
 * Minimal & evolving config as I learn.
+* **Simplified Telescope Integration:** Streamlined configuration with 4 core extensions (FZF, UI-Select, Symbols, Live Grep Args) and TokyoNight theme integration.
+* **Theme Integration:** Telescope automatically adapts to your current colorscheme (Chai/TokyoNight).
 * Contributions and suggestions are welcome.

@@ -43,6 +43,8 @@ return {
       { "<leader>s", group = "+showkeys" },
       { "<leader>e", group = "+explorer" },
       { "<leader>c", group = "+colors" },
+      { "<leader>f", group = "+telescope" },
+      { "<leader>fg", group = "+git" },
 
       -- single keys without explicit `desc` in mappings
       { "<leader>ex", desc = "File Explorer" },

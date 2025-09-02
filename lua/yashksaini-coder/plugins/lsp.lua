@@ -28,7 +28,15 @@ return {
       local lspconfig = require("lspconfig")
 
       local servers = {
-        lua_ls = {},
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" }, -- Ignore 'vim' as undefined global
+              },
+            },
+          },
+        },
         pyright = {},
         rust_analyzer = {},
         gopls = {},
@@ -52,4 +60,3 @@ return {
     end,
   },
 }
-

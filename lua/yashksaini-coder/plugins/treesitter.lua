@@ -20,9 +20,6 @@ return {
       highlight = {
         enable = true,
 
-        -- Disable highlighting for some langs (example: C and Rust)
-        disable = { "c" },
-
         -- Optionally disable for large files
         disable = function(lang, buf)
           local max_filesize = 100 * 1024 -- 100 KB
