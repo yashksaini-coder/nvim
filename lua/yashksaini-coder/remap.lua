@@ -1,6 +1,16 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ex", vim.cmd.Ex)
 
+-- Edit Neovim configuration
+vim.keymap.set("n", "<space>NC", function()
+  require('telescope.builtin').find_files {
+    cwd = vim.fn.stdpath("config"),
+    prompt_title = "Neovim Config Files",
+    hidden = true,
+}
+end, { desc = "Edit Neovim Config" })
+
+
 -- Custom Keymaps for Lazy plugin manager
 vim.keymap.set("n", "<leader>ll", "<cmd>Lazy<CR>", { desc = "Open Lazy menu" })
 vim.keymap.set("n", "<leader>ls", "<cmd>Lazy sync<CR>", { desc = "Sync plugins" })
@@ -9,16 +19,7 @@ vim.keymap.set("n", "<leader>li", "<cmd>Lazy install<CR>", { desc = "Install plu
 vim.keymap.set("n", "<leader>lc", "<cmd>Lazy check<CR>", { desc = "Check plugin health" })
 vim.keymap.set("n", "<leader>lx", "<cmd>Lazy clean<CR>", { desc = "Remove unused plugins" })
 
--- Switching themes keymaps
-
-	-- Switch to Catppuccin theme
-vim.keymap.set("n", "<leader>ct", function()
-  vim.cmd("colorscheme catppuccin")
-end, { desc = "Switch to Catppuccin theme" })
-
-
 -- ShowKeys Toggle keymap
-
 vim.keymap.set("n", "<leader>sk", "<cmd>ShowkeysToggle<CR>", { desc = "Toggle ShowKeys" })
 
 -- Telescope Keymaps
