@@ -21,6 +21,33 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
 	spec = {
 		-- import your plugins
-		{ import = "yashksaini-coder.plugins" }, -- 👈 this line tells lazy.nvim to load your plugins folder
+		{ import = "yashksaini-coder.plugins" },
+	},
+	defaults = {
+		-- By default, lazy-load plugins for better performance
+		lazy = true,
+		-- It's recommended to leave version=false for now
+		version = false, -- always use the latest git commit
+	},
+	install = { colorscheme = { "tokyonight", "habamax" } },
+	checker = {
+		enabled = true, -- check for plugin updates periodically
+		notify = false, -- don't notify on update (you can check with :Lazy)
+		frequency = 3600, -- check every hour
+	},
+	performance = {
+		rtp = {
+			-- disable some rtp plugins
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
 	},
 })
