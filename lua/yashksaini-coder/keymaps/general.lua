@@ -6,15 +6,20 @@ vim.g.maplocalleader = "\\"
 vim.keymap.set("n", "<leader><Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 
 -- File explorer
-vim.keymap.set("n", "<leader>ex", vim.cmd.Ex, { desc = "File Explorer" })
+vim.keymap.set("n", "<leader>ex", "<cmd>Ex<CR>", { desc = "File Explorer" })
 
 -- Edit Neovim configuration
 vim.keymap.set("n", "<leader>nc", function()
-  require("telescope.builtin").find_files({
-    cwd = vim.fn.stdpath("config"),
-    prompt_title = "Neovim Config Files",
-    hidden = true,
-  })
+  local ok, telescope = pcall(require, "telescope.builtin")
+  if ok then
+    telescope.find_files({
+      cwd = vim.fn.stdpath("config"),
+      prompt_title = "Neovim Config Files",
+      hidden = true,
+    })
+  else
+    vim.notify("Telescope not loaded yet", vim.log.levels.WARN)
+  end
 end, { desc = "Edit Neovim Config" })
 
 -- Better window navigation

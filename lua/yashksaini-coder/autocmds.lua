@@ -1,6 +1,8 @@
 -- Autocmds configuration
 -- These are loaded immediately as they need to be set up early
 
+-- Show dashboard when no file is opened (handled by alpha-nvim plugin config)
+
 -- Create augroups
 local transparent_bg = vim.api.nvim_create_augroup("TransparentBG", { clear = true })
 local highlight_yank = vim.api.nvim_create_augroup("HighlightYank", { clear = true })
