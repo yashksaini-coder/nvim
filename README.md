@@ -182,6 +182,44 @@ Here are the custom commands and key mappings I use inside Neovim.
 5. Use `S` for Treesitter-based navigation (jumps to code structures)
 6. Use `r` in operator mode (e.g., `rs` then `d` to delete to a flash match)
 
+### 📑 Bufferline.nvim
+
+**Bufferline.nvim** provides a modern, snazzy buffer line with tab integration for Neovim.
+
+#### **Buffer Navigation**
+| Key / CMD | Description |
+|-----------|-------------|
+| `<S-h>` or `[b` | Navigate to previous buffer |
+| `<S-l>` or `]b` | Navigate to next buffer |
+| `<leader>bp` | Toggle pin current buffer |
+| `<leader>bP` | Delete all non-pinned buffers |
+| `<leader>bo` | Close all other buffers |
+| `<leader>br` | Close all buffers to the right |
+| `<leader>bl` | Close all buffers to the left |
+
+#### **Features**
+- 🎨 **Modern Design** - Clean, snazzy buffer tabs with icons
+- 🔍 **LSP Integration** - Shows diagnostic indicators (errors/warnings) on buffers
+- 📌 **Buffer Pinning** - Pin important buffers to prevent accidental closure
+- 🎯 **Smart Sorting** - Buffers sorted by insertion order after current
+- 🖱️ **Mouse Support** - Click to switch buffers, middle-click to close
+- 📊 **Hover Preview** - Hover over buffers to see full path and information
+- 🎭 **File Icons** - Colored filetype icons using nvim-web-devicons
+- 🔄 **Persistent Order** - Buffer order persists between sessions
+
+#### **Visual Features**
+- **Separator Style**: Slant separators between buffers
+- **Close Icons**: Visual close buttons on each buffer
+- **Modified Indicator**: Shows dot (●) for modified buffers
+- **Diagnostics**: Displays error/warning counts on buffers
+- **Active Buffer Highlighting**: Clear visual indication of current buffer
+
+#### **Configuration Highlights**
+- Excludes alpha dashboard from bufferline
+- Supports sidebar offsets for file explorers (neo-tree, NvimTree)
+- Customizable diagnostics indicator
+- Hover events enabled for better UX
+
 ---
 
 ### 📊 Statusline (lualine.nvim)

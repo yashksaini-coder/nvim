@@ -10,7 +10,7 @@ return {
         theme = "material",
         component_separators = { left = " ", right = " "},
         section_separators = { left = " ", right = " "},
-        always_show_tabline = true,
+        always_show_tabline = false, -- Disabled because bufferline handles tabline
         globalstatus = true,
         refresh = {
           statusline = 1000,
