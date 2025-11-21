@@ -56,14 +56,14 @@ return {
       pattern = "AlphaReady",
       desc = "Disable status and tablines for alpha",
       callback = function()
-        local prev_statusline = vim.opt.laststatus
+        -- Hide statusline and tabline for alpha buffer
         vim.opt.laststatus = 0
-        vim.opt_local.statusline = ""
-        vim.opt_local.tabline = ""
+        vim.opt.showtabline = 0
         vim.api.nvim_create_autocmd("BufUnload", {
           buffer = 0,
           callback = function()
-            vim.opt.laststatus = prev_statusline
+            vim.opt.laststatus = 3  -- Restore global statusline
+            vim.opt.showtabline = 2  -- Restore tabline
           end,
         })
       end,

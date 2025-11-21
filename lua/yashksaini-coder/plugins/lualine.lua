@@ -17,6 +17,7 @@ return {
           tabline = 1000,
           winbar = 1000,
         },
+        disabled_filetypes = { statusline = { "alpha" }, winbar = { "alpha" } },
       },
       sections = {
         lualine_a = { "mode" },
