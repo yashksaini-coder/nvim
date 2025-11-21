@@ -149,6 +149,39 @@ Here are the custom commands and key mappings I use inside Neovim.
 - Managed via `mason.nvim` and `mason-lspconfig.nvim`.
 - Ensured/Configured LSPs (5): `lua_ls`, `pyright`, `rust_analyzer`, `gopls`, `ts_ls`.
 
+### ⚡ Flash.nvim Navigation
+
+**Flash.nvim** provides enhanced navigation with search labels, character motions, and Treesitter integration.
+
+#### **Basic Navigation**
+| Key / CMD | Mode | Description |
+|-----------|------|-------------|
+| `s` | Normal/Visual/Operator | Flash jump - Search and jump with labels |
+| `S` | Normal/Operator/Visual | Flash Treesitter - Navigate Treesitter nodes |
+| `r` | Operator | Remote Flash - Flash for operators (d, y, c, etc.) |
+| `R` | Operator/Visual | Treesitter Search - Search within Treesitter nodes |
+| `<c-s>` | Command | Toggle Flash Search - Enable/disable flash in command mode |
+
+#### **Enhanced Character Motions**
+- **f/t/F/T with labels**: When enabled, pressing `f`, `t`, `F`, or `T` will show jump labels automatically
+- **Smart search**: Uses exact matching by default for precise navigation
+- **Multi-window**: Treesitter modes support searching across multiple windows
+
+#### **Features**
+- 🎯 **Jump Labels** - Visual labels appear on matches for quick navigation
+- 🌳 **Treesitter Integration** - Navigate code structure using Treesitter nodes
+- 🔍 **Backdrop Highlighting** - Dims non-matching text for better focus
+- ⚡ **Fast Navigation** - Quick character-based navigation with visual feedback
+- 🎨 **Customizable** - Configurable labels, highlights, and behavior
+
+#### **Usage Tips**
+1. Press `s` to start a flash jump
+2. Type characters to search for matches
+3. Labels appear on all matches
+4. Press the label key to jump to that match
+5. Use `S` for Treesitter-based navigation (jumps to code structures)
+6. Use `r` in operator mode (e.g., `rs` then `d` to delete to a flash match)
+
 ---
 
 ### 📊 Statusline (lualine.nvim)
