@@ -149,35 +149,6 @@ Here are the custom commands and key mappings I use inside Neovim.
 - Managed via `mason.nvim` and `mason-lspconfig.nvim`.
 - Ensured/Configured LSPs (5): `lua_ls`, `pyright`, `rust_analyzer`, `gopls`, `ts_ls`.
 
-## 📂 Directory Structure
-
-```markdown
-
-%LOCALAPPDATA%/nvim/
-c:/Users/yashk/AppData/Local/nvim/
-├── init.lua
-├── lazy-lock.json
-├── lua/
-│   └── yashksaini-coder/
-│       ├── init.lua
-│       ├── lazy.lua
-│       ├── options.lua
-│       ├── plugins/
-
-│       │   ├── colorscheme.lua
-│       │   ├── dashboard.lua
-
-│       │   ├── lsp.lua
-│       │   ├── lualine.lua
-│       │   ├── mini.lua
-│       │   ├── showkeys.lua
-│       │   ├── telescope.lua
-│       │   ├── treesitter.lua
-│       │   └── which-key.lua
-│       └── remap.lua
-└── README.md
-```
-
 ---
 
 ### 📊 Statusline (lualine.nvim)
