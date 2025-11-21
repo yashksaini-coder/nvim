@@ -11,17 +11,20 @@ return {
 
     -- Cyberpunk ASCII Header
     dashboard.section.header.val = {
-      
-     [[   █████╗ ██╗  ██╗ ██████╗██████╗  █████╗  ██████╗██╗  ██╗███████╗██████╗ ██████╗ ███████╗██╗   ██╗██╗]],
-     [[ ██╔═████╗╚██╗██╔╝██╔════╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗██╔══██╗██╔════╝██║   ██║██║]],
-     [[ ██║██╔██║ ╚███╔╝ ██║     ██████╔╝███████║██║     █████╔╝ █████╗  ██║  ██║██║  ██║█████╗  ██║   ██║██║]],
-     [[ ████╔╝██║ ██╔██╗ ██║     ██╔══██╗██╔══██║██║     ██╔═██╗ ██╔══╝  ██║  ██║██║  ██║██╔══╝  ╚██╗ ██╔╝╚═╝]],
-     [[ ╚██████╔╝██╔╝ ██╗╚██████╗██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██████╔╝██████╔╝███████╗ ╚████╔╝ ██╗]],
-     [[  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝]],
-
-     -- "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿",
-     -- "          Arch meets Cyberpunk Neovim         ",
-     -- "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿",
+    [[                                                     ]],
+    [[                                                     ]],
+    [[                                                     ]],
+    [[                                                     ]],
+    [[                                                     ]],
+    "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿",
+    "",
+    [[███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗██╗]],
+    [[████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║██║]],
+    [[██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║██║]],
+    [[██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║╚═╝]],
+    [[██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██╗]],
+    [[╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝]],
+    "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿",
     "",
     }
 
@@ -38,7 +41,7 @@ return {
 
     -- Footer
     dashboard.section.footer.val = {
-      "⚡Wake, code, break, repeat — the loop that ships dreams. ⚡",
+      "",
     }
 
     -- Apply theme highlights
@@ -47,5 +50,55 @@ return {
     dashboard.section.footer.opts.hl = "Comment"
 
     alpha.setup(dashboard.opts)
+
+    -- Configure dashboard buffer to prevent scrolling and hide tildes
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "AlphaReady",
+      desc = "Disable status and tablines for alpha",
+      callback = function()
+        local prev_statusline = vim.opt.laststatus
+        vim.opt.laststatus = 0
+        vim.opt_local.statusline = ""
+        vim.opt_local.tabline = ""
+        vim.api.nvim_create_autocmd("BufUnload", {
+          buffer = 0,
+          callback = function()
+            vim.opt.laststatus = prev_statusline
+          end,
+        })
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "alpha",
+      desc = "Configure alpha buffer settings",
+      callback = function()
+        local buf = vim.api.nvim_get_current_buf()
+        local win = vim.api.nvim_get_current_win()
+        
+        -- Buffer options
+        vim.bo[buf].buftype = "nofile"
+        vim.bo[buf].bufhidden = "wipe"
+        vim.bo[buf].modifiable = false
+        vim.bo[buf].filetype = "alpha"
+        
+        -- Window options - prevent scrolling
+        vim.wo[win].number = false
+        vim.wo[win].relativenumber = false
+        vim.wo[win].wrap = false
+        vim.wo[win].scrolloff = 0
+        vim.wo[win].sidescrolloff = 0
+        vim.wo[win].foldcolumn = "0"
+        vim.wo[win].signcolumn = "no"
+        
+        -- Hide EndOfBuffer (tildes) by making them match the background
+        local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
+        local bg_color = normal_hl.bg or "NONE"
+        vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = bg_color, bg = bg_color, default = false })
+        
+        -- Set fillchars to replace tilde with space
+        vim.opt_local.fillchars = { eob = " " }
+      end,
+    })
   end,
 }
