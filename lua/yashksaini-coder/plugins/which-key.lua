@@ -2,64 +2,103 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
-    preset = "classic",
+    preset = "modern",
     delay = 200,
-    triggers = {
-      { "<leader>", mode = { "n", "v" } },
+    spec = {
+      {
+        mode = { "n", "v" },
+        { "<leader>c", group = "colors" },
+        { "<leader>e", group = "explorer" },
+        { "<leader>ex", desc = "File Explorer" },
+        { "<leader>f", group = "telescope" },
+        { "<leader>fg", group = "git" },
+        { "<leader>l", group = "lazy" },
+        { "<leader>s", group = "showkeys" },
+        { "<leader>t", group = "theme" },
+      },
+    },
+    win = {
+      border = "rounded",
+      padding = { 1, 2 },
+      no_overlap = false,
+      zindex = 1000,
+      anchor = "NE",
+      row = 1,
+      col = -1, -- Align to the right edge
+      width = { min = 20, max = 50 },
+    },
+    layout = {
+      spacing = 3,
+      align = "left",
+    },
+    icons = {
+      breadcrumb = "»",
+      separator = "➜",
+      group = "+",
+      ellipsis = "…",
+      colors = true,
+      keys = {
+        Up = " ",
+        Down = " ",
+        Left = " ",
+        Right = " ",
+        C = "󰘴 ",
+        M = "󰘵 ",
+        D = "󰘳 ",
+        S = "󰘶 ",
+        CR = "󰌑 ",
+        Esc = "󱊷 ",
+        ScrollWheelDown = "󱕐 ",
+        ScrollWheelUp = "󱕑 ",
+        NL = "󰌑 ",
+        BS = "󰁮",
+        Space = "󱁐 ",
+        Tab = "󰌒 ",
+        F1 = "󱊫",
+        F2 = "󱊬",
+        F3 = "󱊭",
+        F4 = "󱊮",
+        F5 = "󱊯",
+        F6 = "󱊰",
+        F7 = "󱊱",
+        F8 = "󱊲",
+        F9 = "󱊳",
+        F10 = "󱊴",
+        F11 = "󱊵",
+        F12 = "󱊶",
+      },
     },
     plugins = {
       marks = true,
       registers = true,
-      spelling = { enabled = true, suggestions = 20 },
+      spelling = {
+        enabled = true,
+        suggestions = 20,
+      },
       presets = {
         operators = true,
         motions = true,
-        text_objects = true,  
+        text_objects = true,
         windows = true,
         nav = true,
         z = true,
         g = true,
       },
     },
-    icons = {
-      mappings = true,
-    },
-    win = {
-      padding = { 1, 2 },
-    },
-    layout = {
-      height = { min = 10, max = 25 },
-      width = { min = 20, max = 60 },
-      spacing = 3,
-      align = "left",
-    },
-    sort = { "local", "order", "group", "alphanum" },
-    -- Spec registers groups and extra labels for your existing leader mappings
-    spec = {
-      -- groups
-      { "<leader>l", group = "+lazy" },
-      { "<leader>t", group = "+theme" },
-      { "<leader>s", group = "+showkeys" },
-      { "<leader>e", group = "+explorer" },
-      { "<leader>c", group = "+colors" },
-      { "<leader>f", group = "+telescope" },
-      { "<leader>fg", group = "+git" },
-
-      -- single keys without explicit `desc` in mappings
-      { "<leader>ex", desc = "File Explorer" },
+  },
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Local Keymaps (which-key)",
     },
   },
   config = function(_, opts)
-    -- ensure timeouts so which-key can capture leader sequences
-    vim.o.timeout = true
-    vim.o.timeoutlen = opts.delay or 300
-
     local wk = require("which-key")
+    -- Dynamically set col to the right edge
+    opts.win.col = vim.o.columns
     wk.setup(opts)
-    if opts.spec then
-      wk.add(opts.spec)
-    end
   end,
 }
-
-

@@ -7,9 +7,9 @@ return {
     require("lualine").setup {
       options = {
         icons_enabled = true,
-        theme = "material",
-        component_separators = { left = " ", right = " "},
-        section_separators = { left = " ", right = " "},
+        theme = "tokyonight",
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         always_show_tabline = false, -- Disabled because bufferline handles tabline
         globalstatus = true,
         refresh = {
