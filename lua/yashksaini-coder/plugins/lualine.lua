@@ -7,16 +7,17 @@ return {
     require("lualine").setup {
       options = {
         icons_enabled = true,
-        theme = "material",
-        component_separators = { left = " ", right = " "},
-        section_separators = { left = " ", right = " "},
-        always_show_tabline = true,
+        theme = "tokyonight",
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        always_show_tabline = false, -- Disabled because bufferline handles tabline
         globalstatus = true,
         refresh = {
           statusline = 1000,
           tabline = 1000,
           winbar = 1000,
         },
+        disabled_filetypes = { statusline = { "alpha" }, winbar = { "alpha" } },
       },
       sections = {
         lualine_a = { "mode" },

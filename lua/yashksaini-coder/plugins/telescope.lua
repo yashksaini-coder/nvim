@@ -21,7 +21,7 @@ return {
 
         -- Ivy theme with custom borders
         local ivy_opts = themes.get_ivy({
-            borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+            borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
             layout_config = {
                 height = 0.8,
                 preview_cutoff = 120,
@@ -33,8 +33,8 @@ return {
 
         telescope.setup({
             defaults = {
-                prompt_prefix = " 🔍 ",
-                selection_caret = " ❯ ",
+                prompt_prefix = "  ",
+                selection_caret = "  ",
                 path_display = { "truncate" },
 
                 mappings = {

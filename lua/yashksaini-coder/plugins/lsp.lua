@@ -24,33 +24,6 @@ return {
     dependencies = { "neovim/nvim-lspconfig" },
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls", -- Lua
-          "pyright", -- Python
-          "rust_analyzer", -- Rust
-          "gopls", -- Go
-          "tsserver", -- TypeScript/JavaScript (fixed from deprecated ts_ls)
-        },
-        automatic_installation = true,
-      })
-
-      -- Setup LSP servers
-      local lspconfig = require("lspconfig")
-
-      -- Load on_attach function from keymaps
-      local on_attach = require("yashksaini-coder.keymaps.lsp")
-
-      -- Enhanced capabilities for better LSP features
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      -- Safely load cmp_nvim_lsp if available (for better completion integration)
-      local cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-      if cmp_nvim_lsp then
-        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-      end
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-      -- Server configurations
       local servers = {
         lua_ls = {
           settings = {
@@ -73,14 +46,34 @@ return {
         tsserver = {},
       }
 
-      -- Setup each server
-      for name, opts in pairs(servers) do
-        opts = vim.tbl_deep_extend("force", {
-          on_attach = on_attach,
-          capabilities = capabilities,
-        }, opts or {})
-        lspconfig[name].setup(opts)
-      end
+      require("mason-lspconfig").setup {
+        ensure_installed = {
+          "lua_ls",          -- Lua
+          "pyright",         -- Python
+          "rust_analyzer",   -- Rust
+          "gopls",           -- Go
+          "ts_ls",           -- TypeScript/JavaScript (replaces tsserver)
+        },
+        automatic_installation = true,
+        handlers = {
+          -- Default handler for all servers
+          function(server_name)
+            local opts = servers[server_name] or {}
+            -- Use vim.lsp.config if available (Neovim 0.12+), otherwise use lspconfig
+            -- In Neovim 0.12+, vim.lsp.config is populated by nvim-lspconfig
+            local config = vim.lsp.config or require("lspconfig")
+            if config[server_name] and config[server_name].setup then
+              config[server_name].setup(opts)
+            elseif config.server then
+              -- Alternative API structure
+              config.server(server_name, opts)
+            else
+              -- Final fallback
+              require("lspconfig")[server_name].setup(opts)
+            end
+          end,
+        },
+      }
 
       -- Diagnostic configuration
       local signs = {
