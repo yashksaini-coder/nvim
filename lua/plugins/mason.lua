@@ -1,3 +1,10 @@
+-- It's a LSP manager for all kinds of stuff 
+-- LSP
+-- DAP
+-- Linter
+-- Formatter
+
+
 return {{
     "mason-org/mason.nvim",
     opts = {
