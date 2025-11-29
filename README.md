@@ -20,18 +20,12 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 | Key / CMD     | Description                           |
 | ----------- | ------------------------------------- |
-| `<leader><Esc>` | Clear search highlights |
-| `<leader>ex` | Open file explorer (netrw) |
-| `<leader>nc` | Edit Neovim configuration files |
+| `<Esc>` | Clear search highlights |
 | `<leader>sk` | Toggle ShowKeys |
 | `<C-h/j/k/l>` | Navigate windows (left/down/up/right) |
-| `<Left/Right/Up/Down>` | Resize windows |
-| `<A-j>` / `<A-k>` | Move line/selection down/up |
-| `<` / `>` | Indent left/right (visual mode) |
-| `"+y` / `"+p` | Yank/Paste to system clipboard |
-
-
-
+| `<C-s>` | Save file (Insert/Normal/Visual) |
+| `<leader>q` | Quit all |
+| `<leader>mp` | Toggle Markdown Render |
 
 ### 📦 Lazy.nvim Plugin Manager
 
@@ -46,80 +40,57 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 ### 🔭 Telescope Keymaps
 
-#### **File Searching**
 | Key / CMD     | Command                                    | Description                           |
 | ----------- | ------------------------------------------ | ------------------------------------- |
-| `<leader>ff` | `:Telescope find_files`                    | Find files in project                |
-| `<leader>fF` | `:Telescope find_files hidden=true`        | Find all files (including hidden)    |
+| `<leader>ff` | `:Telescope find_files hidden=true`        | Find files (including hidden)         |
 | `<leader>fg` | `:Telescope live_grep`                     | Live grep across project             |
-| `<leader>fG` | `:Telescope live_grep_args`                | Live grep with advanced arguments    |
+| `<leader>fb` | `:Telescope buffers`                       | Find and switch between buffers       |
+| `<leader>fh` | `:Telescope help_tags`                     | Search help documentation             |
 | `<leader>fs` | `:Telescope grep_string`                   | Grep string under cursor             |
 
-#### **Buffer & Navigation**
-| Key / CMD     | Command                           | Description                           |
-| ----------- | --------------------------------- | ------------------------------------- |
-| `<leader>fb` | `:Telescope buffers`              | Find and switch between buffers       |
-| `<leader>fh` | `:Telescope help_tags`            | Search help documentation             |
-| `<leader>fc` | `:Telescope commands`             | Find and execute commands             |
-| `<leader>fk` | `:Telescope keymaps`              | Search keymaps                       |
-| `<leader>ft` | `:Telescope colorscheme`          | Switch between colorschemes           |
+### 📂 Neo-tree (File Explorer)
 
-#### **LSP Integration**
-| Key / CMD     | Command                              | Description                           |
-| ----------- | ------------------------------------ | ------------------------------------- |
-| `<leader>fl` | `:Telescope lsp_references`          | Find LSP references                  |
-| `<leader>fd` | `:Telescope lsp_definitions`         | Go to LSP definitions                |
-| `<leader>fi` | `:Telescope lsp_implementations`     | Find LSP implementations             |
-| `<leader>fy` | `:Telescope lsp_type_definitions`    | Find LSP type definitions            |
-| `<leader>fa` | `:Telescope lsp_diagnostics`         | Show LSP diagnostics                 |
-
-#### **Extensions & Tools**
-| Key / CMD     | Command                           | Description                           |
-| ----------- | --------------------------------- | ------------------------------------- |
-| `<leader>fx` | `:Telescope symbols`               | Search symbols in workspace          |
-
-> [!Note]
-> **Simplified Configuration:** This telescope setup focuses on core functionality with 4 essential extensions:
-> - **FZF Native** - Enhanced fuzzy finding performance
-> - **UI Select** - Dropdown selection interface  
-> - **Symbols** - Workspace symbol search
-> - **Live Grep Args** - Advanced text search with arguments
-
-#### **Quick Access & Utilities**
 | Key / CMD     | Command                                    | Description                           |
 | ----------- | ------------------------------------------ | ------------------------------------- |
-| `<leader>f.` | `:Telescope find_files cwd=%:p:h`         | Find files in current directory       |
-| `<leader>f/` | `:Telescope live_grep cwd=%:p:h`          | Live grep in current directory        |
-| `<leader>fr` | `:Telescope resume`                        | Resume last telescope search          |
+| `<leader>e`  | `:Neotree toggle`                          | Toggle Explorer                       |
+| `<leader>eo` | `:Neotree focus`                           | Focus Explorer                        |
+| `<leader>er` | `:Neotree reveal`                          | Reveal current file in Explorer       |
+| `<leader>ef` | `:Neotree filesystem reveal left`          | Show Filesystem Explorer              |
+| `<leader>eb` | `:Neotree buffers reveal float`            | Show Buffer Explorer                  |
+| `<leader>eg` | `:Neotree git_status reveal float`         | Show Git Status Explorer              |
 
-#### **Git Integration**
-| Key / CMD     | Command                           | Description                           |
-| ----------- | --------------------------------- | ------------------------------------- |
-| `<leader>fgc` | `:Telescope git_commits`          | Browse git commit history             |
-| `<leader>fgb` | `:Telescope git_bcommits`         | Browse commits for current buffer     |
-| `<leader>fgr` | `:Telescope git_branches`         | Switch between git branches           |
-| `<leader>fgs` | `:Telescope git_status`            | Show git status and changes           |
+### 🎨 Themes
 
-## 🛠️ Advanced Features & Keymaps
+| Key / CMD     | Description                           |
+| ----------- | ------------------------------------- |
+| `<leader>co` | Switch to **Osmium** theme            |
+| `<leader>ct` | Switch to **Tokyonight** (Default)    |
+| `<leader>cts`| Switch to **Tokyonight Storm**        |
+| `<leader>ctn`| Switch to **Tokyonight Night**        |
+| `<leader>ctm`| Switch to **Tokyonight Moon**         |
+| `<leader>ctd`| Switch to **Tokyonight Day**          |
 
-### 🧠 LSP (Language Server Protocol)
+### 🔔 Noice (Notifications & Cmdline)
 
-| Key / CMD       | Purpose                                   |
-|-----------------|-------------------------------------------|
-| `K`             | LSP Hover (show documentation)           |
-| `gd`            | Go to Definition                          |
-| `gr`            | Find References                           |
-| `gi`            | Go to Implementation                      |
-| `<leader>rn`    | Rename Symbol                             |
-| `<leader>ca`    | Code Action                               |
-| `<leader>cf`    | Format Buffer (formatter)                |
-| `<leader>ws`    | Workspace Symbol                          |
-| `<leader>wa`    | Add Workspace Folder                      |
-| `<leader>wr`    | Remove Workspace Folder                   |
-| `<leader>wl`    | List Workspace Folders                    |
-| `<leader>td`    | Type Definition                           |
-| `<leader>ds`    | Document Symbol                           |
-| `<C-k>`         | Signature Help (in insert/normal mode)    |
+| Key / CMD     | Command                                    | Description                           |
+| ----------- | ------------------------------------------ | ------------------------------------- |
+| `<leader>nh` | `:Noice history`                           | Show notification history             |
+| `<leader>nl` | `:Noice last`                              | Show last message                     |
+| `<leader>ne` | `:Noice errors`                            | Show errors                           |
+| `<leader>nd` | `:Noice dismiss`                           | Dismiss all notifications             |
+| `<leader>np` | `:Noice pick`                              | Open Noice picker (Telescope)         |
+| `<leader>ns` | `:Noice stats`                             | Show Noice stats                      |
+
+### 🧠 LSP & Mason
+
+| Key / CMD     | Description                           |
+| ----------- | ------------------------------------- |
+| `<leader>M`  | Open Mason command menu               |
+| `K`          | Hover documentation                   |
+| `<leader>gd` | Go to Definition                      |
+| `<leader>gr` | Find References                       |
+| `<leader>ca` | Code Action                           |
+
 
 ### ✨ Code Completion (nvim-cmp)
 

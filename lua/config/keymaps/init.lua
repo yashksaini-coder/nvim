@@ -1,0 +1,8 @@
+require("config.keymaps.general")
+require("config.keymaps.lazy")
+require("config.keymaps.neo-tree")
+require("config.keymaps.telescope")
+require("config.keymaps.themes")
+require("config.keymaps.mason")
+require("config.keymaps.lsp")
+require("config.keymaps.noice")
