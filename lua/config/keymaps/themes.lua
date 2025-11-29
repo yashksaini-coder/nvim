@@ -1,6 +1,6 @@
 -- Theme switcher keymaps
 
--- Osmium
+-- Osmium Theme
 vim.keymap.set("n", "<leader>co", "<cmd>colorscheme osmium<CR>", { desc = "Theme: Osmium" })
 
 -- Tokyonight Variants
@@ -10,3 +10,5 @@ vim.keymap.set("n", "<leader>ctn", "<cmd>colorscheme tokyonight-night<CR>", { de
 vim.keymap.set("n", "<leader>ctm", "<cmd>colorscheme tokyonight-moon<CR>", { desc = "Theme: Tokyonight Moon" })
 vim.keymap.set("n", "<leader>ctd", "<cmd>colorscheme tokyonight-day<CR>", { desc = "Theme: Tokyonight Day" })
 
+-- Chain Theme
+vim.keymap.set("n", "<leader>cc", "<cmd>colorscheme chai<CR>", { desc =  "Theme: Shobhit's Chai" })
