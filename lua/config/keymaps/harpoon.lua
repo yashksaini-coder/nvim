@@ -10,4 +10,4 @@ for i = 1, 9 do
 end
 
 vim.keymap.set('n', '<S-k>', ui.nav_next,{desc="Go to Prev file"})
-vim.keymap.set('n', '<S-j>', ui.nav_prev,{desc="Go to next file"})
+vim.keymap.set('n', '<S-j>', ui.nav_prev,{desc="Go to next file"})              
