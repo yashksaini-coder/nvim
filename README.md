@@ -92,6 +92,8 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>ctn`| Switch to **Tokyonight Night**        |
 | `<leader>ctm`| Switch to **Tokyonight Moon**         |
 | `<leader>ctd`| Switch to **Tokyonight Day**          |
+| `<leader>cc` | Switch to **Chai** theme              |
+| `<leader>th` | Open **Themery** picker               |
 
 ### 🔔 Noice (Notifications & Cmdline)
 
