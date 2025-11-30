@@ -4,3 +4,4 @@ vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', { silent = tru
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { silent = true, desc = 'Telescope: buffers' })
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', { silent = true, desc = 'Telescope: help tags' })
 vim.keymap.set('n', '<leader>fs', '<cmd>Telescope grep_string<CR>', { silent = true, desc = 'Telescope: grep string under cursor' })
+vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<CR>', { silent = true, desc = 'Telescope: recent files' })

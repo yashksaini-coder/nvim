@@ -47,6 +47,18 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>fb` | `:Telescope buffers`                       | Find and switch between buffers       |
 | `<leader>fh` | `:Telescope help_tags`                     | Search help documentation             |
 | `<leader>fs` | `:Telescope grep_string`                   | Grep string under cursor             |
+| `<leader>fr` | `:Telescope oldfiles`                      | Open recent files                    |
+
+### 🦈 Harpoon
+
+| Key / CMD     | Description                           |
+| ----------- | ------------------------------------- |
+| `<leader>h`  | Add file to Harpoon                   |
+| `<leader>hr` | Remove file from Harpoon              |
+| `<leader>H`  | Show Harpoon menu                     |
+| `<leader>1-9`| Navigate to file 1-9                  |
+| `<S-k>`      | Go to previous file                   |
+| `<S-j>`      | Go to next file                       |
 
 ### 📂 Neo-tree (File Explorer)
 
@@ -58,6 +70,17 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>ef` | `:Neotree filesystem reveal left`          | Show Filesystem Explorer              |
 | `<leader>eb` | `:Neotree buffers reveal float`            | Show Buffer Explorer                  |
 | `<leader>eg` | `:Neotree git_status reveal float`         | Show Git Status Explorer              |
+
+### 🗺️ Mini Map
+
+| Key / CMD     | Description                           |
+| ----------- | ------------------------------------- |
+| `<leader>mt` | Toggle Mini Map                       |
+| `<leader>mo` | Open Mini Map                         |
+| `<leader>mc` | Close Mini Map                        |
+| `<leader>mf` | Focus Mini Map                        |
+| `<leader>mr` | Refresh Mini Map                      |
+| `<leader>ms` | Toggle Mini Map Side                  |
 
 ### 🎨 Themes
 
