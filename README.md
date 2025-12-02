@@ -82,6 +82,14 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>mr` | Refresh Mini Map                      |
 | `<leader>ms` | Toggle Mini Map Side                  |
 
+### 📍 Dropbar (Winbar)
+
+| Key / CMD     | Description                           |
+| ----------- | ------------------------------------- |
+| `<leader>dp` | Pick symbol (Interactive)             |
+| `<leader>ds` | Go to context start                   |
+| `<leader>dn` | Select next context                   |
+
 ### 🎨 Themes
 
 | Key / CMD     | Description                           |
