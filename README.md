@@ -198,8 +198,8 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `u`             | ⬆️ Update all plugins (Lazy update)       |
 | `q`             | 🚪 Quit Neovim                            |
 
-  ### Plugin Shortcuts
-  - `:Alpha` → Reload dashboard screen
+### Plugin Shortcuts
+- `:Alpha` → Reload dashboard screen
   - `:Lazy` → Open Lazy plugin manager
   - `:Lazy update` → Update all installed plugins
   - `:Telescope find_files` → Search files

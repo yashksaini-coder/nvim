@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>ctn", "<cmd>colorscheme tokyonight-night<CR>", { de
 vim.keymap.set("n", "<leader>ctm", "<cmd>colorscheme tokyonight-moon<CR>", { desc = "Theme: Tokyonight Moon" })
 vim.keymap.set("n", "<leader>ctd", "<cmd>colorscheme tokyonight-day<CR>", { desc = "Theme: Tokyonight Day" })
 
--- Chain Theme
+-- Chai Theme
 vim.keymap.set("n", "<leader>cc", "<cmd>colorscheme chai<CR>", { desc =  "Theme: Shobhit's Chai" })
 
 -- Themery
