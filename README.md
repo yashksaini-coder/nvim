@@ -8,7 +8,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 > This config has been significantly enhanced with professional features including completion, diagnostics UI, auto-formatting, and more.  
 > Fully organized with proper directory structure following Neovim best practices 🚀
 
----
+--
 
 ## ⌨️ Key Mappings
 
