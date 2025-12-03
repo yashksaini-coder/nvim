@@ -80,3 +80,12 @@ vim.opt.incsearch = true
 -- Ignore case for searches
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-----------------------------------------------------------
+-- Background Options
+-----------------------------------------------------------
+-- Transparent background
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+

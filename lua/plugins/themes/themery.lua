@@ -12,6 +12,7 @@ return {
         "chai",
         "gruvbox",
         "gruvbuddy",
+        "oxocarbon"
       },
       livePreview = true, -- Apply theme while picking
     })
