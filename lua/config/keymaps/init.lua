@@ -10,5 +10,4 @@ require("config.keymaps.mini")
 require("config.keymaps.harpoon")
 require("config.keymaps.dropbar")
 require("config.keymaps.bufferline")
-
-
+require("config.keymaps.oil")

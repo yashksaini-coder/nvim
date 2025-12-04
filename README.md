@@ -18,112 +18,200 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 ### 🎯 General Keymaps
 
-| Key / CMD     | Description                           |
-| ----------- | ------------------------------------- |
+| Key | Description |
+|-----|-------------|
 | `<Esc>` | Clear search highlights |
-| `<leader>sk` | Toggle ShowKeys |
-| `<C-h/j/k/l>` | Navigate windows (left/down/up/right) |
-| `<C-s>` | Save file (Insert/Normal/Visual) |
+| `<leader>sk` | Toggle ShowKeys display |
+| `<C-h>` | Move to left window |
+| `<C-j>` | Move to lower window |
+| `<C-k>` | Move to upper window |
+| `<C-l>` | Move to right window |
+| `<C-s>` | Save file |
 | `<leader>q` | Quit all |
 | `<leader>mp` | Toggle Markdown Render |
+| `<C-/>` | Toggle comment (Visual mode) |
 
 ### 📦 Lazy.nvim Plugin Manager
 
-| Key / CMD     | Command         | Description                  |
-| ----------- | --------------- | ---------------------------- |
-| `<leader>ll` | `:Lazy`         | Open Lazy UI                 |
-| `<leader>ls` | `:Lazy sync`    | Sync (install/update/remove) |
-| `<leader>lu` | `:Lazy update`  | Update all plugins           |
-| `<leader>li` | `:Lazy install` | Install missing plugins      |
-| `<leader>lc` | `:Lazy check`   | Check plugin health          |
-| `<leader>lx` | `:Lazy clean`   | Remove unused plugins        |
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>ll` | `:Lazy` | Open Lazy menu |
+| `<leader>ls` | `:Lazy sync` | Sync plugins (install/update/remove) |
+| `<leader>lu` | `:Lazy update` | Update all plugins |
+| `<leader>li` | `:Lazy install` | Install missing plugins |
+| `<leader>lc` | `:Lazy check` | Check plugin health |
+| `<leader>lx` | `:Lazy clean` | Remove unused plugins |
 
-### 🔭 Telescope Keymaps
+### 🔭 Telescope (Fuzzy Finder)
 
-| Key / CMD     | Command                                    | Description                           |
-| ----------- | ------------------------------------------ | ------------------------------------- |
-| `<leader>ff` | `:Telescope find_files hidden=true`        | Find files (including hidden)         |
-| `<leader>fg` | `:Telescope live_grep`                     | Live grep across project             |
-| `<leader>fb` | `:Telescope buffers`                       | Find and switch between buffers       |
-| `<leader>fh` | `:Telescope help_tags`                     | Search help documentation             |
-| `<leader>fs` | `:Telescope grep_string`                   | Grep string under cursor             |
-| `<leader>fr` | `:Telescope oldfiles`                      | Open recent files                    |
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>ff` | `:Telescope find_files` | Find files (hidden included) |
+| `<leader>fg` | `:Telescope live_grep` | Live grep search in project |
+| `<leader>fb` | `:Telescope buffers` | Find and switch between buffers |
+| `<leader>fh` | `:Telescope help_tags` | Search Neovim help documentation |
+| `<leader>fs` | `:Telescope grep_string` | Grep word under cursor |
+| `<leader>fr` | `:Telescope oldfiles` | Open recent files |
 
-### 🦈 Harpoon
+### 🦈 Harpoon (File Navigation)
 
-| Key / CMD     | Description                           |
-| ----------- | ------------------------------------- |
-| `<leader>h`  | Add file to Harpoon                   |
-| `<leader>hr` | Remove file from Harpoon              |
-| `<leader>H`  | Show Harpoon menu                     |
-| `<leader>1-9`| Navigate to file 1-9                  |
-| `<S-k>`      | Go to previous file                   |
-| `<S-j>`      | Go to next file                       |
+| Key | Description |
+|-----|-------------|
+| `<leader>h` | Add current file to Harpoon |
+| `<leader>hr` | Remove current file from Harpoon |
+| `<leader>H` | Show Harpoon quick menu |
+| `<leader>1` - `<leader>9` | Jump to Harpoon file 1-9 |
+| `<S-k>` | Navigate to previous Harpoon file |
+| `<S-j>` | Navigate to next Harpoon file |
 
 ### 📂 Neo-tree (File Explorer)
 
-| Key / CMD     | Command                                    | Description                           |
-| ----------- | ------------------------------------------ | ------------------------------------- |
-| `<leader>e`  | `:Neotree toggle`                          | Toggle Explorer                       |
-| `<leader>eo` | `:Neotree focus`                           | Focus Explorer                        |
-| `<leader>er` | `:Neotree reveal`                          | Reveal current file in Explorer       |
-| `<leader>ef` | `:Neotree filesystem reveal left`          | Show Filesystem Explorer              |
-| `<leader>eb` | `:Neotree buffers reveal float`            | Show Buffer Explorer                  |
-| `<leader>eg` | `:Neotree git_status reveal float`         | Show Git Status Explorer              |
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>e` | `:Neotree toggle` | Toggle file explorer |
+| `<leader>eo` | `:Neotree focus` | Focus file explorer |
+| `<leader>er` | `:Neotree reveal` | Reveal current file in explorer |
+| `<leader>ef` | `:Neotree filesystem` | Show filesystem view |
+| `<leader>eb` | `:Neotree buffers` | Show buffers view |
+| `<leader>eg` | `:Neotree git_status` | Show git status view |
+| `<leader>en` | Create new file | Create new file in current directory |
+
+**Neo-tree Keyboard Shortcuts (inside explorer):**
+- `a` - Add file/directory
+- `A` - Add directory
+- `d` - Delete file/directory
+- `r` - Rename file/directory
+- `y` / `c` - Copy filename/path
+- `x` - Cut file
+- `p` - Paste file
+- `m` - Move file
+- `s` - Open file in split
+- `v` - Open file in vsplit
+- `t` - Open file in new tab
 
 ### 🗺️ Mini Map
 
-| Key / CMD     | Description                           |
-| ----------- | ------------------------------------- |
-| `<leader>mt` | Toggle Mini Map                       |
-| `<leader>mo` | Open Mini Map                         |
-| `<leader>mc` | Close Mini Map                        |
-| `<leader>mf` | Focus Mini Map                        |
-| `<leader>mr` | Refresh Mini Map                      |
-| `<leader>ms` | Toggle Mini Map Side                  |
+| Key | Description |
+|-----|-------------|
+| `<leader>mt` | Toggle Mini Map |
+| `<leader>mo` | Open Mini Map |
+| `<leader>mc` | Close Mini Map |
+| `<leader>mf` | Focus Mini Map |
+| `<leader>mr` | Refresh Mini Map |
+| `<leader>ms` | Toggle Mini Map position (left/right) |
 
-### 📍 Dropbar (Winbar)
+### 📍 Dropbar (Breadcrumb Navigation)
 
-| Key / CMD     | Description                           |
-| ----------- | ------------------------------------- |
-| `<leader>dp` | Pick symbol (Interactive)             |
-| `<leader>ds` | Go to context start                   |
-| `<leader>dn` | Select next context                   |
+| Key | Function | Description |
+|-----|----------|-------------|
+| `<leader>dp` | `pick()` | Interactively pick symbol |
+| `<leader>ds` | `goto_context_start()` | Jump to start of current context |
+| `<leader>dn` | `select_next_context()` | Select next context/scope |
 
 ### 🎨 Themes
 
-| Key / CMD     | Description                           |
-| ----------- | ------------------------------------- |
-| `<leader>co` | Switch to **Osmium** theme            |
-| `<leader>ct` | Switch to **Tokyonight** (Default)    |
-| `<leader>cts`| Switch to **Tokyonight Storm**        |
-| `<leader>ctn`| Switch to **Tokyonight Night**        |
-| `<leader>ctm`| Switch to **Tokyonight Moon**         |
-| `<leader>ctd`| Switch to **Tokyonight Day**          |
-| `<leader>cc` | Switch to **Chai** theme              |
-| `<leader>th` | Open **Themery** picker               |
+| Key | Theme | Description |
+|-----|-------|-------------|
+| `<leader>co` | Osmium | Switch to Osmium theme |
+| `<leader>ct` | Tokyonight | Switch to Tokyonight (default) |
+| `<leader>cts` | Tokyonight Storm | Switch to Tokyonight Storm variant |
+| `<leader>ctn` | Tokyonight Night | Switch to Tokyonight Night variant |
+| `<leader>ctm` | Tokyonight Moon | Switch to Tokyonight Moon variant |
+| `<leader>ctd` | Tokyonight Day | Switch to Tokyonight Day (light) |
+| `<leader>cc` | Chai | Switch to Chai theme |
+| `<leader>th` | Themery | Open Themery theme picker |
 
-### 🔔 Noice (Notifications & Cmdline)
+### 🔔 Noice (Notifications & Command Line)
 
-| Key / CMD     | Command                                    | Description                           |
-| ----------- | ------------------------------------------ | ------------------------------------- |
-| `<leader>nh` | `:Noice history`                           | Show notification history             |
-| `<leader>nl` | `:Noice last`                              | Show last message                     |
-| `<leader>ne` | `:Noice errors`                            | Show errors                           |
-| `<leader>nd` | `:Noice dismiss`                           | Dismiss all notifications             |
-| `<leader>np` | `:Noice pick`                              | Open Noice picker (Telescope)         |
-| `<leader>ns` | `:Noice stats`                             | Show Noice stats                      |
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>nh` | `:Noice history` | Show notification history |
+| `<leader>nl` | `:Noice last` | Show last message |
+| `<leader>ne` | `:Noice errors` | Show all errors |
+| `<leader>nd` | `:Noice dismiss` | Dismiss all notifications |
+| `<leader>np` | `:Noice pick` | Open Noice picker |
+| `<leader>ns` | `:Noice stats` | Show Noice statistics |
 
-### 🧠 LSP & Mason
+### 🧠 LSP & Mason (Language Servers)
 
-| Key / CMD     | Description                           |
-| ----------- | ------------------------------------- |
-| `<leader>M`  | Open Mason command menu               |
-| `K`          | Hover documentation                   |
-| `<leader>gd` | Go to Definition                      |
-| `<leader>gr` | Find References                       |
-| `<leader>ca` | Code Action                           |
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>M` | `:Mason` | Open Mason package manager |
+| `K` | `vim.lsp.buf.hover` | Show hover documentation |
+| `<leader>gd` | `vim.lsp.buf.definition` | Go to definition |
+| `<leader>gr` | `vim.lsp.buf.references` | Find all references |
+| `<leader>ca` | `vim.lsp.buf.code_action` | Show code actions |
 
+### 🔧 Oil (File Buffer Editor)
+
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>o` | `:Oil` | Open oil file explorer |
+| `<leader>O` | `:Oil --floating` | Open oil in floating window |
+
+**Oil Keyboard Shortcuts (inside oil buffer):**
+- `<CR>` - Open/select file
+- `<C-s>` - Open in vertical split
+- `<C-h>` - Open in horizontal split
+- `<C-t>` - Open in new tab
+- `<C-p>` - Preview file
+- `<C-l>` - Refresh
+- `-` - Go to parent directory
+- `_` - Open current working directory
+- `` ` `` - Change directory
+- `~` - Change working directory
+- `gs` - Change sort order
+- `gx` - Open file with external program
+- `g.` - Toggle hidden files
+- `g?` - Show help
+
+### 📋 Bufferline (Buffer Navigation)
+
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<S-h>` or `[b` | Prev Buffer | Navigate to previous buffer |
+| `<S-l>` or `]b` | Next Buffer | Navigate to next buffer |
+| `<leader>bp` | `:BufferLineTogglePin` | Pin/unpin current buffer |
+| `<leader>bP` | Close unpinned | Delete all non-pinned buffers |
+| `<leader>bo` | Close others | Close all other buffers |
+| `<leader>br` | Close right | Close all buffers to the right |
+| `<leader>bl` | Close left | Close all buffers to the left |
+
+### ⌨️ Keymap Quick Reference (All `<leader>` Mappings)
+
+**Navigation & Files:**
+- `ff` - Find files | `fg` - Live grep | `fb` - Buffers | `fh` - Help
+- `fs` - Grep string | `fr` - Recent files
+- `e` - Toggle explorer | `eo` - Focus explorer | `er` - Reveal
+- `en` - Create new file | `ef` - Filesystem | `eb` - Buffers | `eg` - Git status
+- `h` - Add to Harpoon | `hr` - Remove | `H` - Harpoon menu | `1-9` - Jump to file
+
+**Themes & UI:**
+- `co` - Osmium theme | `ct` - Tokyonight | `cts/ctn/ctm/ctd` - Variants
+- `cc` - Chai theme | `th` - Themery picker
+- `mt/mo/mc/mf/mr/ms` - Mini map controls
+
+**Symbols & Code Navigation:**
+- `dp` - Dropbar pick | `ds` - Context start | `dn` - Next context
+
+**Plugins & Tools:**
+- `ll` - Lazy menu | `ls` - Lazy sync | `lu` - Lazy update
+- `li` - Lazy install | `lc` - Lazy check | `lx` - Lazy clean
+- `M` - Mason packages | `sk` - ShowKeys
+
+**Notifications & Messages:**
+- `nh` - History | `nl` - Last | `ne` - Errors | `nd` - Dismiss
+- `np` - Noice picker | `ns` - Stats
+
+**Code & Diagnostics:**
+- `gd` - Definition | `gr` - References | `ca` - Code action
+
+**Buffers:**
+- `bp` - Pin buffer | `bP` - Delete unpinned | `bo` - Delete others
+- `br` - Delete right | `bl` - Delete left
+
+**Oil (File Editor):**
+- `o` - Oil explorer | `O` - Oil floating
 
 ### ✨ Code Completion (nvim-cmp)
 
@@ -404,4 +492,3 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Git:** `]c`/`[c` (hunks), `<leader>hs` (stage), `<leader>hp` (preview)
 - **Lazy:** `<leader>ll` (menu), `<leader>ls` (sync), `<leader>lu` (update)
 
-*Contributions and suggestions are welcome!*
