@@ -31,12 +31,26 @@ return {
                     "gopls",
                     "pyright",
                     "ts_ls",
+                    "lua_ls",
                     -- Add other language servers here as needed
                 },
                 handlers = {
                     function(server_name)
                         require("lspconfig")[server_name].setup {
                             capabilities = capabilities
+                        }
+                    end,
+                    ["lua_ls"] = function()
+                        local lspconfig = require("lspconfig")
+                        lspconfig.lua_ls.setup {
+                            capabilities = capabilities,
+                            settings = {
+                                Lua = {
+                                    diagnostics = {
+                                        globals = { "vim" }
+                                    }
+                                }
+                            }
                         }
                     end,
                 }
@@ -63,6 +77,9 @@ return {
                     { name = 'buffer' },
                 })
             })
+
+            vim.keymap.set('n', '<C-i>', vim.lsp.buf.definition, {desc='Goto definition'});
+            vim.keymap.set('n', '<S-l>', vim.lsp.buf.hover, {desc='Define the keyword under cursor'})
         end
     }
 }
