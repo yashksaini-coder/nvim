@@ -89,3 +89,11 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 
+-----------------------------------------------------------
+-- Diagnostic Options
+-----------------------------------------------------------
+vim.diagnostic.config({
+  virtual_text = true,
+  underline = true,
+})
+

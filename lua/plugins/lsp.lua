@@ -32,6 +32,8 @@ return {
                     "pyright",
                     "ts_ls",
                     "lua_ls",
+                    "eslint",
+                    "tailwindcss",
                     -- Add other language servers here as needed
                 },
                 handlers = {
@@ -50,6 +52,14 @@ return {
                                         globals = { "vim" }
                                     }
                                 }
+                            }
+                        }
+                    end,
+                    ["eslint"] = function()
+                        require("lspconfig").eslint.setup {
+                            capabilities = capabilities,
+                            settings = {
+                                workingDirectory = { mode = "auto" },
                             }
                         }
                     end,
