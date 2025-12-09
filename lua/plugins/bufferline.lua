@@ -12,7 +12,14 @@ return {
                 local icon = level:match("error") and " " or " "
                 return " " .. icon .. count
             end,
-            offsets = {},
+            offsets = {
+                {
+                    filetype = "NvimTree",
+                    text = "File Explorer",
+                    highlight = "Directory",
+                    text_align = "left",
+                },
+            },
             hover = {
                 enabled = true,
                 delay = 200,

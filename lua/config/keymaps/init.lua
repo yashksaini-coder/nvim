@@ -1,6 +1,6 @@
 require("config.keymaps.general")
 require("config.keymaps.lazy")
-require("config.keymaps.oil")
+require("config.keymaps.nvim-tree")
 require("config.keymaps.telescope")
 require("config.keymaps.themes")
 require("config.keymaps.mason")

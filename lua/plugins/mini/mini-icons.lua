@@ -10,11 +10,5 @@ return {
   opts = function(_, opts)
     if vim.g.icons_enabled == false then opts.style = "ascii" end
   end,
-  specs = {
-    {
-      "stevearc/oil.nvim",
-      optional = true,
-      opts = { file_explorer = { icons = true } },
-    },
-  },
+  specs = {},
 }
