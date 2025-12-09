@@ -10,7 +10,7 @@ return {
                 component_separators = { left = '', right = ''},
                 section_separators = { left = '', right = ''},
                 disabled_filetypes = {
-                    statusline = { "alpha", "dashboard", "neo-tree" },
+                    statusline = { "alpha", "dashboard" },
                 },
             },
             sections = {
@@ -21,7 +21,7 @@ return {
                 lualine_y = { "progress" },
                 lualine_z = { "location" }
             },
-            extensions = { "neo-tree", "lazy" }
+            extensions = { "oil", "lazy" }
         })
     end
 }

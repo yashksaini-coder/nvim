@@ -12,14 +12,7 @@ return {
                 local icon = level:match("error") and " " or " "
                 return " " .. icon .. count
             end,
-            offsets = {
-                {
-                    filetype = "neo-tree",
-                    text = "Neo-tree",
-                    highlight = "Directory",
-                    text_align = "left",
-                },
-            },
+            offsets = {},
             hover = {
                 enabled = true,
                 delay = 200,

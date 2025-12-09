@@ -93,7 +93,6 @@ vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 -- Diagnostic Options
 -----------------------------------------------------------
 vim.diagnostic.config({
-  virtual_text = true,
-  underline = true,
+	virtual_text = true,
+	underline = true,
 })
-
