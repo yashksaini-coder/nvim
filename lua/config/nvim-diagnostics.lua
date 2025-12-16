@@ -39,9 +39,13 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 	border = _border,
 })
 
--- Auto-show diagnostics on hover
+-- Auto-show diagnostics on hover (only in normal mode, not during completion)
 vim.api.nvim_create_autocmd("CursorHold", {
 	callback = function()
+		-- Don't show diagnostics during insert mode (when completion might be active)
+		if vim.api.nvim_get_mode().mode == "i" then
+			return
+		end
 		local opts = {
 			focusable = false,
 			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },

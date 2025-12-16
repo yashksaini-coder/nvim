@@ -7,13 +7,15 @@ return {
       -- Delay (debounce type, in ms) between certain Neovim event and action.
       -- This can be used to (virtually) disable certain automatic actions by
       -- setting very high delay time (like 10^7).
-      delay = { completion = 100, info = 100, signature = 50 },
+      -- Set info delay very high since we disabled the info window
+      delay = { completion = 100, info = 10^7, signature = 50 },
 
       -- Configuration for action windows:
       -- - `height` and `width` are maximum dimensions.
       -- - `border` defines border (as in `nvim_open_win()`; default "single").
+      -- - Set `info = nil` to disable automatic info window during completion
       window = {
-        info = { height = 25, width = 80, border = nil },
+        info = nil,  -- Disable automatic info window to prevent UI clutter
         signature = { height = 25, width = 80, border = nil },
       },
 

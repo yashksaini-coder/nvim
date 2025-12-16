@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~
+cd ~/pldg/ipdl
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,11 +13,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +20 Downloads/py-libp2p-pr-review-prompt.md
-badd +1 Downloads/yang-wen-li.jpg
+badd +77 docs/conf.py
 argglobal
 %argdel
-edit Downloads/yang-wen-li.jpg
+$argadd NvimTree_1
+edit docs/conf.py
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -38,7 +38,7 @@ wincmd =
 argglobal
 enew
 file NvimTree_1
-balt Downloads/py-libp2p-pr-review-prompt.md
+balt docs/conf.py
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -47,9 +47,9 @@ setlocal foldlevel=0
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal nofoldenable
+lcd ~/pldg/ipdl/docs
 wincmd w
 argglobal
-balt Downloads/py-libp2p-pr-review-prompt.md
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -60,12 +60,13 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 31) / 62)
+let s:l = 77 - ((16 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
+keepjumps 77
+normal! 060|
+lcd ~/pldg/ipdl/docs
 wincmd w
 2wincmd w
 wincmd =
