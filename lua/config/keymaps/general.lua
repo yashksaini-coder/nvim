@@ -22,12 +22,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", {
     desc = "Move to right window"
 })
 
-vim.keymap.set("n", "<leader>mp", function()
-    require("render-markdown").toggle()
-end, {
-    desc = "Toggle Markdown Render"
-})
-
 -- Autopairs Keymap
 vim.keymap.set("v", "<C-/>", "<Plug>(comment_toggle_linewise_visual)", {
     noremap = true,

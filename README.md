@@ -8,6 +8,23 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 > This config has been significantly enhanced with professional features including completion, diagnostics UI, auto-formatting, and more.  
 > Fully organized with proper directory structure following Neovim best practices 🚀
 
+## 📝 Recent Changes
+
+### ✨ Added
+- **mini.completion** - Replaced blink.cmp with lightweight mini.completion for faster, more reliable LSP completion
+- **persistence.nvim** - Session management with auto-save/restore functionality
+- **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
+- **Improved Dashboard** - All alpha dashboard buttons now functional with proper keybindings
+
+### 🔄 Changed
+- **Completion Engine** - Switched from blink.cmp to mini.completion for better stability and performance
+- **Telescope Configuration** - Keymaps now properly defined in plugin file using lazy.nvim keys table
+- **Dashboard Event** - Fixed alpha dashboard to use `LazyDone` event instead of `LazyVimStarted`
+
+### 🗑️ Removed
+- **blink.cmp** - Removed due to fuzzy matching library issues, replaced with mini.completion
+- **fff plugin** - Removed (was already deleted in previous changes)
+
 --
 
 ## ⌨️ Key Mappings
@@ -46,23 +63,15 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 | Key | Command | Description |
 |-----|---------|-------------|
+| `<C-p>` | `:Telescope find_files` | Find files (quick access) |
 | `<leader>ff` | `:Telescope find_files` | Find files (hidden included) |
+| `<leader>fr` | `:Telescope oldfiles` | Open recent files |
+| `<leader>fR` | `:Telescope oldfiles only_cwd=true` | Recent files (current directory) |
 | `<leader>fg` | `:Telescope live_grep` | Live grep search in project |
+| `<leader>fs` | `:Telescope grep_string` | Grep word under cursor |
 | `<leader>fb` | `:Telescope buffers` | Find and switch between buffers |
 | `<leader>fh` | `:Telescope help_tags` | Search Neovim help documentation |
-| `<leader>fs` | `:Telescope grep_string` | Grep word under cursor |
-| `<leader>fr` | `:Telescope oldfiles` | Open recent files |
-
-### 🦈 Harpoon (File Navigation)
-
-| Key | Description |
-|-----|-------------|
-| `<leader>h` | Add current file to Harpoon |
-| `<leader>hr` | Remove current file from Harpoon |
-| `<leader>H` | Show Harpoon quick menu |
-| `<leader>1` - `<leader>9` | Jump to Harpoon file 1-9 |
-| `<S-k>` | Navigate to previous Harpoon file |
-| `<S-j>` | Navigate to next Harpoon file |
+| `<leader>fd` | `:Telescope diagnostics` | Show LSP diagnostics |
 
 ### 📂 Neo-tree (File Explorer)
 
@@ -99,14 +108,6 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>mf` | Focus Mini Map |
 | `<leader>mr` | Refresh Mini Map |
 | `<leader>ms` | Toggle Mini Map position (left/right) |
-
-### 📍 Dropbar (Breadcrumb Navigation)
-
-| Key | Function | Description |
-|-----|----------|-------------|
-| `<leader>dp` | `pick()` | Interactively pick symbol |
-| `<leader>ds` | `goto_context_start()` | Jump to start of current context |
-| `<leader>dn` | `select_next_context()` | Select next context/scope |
 
 ### 🎨 Themes
 
@@ -181,23 +182,23 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 **Navigation & Files:**
 - `ff` - Find files | `fg` - Live grep | `fb` - Buffers | `fh` - Help
-- `fs` - Grep string | `fr` - Recent files
+- `fs` - Grep string | `fr` - Recent files | `fR` - Recent files (cwd) | `fd` - Diagnostics
 - `e` - Toggle explorer | `eo` - Focus explorer | `er` - Reveal
 - `en` - Create new file | `ef` - Filesystem | `eb` - Buffers | `eg` - Git status
-- `h` - Add to Harpoon | `hr` - Remove | `H` - Harpoon menu | `1-9` - Jump to file
 
 **Themes & UI:**
 - `co` - Osmium theme | `ct` - Tokyonight | `cts/ctn/ctm/ctd` - Variants
 - `cc` - Chai theme | `th` - Themery picker
 - `mt/mo/mc/mf/mr/ms` - Mini map controls
 
-**Symbols & Code Navigation:**
-- `dp` - Dropbar pick | `ds` - Context start | `dn` - Next context
 
 **Plugins & Tools:**
 - `ll` - Lazy menu | `ls` - Lazy sync | `lu` - Lazy update
 - `li` - Lazy install | `lc` - Lazy check | `lx` - Lazy clean
 - `M` - Mason packages | `sk` - ShowKeys
+
+**Sessions:**
+- `qs` - Restore session | `ql` - Restore last session | `qd` - Don't save session
 
 **Notifications & Messages:**
 - `nh` - History | `nl` - Last | `ne` - Errors | `nd` - Dismiss
@@ -213,17 +214,21 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Oil (File Editor):**
 - `o` - Oil explorer | `O` - Oil floating
 
-### ✨ Code Completion (nvim-cmp)
+### ✨ Code Completion (mini.completion)
 
 | Key / CMD       | Mode | Purpose                                   |
 |-----------------|------|-------------------------------------------|
-| `<C-Space>`     | Insert | Trigger completion                        |
-| `<C-j>` / `<C-k>` | Insert | Navigate completion suggestions          |
-| `<Tab>`         | Insert | Select next / Expand snippet              |
-| `<S-Tab>`       | Insert | Select previous / Jump snippet backward   |
-| `<CR>`          | Insert | Confirm selection                          |
-| `<C-e>`         | Insert | Close completion window                    |
-| `<C-b>` / `<C-f>` | Insert | Scroll documentation up/down              |
+| `<C-Space>`     | Insert | Force two-step completion                 |
+| `<A-Space>`     | Insert | Force fallback completion                 |
+| `<C-f>`         | Insert | Scroll info/signature window down         |
+| `<C-b>`         | Insert | Scroll info/signature window up           |
+| `<C-n>`         | Insert | Fallback to built-in completion           |
+
+**Features:**
+- **LSP Integration** - Automatic LSP completion setup on buffer enter
+- **Auto-completion** - Intelligent completion with configurable delays
+- **Info Windows** - Hover documentation and signature help
+- **Snippet Support** - Works with mini.snippets or vim.snippet.expand
 
 ### 🩺 Diagnostics & Troubleshooting (Trouble.nvim)
 
@@ -282,17 +287,33 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>fgr`   | Git Branches (Telescope)                   |
 | `<leader>fgs`   | Git Status (Telescope)                     |
 
-### 📋 Dashboard
+### 📋 Dashboard (Alpha)
 
 | Key / CMD       | Purpose                                   |
 |-----------------|-------------------------------------------|
-| `f`             | 🔍 Find file using Telescope              |
-| `r`             | 📂 Open recent files                      |
+| `f`             | 🔍 Find file using Telescope (`<leader>ff`) |
 | `n`             | ➕ Create a new empty buffer              |
-| `p`             | 🗂️ Open projects list (Telescope projects)| 
-| `l`             | ⚡ Open Lazy plugin manager               |
-| `u`             | ⬆️ Update all plugins (Lazy update)       |
-| `q`             | 🚪 Quit Neovim                            |
+| `r`             | 📂 Open recent files (Telescope)          |
+| `g`             | 🔍 Find text (`<leader>fg`)               |
+| `c`             | ⚙️ Open Neovim config files               |
+| `s`             | 💾 Restore session (persistence)          |
+| `M`             | 📦 Open Mason menu (`<leader>M`)           |
+| `l`             | ⚡ Open Lazy plugin manager (`<leader>ll`) |
+| `q`             | 🚪 Quit Neovim (`<leader>q`)              |
+
+### 💾 Session Management (persistence.nvim)
+
+| Key / CMD       | Purpose                                   |
+|-----------------|-------------------------------------------|
+| `<leader>qs`    | Restore session                           |
+| `<leader>ql`    | Restore last session                      |
+| `<leader>qd`    | Don't save current session                 |
+
+**Features:**
+- **Auto-save** - Sessions automatically saved on exit
+- **Session Directory** - Stored in `~/.config/nvim/sessions/`
+- **Selective Restore** - Choose which session to restore
+- **Session Options** - Saves buffers, cursor position, windows, tabs, and more
 
 ### Plugin Shortcuts
 - `:Alpha` → Reload dashboard screen
@@ -320,18 +341,16 @@ Press `<Space>` and pause to see all available keymaps via which-key.
   - Trigger is set to leader in normal/visual mode with a short delay (200ms).
 
 ### 🔭 Telescope Features
-- **Simplified Setup** - Focused on essential functionality without complex actions
-- **Catppuccin Theme Integration** - Clean and modern theme with excellent contrast
-- **FZF Performance** - Native FZF integration for faster fuzzy finding
-- **UI Select** - Dropdown interface for enhanced selection experience
-- **Core Extensions** - Symbols, live grep args, and essential pickers
-- **Safe Extension Loading** - Uses `pcall` for graceful fallback if extensions fail
+- **FZF Native Integration** - Native FZF sorter for optimal performance and fuzzy file support
+- **Fast File Finding** - Optimized file and generic sorters for quick navigation
+- **Comprehensive Keymaps** - Quick access with `<C-p>` and full leader-based mappings
+- **Diagnostics Integration** - Quick access to LSP diagnostics via `<leader>fd`
 
 ### 🧠 LSP (Language Server) Setup
 - Managed via `mason.nvim` and `mason-lspconfig.nvim`.
 - Enhanced with diagnostic signs, hover on cursor, and better UI.
-- Ensured/Configured LSPs (5): `lua_ls`, `pyright`, `rust_analyzer`, `gopls`, `tsserver`.
-- Integrated with nvim-cmp for intelligent completion.
+- Ensured/Configured LSPs (3): `lua_ls`, `pyright`, `rust_analyzer`.
+- Integrated with **mini.completion** for intelligent LSP completion.
 - Auto-formatting via conform.nvim with LSP fallback.
 
 ### ⚡ Flash.nvim Navigation
@@ -423,9 +442,11 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 ### 🎨 New Features
 
 #### Code Completion
-- **nvim-cmp** with LSP, buffer, and path completion
-- **LuaSnip** for snippets with VSCode snippet support
-- Intelligent completion with icons via lspkind
+- **mini.completion** - Lightweight, fast completion engine
+- **LSP Integration** - Automatic setup with completefunc source
+- **Auto-completion** - Intelligent completion with configurable delays
+- **Info Windows** - Signature help and documentation popups
+- **Snippet Support** - Works with mini.snippets or native vim.snippet.expand
 
 #### Diagnostics
 - **Trouble.nvim** for beautiful diagnostics UI
@@ -444,24 +465,31 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - Blame line with `<leader>hb`
 - Navigate hunks with `]c` / `[c`
 
+#### Session Management
+- **persistence.nvim** - Automatic session save/restore
+- Sessions saved to `~/.config/nvim/sessions/`
+- Restore last session or choose specific session
+- Auto-save on exit, manual control available
+
 #### Performance
 - Lazy loading for better startup time
 - Disabled unused rtp plugins
 - Plugin update checker (runs hourly)
-- Optimized completion timeout  
+- Lightweight completion engine (mini.completion)  
 
 ---
 
 ## 📌 Notes
 
 * Built & tested on **Windows 11 (CMD/Terminal)** and **Linux**.
-* **Enhanced Configuration:** Now includes completion, diagnostics, formatting, and Git integration.
-* **Performance Optimized:** Lazy loading, disabled unused plugins, optimized settings.
+* **Enhanced Configuration:** Now includes completion, diagnostics, formatting, Git integration, and session management.
+* **Performance Optimized:** Lazy loading, disabled unused plugins, optimized settings, lightweight completion engine.
 * **Well Organized:** Proper directory structure following Neovim best practices.
-* **Telescope Integration:** Streamlined configuration with 4 core extensions (FZF, UI-Select, Symbols, Live Grep Args).
+* **Telescope Integration:** Streamlined configuration with FZF native sorter for optimal performance.
 * **Theme Integration:** Telescope automatically adapts to your current colorscheme.
 * **Auto-Formatting:** Configured for Lua, Python, Rust, Go, JS/TS, JSON, YAML, Markdown, HTML, CSS.
-* **LSP Fixed:** Updated deprecated `ts_ls` to `tsserver`.
+* **Session Management:** Automatic session save/restore with persistence.nvim.
+* **Modern Completion:** Using mini.completion for fast, lightweight LSP completion.
 
 ## 🚀 Getting Started
 
@@ -476,7 +504,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 3. **LSP Setup:** LSP servers will be auto-installed via Mason on first use.
 
-4. **Completion:** Start typing in insert mode and use `<C-Space>` to trigger completion.
+4. **Completion:** Start typing in insert mode for auto-completion, or use `<C-Space>` to force completion.
 
 5. **Diagnostics:** Use `<leader>xx` to open Trouble diagnostics panel.
 
@@ -487,7 +515,8 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **General:** `<leader>ex` (explorer), `<leader>nc` (config), window navigation
 - **Telescope:** `<leader>f*` (file search, grep, buffers, etc.)
 - **LSP:** `K` (hover), `gd` (definition), `<leader>rn` (rename), `<leader>cf` (format)
-- **Completion:** `<C-Space>` (trigger), `<Tab>` (select/expand), `<C-j/k>` (navigate)
+- **Completion:** `<C-Space>` (force), `<A-Space>` (fallback), `<C-f>/<C-b>` (scroll docs)
+- **Sessions:** `<leader>qs` (restore), `<leader>ql` (last), `<leader>qd` (don't save)
 - **Diagnostics:** `<leader>xx` (trouble), `[d`/`]d` (navigate)
 - **Git:** `]c`/`[c` (hunks), `<leader>hs` (stage), `<leader>hp` (preview)
 - **Lazy:** `<leader>ll` (menu), `<leader>ls` (sync), `<leader>lu` (update)
