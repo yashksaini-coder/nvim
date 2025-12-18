@@ -11,6 +11,7 @@ vim.diagnostic.config({
 	},
 	underline = true,
 	severity_sort = true,
+	update_in_insert = true, -- Ensure diagnostics update in insert mode
 	float = {
 		border = "rounded",
 		focusable = true,
