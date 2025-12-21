@@ -3,7 +3,6 @@ return {{
     config = function()
         require("osmium").setup({
             integrations = {
-                gitsigns = true,
                 telescope = true
                 -- [...other integrations]
             },

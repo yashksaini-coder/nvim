@@ -11,17 +11,24 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added
-- **mini.completion** - Replaced blink.cmp with lightweight mini.completion for faster, more reliable LSP completion
+- **snacks.indent** - Indent highlighting plugin (same as LazyVim) for visual code structure
+- **mini.diff** - Git diff visualization with inline hunk preview and navigation
+- **mini.git** - Git integration with `:Git` command and repository tracking
+- **mini.completion** - Lightweight completion engine for LSP code completion
 - **persistence.nvim** - Session management with auto-save/restore functionality
 - **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
 - **Improved Dashboard** - All alpha dashboard buttons now functional with proper keybindings
 
 ### 🔄 Changed
+- **Indent Highlighting** - Replaced mini.indentscope with snacks.indent (LazyVim's choice)
+- **Git Integration** - Replaced gitsigns.nvim with mini.diff + mini.git for unified mini.nvim experience
 - **Completion Engine** - Switched from blink.cmp to mini.completion for better stability and performance
 - **Telescope Configuration** - Keymaps now properly defined in plugin file using lazy.nvim keys table
 - **Dashboard Event** - Fixed alpha dashboard to use `LazyDone` event instead of `LazyVimStarted`
 
 ### 🗑️ Removed
+- **gitsigns.nvim** - Replaced with mini.diff and mini.git
+- **noice.nvim** - Removed notification/command line UI plugin
 - **blink.cmp** - Removed due to fuzzy matching library issues, replaced with mini.completion
 - **fff plugin** - Removed (was already deleted in previous changes)
 
@@ -73,30 +80,18 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>fh` | `:Telescope help_tags` | Search Neovim help documentation |
 | `<leader>fd` | `:Telescope diagnostics` | Show LSP diagnostics |
 
-### 📂 Neo-tree (File Explorer)
+### 📂 Nvim-tree (File Explorer)
 
 | Key | Command | Description |
 |-----|---------|-------------|
-| `<leader>e` | `:Neotree toggle` | Toggle file explorer |
-| `<leader>eo` | `:Neotree focus` | Focus file explorer |
-| `<leader>er` | `:Neotree reveal` | Reveal current file in explorer |
-| `<leader>ef` | `:Neotree filesystem` | Show filesystem view |
-| `<leader>eb` | `:Neotree buffers` | Show buffers view |
-| `<leader>eg` | `:Neotree git_status` | Show git status view |
-| `<leader>en` | Create new file | Create new file in current directory |
+| `<leader>e` | `:NvimTreeToggle` | Toggle file explorer |
+| `<leader>ef` | `:NvimTreeFindFile` | Find current file in explorer |
 
-**Neo-tree Keyboard Shortcuts (inside explorer):**
-- `a` - Add file/directory
-- `A` - Add directory
-- `d` - Delete file/directory
-- `r` - Rename file/directory
-- `y` / `c` - Copy filename/path
-- `x` - Cut file
-- `p` - Paste file
-- `m` - Move file
-- `s` - Open file in split
-- `v` - Open file in vsplit
-- `t` - Open file in new tab
+**Nvim-tree Features:**
+- Git integration (shows git status icons)
+- Diagnostics integration (shows error/warning icons)
+- Auto-refresh on file changes
+- Default keymaps available inside tree (see `:help nvim-tree`)
 
 ### 🗺️ Mini Map
 
@@ -122,16 +117,18 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>cc` | Chai | Switch to Chai theme |
 | `<leader>th` | Themery | Open Themery theme picker |
 
-### 🔔 Noice (Notifications & Command Line)
+### 📏 Indent Highlighting (snacks.indent)
 
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<leader>nh` | `:Noice history` | Show notification history |
-| `<leader>nl` | `:Noice last` | Show last message |
-| `<leader>ne` | `:Noice errors` | Show all errors |
-| `<leader>nd` | `:Noice dismiss` | Dismiss all notifications |
-| `<leader>np` | `:Noice pick` | Open Noice picker |
-| `<leader>ns` | `:Noice stats` | Show Noice statistics |
+**Features:**
+- Visual indent guides showing code structure
+- Scope highlighting for current indentation level
+- Smooth animations (Neovim 0.10+)
+- Auto-excludes help, dashboard, and other special buffers
+
+**Visual Indicators:**
+- `│` character for indent guides
+- Highlighted current scope
+- Configurable highlight groups
 
 ### 🧠 LSP & Mason (Language Servers)
 
@@ -142,6 +139,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>gd` | `vim.lsp.buf.definition` | Go to definition |
 | `<leader>gr` | `vim.lsp.buf.references` | Find all references |
 | `<leader>ca` | `vim.lsp.buf.code_action` | Show code actions |
+| `<leader>d` | `vim.diagnostic.open_float` | Show diagnostics at cursor |
 
 ### 🔧 Oil (File Buffer Editor)
 
@@ -183,8 +181,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Navigation & Files:**
 - `ff` - Find files | `fg` - Live grep | `fb` - Buffers | `fh` - Help
 - `fs` - Grep string | `fr` - Recent files | `fR` - Recent files (cwd) | `fd` - Diagnostics
-- `e` - Toggle explorer | `eo` - Focus explorer | `er` - Reveal
-- `en` - Create new file | `ef` - Filesystem | `eb` - Buffers | `eg` - Git status
+- `e` - Toggle explorer | `ef` - Find file in explorer
 
 **Themes & UI:**
 - `co` - Osmium theme | `ct` - Tokyonight | `cts/ctn/ctm/ctd` - Variants
@@ -200,12 +197,12 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Sessions:**
 - `qs` - Restore session | `ql` - Restore last session | `qd` - Don't save session
 
-**Notifications & Messages:**
-- `nh` - History | `nl` - Last | `ne` - Errors | `nd` - Dismiss
-- `np` - Noice picker | `ns` - Stats
+**Git Operations:**
+- `]h` / `[h` - Navigate diff hunks | `gha` - Apply hunk | `ghr` - Reset hunk
 
 **Code & Diagnostics:**
-- `gd` - Definition | `gr` - References | `ca` - Code action
+- `gd` - Definition | `gr` - References | `ca` - Code action | `d` - Show diagnostics
+- `fm` - Format file/range | `xx` - Trouble diagnostics | `xX` - Buffer diagnostics
 
 **Buffers:**
 - `bp` - Pin buffer | `bP` - Delete unpinned | `bo` - Delete others
@@ -245,10 +242,10 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 ### 🔧 Code Formatting (conform.nvim)
 
-| Key / CMD       | Purpose                                   |
-|-----------------|-------------------------------------------|
-| `<leader>cf`    | Format Buffer                             |
-| *Auto-format*   | Formats on save (if formatter available)  |
+| Key / CMD       | Mode | Purpose                                   |
+|-----------------|------|-------------------------------------------|
+| `<leader>fm`    | Normal/Visual | Format file or range (in visual mode)     |
+| *Auto-format*   | -    | Formats on save (if formatter available)  |
 
 **Supported Formatters:**
 - Lua: `stylua`
@@ -257,35 +254,41 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - Go: `gofumpt`, `goimports`
 - JS/TS/JSON/YAML/MD/HTML/CSS: `prettier`/`prettierd`
 
-### 🔀 Git Integration (gitsigns.nvim)
+### 🔀 Git Integration (mini.diff + mini.git)
+
+**mini.diff** - Diff visualization and hunk management:
 
 | Key / CMD       | Mode | Purpose                                   |
 |-----------------|------|-------------------------------------------|
-| `]c` / `[c`     | Normal | Navigate to next/previous hunk          |
-| `<leader>hs`    | Normal/Visual | Stage hunk                               |
-| `<leader>hr`    | Normal/Visual | Reset hunk                                |
-| `<leader>hS`    | Normal | Stage buffer                              |
-| `<leader>hu`    | Normal | Undo stage hunk                           |
-| `<leader>hR`    | Normal | Reset buffer                              |
-| `<leader>hp`    | Normal | Preview hunk                               |
-| `<leader>hb`    | Normal | Blame line                                |
-| `<leader>tb`    | Normal | Toggle line blame                         |
-| `<leader>hd`    | Normal | Diff this                                 |
-| `<leader>hD`    | Normal | Diff this ~                               |
-| `<leader>td`    | Normal | Toggle deleted                            |
-| `ih`            | Operator/Visual | Select hunk (text object)                |
+| `]h` / `[h`     | Normal | Navigate to next/previous diff hunk     |
+| `gha`           | Normal | Apply diff hunk                            |
+| `ghr`           | Normal | Reset diff hunk                            |
+| `h`             | Operator/Visual | Select hunk (text object)                |
 
-### 📂 Git (Telescope)
+**mini.git** - Git command integration:
 
 | Key / CMD       | Purpose                                   |
 |-----------------|-------------------------------------------|
-| `<leader>gs`    | Git Status                                |
-| `<leader>gc`    | Git Commits                               |
-| `<leader>gb`    | Git Branches                              |
-| `<leader>fgc`   | Git Commits (Telescope)                    |
-| `<leader>fgb`   | Git Buffer Commits                        |
-| `<leader>fgr`   | Git Branches (Telescope)                   |
-| `<leader>fgs`   | Git Status (Telescope)                     |
+| `:Git <command>` | Execute git commands in repository root  |
+| Auto-tracking   | Automatically tracks Git repository data |
+
+**Features:**
+- **Inline Diff Signs** - Visual indicators for added/changed/deleted lines
+- **Hunk Navigation** - Jump between changes with `]h`/`[h`
+- **Hunk Management** - Apply/reset hunks directly in editor
+- **Git Commands** - Execute any git command with `:Git`
+- **Auto-tracking** - Automatic Git repository state tracking
+
+### 📂 Git Commands (mini.git)
+
+| Key / CMD       | Purpose                                   |
+|-----------------|-------------------------------------------|
+| `:Git <command>` | Execute any git command in repository root |
+| `:Git status`   | Show git status                            |
+| `:Git log`      | Show git log                               |
+| `:Git diff`     | Show git diff                              |
+| `:Git add .`    | Stage all changes                          |
+| `:Git commit`   | Open commit message editor                 |
 
 ### 📋 Dashboard (Alpha)
 
@@ -327,12 +330,12 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - Press `<Space>` (leader) and pause to see a popup of available keymaps.
 - Group headers configured:
   - `<leader>f` - **+telescope** (file search, buffers, grep, etc.)
-  - `<leader>fg` - **+git** (git integration via telescope)
+  - `<leader>f` - **+telescope** (file search, buffers, grep, etc.)
   - `<leader>l` - **+lazy** (plugin manager)
-  - `<leader>c` - **+code** (code actions, formatting)
+  - `<leader>c` - **+code** (code actions, symbols, LSP)
+  - `<leader>f` - **+format** (formatting)
   - `<leader>x` - **+diagnostics** (trouble diagnostics)
-  - `<leader>h` - **+git hunks** (gitsigns operations)
-  - `<leader>g` - **+git** (git telescope)
+  - `<leader>g` - **+git** (git operations)
   - `<leader>n` - **+config** (neovim config)
   - `<leader>r` - **+rename** (symbol rename)
   - `<leader>w` - **+workspace** (workspace management)
@@ -460,10 +463,12 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - LSP fallback if formatter not available
 
 #### Git Integration
-- **gitsigns.nvim** for Git gutter signs
-- Stage/reset hunks inline
-- Blame line with `<leader>hb`
-- Navigate hunks with `]c` / `[c`
+- **mini.diff** for Git diff visualization and hunk management
+- **mini.git** for Git command integration and repository tracking
+- Inline diff signs showing added/changed/deleted lines
+- Navigate hunks with `]h` / `[h`
+- Apply/reset hunks with `gha` / `ghr`
+- Execute git commands with `:Git <command>`
 
 #### Session Management
 - **persistence.nvim** - Automatic session save/restore
@@ -508,16 +513,17 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 5. **Diagnostics:** Use `<leader>xx` to open Trouble diagnostics panel.
 
-6. **Formatting:** Code auto-formats on save. Use `<leader>cf` to format manually.
+6. **Formatting:** Code auto-formats on save. Use `<leader>fm` to format manually (or in visual mode for range).
 
 ## 📚 Keymap Reference Summary
 
 - **General:** `<leader>ex` (explorer), `<leader>nc` (config), window navigation
 - **Telescope:** `<leader>f*` (file search, grep, buffers, etc.)
-- **LSP:** `K` (hover), `gd` (definition), `<leader>rn` (rename), `<leader>cf` (format)
+- **LSP:** `K` (hover), `gd` (definition), `gr` (references), `<leader>ca` (code action), `<leader>d` (diagnostics)
+- **Formatting:** `<leader>fm` (format), auto-format on save
 - **Completion:** `<C-Space>` (force), `<A-Space>` (fallback), `<C-f>/<C-b>` (scroll docs)
 - **Sessions:** `<leader>qs` (restore), `<leader>ql` (last), `<leader>qd` (don't save)
 - **Diagnostics:** `<leader>xx` (trouble), `[d`/`]d` (navigate)
-- **Git:** `]c`/`[c` (hunks), `<leader>hs` (stage), `<leader>hp` (preview)
+- **Git:** `]h`/`[h` (hunks), `gha` (apply), `ghr` (reset)
 - **Lazy:** `<leader>ll` (menu), `<leader>ls` (sync), `<leader>lu` (update)
 

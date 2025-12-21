@@ -1,3 +1,4 @@
+-- Mini Map keymaps
 local function map(cmd)
   return function()
     local ok, minimap = pcall(require, "mini.map")
@@ -19,3 +20,18 @@ vim.keymap.set("n", "<Leader>mc", map("close"), { desc = "Close Mini Map" })
 vim.keymap.set("n", "<Leader>mf", map("toggle_focus"), { desc = "Focus Mini Map" })
 vim.keymap.set("n", "<Leader>mr", map("refresh"), { desc = "Refresh Mini Map" })
 vim.keymap.set("n", "<Leader>ms", map("toggle_side"), { desc = "Toggle Mini Map Side" })
+
+-- Mini Diff keymaps (navigation)
+vim.keymap.set("n", "]h", function()
+  local ok, minidiff = pcall(require, "mini.diff")
+  if ok then
+    minidiff.goto_hunk("next")
+  end
+end, { desc = "Next diff hunk" })
+
+vim.keymap.set("n", "[h", function()
+  local ok, minidiff = pcall(require, "mini.diff")
+  if ok then
+    minidiff.goto_hunk("prev")
+  end
+end, { desc = "Previous diff hunk" })
