@@ -6,6 +6,8 @@ return {
       "nvim-lua/plenary.nvim",
       -- Native fzf sorter for performance
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      -- Treesitter for syntax highlighting in previews
+      "nvim-treesitter/nvim-treesitter",
     },
     keys = {
       -- File operations
@@ -42,6 +44,12 @@ return {
           layout_config = {
             horizontal = {
               preview_width = 0.55,
+            },
+          },
+          -- Preview configuration - disable treesitter highlighting to avoid errors
+          preview = {
+            treesitter = {
+              enable = false, -- Disable to prevent ft_to_lang errors
             },
           },
         },

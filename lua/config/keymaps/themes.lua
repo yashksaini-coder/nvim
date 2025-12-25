@@ -11,7 +11,7 @@ vim.keymap.set("n", "<leader>ctm", "<cmd>colorscheme tokyonight-moon<CR>", { des
 vim.keymap.set("n", "<leader>ctd", "<cmd>colorscheme tokyonight-day<CR>", { desc = "Theme: Tokyonight Day" })
 
 -- Chai Theme
-vim.keymap.set("n", "<leader>cc", "<cmd>colorscheme chai<CR>", { desc =  "Theme: Shobhit's Chai" })
+vim.keymap.set("n", "<leader>cc", "<cmd>colorscheme chai<CR>", { desc = "Theme: Shobhit's Chai" })
 
 -- Themery
 vim.keymap.set("n", "<leader>th", "<cmd>Themery<CR>", { desc = "Theme: Open Themery" })
