@@ -25,6 +25,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **Completion Engine** - Switched from blink.cmp to mini.completion for better stability and performance
 - **Telescope Configuration** - Keymaps now properly defined in plugin file using lazy.nvim keys table
 - **Dashboard Event** - Fixed alpha dashboard to use `LazyDone` event instead of `LazyVimStarted`
+- **Terminal Configuration** - Simplified terminal setup with minimal bootstrap approach; keymaps moved to `lua/config/keymaps/terminal.lua` with clean direction-specific toggles (`<leader>th/tv/tf`)
 
 ### 🗑️ Removed
 - **gitsigns.nvim** - Replaced with mini.diff and mini.git
@@ -117,6 +118,35 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>cc` | Chai | Switch to Chai theme |
 | `<leader>th` | Themery | Open Themery theme picker |
 
+### 💻 Terminal (ToggleTerm)
+
+**ToggleTerm** provides integrated terminal management with multiple display modes.
+
+#### **Terminal Toggle Keymaps**
+
+| Key | Description |
+|-----|-------------|
+| `<C-\>` | Toggle default terminal (floating, 50% width × 40% height) |
+
+#### **Direction-Specific Terminals**
+
+| Key | Description |
+|-----|-------------|
+| `<leader>th` | Toggle horizontal terminal (15 lines) |
+| `<leader>tv` | Toggle vertical terminal (30% of screen width) |
+| `<leader>tf` | Toggle floating terminal (50% width × 40% height) |
+
+#### **Terminal Features**
+
+- **Multiple Display Modes**: Horizontal, vertical, and floating terminals
+- **Auto-insert Mode**: Automatically enters insert mode when terminal opens
+- **Auto-exit Insert**: Automatically exits insert mode when leaving terminal buffer
+- **Smart Sizing**: 
+  - Horizontal terminals: 15 lines
+  - Vertical terminals: 30% of screen width
+  - Floating terminals: 50% width × 40% height with single border
+- **Clean UI**: Line numbers and sign column disabled in terminal buffers
+
 ### 📏 Indent Highlighting (snacks.indent)
 
 **Features:**
@@ -187,6 +217,9 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - `co` - Osmium theme | `ct` - Tokyonight | `cts/ctn/ctm/ctd` - Variants
 - `cc` - Chai theme | `th` - Themery picker
 - `mt/mo/mc/mf/mr/ms` - Mini map controls
+
+**Terminal:**
+- `<C-\>` - Toggle default terminal (float) | `th` - Horizontal | `tv` - Vertical | `tf` - Float
 
 
 **Plugins & Tools:**
@@ -525,5 +558,6 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Sessions:** `<leader>qs` (restore), `<leader>ql` (last), `<leader>qd` (don't save)
 - **Diagnostics:** `<leader>xx` (trouble), `[d`/`]d` (navigate)
 - **Git:** `]h`/`[h` (hunks), `gha` (apply), `ghr` (reset)
+- **Terminal:** `<C-\>` (toggle default), `<leader>th` (horizontal), `<leader>tv` (vertical), `<leader>tf` (float)
 - **Lazy:** `<leader>ll` (menu), `<leader>ls` (sync), `<leader>lu` (update)
 
