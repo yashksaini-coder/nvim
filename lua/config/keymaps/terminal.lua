@@ -17,7 +17,6 @@ term.setup({
 			return nil -- float uses its own size
 		end
 	end,
-	open_mapping = [[<C-\>]],
 	direction = "float",
 	close_on_exit = true, -- Close terminal when job exits
 	float_opts = {
@@ -39,12 +38,6 @@ end
 -- ---------------------------------------------------------------------------
 -- Key-maps (Normal mode only)
 -- ---------------------------------------------------------------------------
-vim.keymap.set("n", "<leader>th", function()
-	open_term("horizontal")
-end, { desc = "Terminal horizontal" })
-vim.keymap.set("n", "<leader>tv", function()
-	open_term("vertical")
-end, { desc = "Terminal vertical" })
 vim.keymap.set("n", "<leader>tf", function()
 	open_term("float")
 end, { desc = "Terminal float" })
