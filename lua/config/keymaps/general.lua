@@ -22,6 +22,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", {
 	desc = "Move to right window",
 })
 
+-- Cellular Automation animations
+vim.keymap.set("n", "<leader>ar", "<cmd>CellularAutomaton make_it_rain<CR>")
+vim.keymap.set("n", "<leader>ag", "<cmd>CellularAutomaton game_of_life<CR>")
+
 -- Autopairs Keymap
 vim.keymap.set("v", "<C-/>", "<Plug>(comment_toggle_linewise_visual)", {
 	noremap = true,
