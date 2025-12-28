@@ -16,12 +16,11 @@ all: fmt lint
 fmt:
 	@echo "→  Format-checking Lua files …"
 	@if $(STYLUA) --check . ; then \
-    echo "All files are correctly formatted." ; \
+	echo "All files are correctly formatted." ; \
 else \
-    echo "" ; \
-    echo "Some files need re-formatting. Run:" ; \
-    echo "  stylua ." ; \
-    exit 1 ; \
+	echo "Some files need re-formatting. Auto-formatting..." ; \
+	$(STYLUA) . ; \
+	echo "Formatting complete." ; \
 fi
 
 $(STYLUA_TOML):

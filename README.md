@@ -12,8 +12,6 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
 ### ✨ Added
 - **snacks.indent** - Indent highlighting plugin (same as LazyVim) for visual code structure
-- **mini.diff** - Git diff visualization with inline hunk preview and navigation
-- **mini.git** - Git integration with `:Git` command and repository tracking
 - **mini.completion** - Lightweight completion engine for LSP code completion
 - **persistence.nvim** - Session management with auto-save/restore functionality
 - **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
@@ -21,14 +19,15 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
 ### 🔄 Changed
 - **Indent Highlighting** - Replaced mini.indentscope with snacks.indent (LazyVim's choice)
-- **Git Integration** - Replaced gitsigns.nvim with mini.diff + mini.git for unified mini.nvim experience
+- **Git Integration** - Replaced mini.diff and mini.git with gitsigns.nvim for standard Git integration
 - **Completion Engine** - Switched from blink.cmp to mini.completion for better stability and performance
 - **Telescope Configuration** - Keymaps now properly defined in plugin file using lazy.nvim keys table
 - **Dashboard Event** - Fixed alpha dashboard to use `LazyDone` event instead of `LazyVimStarted`
 - **Terminal Configuration** - Simplified terminal setup with minimal bootstrap approach; keymaps moved to `lua/config/keymaps/terminal.lua` with clean direction-specific toggles (`<leader>th/tv/tf`)
 
 ### 🗑️ Removed
-- **gitsigns.nvim** - Replaced with mini.diff and mini.git
+- **mini.diff** - Replaced with gitsigns.nvim
+- **mini.git** - Replaced with gitsigns.nvim
 - **noice.nvim** - Removed notification/command line UI plugin
 - **blink.cmp** - Removed due to fuzzy matching library issues, replaced with mini.completion
 - **fff plugin** - Removed (was already deleted in previous changes)
@@ -231,7 +230,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - `qs` - Restore session | `ql` - Restore last session | `qd` - Don't save session
 
 **Git Operations:**
-- `]h` / `[h` - Navigate diff hunks | `gha` - Apply hunk | `ghr` - Reset hunk
+- `]c` / `[c` - Navigate diff hunks | `<leader>hs` - Stage hunk | `<leader>hr` - Reset hunk | `<leader>gb` - Full buffer blame
 
 **Code & Diagnostics:**
 - `gd` - Definition | `gr` - References | `ca` - Code action | `d` - Show diagnostics
@@ -287,43 +286,48 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - Go: `gofumpt`, `goimports`
 - JS/TS/JSON/YAML/MD/HTML/CSS: `prettier`/`prettierd`
 
-### 🔀 Git Integration (mini.diff + mini.git)
+### 🔀 Git Integration (gitsigns.nvim)
 
-**mini.diff** - Diff visualization and hunk management:
+**Features:**
+- **Git Signs** - Visual indicators for added/changed/deleted lines in the sign column
+- **Hunk Navigation** - Jump between changes with `]c`/`[c`
+- **Hunk Management** - Stage, reset, and preview hunks directly in editor
+- **Blame** - Show git blame information for lines
+- **Diff View** - Compare current file with HEAD or other commits
+- **Quickfix Integration** - Populate quickfix list with hunks or all changes
+
+**Hunk Navigation & Actions:**
 
 | Key / CMD       | Mode | Purpose                                   |
 |-----------------|------|-------------------------------------------|
-| `]h` / `[h`     | Normal | Navigate to next/previous diff hunk     |
-| `gha`           | Normal | Apply diff hunk                            |
-| `ghr`           | Normal | Reset diff hunk                            |
-| `h`             | Operator/Visual | Select hunk (text object)                |
+| `]c` / `[c`     | Normal | Navigate to next/previous hunk          |
+| `<leader>hs`    | Normal | Stage hunk                                |
+| `<leader>hr`    | Normal | Reset hunk                                |
+| `<leader>hS`    | Normal | Stage buffer                              |
+| `<leader>hR`    | Normal | Reset buffer                              |
+| `<leader>hp`    | Normal | Preview hunk                              |
+| `<leader>hi`    | Normal | Preview hunk inline                       |
 
-**mini.git** - Git command integration:
+**Blame & Diff:**
 
-| Key / CMD       | Purpose                                   |
-|-----------------|-------------------------------------------|
-| `:Git <command>` | Execute git commands in repository root  |
-| Auto-tracking   | Automatically tracks Git repository data |
+| Key / CMD       | Mode | Purpose                                   |
+|-----------------|------|-------------------------------------------|
+| `<leader>hb`    | Normal | Blame line (full info)                    |
+| `<leader>hd`    | Normal | Diff this file                            |
+| `<leader>hD`    | Normal | Diff this file (~HEAD)                    |
 
-**Features:**
-- **Inline Diff Signs** - Visual indicators for added/changed/deleted lines
-- **Hunk Navigation** - Jump between changes with `]h`/`[h`
-- **Hunk Management** - Apply/reset hunks directly in editor
-- **Git Commands** - Execute any git command with `:Git`
-- **Auto-tracking** - Automatic Git repository state tracking
+**Quickfix & Toggles:**
 
-### 📂 Git Commands (mini.git)
+| Key / CMD       | Mode | Purpose                                   |
+|-----------------|------|-------------------------------------------|
+| `<leader>hq`    | Normal | Set quickfix list (current file)          |
+| `<leader>hQ`    | Normal | Set quickfix list (all files)             |
+| `<leader>tb`    | Normal | Toggle current line blame                 |
+| `<leader>gb`    | Normal | Toggle full-buffer blame window           |
+| `<leader>tw`    | Normal | Toggle word diff                          |
+| `ih`            | Operator/Visual | Select hunk (text object)        |
 
-| Key / CMD       | Purpose                                   |
-|-----------------|-------------------------------------------|
-| `:Git <command>` | Execute any git command in repository root |
-| `:Git status`   | Show git status                            |
-| `:Git log`      | Show git log                               |
-| `:Git diff`     | Show git diff                              |
-| `:Git add .`    | Stage all changes                          |
-| `:Git commit`   | Open commit message editor                 |
-
-### 📋 Dashboard (Alpha)
+###  Dashboard (Alpha)
 
 | Key / CMD       | Purpose                                   |
 |-----------------|-------------------------------------------|

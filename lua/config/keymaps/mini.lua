@@ -1,17 +1,17 @@
 -- Mini Map keymaps
 local function map(cmd)
-  return function()
-    local ok, minimap = pcall(require, "mini.map")
-    if not ok then
-      vim.notify("mini.map not found. Is the plugin installed?", vim.log.levels.ERROR)
-      return
-    end
-    if minimap[cmd] then
-      minimap[cmd]()
-    else
-      vim.notify("mini.map function '" .. cmd .. "' not found.", vim.log.levels.ERROR)
-    end
-  end
+	return function()
+		local ok, minimap = pcall(require, "mini.map")
+		if not ok then
+			vim.notify("mini.map not found. Is the plugin installed?", vim.log.levels.ERROR)
+			return
+		end
+		if minimap[cmd] then
+			minimap[cmd]()
+		else
+			vim.notify("mini.map function '" .. cmd .. "' not found.", vim.log.levels.ERROR)
+		end
+	end
 end
 
 vim.keymap.set("n", "<Leader>mt", map("toggle"), { desc = "Toggle Mini Map" })
@@ -21,15 +21,15 @@ vim.keymap.set("n", "<Leader>ms", map("toggle_side"), { desc = "Toggle Mini Map 
 
 -- Mini Diff keymaps (navigation)
 vim.keymap.set("n", "]h", function()
-  local ok, minidiff = pcall(require, "mini.diff")
-  if ok then
-    minidiff.goto_hunk("next")
-  end
+	local ok, minidiff = pcall(require, "mini.diff")
+	if ok then
+		minidiff.goto_hunk("next")
+	end
 end, { desc = "Next diff hunk" })
 
 vim.keymap.set("n", "[h", function()
-  local ok, minidiff = pcall(require, "mini.diff")
-  if ok then
-    minidiff.goto_hunk("prev")
-  end
+	local ok, minidiff = pcall(require, "mini.diff")
+	if ok then
+		minidiff.goto_hunk("prev")
+	end
 end, { desc = "Previous diff hunk" })
