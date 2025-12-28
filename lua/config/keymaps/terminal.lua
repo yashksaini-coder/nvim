@@ -22,8 +22,8 @@ term.setup({
   close_on_exit = true, -- Close terminal when job exits
   float_opts = {
     border = "single",
-    width = math.floor(vim.o.columns * 0.5),
-    height = math.floor(vim.o.lines * 0.4),
+    width = math.floor(vim.o.columns * 0.6),
+    height = math.floor(vim.o.lines * 0.6),
   },
   start_in_insert = true,
 })
