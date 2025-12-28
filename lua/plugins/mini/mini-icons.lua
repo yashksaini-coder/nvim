@@ -8,7 +8,9 @@ return {
     end
   end,
   opts = function(_, opts)
-    if vim.g.icons_enabled == false then opts.style = "ascii" end
+    if vim.g.icons_enabled == false then
+      opts.style = "ascii"
+    end
   end,
   specs = {},
 }

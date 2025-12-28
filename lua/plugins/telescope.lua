@@ -1,7 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    tag = "v0.2.0",  -- Use stable release
+    tag = "v0.2.0", -- Use stable release
     dependencies = {
       "nvim-lua/plenary.nvim",
       -- Native fzf sorter for performance
@@ -14,16 +14,16 @@ return {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
       { "<leader>fR", "<cmd>Telescope oldfiles only_cwd=true<cr>", desc = "Recent files (cwd)" },
-      
+
       -- Search operations
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
       { "<leader>fs", "<cmd>Telescope grep_string<cr>", desc = "Grep string" },
-      
+
       -- Navigation
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
       { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-      
+
       -- Quick access (no leader)
       { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find files" },
     },

@@ -8,14 +8,14 @@ return {
       -- Set completion delay very high to disable auto-completion
       -- Completion will ONLY appear when you press <C-Space> manually
       delay = {
-        completion = 10^7,  -- Effectively disable auto-completion (10 million ms)
-        info = 10^7,         -- Disable info window completely
-        signature = 50,      -- Keep signature help for function parameters
+        completion = 10 ^ 7, -- Effectively disable auto-completion (10 million ms)
+        info = 10 ^ 7, -- Disable info window completely
+        signature = 50, -- Keep signature help for function parameters
       },
 
       -- Disable info window completely
       window = {
-        info = nil,  -- Disabled - no info window will appear
+        info = nil, -- Disabled - no info window will appear
         signature = { height = 25, width = 80, border = nil },
       },
 
@@ -27,12 +27,12 @@ return {
 
       -- Essential mappings
       mappings = {
-        force_twostep = "<C-Space>",  -- Press this to manually trigger completion
+        force_twostep = "<C-Space>", -- Press this to manually trigger completion
         scroll_down = "<C-f>",
         scroll_up = "<C-b>",
       },
     })
-    
+
     -- Alternative: If you want auto-completion back but with better positioning,
     -- change completion delay from 10^7 to something like 500 (half a second)
     -- This gives you time to type before completion appears
