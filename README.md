@@ -107,13 +107,6 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 | Key | Theme | Description |
 |-----|-------|-------------|
-| `<leader>co` | Osmium | Switch to Osmium theme |
-| `<leader>ct` | Tokyonight | Switch to Tokyonight (default) |
-| `<leader>cts` | Tokyonight Storm | Switch to Tokyonight Storm variant |
-| `<leader>ctn` | Tokyonight Night | Switch to Tokyonight Night variant |
-| `<leader>ctm` | Tokyonight Moon | Switch to Tokyonight Moon variant |
-| `<leader>ctd` | Tokyonight Day | Switch to Tokyonight Day (light) |
-| `<leader>cc` | Chai | Switch to Chai theme |
 | `<leader>th` | Themery | Open Themery theme picker |
 
 ### 💻 Terminal (ToggleTerm)
@@ -212,8 +205,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - `e` - Toggle explorer | `ef` - Find file in explorer
 
 **Themes & UI:**
-- `co` - Osmium theme | `ct` - Tokyonight | `cts/ctn/ctm/ctd` - Variants
-- `cc` - Chai theme | `th` - Themery picker
+- `<leader>th` - Themery picker
 - `mt/mo/mc/mf/mr/ms` - Mini map controls
 
 **Terminal:**
