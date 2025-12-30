@@ -45,7 +45,6 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | Key | Description |
 |-----|-------------|
 | `<Esc>` | Clear search highlights |
-| `<leader>sk` | Toggle ShowKeys display |
 | `<C-h>` | Move to left window |
 | `<C-j>` | Move to lower window |
 | `<C-k>` | Move to upper window |
@@ -224,7 +223,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Plugins & Tools:**
 - `ll` - Lazy menu | `ls` - Lazy sync | `lu` - Lazy update
 - `li` - Lazy install | `lc` - Lazy check | `lx` - Lazy clean
-- `M` - Mason packages | `sk` - ShowKeys
+- `M` - Mason packages
 
 **Sessions:**
 - `qs` - Restore session | `ql` - Restore last session | `qd` - Don't save session

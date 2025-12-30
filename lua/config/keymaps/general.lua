@@ -1,8 +1,3 @@
--- ShowKeys Toggle keymap
-vim.keymap.set("n", "<leader>sk", "<cmd>ShowkeysToggle<CR>", {
-	desc = "Toggle ShowKeys",
-})
-
 -- Clear search highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", {
 	desc = "Clear search highlights",
