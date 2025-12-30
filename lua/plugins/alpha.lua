@@ -31,7 +31,6 @@ return {
         dashboard.button("r", " " .. " Recent files",    [[<cmd> Telescope oldfiles <cr>]]),
         dashboard.button("g", " " .. " Find text",       "<leader>fg"),
         dashboard.button("c", " " .. " Config",          [[<cmd> lua require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") }) <cr>]]),
-        dashboard.button("s", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
         dashboard.button("M", " " .. " Mason menu",      "<leader>M"),
         dashboard.button("l", "󰒲 " .. " Lazy menu",       "<leader>ll"),
         dashboard.button("q", " " .. " Quit",            "<leader>q"),

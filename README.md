@@ -13,7 +13,6 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ### ✨ Added
 - **snacks.indent** - Indent highlighting plugin (same as LazyVim) for visual code structure
 - **mini.completion** - Lightweight completion engine for LSP code completion
-- **persistence.nvim** - Session management with auto-save/restore functionality
 - **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
 - **Improved Dashboard** - All alpha dashboard buttons now functional with proper keybindings
 
@@ -31,6 +30,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **noice.nvim** - Removed notification/command line UI plugin
 - **blink.cmp** - Removed due to fuzzy matching library issues, replaced with mini.completion
 - **fff plugin** - Removed (was already deleted in previous changes)
+- **persistence.nvim** - Session management with auto-save/restore functionality
 
 --
 
@@ -336,18 +336,9 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `r`             | 📂 Open recent files (Telescope)          |
 | `g`             | 🔍 Find text (`<leader>fg`)               |
 | `c`             | ⚙️ Open Neovim config files               |
-| `s`             | 💾 Restore session (persistence)          |
 | `M`             | 📦 Open Mason menu (`<leader>M`)           |
 | `l`             | ⚡ Open Lazy plugin manager (`<leader>ll`) |
 | `q`             | 🚪 Quit Neovim (`<leader>q`)              |
-
-### 💾 Session Management (persistence.nvim)
-
-| Key / CMD       | Purpose                                   |
-|-----------------|-------------------------------------------|
-| `<leader>qs`    | Restore session                           |
-| `<leader>ql`    | Restore last session                      |
-| `<leader>qd`    | Don't save current session                 |
 
 **Features:**
 - **Auto-save** - Sessions automatically saved on exit
@@ -507,12 +498,6 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - Apply/reset hunks with `gha` / `ghr`
 - Execute git commands with `:Git <command>`
 
-#### Session Management
-- **persistence.nvim** - Automatic session save/restore
-- Sessions saved to `~/.config/nvim/sessions/`
-- Restore last session or choose specific session
-- Auto-save on exit, manual control available
-
 #### Performance
 - Lazy loading for better startup time
 - Disabled unused rtp plugins
@@ -530,7 +515,6 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 * **Telescope Integration:** Streamlined configuration with FZF native sorter for optimal performance.
 * **Theme Integration:** Telescope automatically adapts to your current colorscheme.
 * **Auto-Formatting:** Configured for Lua, Python, Rust, Go, JS/TS, JSON, YAML, Markdown, HTML, CSS.
-* **Session Management:** Automatic session save/restore with persistence.nvim.
 * **Modern Completion:** Using mini.completion for fast, lightweight LSP completion.
 
 ## 🚀 Getting Started
