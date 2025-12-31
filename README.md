@@ -11,6 +11,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added
+- **auto-session** - Automatic session management with save/restore functionality and Telescope integration
 - **snacks.indent** - Indent highlighting plugin (same as LazyVim) for visual code structure
 - **mini.completion** - Lightweight completion engine for LSP code completion
 - **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
@@ -30,7 +31,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **noice.nvim** - Removed notification/command line UI plugin
 - **blink.cmp** - Removed due to fuzzy matching library issues, replaced with mini.completion
 - **fff plugin** - Removed (was already deleted in previous changes)
-- **persistence.nvim** - Session management with auto-save/restore functionality
+- **persistence.nvim** - Replaced with auto-session for better session management
 
 --
 
@@ -138,6 +139,37 @@ Press `<Space>` and pause to see all available keymaps via which-key.
   - Floating terminals: 50% width × 40% height with single border
 - **Clean UI**: Line numbers and sign column disabled in terminal buffers
 
+### 💾 Session Management (auto-session)
+
+**Features:**
+- **Automatic Save/Restore** - Sessions automatically saved on exit and restored on startup
+- **Telescope Integration** - Search and pick sessions with `<leader>sS`
+- **Smart Session Management** - Automatically closes nvim-tree before saving, reopens after restore
+- **Suppressed Directories** - No sessions in `~/`, `~/Projects`, `~/Downloads`, `/`
+- **Dashboard Bypass** - Alpha dashboard doesn't trigger session saves
+
+**Session Keymaps:**
+
+| Key / CMD       | Mode | Purpose                                   |
+|-----------------|------|-------------------------------------------|
+| `<leader>ss`   | Normal | Save current session                       |
+| `<leader>sr`   | Normal | Restore session                            |
+| `<leader>sd`   | Normal | Delete session                             |
+| `<leader>sS`   | Normal | Search sessions (Telescope picker)         |
+
+**How it works:**
+- When you start `nvim`, AutoSession automatically restores a session for the current working directory if it exists
+- When you quit `nvim`, AutoSession automatically saves a session for the current working directory
+- Sessions are stored in `~/.local/state/nvim/sessions/`
+- Each directory gets its own session file based on the working directory path
+
+**Session Contents:**
+- All open buffers and their positions
+- Window layout and splits
+- Tab configuration
+- Cursor positions
+- And more...
+
 ### 📏 Indent Highlighting (snacks.indent)
 
 **Features:**
@@ -217,8 +249,8 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - `li` - Lazy install | `lc` - Lazy check | `lx` - Lazy clean
 - `M` - Mason packages
 
-**Sessions:**
-- `qs` - Restore session | `ql` - Restore last session | `qd` - Don't save session
+**Sessions (auto-session):**
+- `ss` - Save session | `sr` - Restore session | `sd` - Delete session | `sS` - Search sessions
 
 **Git Operations:**
 - `]c` / `[c` - Navigate diff hunks | `<leader>hs` - Stage hunk | `<leader>hr` - Reset hunk | `<leader>gb` - Full buffer blame
@@ -332,10 +364,12 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `q`             | 🚪 Quit Neovim (`<leader>q`)              |
 
 **Features:**
-- **Auto-save** - Sessions automatically saved on exit
-- **Session Directory** - Stored in `~/.config/nvim/sessions/`
-- **Selective Restore** - Choose which session to restore
+- **Auto-save/Restore** - Sessions automatically saved on exit and restored on startup
+- **Session Directory** - Stored in `~/.local/state/nvim/sessions/`
+- **Telescope Integration** - Search and pick sessions with `<leader>sS`
+- **Smart Session Management** - Automatically closes nvim-tree before saving, reopens after restore
 - **Session Options** - Saves buffers, cursor position, windows, tabs, and more
+- **Suppressed Directories** - No sessions in `~/`, `~/Projects`, `~/Downloads`, `/`
 
 ### Plugin Shortcuts
 - `:Alpha` → Reload dashboard screen
@@ -534,7 +568,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **LSP:** `K` (hover), `gd` (definition), `gr` (references), `<leader>ca` (code action), `<leader>d` (diagnostics)
 - **Formatting:** `<leader>fm` (format), auto-format on save
 - **Completion:** `<C-Space>` (force), `<A-Space>` (fallback), `<C-f>/<C-b>` (scroll docs)
-- **Sessions:** `<leader>qs` (restore), `<leader>ql` (last), `<leader>qd` (don't save)
+- **Sessions:** `<leader>ss` (save), `<leader>sr` (restore), `<leader>sd` (delete), `<leader>sS` (search)
 - **Diagnostics:** `<leader>xx` (trouble), `[d`/`]d` (navigate)
 - **Git:** `]h`/`[h` (hunks), `gha` (apply), `ghr` (reset)
 - **Terminal:** `<C-\>` (toggle default), `<leader>th` (horizontal), `<leader>tv` (vertical), `<leader>tf` (float)
