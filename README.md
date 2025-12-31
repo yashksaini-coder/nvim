@@ -11,6 +11,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added
+- **markdown-preview.nvim** - Live markdown preview in browser with synchronized scrolling and rich features
 - **auto-session** - Automatic session management with save/restore functionality and Telescope integration
 - **snacks.indent** - Indent highlighting plugin (same as LazyVim) for visual code structure
 - **mini.completion** - Lightweight completion engine for LSP code completion
@@ -52,7 +53,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<C-l>` | Move to right window |
 | `<C-s>` | Save file |
 | `<leader>q` | Quit all |
-| `<leader>mp` | Toggle Markdown Render |
+| `<leader>mp` | Toggle markdown preview |
 | `<C-/>` | Toggle comment (Visual mode) |
 
 ### 📦 Lazy.nvim Plugin Manager
@@ -169,6 +170,38 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - Tab configuration
 - Cursor positions
 - And more...
+
+### 📝 Markdown Preview (markdown-preview.nvim)
+
+**Features:**
+- **Live Preview** - Real-time markdown preview in your browser
+- **Synchronized Scrolling** - Preview scrolls with your markdown file
+- **Dark/Light Theme** - Automatically matches system preferences or set manually
+- **Rich Features** - Supports KaTeX math, PlantUML diagrams, Mermaid charts, and more
+- **Auto-close** - Automatically closes preview when switching buffers
+
+**Markdown Preview Keymaps:**
+
+| Key / CMD       | Mode | Purpose                                   |
+|-----------------|------|-------------------------------------------|
+| `<leader>mp`   | Normal | Toggle markdown preview                    |
+
+**How it works:**
+- Open a markdown file (`.md`)
+- Press `<leader>mp` to toggle the preview
+- The preview opens in your default browser
+- Changes in your markdown file are automatically reflected in the preview
+- The preview scrolls in sync with your cursor position
+
+**Supported Features:**
+- **Math** - KaTeX for mathematical expressions
+- **Diagrams** - PlantUML, Mermaid, flowchart, sequence diagrams
+- **Tables** - Full markdown table support
+- **Code Blocks** - Syntax highlighting for code blocks
+- **Task Lists** - Checkbox lists
+- **And more** - Full markdown-it feature set
+
+**Note:** Requires Node.js to be installed. The plugin will automatically build on first install.
 
 ### 📏 Indent Highlighting (snacks.indent)
 
@@ -572,5 +605,6 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Diagnostics:** `<leader>xx` (trouble), `[d`/`]d` (navigate)
 - **Git:** `]h`/`[h` (hunks), `gha` (apply), `ghr` (reset)
 - **Terminal:** `<C-\>` (toggle default), `<leader>th` (horizontal), `<leader>tv` (vertical), `<leader>tf` (float)
+- **Markdown:** `<leader>mp` (toggle preview)
 - **Lazy:** `<leader>ll` (menu), `<leader>ls` (sync), `<leader>lu` (update)
 
