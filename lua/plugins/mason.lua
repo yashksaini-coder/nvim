@@ -26,7 +26,8 @@ return {
 
 			mason_tool_installer.setup({
 				ensure_installed = {
-					"stylua", -- lua formatter
+					"lua_ls", -- Lua language server
+					"stylua", -- Lua formatter
 				},
 			})
 		end,

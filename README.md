@@ -14,14 +14,14 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **markdown-preview.nvim** - Live markdown preview in browser with synchronized scrolling and rich features
 - **auto-session** - Automatic session management with save/restore functionality and Telescope integration
 - **snacks.indent** - Indent highlighting plugin (same as LazyVim) for visual code structure
-- **mini.completion** - Lightweight completion engine for LSP code completion
+- **blink.cmp** - Fast and modern completion engine with LSP integration
 - **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
 - **Improved Dashboard** - All alpha dashboard buttons now functional with proper keybindings
 
 ### 🔄 Changed
 - **Indent Highlighting** - Replaced mini.indentscope with snacks.indent (LazyVim's choice)
 - **Git Integration** - Replaced mini.diff and mini.git with gitsigns.nvim for standard Git integration
-- **Completion Engine** - Switched from blink.cmp to mini.completion for better stability and performance
+- **Completion Engine** - Using blink.cmp for fast, modern completion with auto-suggestions
 - **Telescope Configuration** - Keymaps now properly defined in plugin file using lazy.nvim keys table
 - **Dashboard Event** - Fixed alpha dashboard to use `LazyDone` event instead of `LazyVimStarted`
 - **Terminal Configuration** - Simplified terminal setup with minimal bootstrap approach; keymaps moved to `lua/config/keymaps/terminal.lua` with clean direction-specific toggles (`<leader>th/tv/tf`)
@@ -30,7 +30,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **mini.diff** - Replaced with gitsigns.nvim
 - **mini.git** - Replaced with gitsigns.nvim
 - **noice.nvim** - Removed notification/command line UI plugin
-- **blink.cmp** - Removed due to fuzzy matching library issues, replaced with mini.completion
+- **mini.completion** - Replaced with blink.cmp for better performance and features
 - **fff plugin** - Removed (was already deleted in previous changes)
 - **persistence.nvim** - Replaced with auto-session for better session management
 
@@ -299,27 +299,32 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Oil (File Editor):**
 - `o` - Oil explorer | `O` - Oil floating
 
-### ✨ Code Completion (mini.completion)
+### ✨ Code Completion (blink.cmp)
 
 | Key / CMD       | Mode | Purpose                                   |
 |-----------------|------|-------------------------------------------|
-| `<C-Space>`     | Insert | Force two-step completion (manual trigger) |
-| `<A-Space>`     | Insert | Force fallback completion                 |
-| `<C-f>`         | Insert | Scroll info/signature window down         |
-| `<C-b>`         | Insert | Scroll info/signature window up           |
+| `<Tab>`         | Insert | Accept completion / Next item              |
+| `<S-Tab>`       | Insert | Previous completion item                  |
+| `<CR>`          | Insert | Confirm completion                        |
+| `<C-l>`         | Insert | Expand or jump to next snippet node       |
+| `<C-h>`         | Insert | Jump to previous snippet node             |
+| `<C-j>`         | Insert | Change snippet choice                     |
+| `<Esc>`         | Insert | Close completion menu                     |
 
 **Features:**
-- **Auto-completion** - Automatically triggers after 300ms of typing inactivity
-- **LSP Integration** - Automatic LSP completion setup on buffer enter
-- **Info Windows** - Hover documentation (200ms delay) and signature help (50ms delay)
-- **Smart Sorting** - Completion items sorted by LSP priority and relevance
-- **Optimized Delays** - Responsive completion with minimal interruption
-- **Snippet Support** - Works with mini.snippets or vim.snippet.expand
+- **Auto-completion** - Automatically shows completion menu as you type
+- **Auto-documentation** - Shows completion item documentation after 500ms delay
+- **Signature Help** - Enabled for function parameter hints
+- **LSP Integration** - Full LSP completion support with treesitter
+- **Snippet Support** - Integrated with LuaSnip and friendly-snippets
+- **Smart Menu** - Beautiful completion menu with kind icons and descriptions
+- **Treesitter** - Enhanced completion with treesitter context
 
 **Configuration:**
-- **Completion Delay:** 300ms (auto-triggers after you stop typing)
-- **Info Window:** 200ms delay for completion item details
-- **Signature Help:** 50ms delay for fast function parameter hints
+- **Documentation Delay:** 500ms (auto-shows after hovering completion item)
+- **Menu Auto-show:** Enabled (completion menu appears automatically)
+- **Signature Help:** Enabled for function parameters
+- **Menu Layout:** Kind icons, labels, descriptions, and kind columns
 
 ### 🩺 Diagnostics & Troubleshooting (Trouble.nvim)
 
@@ -445,7 +450,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - Managed via `mason.nvim` and `mason-lspconfig.nvim`.
 - Enhanced with diagnostic signs, hover on cursor, and better UI.
 - Ensured/Configured LSPs (3): `lua_ls`, `pyright`, `rust_analyzer`.
-- Integrated with **mini.completion** for intelligent LSP completion.
+- Integrated with **blink.cmp** for intelligent LSP completion with auto-suggestions.
 - Auto-formatting via conform.nvim with LSP fallback.
 
 ### ⚡ Flash.nvim Navigation
@@ -537,11 +542,11 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 ### 🎨 New Features
 
 #### Code Completion
-- **mini.completion** - Lightweight, fast completion engine
-- **LSP Integration** - Automatic setup with completefunc source
-- **Auto-completion** - Intelligent completion with configurable delays
-- **Info Windows** - Signature help and documentation popups
-- **Snippet Support** - Works with mini.snippets or native vim.snippet.expand
+- **blink.cmp** - Fast, modern completion engine with auto-suggestions
+- **LSP Integration** - Full LSP completion support with treesitter
+- **Auto-completion** - Automatically shows completion menu as you type
+- **Auto-documentation** - Shows completion item docs after 500ms delay
+- **Snippet Support** - Integrated with LuaSnip and friendly-snippets (vscode-style)
 
 #### Diagnostics
 - **Trouble.nvim** for beautiful diagnostics UI
@@ -566,7 +571,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - Lazy loading for better startup time
 - Disabled unused rtp plugins
 - Plugin update checker (runs hourly)
-- Lightweight completion engine (mini.completion)  
+- Modern completion engine (blink.cmp) with auto-suggestions  
 
 ---
 
@@ -579,7 +584,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 * **Telescope Integration:** Streamlined configuration with FZF native sorter for optimal performance.
 * **Theme Integration:** Telescope automatically adapts to your current colorscheme.
 * **Auto-Formatting:** Configured for Lua, Python, Rust, Go, JS/TS, JSON, YAML, Markdown, HTML, CSS.
-* **Modern Completion:** Using mini.completion for fast, lightweight LSP completion.
+* **Modern Completion:** Using blink.cmp for fast, modern LSP completion with auto-suggestions and snippet support.
 
 ## 🚀 Getting Started
 
@@ -594,7 +599,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 3. **LSP Setup:** LSP servers will be auto-installed via Mason on first use.
 
-4. **Completion:** Start typing in insert mode for auto-completion, or use `<C-Space>` to force completion.
+4. **Completion:** Start typing in insert mode - completion menu appears automatically. Use `<Tab>` to accept, `<S-Tab>` for previous items.
 
 5. **Diagnostics:** Use `<leader>xx` to open Trouble diagnostics panel.
 
@@ -606,7 +611,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Telescope:** `<leader>f*` (file search, grep, buffers, etc.)
 - **LSP:** `K` (hover), `gd` (definition), `gr` (references), `<leader>ca` (code action), `<leader>d` (diagnostics)
 - **Formatting:** `<leader>fm` (format), auto-format on save
-- **Completion:** `<C-Space>` (force), `<A-Space>` (fallback), `<C-f>/<C-b>` (scroll docs)
+- **Completion:** `<Tab>` (accept/next), `<S-Tab>` (previous), `<CR>` (confirm), `<C-l>` (snippet expand/jump), `<C-h>` (snippet prev), `<C-j>` (snippet choice)
 - **Sessions:** `<leader>ss` (save), `<leader>sr` (restore), `<leader>sd` (delete), `<leader>sS` (search)
 - **Diagnostics:** `<leader>xx` (trouble), `[d`/`]d` (navigate)
 - **Git:** `]h`/`[h` (hunks), `gha` (apply), `ghr` (reset)
