@@ -303,17 +303,23 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 | Key / CMD       | Mode | Purpose                                   |
 |-----------------|------|-------------------------------------------|
-| `<C-Space>`     | Insert | Force two-step completion                 |
+| `<C-Space>`     | Insert | Force two-step completion (manual trigger) |
 | `<A-Space>`     | Insert | Force fallback completion                 |
 | `<C-f>`         | Insert | Scroll info/signature window down         |
 | `<C-b>`         | Insert | Scroll info/signature window up           |
-| `<C-n>`         | Insert | Fallback to built-in completion           |
 
 **Features:**
+- **Auto-completion** - Automatically triggers after 300ms of typing inactivity
 - **LSP Integration** - Automatic LSP completion setup on buffer enter
-- **Auto-completion** - Intelligent completion with configurable delays
-- **Info Windows** - Hover documentation and signature help
+- **Info Windows** - Hover documentation (200ms delay) and signature help (50ms delay)
+- **Smart Sorting** - Completion items sorted by LSP priority and relevance
+- **Optimized Delays** - Responsive completion with minimal interruption
 - **Snippet Support** - Works with mini.snippets or vim.snippet.expand
+
+**Configuration:**
+- **Completion Delay:** 300ms (auto-triggers after you stop typing)
+- **Info Window:** 200ms delay for completion item details
+- **Signature Help:** 50ms delay for fast function parameter hints
 
 ### 🩺 Diagnostics & Troubleshooting (Trouble.nvim)
 

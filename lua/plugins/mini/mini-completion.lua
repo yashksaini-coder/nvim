@@ -5,36 +5,55 @@ return {
 	config = function()
 		require("mini.completion").setup({
 			-- Completion delays (ms)
-			-- Set completion delay very high to disable auto-completion
-			-- Completion will ONLY appear when you press <C-Space> manually
+			-- Optimized delays for responsive auto-completion
 			delay = {
-				completion = 10 ^ 7, -- Effectively disable auto-completion (10 million ms)
-				info = 10 ^ 7, -- Disable info window completely
-				signature = 50, -- Keep signature help for function parameters
+				completion = 300, -- Auto-trigger completion after 300ms of inactivity
+				info = 200, -- Show completion item info after 200ms
+				signature = 50, -- Fast signature help for function parameters
 			},
 
-			-- Disable info window completely
+			-- Window configuration for completion UI
 			window = {
-				info = nil, -- Disabled - no info window will appear
-				signature = { height = 25, width = 80, border = nil },
+				-- Info window for completion item details
+				info = {
+					height = 15,
+					width = 60,
+					border = "rounded",
+				},
+				-- Signature help window
+				signature = {
+					height = 25,
+					width = 80,
+					border = "rounded",
+				},
 			},
 
-			-- LSP code completion only
+			-- LSP code completion configuration
 			lsp_completion = {
 				source_func = "completefunc",
 				auto_setup = true,
+				-- Process completion items for better sorting and filtering
+				process_items = function(items, base)
+					-- Sort by LSP priority and relevance
+					table.sort(items, function(a, b)
+						local priority_a = a.sortText or a.label
+						local priority_b = b.sortText or b.label
+						return priority_a < priority_b
+					end)
+					return items
+				end,
 			},
 
-			-- Essential mappings
+			-- Essential key mappings
 			mappings = {
-				force_twostep = "<C-Space>", -- Press this to manually trigger completion
-				scroll_down = "<C-f>",
-				scroll_up = "<C-b>",
+				force_twostep = "<C-Space>", -- Manually trigger completion
+				force_fallback = "<A-Space>", -- Force fallback completion
+				scroll_down = "<C-f>", -- Scroll info window down
+				scroll_up = "<C-b>", -- Scroll info window up
 			},
-		})
 
-		-- Alternative: If you want auto-completion back but with better positioning,
-		-- change completion delay from 10^7 to something like 500 (half a second)
-		-- This gives you time to type before completion appears
+			-- Set completion options for better UX
+			set_vim_settings = true, -- Automatically set vim completion options
+		})
 	end,
 }
