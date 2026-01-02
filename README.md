@@ -15,6 +15,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **auto-session** - Automatic session management with save/restore functionality and Telescope integration
 - **snacks.indent** - Indent highlighting plugin (same as LazyVim) for visual code structure
 - **blink.cmp** - Fast and modern completion engine with LSP integration
+- **nvim-ts-autotag** - Auto-close and auto-rename HTML/JSX/TSX tags using treesitter
 - **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
 - **Improved Dashboard** - All alpha dashboard buttons now functional with proper keybindings
 
@@ -303,13 +304,13 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 | Key / CMD       | Mode | Purpose                                   |
 |-----------------|------|-------------------------------------------|
-| `<Tab>`         | Insert | Accept completion / Next item              |
-| `<S-Tab>`       | Insert | Previous completion item                  |
-| `<CR>`          | Insert | Confirm completion                        |
+| `<Tab>`         | Insert | Accept completion / Expand snippet        |
+| `<S-Tab>`       | Insert | Previous completion item / Previous snippet node |
+| `<CR>`          | Insert | Normal newline (no special behavior)       |
 | `<C-l>`         | Insert | Expand or jump to next snippet node       |
 | `<C-h>`         | Insert | Jump to previous snippet node             |
 | `<C-j>`         | Insert | Change snippet choice                     |
-| `<Esc>`         | Insert | Close completion menu                     |
+| `<Esc>`         | Insert | Close completion menu / Exit snippet      |
 
 **Features:**
 - **Auto-completion** - Automatically shows completion menu as you type
@@ -352,6 +353,32 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - Rust: `rustfmt`
 - Go: `gofumpt`, `goimports`
 - JS/TS/JSON/YAML/MD/HTML/CSS: `prettier`/`prettierd`
+
+### 🏷️ Auto Tag (nvim-ts-autotag)
+
+**Features:**
+- **Auto-close tags** - Automatically closes HTML/JSX/TSX tags when typing `>`
+- **Auto-rename tags** - Automatically renames paired tags (e.g., `<div></div>` → `<span></span>`)
+- **Treesitter-powered** - Uses treesitter for accurate tag detection
+- **Multi-language support** - Works with HTML, JSX, TSX, Vue, Svelte, and more
+
+**How it works:**
+- Type `<div>` and press `>` → Automatically becomes `<div></div>`
+- Change `<div></div>` to `<span></span>` by typing `ciwspan<esc>` → Both tags update
+- Works automatically in supported filetypes - no keymaps needed!
+
+**Supported Filetypes:**
+- HTML, JavaScript, JSX, TypeScript, TSX
+- Vue, Svelte, Astro
+- Markdown, PHP, XML
+- Handlebars, Liquid, Twig, Glimmer, Rescript
+
+**Configuration:**
+- **Auto-close:** Enabled (closes tags on `>`)
+- **Auto-rename:** Enabled (renames paired tags)
+- **Close on slash:** Disabled (doesn't auto-close on trailing `</`)
+
+**Note:** Requires treesitter parsers to be installed for the filetype. The plugin automatically works once treesitter is set up.
 
 ### 🔀 Git Integration (gitsigns.nvim)
 
