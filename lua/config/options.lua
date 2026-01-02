@@ -40,7 +40,8 @@ vim.opt.rnu = true
 vim.opt.showmode = false
 
 -- Better completion experience
-vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.completeopt = { "menu", "menuone", "noselect", "preview" }
+vim.opt.pumheight = 10 -- Limit popup menu height
 
 -- Enable 24-bit color
 vim.opt.termguicolors = true

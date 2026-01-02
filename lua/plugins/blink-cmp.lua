@@ -1,5 +1,6 @@
 return {
 	"Saghen/blink.cmp",
+	version = "1.*", -- Use stable version tag to avoid build issues
 	dependencies = {
 		"L3MON4D3/LuaSnip",
 		"rafamadriz/friendly-snippets",
@@ -11,6 +12,12 @@ return {
 
 		-- Setup blink.cmp with optimized configuration
 		require("blink.cmp").setup({
+			-- Fuzzy matching configuration
+			-- Use Lua implementation to avoid Rust build requirements
+			fuzzy = {
+				implementation = "lua", -- Use Lua implementation (no Rust needed)
+			},
+
 			-- Signature help configuration
 			signature = {
 				enabled = true,
