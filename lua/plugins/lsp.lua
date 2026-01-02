@@ -13,10 +13,17 @@ return {
 			-- Setup Mason first
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "rust_analyzer", "pyright", "lua_ls" },
+				-- LSP servers only (prettier is a formatter, not an LSP)
+				ensure_installed = {
+					"rust_analyzer",
+					"pyright",
+					"lua_ls",
+					"tsserver", -- TypeScript/JavaScript LSP server
+				},
 			})
 
 			-- Configure servers using NEW API
+			-- Lua LSP
 			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
@@ -39,13 +46,33 @@ return {
 				},
 			})
 
+			-- Rust LSP
 			vim.lsp.config("rust_analyzer", {})
+
+			-- Python LSP
 			vim.lsp.config("pyright", {})
+
+			-- TypeScript/JavaScript LSP
+			vim.lsp.config("tsserver", {
+				settings = {
+					typescript = {
+						inlayHints = {
+							enabled = true,
+						},
+					},
+					javascript = {
+						inlayHints = {
+							enabled = true,
+						},
+					},
+				},
+			})
 
 			-- Enable servers
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("rust_analyzer")
 			vim.lsp.enable("pyright")
+			vim.lsp.enable("tsserver")
 
 			-- Keymaps
 			vim.keymap.set("n", "<C-i>", vim.lsp.buf.definition, { desc = "Goto definition" })

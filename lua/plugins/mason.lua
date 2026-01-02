@@ -26,8 +26,12 @@ return {
 
 			mason_tool_installer.setup({
 				ensure_installed = {
+					-- LSP servers
 					"lua_ls", -- Lua language server
+					-- Formatters
 					"stylua", -- Lua formatter
+					"prettier", -- Web development formatter (JS/TS/CSS/HTML/JSON)
+					"prettierd", -- Prettier daemon (faster, optional)
 				},
 			})
 		end,

@@ -149,5 +149,40 @@ return {
 			end,
 			desc = "Clean swap files (fixes E325 errors)",
 		},
+		-- Delete all sessions
+		{
+			"<leader>sD",
+			function()
+				-- Get session directory (default: ~/.local/state/nvim/sessions/)
+				local session_dir = vim.fn.stdpath("state") .. "/sessions"
+				local session_files = vim.fn.glob(session_dir .. "/*.vim", false, true)
+
+				if #session_files == 0 then
+					vim.notify("No sessions found to delete", vim.log.levels.INFO)
+					return
+				end
+
+				-- Confirm before deleting all sessions
+				vim.ui.select({ "Yes", "No" }, {
+					prompt = string.format("Delete ALL %d session(s)? This cannot be undone!", #session_files),
+				}, function(choice)
+					if choice == "Yes" then
+						local deleted = 0
+						for _, file in ipairs(session_files) do
+							if os.remove(file) then
+								deleted = deleted + 1
+							end
+						end
+						vim.notify(
+							string.format("Deleted %d session file(s) from %s", deleted, session_dir),
+							vim.log.levels.INFO
+						)
+					else
+						vim.notify("Cancelled: No sessions deleted", vim.log.levels.INFO)
+					end
+				end)
+			end,
+			desc = "Delete all sessions (clean reset)",
+		},
 	},
 }

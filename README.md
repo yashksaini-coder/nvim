@@ -156,8 +156,10 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 |-----------------|------|-------------------------------------------|
 | `<leader>ss`   | Normal | Save current session                       |
 | `<leader>sr`   | Normal | Restore session                            |
-| `<leader>sd`   | Normal | Delete session                             |
+| `<leader>sd`   | Normal | Delete current session                     |
+| `<leader>sD`   | Normal | Delete ALL sessions (clean reset)          |
 | `<leader>sS`   | Normal | Search sessions (Telescope picker)         |
+| `<leader>sc`   | Normal | Clean swap files (fixes E325 errors)       |
 
 **How it works:**
 - When you start `nvim`, AutoSession automatically restores a session for the current working directory if it exists
