@@ -18,7 +18,7 @@ return {
 					"rust_analyzer",
 					"pyright",
 					"lua_ls",
-					"tsserver", -- TypeScript/JavaScript LSP server
+					"ts_ls", -- TypeScript/JavaScript LSP server
 				},
 			})
 

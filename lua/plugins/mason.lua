@@ -32,6 +32,8 @@ return {
 					"stylua", -- Lua formatter
 					"prettier", -- Web development formatter (JS/TS/CSS/HTML/JSON)
 					"prettierd", -- Prettier daemon (faster, optional)
+					-- DAP
+					"codelldb", -- Rust/C++ debugger (lldb)
 				},
 			})
 		end,
