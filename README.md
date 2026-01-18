@@ -11,6 +11,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added
+- **numb.nvim** - Peek buffer lines when entering `:{number}` commands for quick navigation
 - **markdown-preview.nvim** - Live markdown preview in browser with synchronized scrolling and rich features
 - **auto-session** - Automatic session management with save/restore functionality and Telescope integration
 - **snacks.indent** - Indent highlighting plugin (same as LazyVim) for visual code structure
@@ -481,6 +482,35 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - Ensured/Configured LSPs (3): `lua_ls`, `pyright`, `rust_analyzer`.
 - Integrated with **blink.cmp** for intelligent LSP completion with auto-suggestions.
 - Auto-formatting via conform.nvim with LSP fallback.
+
+### 👁️ Numb.nvim (Line Peeking)
+
+**numb.nvim** peeks buffer lines when you enter `:{number}` commands, making it easy to see where you're jumping to.
+
+#### **Features**
+- **Visual Preview** - See the target line before jumping
+- **Centered Peeking** - Peeked line is centered in the window
+- **Non-Intrusive** - Only activates when typing line numbers in command mode
+- **Smart Display** - Shows line numbers and cursorline while peeking
+
+#### **Usage**
+Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
+1. Show a preview of that line
+2. Center it in the window
+3. Highlight it with cursorline
+4. Display line numbers for context
+
+**Example:**
+- Type `:25` to see line 25 before jumping
+- Type `:100` to preview line 100
+- Works with any number command like `:42d` (delete line 42)
+
+**Configuration:**
+- `show_numbers = true` - Show line numbers while peeking
+- `show_cursorline = true` - Highlight the peeked line
+- `hide_relativenumbers = true` - Hide relative numbers during peek
+- `number_only = false` - Peek when command starts with number (e.g., `:42d`)
+- `centered_peeking = true` - Center the peeked line in window
 
 ### ⚡ Flash.nvim Navigation
 
