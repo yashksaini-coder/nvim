@@ -1,6 +1,13 @@
 return {
 
-	{ "folke/snacks.nvim", opts = { dashboard = { enabled = false } } },
+	{
+		"folke/snacks.nvim",
+		opts = {
+			dashboard = { enabled = false },
+			explorer = { enabled = false },
+			picker = { enabled = false },
+		},
+	},
 	-- Dashboard. This runs when neovim starts, and is what displays
 	-- the "LAZYVIM" banner.
 	{

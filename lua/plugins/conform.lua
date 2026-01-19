@@ -60,7 +60,7 @@ return {
 		},
 		-- Prettier will automatically use .prettierrc, .prettierrc.json, or package.json
 		-- from your project root. No need to configure args here.
-		format_on_save = {
+		default_format_opts = {
 			lsp_fallback = true,
 			async = false,
 			timeout_ms = 2000, -- Increased timeout for prettier
