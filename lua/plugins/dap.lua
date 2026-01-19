@@ -4,7 +4,7 @@
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
 			"nvim-neotest/nvim-nio",
-			"williamboman/mason.nvim",
+			"mason-org/mason.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 		config = function()
