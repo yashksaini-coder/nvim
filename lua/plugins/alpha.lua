@@ -1,20 +1,11 @@
 return {
-
-	{
-		"folke/snacks.nvim",
-		opts = {
-			dashboard = { enabled = false },
-			explorer = { enabled = false },
-			picker = { enabled = false },
-		},
-	},
-	-- Dashboard. This runs when neovim starts, and is what displays
-	-- the "LAZYVIM" banner.
+	-- Dashboard configuration using alpha-nvim
 	{
 		"goolord/alpha-nvim",
 		event = "VimEnter",
 		enabled = true,
-		init = false,
+		init = true,
+		priority = 1000,
 		opts = function()
 			local dashboard = require("alpha.themes.dashboard")
 			local logo = [[
@@ -31,17 +22,17 @@ return {
       ]]
 
 			dashboard.section.header.val = vim.split(logo, "\n")
-      -- stylua: ignore
-      dashboard.section.buttons.val = {
-        dashboard.button("f", " " .. " Find file",       "<leader>ff"),
-        dashboard.button("n", " " .. " New file",        [[<cmd> ene <BAR> startinsert <cr>]]),
-        dashboard.button("r", " " .. " Recent files",    [[<cmd> Telescope oldfiles <cr>]]),
-        dashboard.button("g", " " .. " Find text",       "<leader>fg"),
-        dashboard.button("M", " " .. " Mason menu",      "<leader>M"),
-        dashboard.button("l", "󰒲 " .. " Lazy menu",       "<leader>ll"),
-        dashboard.button("q", " " .. " Quit",            "<leader>q"),
+			-- stylua: ignore
+			dashboard.section.buttons.val = {
+				dashboard.button("f", " " .. " Find file",       "<leader>ff"),
+				dashboard.button("n", " " .. " New file",        [[<cmd> ene <BAR> startinsert <cr>]]),
+				dashboard.button("r", " " .. " Recent files",    [[<cmd> Telescope oldfiles <cr>]]),
+				dashboard.button("g", " " .. " Find text",       "<leader>fg"),
+				dashboard.button("M", " " .. " Mason menu",      "<leader>M"),
+				dashboard.button("l", "󰒲 " .. " Lazy menu",       "<leader>ll"),
+				dashboard.button("q", " " .. " Quit",            "<leader>q"),
 
-      }
+			}
 			for _, button in ipairs(dashboard.section.buttons.val) do
 				button.opts.hl = "AlphaButtons"
 				button.opts.hl_shortcut = "AlphaShortcut"
