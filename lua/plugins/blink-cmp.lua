@@ -55,8 +55,8 @@ return {
 			-- Check if snippet can be expanded or jumped first
 			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
-			-- Check if completion menu is visible (using vim's pumvisible)
-			elseif vim.fn.pumvisible() == 1 then
+			-- Check if completion menu is visible
+			elseif require("blink.cmp").visible() then
 				-- Accept the currently selected completion
 				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-y>", true, false, true), "n", false)
 			-- Otherwise, insert a tab
@@ -71,7 +71,7 @@ return {
 			if luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			-- Check if completion menu is visible
-			elseif vim.fn.pumvisible() == 1 then
+			elseif require("blink.cmp").visible() then
 				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-p>", true, false, true), "n", false)
 			-- Otherwise, insert shift-tab
 			else
@@ -85,7 +85,7 @@ return {
 		-- Esc: Close completion menu
 		vim.keymap.set("i", "<Esc>", function()
 			-- If completion menu is visible, close it
-			if vim.fn.pumvisible() == 1 then
+			if require("blink.cmp").visible() then
 				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-e>", true, false, true), "n", false)
 			-- If snippet is active, exit snippet mode
 			elseif luasnip.choice_active() then

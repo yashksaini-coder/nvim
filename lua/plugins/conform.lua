@@ -67,5 +67,11 @@ return {
 		},
 		-- Show notifications for errors
 		notify_on_error = true,
+		-- Format on save
+		format_on_save = {
+			lsp_fallback = true,
+			async = false,
+			timeout_ms = 3000,
+		},
 	},
 }

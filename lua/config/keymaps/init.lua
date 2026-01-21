@@ -8,6 +8,4 @@ require("config.keymaps.trouble")
 require("config.keymaps.terminal")
 require("config.keymaps.git")
 require("config.keymaps.noice")
--- Disabled keymaps for disabled plugins:
--- require("config.keymaps.dap")
--- require("config.keymaps.mini")
+

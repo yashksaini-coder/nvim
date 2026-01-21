@@ -23,7 +23,7 @@ vim.opt.breakindent = true
 vim.opt.wrap = false
 
 -- Speeds up plugin wait time
-vim.opt.updatetime = 50
+vim.opt.updatetime = 300
 
 -- Persistant undo file history
 vim.opt.undofile = true
@@ -61,9 +61,6 @@ vim.opt.scrolloff = 8
 -- Better splitting
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-
--- Faster scrolling
-vim.opt.lazyredraw = false
 
 -- Highlight yank
 vim.api.nvim_create_autocmd("textyankpost", {

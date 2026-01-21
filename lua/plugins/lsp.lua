@@ -1,10 +1,10 @@
 -- ============================================================================
--- LSP Configuration - Using Neovim 0.11+ native vim.lsp.config API
+-- LSP Configuration - Compatible with Neovim 0.10
 -- ============================================================================
 
 return {
 	{
-		"neovim/nvim-lspconfig", -- Still required!
+		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"mason-org/mason.nvim",
@@ -14,70 +14,42 @@ return {
 			-- Setup Mason first
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				-- LSP servers only (prettier is a formatter, not an LSP)
 				ensure_installed = {
 					"rust_analyzer",
 					"pyright",
 					"lua_ls",
-					"ts_ls", -- TypeScript/JavaScript LSP server
+					"ts_ls",
 				},
 			})
 
-			-- Configure servers using NEW API
-			-- Lua LSP
-			vim.lsp.config("lua_ls", {
-				settings = {
-					Lua = {
-						runtime = {
-							version = "LuaJIT",
-						},
-						diagnostics = {
-							globals = {
-								"vim",
-								"require",
+			-- Setup handlers for LSP servers
+			require("mason-lspconfig").setup_handlers({
+				function(server_name)
+					require("lspconfig")[server_name].setup({
+						-- Server-specific settings
+						["lua_ls"] = {
+							settings = {
+								Lua = {
+									runtime = { version = "LuaJIT" },
+									diagnostics = { globals = { "vim", "require" } },
+									workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+									telemetry = { enable = false },
+								},
 							},
 						},
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true),
+						["ts_ls"] = {
+							settings = {
+								typescript = { inlayHints = { enabled = true } },
+								javascript = { inlayHints = { enabled = true } },
+							},
 						},
-						telemetry = {
-							enable = false,
-						},
-					},
-				},
+					})
+				end,
 			})
-
-			-- Rust LSP
-			vim.lsp.config("rust_analyzer", {})
-
-			-- Python LSP
-			vim.lsp.config("pyright", {})
-
-			-- TypeScript/JavaScript LSP
-			vim.lsp.config("tsserver", {
-				settings = {
-					typescript = {
-						inlayHints = {
-							enabled = true,
-						},
-					},
-					javascript = {
-						inlayHints = {
-							enabled = true,
-						},
-					},
-				},
-			})
-
-			-- Enable servers
-			vim.lsp.enable("lua_ls")
-			vim.lsp.enable("rust_analyzer")
-			vim.lsp.enable("pyright")
-			vim.lsp.enable("tsserver")
 
 			-- Keymaps
 			vim.keymap.set("n", "<C-i>", vim.lsp.buf.definition, { desc = "Goto definition" })
-			vim.keymap.set("n", "<S-l>", vim.lsp.buf.hover, { desc = "Hover" })
+			vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = "Hover" })
 		end,
 	},
 }

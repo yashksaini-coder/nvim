@@ -4,4 +4,5 @@ vim.g.loaded_netrwPlugin = 1
 
 require("config.options")
 require("config.lazy")
+require("config.nvim-diagnostics")
 require("config.keymaps")
