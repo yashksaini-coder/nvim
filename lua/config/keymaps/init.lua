@@ -1,14 +1,13 @@
 require("config.keymaps.general")
 require("config.keymaps.lazy")
-require("config.keymaps.nvim-tree")
--- Telescope keymaps are now defined in lua/plugins/telescope.lua
 require("config.keymaps.themes")
 require("config.keymaps.mason")
 require("config.keymaps.lsp")
-require("config.keymaps.mini")
 require("config.keymaps.bufferline")
 require("config.keymaps.trouble")
 require("config.keymaps.terminal")
 require("config.keymaps.git")
 require("config.keymaps.noice")
-require("config.keymaps.dap")
+-- Disabled keymaps for disabled plugins:
+-- require("config.keymaps.dap")
+-- require("config.keymaps.mini")

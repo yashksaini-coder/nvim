@@ -25,16 +25,10 @@ vim.g.lazyvim_check_order = false
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-		-- import your plugins first to override LazyVim defaults
 		{ import = "plugins" },
 		{ import = "plugins.themes" },
 		{ import = "plugins.mini" },
-		-- add LazyVim and import its plugins
-		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 	},
-	-- Configure any other settings here. See the documentation for more details.
-	-- colorscheme that will be used when installing plugins.
-	install = { colorscheme = { "habamax" } },
-	-- automatically check for plugin updates
+	install = { colorscheme = { "tokyonight" } },
 	checker = { enabled = true },
 })
