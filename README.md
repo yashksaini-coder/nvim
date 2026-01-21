@@ -11,30 +11,41 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added
-- **numb.nvim** - Peek buffer lines when entering `:{number}` commands for quick navigation
-- **markdown-preview.nvim** - Live markdown preview in browser with synchronized scrolling and rich features
-- **auto-session** - Automatic session management with save/restore functionality and Telescope integration
-- **snacks.indent** - Indent highlighting plugin (same as LazyVim) for visual code structure
-- **blink.cmp** - Fast and modern completion engine with LSP integration
-- **nvim-ts-autotag** - Auto-close and auto-rename HTML/JSX/TSX tags using treesitter
+- **dashboard-nvim** - Modern, feature-rich dashboard with shortcuts and theme support
+- **nvim-cmp** - Powerful completion engine with LSP integration and snippet support
+- **mason.nvim** - Package manager for LSP servers, linters, and formatters
+- **mason-lspconfig.nvim** - Bridge between Mason and nvim-lspconfig
+- **LuaSnip** - Snippet engine for code completion
+- **cmp_luasnip** - Integration between nvim-cmp and LuaSnip
+- **conform.nvim** - Code formatting with LSP fallback
+- **trouble.nvim** - Beautiful diagnostics UI
+- **gitsigns.nvim** - Git integration with signs, hunks, and blame
+- **mini.map** - Code minimap for navigation
+- **render-markdown.nvim** - Enhanced markdown rendering
+- **cellular-automaton.nvim** - Fun cellular automaton animations
+- **smear-cursor.nvim** - Smooth cursor animations
+- **tip.nvim** - Helpful tips and shortcuts
+- **numb.nvim** - Peek buffer lines when entering `:{number}` commands
 - **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
-- **Improved Dashboard** - All alpha dashboard buttons now functional with proper keybindings
 
 ### 🔄 Changed
-- **Indent Highlighting** - Replaced mini.indentscope with snacks.indent (LazyVim's choice)
-- **Git Integration** - Replaced mini.diff and mini.git with gitsigns.nvim for standard Git integration
-- **Completion Engine** - Using blink.cmp for fast, modern completion with auto-suggestions
-- **Telescope Configuration** - Keymaps now properly defined in plugin file using lazy.nvim keys table
-- **Dashboard Event** - Fixed alpha dashboard to use `LazyDone` event instead of `LazyVimStarted`
-- **Terminal Configuration** - Simplified terminal setup with minimal bootstrap approach; keymaps moved to `lua/config/keymaps/terminal.lua` with clean direction-specific toggles (`<leader>th/tv/tf`)
+- **Dashboard** - Replaced alpha with dashboard-nvim for better aesthetics and functionality
+- **File Explorer** - Simplified nvim-tree to basic configuration for stability
+- **LSP Setup** - Migrated to Neovim 0.11 native LSP API with Mason for tool installation
+- **Completion** - Replaced blink.cmp with nvim-cmp for broader compatibility
+- **Treesitter** - Streamlined to essential languages (Rust, Python, TypeScript, JavaScript, C, C++)
+- **Terminal Configuration** - Keymaps moved to `lua/config/keymaps/terminal.lua` with clean direction-specific toggles (`<leader>th/tv/tf`)
 
 ### 🗑️ Removed
+- **alpha** - Replaced with dashboard-nvim
+- **blink.cmp** - Replaced with nvim-cmp for compatibility
+- **auto-session** - Removed session management (can be re-added if needed)
 - **mini.diff** - Replaced with gitsigns.nvim
 - **mini.git** - Replaced with gitsigns.nvim
 - **noice.nvim** - Removed notification/command line UI plugin
-- **mini.completion** - Replaced with blink.cmp for better performance and features
+- **mini.completion** - Replaced with nvim-cmp
 - **fff plugin** - Removed (was already deleted in previous changes)
-- **persistence.nvim** - Replaced with auto-session for better session management
+- **persistence.nvim** - Replaced with auto-session (now removed)
 
 --
 
@@ -136,44 +147,11 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Multiple Display Modes**: Horizontal, vertical, and floating terminals
 - **Auto-insert Mode**: Automatically enters insert mode when terminal opens
 - **Auto-exit Insert**: Automatically exits insert mode when leaving terminal buffer
-- **Smart Sizing**: 
+- **Smart Sizing**:
   - Horizontal terminals: 15 lines
   - Vertical terminals: 30% of screen width
   - Floating terminals: 50% width × 40% height with single border
 - **Clean UI**: Line numbers and sign column disabled in terminal buffers
-
-### 💾 Session Management (auto-session)
-
-**Features:**
-- **Automatic Save/Restore** - Sessions automatically saved on exit and restored on startup
-- **Telescope Integration** - Search and pick sessions with `<leader>sS`
-- **Smart Session Management** - Automatically closes nvim-tree before saving, reopens after restore
-- **Suppressed Directories** - No sessions in `~/`, `~/Projects`, `~/Downloads`, `/`
-- **Dashboard Bypass** - Alpha dashboard doesn't trigger session saves
-
-**Session Keymaps:**
-
-| Key / CMD       | Mode | Purpose                                   |
-|-----------------|------|-------------------------------------------|
-| `<leader>ss`   | Normal | Save current session                       |
-| `<leader>sr`   | Normal | Restore session                            |
-| `<leader>sd`   | Normal | Delete current session                     |
-| `<leader>sD`   | Normal | Delete ALL sessions (clean reset)          |
-| `<leader>sS`   | Normal | Search sessions (Telescope picker)         |
-| `<leader>sc`   | Normal | Clean swap files (fixes E325 errors)       |
-
-**How it works:**
-- When you start `nvim`, AutoSession automatically restores a session for the current working directory if it exists
-- When you quit `nvim`, AutoSession automatically saves a session for the current working directory
-- Sessions are stored in `~/.local/state/nvim/sessions/`
-- Each directory gets its own session file based on the working directory path
-
-**Session Contents:**
-- All open buffers and their positions
-- Window layout and splits
-- Tab configuration
-- Cursor positions
-- And more...
 
 ### 📝 Markdown Preview (markdown-preview.nvim)
 
@@ -226,7 +204,8 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 |-----|---------|-------------|
 | `<leader>M` | `:Mason` | Open Mason package manager |
 | `K` | `vim.lsp.buf.hover` | Show hover documentation |
-| `<leader>gd` | `vim.lsp.buf.definition` | Go to definition |
+| `<C-i>` | `vim.lsp.buf.definition` | Go to definition |
+| `<leader>gd` | `vim.lsp.buf.definition` | Go to definition (alternative) |
 | `<leader>gr` | `vim.lsp.buf.references` | Find all references |
 | `<leader>ca` | `vim.lsp.buf.code_action` | Show code actions |
 | `<leader>d` | `vim.diagnostic.open_float` | Show diagnostics at cursor |
@@ -286,9 +265,6 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - `li` - Lazy install | `lc` - Lazy check | `lx` - Lazy clean
 - `M` - Mason packages
 
-**Sessions (auto-session):**
-- `ss` - Save session | `sr` - Restore session | `sd` - Delete session | `sS` - Search sessions
-
 **Git Operations:**
 - `]c` / `[c` - Navigate diff hunks | `<leader>hs` - Stage hunk | `<leader>hr` - Reset hunk | `<leader>gb` - Full buffer blame
 
@@ -303,26 +279,25 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Oil (File Editor):**
 - `o` - Oil explorer | `O` - Oil floating
 
-### ✨ Code Completion (blink.cmp)
+### ✨ Code Completion (nvim-cmp)
 
 | Key / CMD       | Mode | Purpose                                   |
 |-----------------|------|-------------------------------------------|
-| `<Tab>`         | Insert | Accept completion / Expand snippet        |
-| `<S-Tab>`       | Insert | Previous completion item / Previous snippet node |
-| `<CR>`          | Insert | Normal newline (no special behavior)       |
-| `<C-l>`         | Insert | Expand or jump to next snippet node       |
-| `<C-h>`         | Insert | Jump to previous snippet node             |
-| `<C-j>`         | Insert | Change snippet choice                     |
-| `<Esc>`         | Insert | Close completion menu / Exit snippet      |
+| `<C-n>`         | Insert | Select next completion item               |
+| `<C-p>`         | Insert | Select previous completion item           |
+| `<C-n>`         | Insert | Select next completion item               |
+| `<C-p>`         | Insert | Select previous completion item           |
+| `<C-y>`         | Insert | Confirm completion selection              |
+| `<Tab>`         | Insert | Expand snippet                            |
+| `<S-Tab>`       | Insert | Previous snippet node                     |
 
 **Features:**
-- **Auto-completion** - Automatically shows completion menu as you type
-- **Auto-documentation** - Shows completion item documentation after 500ms delay
-- **Signature Help** - Enabled for function parameter hints
-- **LSP Integration** - Full LSP completion support with treesitter
-- **Snippet Support** - Integrated with LuaSnip and friendly-snippets
-- **Smart Menu** - Beautiful completion menu with kind icons and descriptions
-- **Treesitter** - Enhanced completion with treesitter context
+- **Auto-completion** - Intelligent completion menu appears as you type
+- **LSP Integration** - Full language server protocol support
+- **Snippet Support** - LuaSnip integration for code snippets
+- **Multiple Sources** - LSP, LuaSnip, buffer, and path completions
+- **Bordered UI** - Clean bordered completion and documentation windows
+- **Smart Selection** - Auto-select first item, manual navigation available
 
 **Configuration:**
 - **Documentation Delay:** 500ms (auto-shows after hovering completion item)
@@ -424,10 +399,11 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>tw`    | Normal | Toggle word diff                          |
 | `ih`            | Operator/Visual | Select hunk (text object)        |
 
-###  Dashboard (Alpha)
+###  Dashboard (dashboard-nvim)
 
 | Key / CMD       | Purpose                                   |
 |-----------------|-------------------------------------------|
+| `u`             | 🔄 Update plugins (`:Lazy update`)        |
 | `f`             | 🔍 Find file using Telescope (`<leader>ff`) |
 | `n`             | ➕ Create a new empty buffer              |
 | `r`             | 📂 Open recent files (Telescope)          |
@@ -438,20 +414,18 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `q`             | 🚪 Quit Neovim (`<leader>q`)              |
 
 **Features:**
-- **Auto-save/Restore** - Sessions automatically saved on exit and restored on startup
-- **Session Directory** - Stored in `~/.local/state/nvim/sessions/`
-- **Telescope Integration** - Search and pick sessions with `<leader>sS`
-- **Smart Session Management** - Automatically closes nvim-tree before saving, reopens after restore
-- **Session Options** - Saves buffers, cursor position, windows, tabs, and more
-- **Suppressed Directories** - No sessions in `~/`, `~/Projects`, `~/Downloads`, `/`
+- **Modern Design** - Clean, hyper-themed dashboard with shortcuts
+- **Plugin Updates** - Direct access to update plugins
+- **Quick Actions** - Fast access to common Neovim operations
+- **Theme Support** - Adapts to your current colorscheme
 
 ### Plugin Shortcuts
-- `:Alpha` → Reload dashboard screen
+- `:Dashboard` → Open dashboard
   - `:Lazy` → Open Lazy plugin manager
   - `:Lazy update` → Update all installed plugins
+  - `:Mason` → Open Mason package manager
   - `:Telescope find_files` → Search files
   - `:Telescope oldfiles` → Open recent files
-  - `:Telescope projects` → Browse projects (requires `telescope-projects`)
 
 ### 🔑 WhichKey Integration
 - Press `<Space>` (leader) and pause to see a popup of available keymaps.
@@ -477,10 +451,10 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Diagnostics Integration** - Quick access to LSP diagnostics via `<leader>fd`
 
 ### 🧠 LSP (Language Server) Setup
-- Managed via `mason.nvim` and `mason-lspconfig.nvim`.
+- Uses Neovim 0.11+ native LSP API with Mason for tool installation.
 - Enhanced with diagnostic signs, hover on cursor, and better UI.
-- Ensured/Configured LSPs (3): `lua_ls`, `pyright`, `rust_analyzer`.
-- Integrated with **blink.cmp** for intelligent LSP completion with auto-suggestions.
+- Configured LSPs: `lua_ls`, `ts_ls`, `rust_analyzer`, `pylsp`, `clangd`, `gopls`, `tailwindcss`, `phpactor`, `dartls`, `ocamllsp`, `ruby-lsp`, `zls`, `sourcekit`.
+- Integrated with **nvim-cmp** for intelligent LSP completion.
 - Auto-formatting via conform.nvim with LSP fallback.
 
 ### 👁️ Numb.nvim (Line Peeking)
@@ -601,11 +575,10 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 ### 🎨 New Features
 
 #### Code Completion
-- **blink.cmp** - Fast, modern completion engine with auto-suggestions
-- **LSP Integration** - Full LSP completion support with treesitter
-- **Auto-completion** - Automatically shows completion menu as you type
-- **Auto-documentation** - Shows completion item docs after 500ms delay
-- **Snippet Support** - Integrated with LuaSnip and friendly-snippets (vscode-style)
+- **nvim-cmp** - Powerful completion engine with LSP integration
+- **LSP Integration** - Full LSP completion support
+- **Snippet Support** - Integrated with LuaSnip
+- **Multiple Sources** - LSP, snippets, buffer, and path completions
 
 #### Diagnostics
 - **Trouble.nvim** for beautiful diagnostics UI
@@ -636,45 +609,49 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 
 ## 📌 Notes
 
-* Built & tested on **Windows 11 (CMD/Terminal)** and **Linux**.
-* **Enhanced Configuration:** Now includes completion, diagnostics, formatting, Git integration, and session management.
-* **Performance Optimized:** Lazy loading, disabled unused plugins, optimized settings, lightweight completion engine.
+* Built & tested on **Linux** (compatible with Windows/macOS).
+* **Enhanced Configuration:** Now includes completion, diagnostics, formatting, Git integration, and modern LSP setup.
+* **Performance Optimized:** Lazy loading, optimized settings, stable completion engine.
 * **Well Organized:** Proper directory structure following Neovim best practices.
-* **Telescope Integration:** Streamlined configuration with FZF native sorter for optimal performance.
-* **Theme Integration:** Telescope automatically adapts to your current colorscheme.
-* **Auto-Formatting:** Configured for Lua, Python, Rust, Go, JS/TS, JSON, YAML, Markdown, HTML, CSS.
-* **Modern Completion:** Using blink.cmp for fast, modern LSP completion with auto-suggestions and snippet support.
+* **Telescope Integration:** Streamlined configuration with optimal performance.
+* **Theme Integration:** Dashboard and UI adapt to your current colorscheme.
+* **Auto-Formatting:** Configured for multiple languages with LSP fallback.
+* **Modern LSP:** Using Neovim 0.11+ native API with Mason for tool management.
+* **Completion:** nvim-cmp with LSP and snippet support.
 
 ## 🚀 Getting Started
 
-1. **Install dependencies:** The config uses Mason for LSP servers, but you may need to install formatters:
-   - `stylua` for Lua
-   - `black` and `isort` for Python  
-   - `prettierd` or `prettier` for JS/TS/JSON/YAML/MD
-   - `rustfmt` for Rust (usually comes with Rust toolchain)
-   - `gofumpt` and `goimports` for Go
+1. **Install dependencies:** Mason will handle most tools, but ensure you have:
+    - Node.js (for some LSPs and tools)
+    - Language toolchains (Rust, Go, Python, etc.) for respective LSPs
 
 2. **First launch:** Run `:Lazy sync` to install all plugins.
 
-3. **LSP Setup:** LSP servers will be auto-installed via Mason on first use.
+3. **Mason Setup:** Run `:Mason` to install LSP servers and tools. The config will auto-install essential ones.
 
-4. **Completion:** Start typing in insert mode - completion menu appears automatically. Use `<Tab>` to accept, `<S-Tab>` for previous items.
+4. **LSP Setup:** LSP servers are configured automatically. Use `<C-i>` for definition, `K` for hover.
 
-5. **Diagnostics:** Use `<leader>xx` to open Trouble diagnostics panel.
+5. **Completion:** nvim-cmp provides intelligent auto-completion. Start typing and the menu appears automatically. Use `<C-n>`/`<C-p>` to navigate items, `<C-y>` to confirm selection.
 
-6. **Formatting:** Code auto-formats on save. Use `<leader>fm` to format manually (or in visual mode for range).
+6. **Diagnostics:** Use `<leader>xx` to open Trouble diagnostics panel, or `<leader>d` for inline diagnostics.
+
+7. **Formatting:** Code auto-formats on save via conform.nvim. Use `<leader>fm` to format manually.
 
 ## 📚 Keymap Reference Summary
 
-- **General:** `<leader>ex` (explorer), `<leader>nc` (config), window navigation
-- **Telescope:** `<leader>f*` (file search, grep, buffers, etc.)
-- **LSP:** `K` (hover), `gd` (definition), `gr` (references), `<leader>ca` (code action), `<leader>d` (diagnostics)
+- **General:** `<Esc>` (clear highlights), `<C-h/j/k/l>` (window nav), `<C-s>` (save), `<leader>q` (quit)
+- **Telescope:** `<C-p>` (files), `<leader>ff/fr/fR/fg/fs/fb/fh/fd` (find/search)
+- **File Explorer:** `<leader>e` (toggle), `<leader>ef` (find file)
+- **LSP:** `K` (hover), `<C-i>` (definition), `<leader>lh` (hover alt), `<leader>gr` (references), `<leader>ca` (code action), `<leader>d` (diagnostics)
+- **Completion:** `<C-n/p>` (navigate), `<C-y>` (confirm), `<Tab>/<S-Tab>` (snippets)
+- **Diagnostics:** `<leader>xx/xX` (trouble), `[d`/`]d` (navigate), `<leader>cs/cl` (symbols/locations)
 - **Formatting:** `<leader>fm` (format), auto-format on save
-- **Completion:** `<Tab>` (accept/next), `<S-Tab>` (previous), `<CR>` (confirm), `<C-l>` (snippet expand/jump), `<C-h>` (snippet prev), `<C-j>` (snippet choice)
-- **Sessions:** `<leader>ss` (save), `<leader>sr` (restore), `<leader>sd` (delete), `<leader>sS` (search)
-- **Diagnostics:** `<leader>xx` (trouble), `[d`/`]d` (navigate)
-- **Git:** `]h`/`[h` (hunks), `gha` (apply), `ghr` (reset)
-- **Terminal:** `<C-\>` (toggle default), `<leader>th` (horizontal), `<leader>tv` (vertical), `<leader>tf` (float)
-- **Markdown:** `<leader>mp` (toggle preview)
-- **Lazy:** `<leader>ll` (menu), `<leader>ls` (sync), `<leader>lu` (update)
+- **Git:** `]c/[c` (hunks), `<leader>hs/hr/hS/hR` (stage/reset), `<leader>hp` (preview), `<leader>hb` (blame)
+- **Terminal:** `<C-\>` (default), `<leader>th/tv/tf` (horizontal/vertical/float)
+- **Themes:** `<leader>th` (themery)
+- **Mini Map:** `<leader>mt/mo/mc/mf/mr/ms` (map controls)
+- **Bufferline:** `<S-h/l>` (prev/next), `<leader>bp/bP/bo/br/bl` (buffer ops)
+- **Trouble:** `<leader>xx/xX/xL/xQ` (diagnostics lists)
+- **Lazy:** `<leader>ll/ls/lu/li/lc/lx` (plugin management)
+- **Mason:** `<leader>M` (package manager)
 
