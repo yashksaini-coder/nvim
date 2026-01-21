@@ -8,4 +8,8 @@ require("config.keymaps.trouble")
 require("config.keymaps.terminal")
 require("config.keymaps.git")
 require("config.keymaps.noice")
+require("config.keymaps.telescope")
+require("config.keymaps.nvim-tree")
+require("config.keymaps.mini-tabline")
+
 

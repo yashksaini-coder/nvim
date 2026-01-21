@@ -27,7 +27,12 @@ return {
 			mason_tool_installer.setup({
 				ensure_installed = {
 					-- LSP servers
-					"lua_ls", -- Lua language server
+					"lua-language-server", -- Lua language server
+					"rust-analyzer", -- Rust LSP
+					"typescript-language-server", -- TypeScript/JavaScript LSP
+					"clangd", -- C/C++ LSP
+					-- Linters
+					"ruff", -- Python linter
 					-- Formatters
 					"stylua", -- Lua formatter
 					"prettier", -- Web development formatter (JS/TS/CSS/HTML/JSON)

@@ -1,0 +1,3 @@
+return {
+    -- Ruby LSP configuration
+}

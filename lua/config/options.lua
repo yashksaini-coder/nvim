@@ -62,6 +62,9 @@ vim.opt.scrolloff = 8
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+-- Disable confirmation dialogs for unsaved buffers
+vim.opt.confirm = false
+
 -- Highlight yank
 vim.api.nvim_create_autocmd("textyankpost", {
 	group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
