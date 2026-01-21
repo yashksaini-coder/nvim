@@ -14,14 +14,7 @@ return {
 			},
 		})
 
-		-- LSP floating preview override
-		vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
-			opts = opts or {}
-			opts.border = opts.border or "double"
-			opts.max_width = opts.max_width or 80
-			opts.max_height = opts.max_height or 20
-			return _open_floating_preview(contents, syntax, opts, ...)
-		end
+		-- LSP floating windows use default borders
 
 		vim.lsp.config("lua_ls", require("lsps.lua_ls"))
 		vim.lsp.config("ts_ls", require("lsps.ts_ls"))
