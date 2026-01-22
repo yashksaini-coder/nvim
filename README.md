@@ -34,7 +34,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **LSP Setup** - Migrated to Neovim 0.11 native LSP API with Mason for tool installation
 - **Completion** - Replaced blink.cmp with nvim-cmp for broader compatibility
 - **Treesitter** - Streamlined to essential languages (Rust, Python, TypeScript, JavaScript, C, C++)
-- **Terminal Configuration** - Keymaps moved to `lua/config/keymaps/terminal.lua` with clean direction-specific toggles (`<leader>th/tv/tf`)
+- **Terminal Configuration** - Keymaps moved to `lua/config/keymaps/terminal.lua` with clean direction-specific toggles (`<leader>tb/tv/tf`)
 
 ### 🗑️ Removed
 - **alpha** - Replaced with dashboard-nvim
@@ -132,19 +132,20 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 | Key | Description |
 |-----|-------------|
-| `<C-\>` | Toggle default terminal (floating, 50% width × 40% height) |
+| `<C-\>` | Toggle default terminal (floating, 60% width × 60% height) |
 
 #### **Direction-Specific Terminals**
 
 | Key | Description |
 |-----|-------------|
-| `<leader>th` | Toggle horizontal terminal (15 lines) |
-| `<leader>tv` | Toggle vertical terminal (30% of screen width) |
-| `<leader>tf` | Toggle floating terminal (50% width × 40% height) |
+| `<leader>tb` | Toggle bottom terminal (15 lines, IDE-style - respects sidebars) |
+| `<leader>tv` | Toggle vertical terminal (40% of screen width) |
+| `<leader>tf` | Toggle floating terminal (60% width × 60% height) |
 
 #### **Terminal Features**
 
-- **Multiple Display Modes**: Horizontal, vertical, and floating terminals
+- **Multiple Display Modes**: Bottom (horizontal), vertical, and floating terminals
+- **IDE-Style Bottom Terminal**: Opens at bottom covering only editor area, respects file explorer sidebar
 - **Auto-insert Mode**: Automatically enters insert mode when terminal opens
 - **Auto-exit Insert**: Automatically exits insert mode when leaving terminal buffer
 - **Smart Sizing**:
@@ -152,6 +153,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
   - Vertical terminals: 30% of screen width
   - Floating terminals: 50% width × 40% height with single border
 - **Clean UI**: Line numbers and sign column disabled in terminal buffers
+- **Auto-cleanup**: Terminals are automatically closed on Neovim exit to prevent job warnings
 
 ### 📝 Markdown Preview (markdown-preview.nvim)
 

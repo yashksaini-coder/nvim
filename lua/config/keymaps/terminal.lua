@@ -42,6 +42,14 @@ vim.keymap.set("n", "<leader>tf", function()
 	open_term("float")
 end, { desc = "Terminal float" })
 
+vim.keymap.set("n", "<leader>tb", function()
+	open_term("horizontal")
+end, { desc = "Terminal bottom" })
+
+vim.keymap.set("n", "<leader>tv", function()
+	open_term("vertical")
+end, { desc = "Terminal vertical" })
+
 -- ---------------------------------------------------------------------------
 -- Auto-commands: enter terminal → insert mode, leave → normal mode
 -- ---------------------------------------------------------------------------

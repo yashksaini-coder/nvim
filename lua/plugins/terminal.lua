@@ -5,6 +5,8 @@
 -- Constants
 local HORIZONTAL_SIZE = 15
 local VERTICAL_SIZE_RATIO = 0.4
+local FLOAT_WIDTH_RATIO = 0.5
+local FLOAT_HEIGHT_RATIO = 0.4
 
 return {
 	"akinsho/toggleterm.nvim",
@@ -40,6 +42,12 @@ return {
 		float_opts = {
 			border = "curved",
 			winblend = 0,
+			width = function()
+				return math.floor(vim.o.columns * FLOAT_WIDTH_RATIO)
+			end,
+			height = function()
+				return math.floor(vim.o.lines * FLOAT_HEIGHT_RATIO)
+			end,
 			highlights = {
 				border = "Normal",
 				background = "Normal",
