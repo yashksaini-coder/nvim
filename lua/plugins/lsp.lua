@@ -1,19 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
 	config = function()
-		-- Diagnostic configuration
-		vim.diagnostic.config({
-			virtual_text = true,
-			signs = true,
-			underline = true,
-			severity_sort = true,
-			float = {
-				border = "rounded",
-				focusable = true,
-				source = true,
-			},
-		})
-
 		-- LSP floating windows use default borders
 
 		vim.lsp.config("lua_ls", require("lsps.lua_ls"))

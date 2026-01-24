@@ -40,9 +40,27 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 	border = _border,
 })
 
--- Auto-show diagnostics on hover (only in normal mode, not during completion)
+-- Disable all diagnostics for Rust files (krust.nvim handles it)
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "rust",
+	callback = function()
+		-- Disable all diagnostic displays for rust buffers
+		vim.diagnostic.config({
+			virtual_text = false,
+			signs = false,
+			underline = false,
+			float = false,
+		})
+	end,
+})
+
+-- Auto-show diagnostics on hover (only in normal mode, not during completion, skip Rust)
 vim.api.nvim_create_autocmd("CursorHold", {
 	callback = function()
+		-- Skip Rust files (krust.nvim handles diagnostics)
+		if vim.bo.filetype == "rust" then
+			return
+		end
 		-- Don't show diagnostics during insert mode (when completion might be active)
 		if vim.api.nvim_get_mode().mode == "i" then
 			return
@@ -59,7 +77,10 @@ vim.api.nvim_create_autocmd("CursorHold", {
 	end,
 })
 
--- Keymap to show diagnostics
+-- Keymap to show diagnostics (skip for Rust files)
 vim.keymap.set("n", "<leader>d", function()
+	if vim.bo.filetype == "rust" then
+		return
+	end
 	vim.diagnostic.open_float(nil, { border = "rounded" })
 end, { desc = "Show diagnostics" })

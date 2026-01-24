@@ -10,7 +10,13 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
 ## 📝 Recent Changes
 
-### ✨ Added
+### ✨ Added (Latest)
+- **krust.nvim** - Enhanced Rust diagnostics with beautiful colored formatting (press `<leader>K`)
+- **ferris.nvim** - Rust Analyzer extensions (macro expansion, HIR/MIR, memory layout viewing)
+- **crates.nvim** - Interactive Cargo.toml dependency manager with version checking and updates
+- **cord.nvim** - Discord Rich Presence integration for showing activity
+
+### ✨ Added (Previous)
 - **dashboard-nvim** - Modern, feature-rich dashboard with shortcuts and theme support
 - **nvim-cmp** - Powerful completion engine with LSP integration and snippet support
 - **mason.nvim** - Package manager for LSP servers, linters, and formatters
@@ -35,6 +41,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **Completion** - Replaced blink.cmp with nvim-cmp for broader compatibility
 - **Treesitter** - Streamlined to essential languages (Rust, Python, TypeScript, JavaScript, C, C++)
 - **Terminal Configuration** - Keymaps moved to `lua/config/keymaps/terminal.lua` with clean direction-specific toggles (`<leader>tb/tv/tf`)
+- **Rust Diagnostics** - Normal diagnostics disabled for Rust buffers to allow krust.nvim to take over
 
 ### 🗑️ Removed
 - **alpha** - Replaced with dashboard-nvim
@@ -46,6 +53,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **mini.completion** - Replaced with nvim-cmp
 - **fff plugin** - Removed (was already deleted in previous changes)
 - **persistence.nvim** - Replaced with auto-session (now removed)
+- **image.nvim** - Removed due to loading conflicts
 
 --
 
@@ -212,6 +220,89 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>ca` | `vim.lsp.buf.code_action` | Show code actions |
 | `<leader>d` | `vim.diagnostic.open_float` | Show diagnostics at cursor |
 
+### 🦀 Rust Development
+
+This configuration includes a comprehensive Rust development setup with multiple specialized plugins.
+
+#### **krust.nvim** - Enhanced Diagnostics Rendering
+
+Displays beautifully formatted Rust compiler diagnostics with proper colors and formatting, similar to terminal cargo output.
+
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>K` | `:Krust` | Open Krust diagnostic window |
+
+**Features:**
+- Colored, formatted diagnostics display
+- Auto-focus disabled (click to focus)
+- Rounded borders for consistency
+- First press opens window, second press focuses it
+- `q` or `<Esc>` to close
+
+#### **ferris.nvim** - Rust Analyzer Extensions
+
+Powerful Rust analyzer extensions for viewing macros, HIR/MIR, memory layout, and more.
+
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>rm` | `FerrisExpandMacro` | Expand macro under cursor |
+| `<leader>rj` | `FerrisJoinLines` | Join lines (normal & visual mode) |
+| `<leader>rh` | `FerrisViewHIR` | View HIR representation |
+| `<leader>rl` | `FerrisViewMIR` | View MIR representation |
+| `<leader>rs` | `FerrisViewMemoryLayout` | Show memory layout of struct/enum |
+| `<leader>rt` | `FerrisViewSyntaxTree` | Display syntax tree (normal & visual) |
+| `<leader>ri` | `FerrisViewItemTree` | Show item tree of current document |
+| `<leader>rc` | `FerrisOpenCargoToml` | Open project's Cargo.toml |
+| `<leader>rp` | `FerrisOpenParentModule` | Open parent module file |
+| `<leader>rd` | `FerrisOpenDocumentation` | Open documentation for symbol |
+| `<leader>rw` | `FerrisReloadWorkspace` | Reload project workspace |
+| `<leader>rb` | `FerrisRebuildMacros` | Rebuild procedural macros |
+
+#### **crates.nvim** - Cargo Dependency Manager
+
+Interactive Cargo.toml management with version checking, dependency exploration, and one-click updates.
+
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>ct` | `crates.toggle` | Toggle crates info (virtual text) |
+| `<leader>cr` | `crates.reload` | Reload crates data |
+| `<leader>cv` | `crates.show_versions_popup` | Show available versions |
+| `<leader>cf` | `crates.show_features_popup` | Show available features |
+| `<leader>cd` | `crates.show_dependencies_popup` | Show crate dependencies |
+| `<leader>cu` | `crates.update_crate` | Update crate on current line |
+| `<leader>cu` (visual) | `crates.update_crates` | Update selected crates |
+| `<leader>ca` | `crates.update_all_crates` | Update all crates in buffer |
+| `<leader>cU` | `crates.upgrade_crate` | Upgrade crate to latest |
+| `<leader>cU` (visual) | `crates.upgrade_crates` | Upgrade selected crates |
+| `<leader>cA` | `crates.upgrade_all_crates` | Upgrade all crates to latest |
+| `<leader>cx` | `crates.expand_plain_crate_to_inline_table` | Expand crate to inline table |
+| `<leader>cX` | `crates.extract_crate_into_table` | Extract crate into table format |
+| `<leader>cH` | `crates.open_homepage` | Open crate's homepage |
+| `<leader>cR` | `crates.open_repository` | Open crate's repository |
+| `<leader>cD` | `crates.open_documentation` | Open crate's documentation |
+| `<leader>cC` | `crates.open_crates_io` | Open on crates.io |
+| `<leader>cL` | `crates.open_lib_rs` | Open on lib.rs |
+
+**Features:**
+- Smart version handling with semantic versioning
+- Feature popup with full feature list
+- Dependency visualization
+- One-click update/upgrade to latest versions
+- Automatic Cargo.toml formatting
+- LSP completions and hover support
+
+#### **cord.nvim** - Discord Rich Presence
+
+Display your current Neovim activity on Discord with workspace and file information.
+
+**Features:**
+- Real-time activity broadcast to Discord
+- Shows current file being edited
+- Displays workspace name
+- Custom button linking to your GitHub repository
+- Idle detection with customizable timeout
+- Markdown rendering in Discord profile
+
 ### 🔧 Oil (File Buffer Editor)
 
 | Key | Command | Description |
@@ -255,12 +346,20 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - `e` - Toggle explorer | `ef` - Find file in explorer
 
 **Themes & UI:**
-- `<leader>th` - Themery picker
+- `th` - Themery picker
 - `mt/mo/mc/mf/mr/ms` - Mini map controls
 
 **Terminal:**
-- `<C-\>` - Toggle default terminal (float) | `th` - Horizontal | `tv` - Vertical | `tf` - Float
+- `<C-\>` - Toggle default terminal (float) | `tb` - Horizontal | `tv` - Vertical | `tf` - Float
 
+**Rust Development:** *(Only in Rust files)*
+- `K` - Open Krust diagnostics window
+- `rm` - Expand macro | `rh` - View HIR | `rl` - View MIR | `rs` - Memory layout
+- `rt` - Syntax tree | `ri` - Item tree | `rc` - Open Cargo.toml | `rp` - Parent module
+- `rd` - Documentation | `rw` - Reload workspace | `rb` - Rebuild macros | `rj` - Join lines
+- `ct` - Toggle crates | `cr` - Reload crates | `cv` - Versions | `cf` - Features | `cd` - Dependencies
+- `cu/cU` - Update/upgrade crate | `ca/cA` - Update/upgrade all | `cx/cX` - Expand/extract
+- `cH` - Homepage | `cR` - Repository | `cD` - Docs | `cC` - Crates.io | `cL` - Lib.rs
 
 **Plugins & Tools:**
 - `ll` - Lazy menu | `ls` - Lazy sync | `lu` - Lazy update
@@ -268,7 +367,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - `M` - Mason packages
 
 **Git Operations:**
-- `]c` / `[c` - Navigate diff hunks | `<leader>hs` - Stage hunk | `<leader>hr` - Reset hunk | `<leader>gb` - Full buffer blame
+- `]c` / `[c` - Navigate diff hunks | `hs` - Stage hunk | `hr` - Reset hunk | `gb` - Full buffer blame
 
 **Code & Diagnostics:**
 - `gd` - Definition | `gr` - References | `ca` - Code action | `d` - Show diagnostics
@@ -277,6 +376,9 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Buffers:**
 - `bp` - Pin buffer | `bP` - Delete unpinned | `bo` - Delete others
 - `br` - Delete right | `bl` - Delete left
+
+**Oil (File Editor):**
+- `o` - Oil explorer | `O` - Oil floating
 
 **Oil (File Editor):**
 - `o` - Oil explorer | `O` - Oil floating
