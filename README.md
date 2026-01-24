@@ -11,7 +11,6 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added (Latest)
-- **krust.nvim** - Enhanced Rust diagnostics with beautiful colored formatting (press `<leader>K`)
 - **ferris.nvim** - Rust Analyzer extensions (macro expansion, HIR/MIR, memory layout viewing)
 - **crates.nvim** - Interactive Cargo.toml dependency manager with version checking and updates
 - **cord.nvim** - Discord Rich Presence integration for showing activity
@@ -41,9 +40,9 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **Completion** - Replaced blink.cmp with nvim-cmp for broader compatibility
 - **Treesitter** - Streamlined to essential languages (Rust, Python, TypeScript, JavaScript, C, C++)
 - **Terminal Configuration** - Keymaps moved to `lua/config/keymaps/terminal.lua` with clean direction-specific toggles (`<leader>tb/tv/tf`)
-- **Rust Diagnostics** - Normal diagnostics disabled for Rust buffers to allow krust.nvim to take over
 
 ### 🗑️ Removed
+- **krust.nvim** - Removed enhanced Rust diagnostics (restored standard diagnostics)
 - **alpha** - Replaced with dashboard-nvim
 - **blink.cmp** - Replaced with nvim-cmp for compatibility
 - **auto-session** - Removed session management (can be re-added if needed)
@@ -222,22 +221,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 ### 🦀 Rust Development
 
-This configuration includes a comprehensive Rust development setup with multiple specialized plugins.
-
-#### **krust.nvim** - Enhanced Diagnostics Rendering
-
-Displays beautifully formatted Rust compiler diagnostics with proper colors and formatting, similar to terminal cargo output.
-
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<leader>K` | `:Krust` | Open Krust diagnostic window |
-
-**Features:**
-- Colored, formatted diagnostics display
-- Auto-focus disabled (click to focus)
-- Rounded borders for consistency
-- First press opens window, second press focuses it
-- `q` or `<Esc>` to close
+This configuration includes a comprehensive Rust development setup with specialized plugins for enhanced development experience.
 
 #### **ferris.nvim** - Rust Analyzer Extensions
 
