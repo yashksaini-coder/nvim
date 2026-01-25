@@ -11,6 +11,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added (Latest)
+- **leetcode.nvim** - Solve LeetCode problems directly in Neovim with integrated testing and submission
 - **ferris.nvim** - Rust Analyzer extensions (macro expansion, HIR/MIR, memory layout viewing)
 - **crates.nvim** - Interactive Cargo.toml dependency manager with version checking and updates
 - **cord.nvim** - Discord Rich Presence integration for showing activity
@@ -84,8 +85,28 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>ls` | `:Lazy sync` | Sync plugins (install/update/remove) |
 | `<leader>lu` | `:Lazy update` | Update all plugins |
 | `<leader>li` | `:Lazy install` | Install missing plugins |
-| `<leader>lc` | `:Lazy check` | Check plugin health |
 | `<leader>lx` | `:Lazy clean` | Remove unused plugins |
+
+### 💡 LeetCode (leetcode.nvim)
+
+**LeetCode** plugin for solving competitive programming problems directly in Neovim.
+
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>c` | `:Leet` | Open LeetCode |
+| `<leader>cr` | `:Leet run` | Run the current problem with test cases |
+| `<leader>cs` | `:Leet submit` | Submit your solution to LeetCode |
+| `<leader>cl` | `:Leet list` | Show all LeetCode problems |
+| `<leader>cd` | `:Leet daily` | Load today's daily challenge |
+| `<leader>cR` | `:Leet reset` | Reset the current problem |
+
+**LeetCode Features:**
+- Default language: **C++** (configurable to Python, Java, JavaScript, etc.)
+- Integrated test case runner with real-time feedback
+- Problem description viewer with stats
+- Solution submission to LeetCode
+- Code caching for offline access
+- Problem progress tracking
 
 ### 🔭 Telescope (Fuzzy Finder)
 
