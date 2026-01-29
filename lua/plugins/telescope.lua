@@ -8,6 +8,8 @@ return {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			-- Treesitter for syntax highlighting in previews
 			"nvim-treesitter/nvim-treesitter",
+			-- Snacks for image preview
+			"folke/snacks.nvim",
 		},
 		keys = {
 			-- File operations
@@ -28,7 +30,10 @@ return {
 			{ "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find files" },
 		},
 		config = function()
-			require("telescope").setup({
+			local telescope = require("telescope")
+			local actions = require("telescope.actions")
+
+			telescope.setup({
 				defaults = {
 					-- Use fzf-native for speed and proper fuzzy file support
 					file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -46,7 +51,7 @@ return {
 							preview_width = 0.55,
 						},
 					},
-					-- Preview configuration - disable treesitter highlighting to avoid errors
+					-- Preview configuration
 					preview = {
 						treesitter = {
 							enable = false, -- Disable to prevent ft_to_lang errors
@@ -54,7 +59,7 @@ return {
 					},
 				},
 			})
-			require("telescope").load_extension("fzf")
+			telescope.load_extension("fzf")
 		end,
 	},
 }

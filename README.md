@@ -11,7 +11,10 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added (Latest)
+- **Telescope + snacks.nvim integration** - Added snacks.nvim as a dependency to Telescope for enhanced file preview capabilities
+- **snacks.nvim (image)** - Image preview with Kitty Graphics Protocol support for viewing images, PDFs, videos, and math expressions inline
 - **which-key.nvim** - Interactive keymap popup with LazyVim-style UI showing all available keybindings
+- **bufferline.nvim** - LazyVim-style buffer/tab management with always-visible tabline, LSP diagnostics, and git status integration
 - **leetcode.nvim** - Solve LeetCode problems directly in Neovim with integrated testing and submission
 - **ferris.nvim** - Rust Analyzer extensions (macro expansion, HIR/MIR, memory layout viewing)
 - **crates.nvim** - Interactive Cargo.toml dependency manager with version checking and updates
@@ -140,6 +143,13 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 ### 🔭 Telescope (Fuzzy Finder)
 
+**Telescope** is a powerful fuzzy finder with extensive search capabilities and file preview support.
+
+**Dependencies:**
+- `telescope-fzf-native.nvim` - Native FZF sorter for improved performance
+- `nvim-treesitter` - Syntax highlighting in previews
+- `snacks.nvim` - Image preview support (automatically renders images in preview pane)
+
 | Key | Command | Description |
 |-----|---------|-------------|
 | `<C-p>` | `:Telescope find_files` | Find files (quick access) |
@@ -151,6 +161,12 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>fb` | `:Telescope buffers` | Find and switch between buffers |
 | `<leader>fh` | `:Telescope help_tags` | Search Neovim help documentation |
 | `<leader>fd` | `:Telescope diagnostics` | Show LSP diagnostics |
+
+**Features:**
+- **Fast fuzzy finding** - Native FZF algorithm for optimal performance
+- **File preview** - Live preview of file contents with syntax highlighting
+- **Smart search** - Respects `.gitignore` and follows symlinks
+- **Horizontal layout** - 55% preview width for optimal viewing
 
 ### 📂 Nvim-tree (File Explorer)
 
@@ -245,7 +261,42 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 **Note:** Requires Node.js to be installed. The plugin will automatically build on first install.
 
-### 📏 Indent Highlighting (snacks.indent)
+### �️ Image Preview (snacks.nvim)
+
+**Snacks.nvim Image Viewer** provides powerful image preview capabilities using the Kitty Graphics Protocol.
+
+**Features:**
+- **Wide Format Support** - View images in formats: `png`, `jpg`, `jpeg`, `gif`, `bmp`, `webp`, `tiff`, `heic`, `avif`
+- **Video Support** - Preview videos: `mp4`, `mov`, `avi`, `mkv`, `webm`
+- **PDF Viewing** - View PDF documents directly in Neovim
+- **Inline Rendering** - Images rendered inline in supported document formats: `markdown`, `html`, `norg`, `tsx`, `javascript`, `css`, `vue`, `svelte`, `scss`, `latex`, `typst`
+- **Math Expressions** - LaTeX math expressions in `markdown` and `latex` documents
+- **Auto-display** - Automatically shows images when opening image files
+
+**Terminal Support:**
+- ✅ Kitty
+- ✅ Ghostty
+- ✅ WezTerm (limited support, inline rendering not supported)
+- ⚠️ Tmux (requires `allow-passthrough=on`)
+
+**Keymaps:**
+
+| Key | Description |
+|-----|-------------|
+| `<leader>is` | Show image at cursor position |
+
+**Usage:**
+- Open an image file - it will be displayed automatically
+- In markdown/HTML: place cursor on image link and press `<leader>is` to preview
+- Math expressions in markdown are automatically rendered inline
+- Images are cached for better performance
+
+**Requirements:**
+- Terminal with Kitty Graphics Protocol support (Kitty, Ghostty, or WezTerm)
+- [ImageMagick](https://imagemagick.org/) for format conversion
+- Run `:checkhealth snacks` to verify setup
+
+### �📏 Indent Highlighting (snacks.indent)
 
 **Features:**
 - Visual indent guides showing code structure
