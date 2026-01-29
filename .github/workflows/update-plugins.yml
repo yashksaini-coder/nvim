@@ -1,0 +1,67 @@
+name: Update Neovim Plugins
+
+on:
+    schedule:
+        # Run every day at 00:00 UTC
+        - cron: '0 0 * * *'
+    workflow_dispatch:
+        
+jobs:
+  update-plugins:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+      
+      - name: Install Neovim
+        run: |
+          wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+          tar xzf nvim-linux64.tar.gz
+          sudo mv nvim-linux64 /opt/nvim
+          sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
+          nvim --version
+      
+      - name: Setup Neovim config
+        run: |
+          mkdir -p ~/.config
+          ln -s $GITHUB_WORKSPACE ~/.config/nvim
+      
+      - name: Update plugins
+        run: |
+          nvim --headless "+Lazy! sync" +qa
+          nvim --headless "+Lazy! update" +qa
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet lazy-lock.json || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add lazy-lock.json
+          git commit -m "chore: update plugin lockfile [skip ci]"
+          git push
+      
+      - name: Create PR (optional)
+        if: steps.check_changes.outputs.changed == 'true' && github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BRANCH_NAME="plugin-updates-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH_NAME"
+          git push origin "$BRANCH_NAME"
+          gh pr create \
+            --title "chore: update plugins $(date +%Y-%m-%d)" \
+            --body "Automated plugin update triggered by GitHub Actions" \
+            --base dev \
+            --head "$BRANCH_NAME"
