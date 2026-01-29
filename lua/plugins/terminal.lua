@@ -1,26 +1,19 @@
 -- ============================================================================
--- ToggleTerm - Integrated Terminal Management
+-- ToggleTerm - LazyVim-style Terminal Management
 -- ============================================================================
-
--- Constants
-local HORIZONTAL_SIZE = 15
-local VERTICAL_SIZE_RATIO = 0.4
-local FLOAT_WIDTH_RATIO = 0.5
-local FLOAT_HEIGHT_RATIO = 0.4
 
 return {
 	"akinsho/toggleterm.nvim",
 	version = "*",
 	event = "VeryLazy",
 	opts = {
-		-- Size configuration
+		-- Size configuration for different terminal directions
 		size = function(term)
 			if term.direction == "horizontal" then
-				return HORIZONTAL_SIZE
+				return 15
 			elseif term.direction == "vertical" then
-				return math.floor(vim.o.columns * VERTICAL_SIZE_RATIO)
+				return math.floor(vim.o.columns * 0.4)
 			end
-			return nil
 		end,
 
 		-- General settings
@@ -38,31 +31,143 @@ return {
 		shell = vim.o.shell,
 		auto_scroll = true,
 
-		-- Float window options
+		-- Float window configuration (LazyVim style)
 		float_opts = {
 			border = "curved",
-			winblend = 0,
 			width = function()
-				return math.floor(vim.o.columns * FLOAT_WIDTH_RATIO)
+				return math.floor(vim.o.columns * 0.8)
 			end,
 			height = function()
-				return math.floor(vim.o.lines * FLOAT_HEIGHT_RATIO)
+				return math.floor(vim.o.lines * 0.8)
 			end,
+			winblend = 3,
+			zindex = 50,
 			highlights = {
-				border = "Normal",
-				background = "Normal",
+				border = "FloatBorder",
+				background = "NormalFloat",
 			},
 		},
 
-		-- Winbar configuration
+		-- Winbar configuration with terminal info
 		winbar = {
-			enabled = false,
+			enabled = true,
 			name_formatter = function(term)
-				return term.name
+				return string.format(" Terminal #%d ", term.id)
 			end,
 		},
+
+		-- Highlights for better UI
+		highlights = {
+			Normal = {
+				link = "Normal",
+			},
+			NormalFloat = {
+				link = "NormalFloat",
+			},
+			FloatBorder = {
+				link = "FloatBorder",
+			},
+		},
+
+		-- Terminal window options
+		on_create = function(term)
+			vim.opt_local.foldcolumn = "0"
+			vim.opt_local.signcolumn = "no"
+		end,
 	},
+
 	config = function(_, opts)
 		require("toggleterm").setup(opts)
+
+		-- Create specialized terminals (LazyVim style)
+		local Terminal = require("toggleterm.terminal").Terminal
+
+		-- Lazygit terminal
+		_G.lazygit = Terminal:new({
+			cmd = "lazygit",
+			dir = "git_dir",
+			direction = "float",
+			float_opts = {
+				border = "curved",
+				width = function()
+					return math.floor(vim.o.columns * 0.9)
+				end,
+				height = function()
+					return math.floor(vim.o.lines * 0.9)
+				end,
+			},
+			on_open = function(term)
+				vim.cmd("startinsert!")
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+			end,
+		})
+
+		-- Python REPL terminal
+		_G.python = Terminal:new({
+			cmd = "python3",
+			direction = "float",
+			float_opts = {
+				border = "curved",
+				width = function()
+					return math.floor(vim.o.columns * 0.7)
+				end,
+				height = function()
+					return math.floor(vim.o.lines * 0.7)
+				end,
+			},
+		})
+
+		-- Node REPL terminal
+		_G.node = Terminal:new({
+			cmd = "node",
+			direction = "float",
+			float_opts = {
+				border = "curved",
+				width = function()
+					return math.floor(vim.o.columns * 0.7)
+				end,
+				height = function()
+					return math.floor(vim.o.lines * 0.7)
+				end,
+			},
+		})
+
+		-- Btop system monitor
+		_G.btop = Terminal:new({
+			cmd = "btop",
+			direction = "float",
+			float_opts = {
+				border = "curved",
+				width = function()
+					return math.floor(vim.o.columns * 0.9)
+				end,
+				height = function()
+					return math.floor(vim.o.lines * 0.9)
+				end,
+			},
+			on_open = function(term)
+				vim.cmd("startinsert!")
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+			end,
+		})
+
+		-- Htop system monitor (fallback)
+		_G.htop = Terminal:new({
+			cmd = "htop",
+			direction = "float",
+			float_opts = {
+				border = "curved",
+				width = function()
+					return math.floor(vim.o.columns * 0.9)
+				end,
+				height = function()
+					return math.floor(vim.o.lines * 0.9)
+				end,
+			},
+			on_open = function(term)
+				vim.cmd("startinsert!")
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+			end,
+		})
 	end,
 }

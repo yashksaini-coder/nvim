@@ -125,26 +125,20 @@ return {
 				{ "<leader>rw", desc = "Reload workspace" },
 				{ "<leader>rb", desc = "Rebuild macros" },
 
-				-- Terminal
-				{ "<leader>tf", desc = "Terminal float" },
-				{ "<leader>tb", desc = "Terminal bottom" },
-				{ "<leader>tv", desc = "Terminal vertical" },
-
-				-- Tabs
-				{ "<leader>tn", desc = "New tab" },
-				{ "<leader>tc", desc = "Close tab" },
-				{ "<leader>to", desc = "Close other tabs" },
-				{ "<leader>tmr", desc = "Move tab right" },
-				{ "<leader>tml", desc = "Move tab left" },
-				{ "<leader>t1", desc = "Go to tab 1" },
-				{ "<leader>t2", desc = "Go to tab 2" },
-				{ "<leader>t3", desc = "Go to tab 3" },
-				{ "<leader>t4", desc = "Go to tab 4" },
-				{ "<leader>t5", desc = "Go to tab 5" },
-				{ "<leader>t6", desc = "Go to tab 6" },
-				{ "<leader>t7", desc = "Go to tab 7" },
-				{ "<leader>t8", desc = "Go to tab 8" },
-				{ "<leader>t9", desc = "Go to tab 9" },
+				-- Terminal (LazyVim style)
+				{ "<leader>tf", desc = "Terminal (float)" },
+				{ "<leader>th", desc = "Terminal (horizontal)" },
+				{ "<leader>tv", desc = "Terminal (vertical)" },
+				{ "<leader>gg", desc = "LazyGit" },
+				{ "<leader>tp", desc = "Python REPL" },
+				{ "<leader>tn", desc = "Node REPL" },
+				{ "<leader>tm", desc = "System Monitor" },
+				{ "<leader>ta", desc = "Toggle all terminals" },
+				{ "<leader>ts", desc = "Select terminal / Send to terminal" },
+				{ "<leader>t1", desc = "Terminal 1" },
+				{ "<leader>t2", desc = "Terminal 2" },
+				{ "<leader>t3", desc = "Terminal 3" },
+				{ "<leader>t4", desc = "Terminal 4" },
 
 				-- Theme
 				{ "<leader>th", desc = "Open Themery" },
@@ -175,6 +169,7 @@ return {
 				{ "K", desc = "LSP hover" },
 				{ "<C-s>", desc = "Save file" },
 				{ "<C-p>", desc = "Find files" },
+				{ "<C-\\>", desc = "Toggle terminal" },
 				{ "<C-h>", desc = "Move to left window" },
 				{ "<C-j>", desc = "Move to lower window" },
 				{ "<C-k>", desc = "Move to upper window" },

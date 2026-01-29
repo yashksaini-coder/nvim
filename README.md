@@ -39,12 +39,19 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
 
 ### 🔄 Changed
+- **Terminal Configuration** - Upgraded to full LazyVim-style terminal with:
+  - Specialized terminals (LazyGit, Python REPL, Node REPL, System Monitor)
+  - Enhanced UI with curved borders and 80% × 80% floating windows
+  - Better navigation with `<C-h/j/k/l>` in terminal mode
+  - Numbered terminal quick access (`<leader>t1-4`)
+  - Send visual selection to terminal (`<leader>ts` in visual mode)
+  - Winbar showing terminal ID
+  - Professional window styling and proper highlight groups
 - **Dashboard** - Replaced alpha with dashboard-nvim for better aesthetics and functionality
 - **File Explorer** - Simplified nvim-tree to basic configuration for stability
 - **LSP Setup** - Migrated to Neovim 0.11 native LSP API with Mason for tool installation
 - **Completion** - Replaced blink.cmp with nvim-cmp for broader compatibility
 - **Treesitter** - Streamlined to essential languages (Rust, Python, TypeScript, JavaScript, C, C++)
-- **Terminal Configuration** - Keymaps moved to `lua/config/keymaps/terminal.lua` with clean direction-specific toggles (`<leader>tb/tv/tf`)
 
 ### 🗑️ Removed
 - **krust.nvim** - Removed enhanced Rust diagnostics (restored standard diagnostics)
@@ -198,36 +205,69 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 |-----|-------|-------------|
 | `<leader>th` | Themery | Open Themery theme picker |
 
-### 💻 Terminal (ToggleTerm)
+### 💻 Terminal (ToggleTerm) - LazyVim Style
 
-**ToggleTerm** provides integrated terminal management with multiple display modes.
+**ToggleTerm** provides LazyVim-style integrated terminal management with multiple display modes, specialized terminals, and professional UI.
 
-#### **Terminal Toggle Keymaps**
+#### **Quick Terminal Access**
 
-| Key | Description |
-|-----|-------------|
-| `<C-\>` | Toggle default terminal (floating, 60% width × 60% height) |
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<C-\>` | Normal/Terminal | Quick toggle terminal (80% × 80% floating) |
+| `<Esc><Esc>` | Terminal | Exit terminal mode |
 
 #### **Direction-Specific Terminals**
 
 | Key | Description |
 |-----|-------------|
-| `<leader>tb` | Toggle bottom terminal (15 lines, IDE-style - respects sidebars) |
-| `<leader>tv` | Toggle vertical terminal (40% of screen width) |
-| `<leader>tf` | Toggle floating terminal (60% width × 60% height) |
+| `<leader>tf` | Toggle floating terminal (80% × 80%) |
+| `<leader>th` | Toggle horizontal terminal (bottom, 15 lines) |
+| `<leader>tv` | Toggle vertical terminal (40% width) |
 
-#### **Terminal Features**
+#### **Specialized Terminals**
 
-- **Multiple Display Modes**: Bottom (horizontal), vertical, and floating terminals
-- **IDE-Style Bottom Terminal**: Opens at bottom covering only editor area, respects file explorer sidebar
+| Key | Description | Tool |
+|-----|-------------|------|
+| `<leader>gg` | LazyGit - Full-screen git interface | lazygit |
+| `<leader>tp` | Python REPL - Interactive Python shell | python3 |
+| `<leader>tn` | Node REPL - Interactive Node.js shell | node |
+| `<leader>tm` | System Monitor - Resource monitoring | btop/htop |
+
+#### **Terminal Management**
+
+| Key | Description |
+|-----|-------------|
+| `<leader>t1-4` | Quick access to terminals 1-4 |
+| `<leader>ta` | Toggle all terminals |
+| `<leader>ts` | Select terminal (or send selection in visual mode) |
+
+#### **Terminal Navigation (Within Terminal Mode)**
+
+| Key | Description |
+|-----|-------------|
+| `<C-h>` | Move to left window |
+| `<C-j>` | Move to bottom window |
+| `<C-k>` | Move to top window |
+| `<C-l>` | Move to right window |
+| `<C-w>` | Window command prefix |
+
+#### **LazyVim Terminal Features**
+
+- **Enhanced UI**: Larger, more immersive floating terminals with curved borders
+- **Winbar Info**: Shows terminal ID in the window title bar
+- **Specialized Terminals**: Pre-configured for LazyGit, Python REPL, Node REPL, and system monitoring
+- **Smart Navigation**: Navigate between windows seamlessly while in terminal mode
 - **Auto-insert Mode**: Automatically enters insert mode when terminal opens
 - **Auto-exit Insert**: Automatically exits insert mode when leaving terminal buffer
-- **Smart Sizing**:
-  - Horizontal terminals: 15 lines
-  - Vertical terminals: 30% of screen width
-  - Floating terminals: 50% width × 40% height with single border
-- **Clean UI**: Line numbers and sign column disabled in terminal buffers
+- **Professional Styling**: 
+  - Floating: 80% width × 80% height with curved borders
+  - Horizontal: 15 lines at bottom
+  - Vertical: 40% of screen width
+  - Proper highlight groups for consistent theming
+- **Visual Selection to Terminal**: Send selected text directly to terminal
+- **Clean UI**: Line numbers, signs, folds, and spell checker disabled in terminal buffers
 - **Auto-cleanup**: Terminals are automatically closed on Neovim exit to prevent job warnings
+- **Multiple Terminal Management**: Easily switch between multiple terminal instances
 
 ### 📝 Markdown Preview (markdown-preview.nvim)
 
