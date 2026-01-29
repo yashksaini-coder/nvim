@@ -1,14 +1,14 @@
 local opts = { noremap = true, silent = true }
 
 local function make_opts(desc)
-  return vim.tbl_extend("force", opts, { desc = desc })
+	return vim.tbl_extend("force", opts, { desc = desc })
 end
 
 local function make_crates_handler(fn_name)
-  return function()
-    local crates = require("crates")
-    return crates[fn_name]()
-  end
+	return function()
+		local crates = require("crates")
+		return crates[fn_name]()
+	end
 end
 
 -- Toggle virtual text and diagnostics
@@ -45,7 +45,12 @@ vim.keymap.set("v", "<leader>cU", make_crates_handler("upgrade_crates"), make_op
 vim.keymap.set("n", "<leader>cA", make_crates_handler("upgrade_all_crates"), make_opts("Upgrade all crates"))
 
 -- Expand plain crate to inline table
-vim.keymap.set("n", "<leader>cx", make_crates_handler("expand_plain_crate_to_inline_table"), make_opts("Expand crate to inline table"))
+vim.keymap.set(
+	"n",
+	"<leader>cx",
+	make_crates_handler("expand_plain_crate_to_inline_table"),
+	make_opts("Expand crate to inline table")
+)
 
 -- Extract crate into table
 vim.keymap.set("n", "<leader>cX", make_crates_handler("extract_crate_into_table"), make_opts("Extract crate to table"))

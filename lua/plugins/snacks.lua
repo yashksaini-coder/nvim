@@ -33,7 +33,7 @@ return {
 				max_width = 80,
 				max_height = 40,
 				-- Conceal image text when rendering inline
-				conceal = function(lang, type)
+				conceal = function(type)
 					-- Only conceal math expressions
 					return type == "math"
 				end,
@@ -71,7 +71,7 @@ return {
 		{
 			"<leader>is",
 			function()
-				Snacks.image.hover()
+				require("snacks").image.hover()
 			end,
 			desc = "Show image at cursor",
 		},

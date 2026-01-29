@@ -10,11 +10,11 @@
 local function open_term(dir, size)
 	local Terminal = require("toggleterm.terminal").Terminal
 	local term_config = { direction = dir }
-	
+
 	if size then
 		term_config.size = size
 	end
-	
+
 	Terminal:new(term_config):toggle()
 end
 
@@ -63,7 +63,7 @@ local function send_lines_to_term()
 	local end_line = vim.fn.line("'>")
 	local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
 	local text = table.concat(lines, "\n")
-	
+
 	require("toggleterm").exec(text)
 end
 
@@ -72,9 +72,9 @@ end
 -- ---------------------------------------------------------------------------
 
 -- Basic terminal toggle (Ctrl+\)
-vim.keymap.set({ "n", "t" }, [[<C-\>]], "<cmd>ToggleTerm<CR>", { 
+vim.keymap.set({ "n", "t" }, [[<C-\>]], "<cmd>ToggleTerm<CR>", {
 	desc = "Toggle terminal",
-	silent = true 
+	silent = true,
 })
 
 -- Better terminal navigation in terminal mode
@@ -136,17 +136,17 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "term://*",
 	callback = function()
 		local opts = { buffer = 0 }
-		
+
 		-- Disable UI elements
 		vim.opt_local.number = false
 		vim.opt_local.relativenumber = false
 		vim.opt_local.signcolumn = "no"
 		vim.opt_local.foldcolumn = "0"
 		vim.opt_local.spell = false
-		
+
 		-- Start in insert mode
 		vim.cmd("startinsert")
-		
+
 		-- Terminal-specific keymaps
 		vim.keymap.set("t", "<C-]>", [[<C-\><C-n>]], opts)
 	end,

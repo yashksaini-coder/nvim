@@ -32,6 +32,7 @@ return {
 					"typescript-language-server", -- TypeScript/JavaScript LSP
 					"clangd", -- C/C++ LSP
 					-- Linters
+					"luacheck", -- Lua linter
 					"ruff", -- Python linter
 					-- Formatters
 					"stylua", -- Lua formatter

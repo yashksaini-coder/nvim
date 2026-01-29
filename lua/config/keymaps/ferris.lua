@@ -1,7 +1,7 @@
 local opts = { noremap = true, silent = true }
 
 local function make_opts(desc)
-  return vim.tbl_extend("force", opts, { desc = desc })
+	return vim.tbl_extend("force", opts, { desc = desc })
 end
 
 -- Expand Macro - Expands the macro under the cursor

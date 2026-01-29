@@ -13,5 +13,3 @@ require("config.keymaps.nvim-tree")
 require("config.keymaps.mini-tabline")
 require("config.keymaps.ferris")
 require("config.keymaps.crates")
-
-

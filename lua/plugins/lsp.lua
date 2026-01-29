@@ -25,4 +25,3 @@ return {
 		vim.keymap.set("n", "<S-l>", vim.lsp.buf.hover, { desc = "Define the keyword under cursor" })
 	end,
 }
-
