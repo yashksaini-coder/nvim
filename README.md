@@ -11,6 +11,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added (Latest)
+- **which-key.nvim** - Interactive keymap popup with LazyVim-style UI showing all available keybindings
 - **leetcode.nvim** - Solve LeetCode problems directly in Neovim with integrated testing and submission
 - **ferris.nvim** - Rust Analyzer extensions (macro expansion, HIR/MIR, memory layout viewing)
 - **crates.nvim** - Interactive Cargo.toml dependency manager with version checking and updates
@@ -62,6 +63,34 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 Leader key: **`<Space>`**
 
 Press `<Space>` and pause to see all available keymaps via which-key.
+
+### 🔑 Which-Key (Interactive Keymap Display)
+
+**Which-Key** shows a popup with all available keybindings when you start typing a command, helping you discover and remember keymaps.
+
+**Features:**
+- **LazyVim-style UI** - Beautiful Helix preset matching LazyVim's aesthetic
+- **Organized Groups** - Keymaps grouped by category (buffer, code, file, git, etc.)
+- **Buffer Keymaps** - Press `<leader>?` to show buffer-local keymaps
+- **Window Hydra Mode** - Press `<C-w><space>` for repeatable window commands
+- **Auto-discovery** - Automatically shows available completions as you type
+
+**Main Keymap Groups:**
+- `<leader>a` - Animations (cellular automaton)
+- `<leader>b` - Buffer operations
+- `<leader>c` - Code/Crates/LeetCode actions
+- `<leader>f` - File/Find operations
+- `<leader>g` - Git/Goto operations
+- `<leader>h` - Git hunks (stage, reset, preview)
+- `<leader>l` - Lazy plugin manager
+- `<leader>m` - Markdown/MiniMap
+- `<leader>r` - Rust tools (Ferris)
+- `<leader>t` - Terminal/Tabs
+- `<leader>x` - Trouble diagnostics
+
+**Special Keys:**
+- `<leader>?` - Show buffer-local keymaps
+- `<C-w><space>` - Window Hydra Mode (repeat window operations)
 
 ### 🎯 General Keymaps
 
