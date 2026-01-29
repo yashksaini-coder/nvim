@@ -49,6 +49,15 @@ vim.opt.termguicolors = true
 -- Enable the sign column to prevent the screen from jumping
 vim.opt.signcolumn = "yes"
 
+-- Always show tabline
+vim.opt.showtabline = 2
+
+-- Allow hidden buffers (required for proper buffer management)
+vim.opt.hidden = true
+
+-- Allow hidden buffers
+vim.opt.hidden = true
+
 -- Enable cursor line highlight
 vim.opt.cursorline = true
 

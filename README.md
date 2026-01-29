@@ -74,6 +74,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<C-l>` | Move to right window |
 | `<C-s>` | Save file |
 | `<leader>q` | Quit all |
+| `<leader>bd` | Delete current buffer |
 | `<leader>mp` | Toggle markdown preview |
 | `<C-/>` | Toggle comment (Visual mode) |
 
@@ -333,15 +334,36 @@ Display your current Neovim activity on Discord with workspace and file informat
 
 ### 📋 Bufferline (Buffer Navigation)
 
+**Bufferline** provides a modern tabline/bufferline for managing open buffers with LazyVim-style functionality.
+
+**Navigation:**
+
 | Key | Command | Description |
 |-----|---------|-------------|
-| `<S-h>` or `[b` | Prev Buffer | Navigate to previous buffer |
-| `<S-l>` or `]b` | Next Buffer | Navigate to next buffer |
+| `<S-h>` or `[b` | `:BufferLineCyclePrev` | Navigate to previous buffer |
+| `<S-l>` or `]b` | `:BufferLineCycleNext` | Navigate to next buffer |
+
+**Buffer Management:**
+
+| Key | Command | Description |
+|-----|---------|-------------|
+| `<leader>bd` | `:bdelete` | Delete current buffer |
 | `<leader>bp` | `:BufferLineTogglePin` | Pin/unpin current buffer |
-| `<leader>bP` | Close unpinned | Delete all non-pinned buffers |
-| `<leader>bo` | Close others | Close all other buffers |
-| `<leader>br` | Close right | Close all buffers to the right |
-| `<leader>bl` | Close left | Close all buffers to the left |
+| `<leader>bP` | `:BufferLineGroupClose ungrouped` | Delete all non-pinned buffers |
+| `<leader>bo` | `:BufferLineCloseOthers` | Close all other buffers |
+| `<leader>br` | `:BufferLineCloseRight` | Close all buffers to the right |
+| `<leader>bl` | `:BufferLineCloseLeft` | Close all buffers to the left |
+| `<leader>bm` | `:BufferLineMoveNext` | Move buffer to the right |
+| `<leader>bM` | `:BufferLineMovePrev` | Move buffer to the left |
+
+**Features:**
+- Always visible tabline (even with single file)
+- LSP diagnostics integration (shows errors/warnings)
+- Git status icons
+- File type icons
+- Pin important buffers
+- Mouse support (click to switch, right-click to close)
+- Hover tooltips
 
 ### ⌨️ Keymap Quick Reference (All `<leader>` Mappings)
 
@@ -349,6 +371,12 @@ Display your current Neovim activity on Discord with workspace and file informat
 - `ff` - Find files | `fg` - Live grep | `fb` - Buffers | `fh` - Help
 - `fs` - Grep string | `fr` - Recent files | `fR` - Recent files (cwd) | `fd` - Diagnostics
 - `e` - Toggle explorer | `ef` - Find file in explorer
+
+**Buffers:**
+- `<S-h>` / `[b` - Previous buffer | `<S-l>` / `]b` - Next buffer
+- `bd` - Delete buffer | `bp` - Pin/unpin buffer | `bP` - Delete non-pinned
+- `bo` - Close others | `br` - Close right | `bl` - Close left
+- `bm` - Move buffer right | `bM` - Move buffer left
 
 **Themes & UI:**
 - `th` - Themery picker

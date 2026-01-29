@@ -37,3 +37,8 @@ vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", {
 vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", {
 	desc = "Quit all",
 })
+
+-- Better buffer delete
+vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", {
+	desc = "Delete buffer",
+})
