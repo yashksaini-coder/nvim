@@ -51,8 +51,8 @@ jobs:
       - name: Commit and push changes
         if: steps.check_changes.outputs.changed == 'true'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add lazy-lock.json
-          git commit -m "chore: update plugin lockfile [skip ci]"
-          git push
+            git config user.name "yashksaini-coder"
+            git config user.email "115717039+yashksaini-coder@users.noreply.github.com"
+            git add lazy-lock.json
+            git commit -m "ci: update plugin lockfile [skip ci]"
+            git push
