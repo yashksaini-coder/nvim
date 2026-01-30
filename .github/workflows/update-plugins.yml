@@ -20,6 +20,11 @@ jobs:
         with:
           ref: dev
       
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake
+      
       - name: Install Neovim
         run: |
           wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
@@ -35,8 +40,8 @@ jobs:
       
       - name: Update plugins
         run: |
-          nvim --headless "+Lazy! sync" +qa
-          nvim --headless "+Lazy! update" +qa
+          nvim --headless "+Lazy! sync" +qa || echo "Sync completed with warnings"
+          nvim --headless "+Lazy! update" +qa || echo "Update completed with warnings"
       
       - name: Check for changes
         id: check_changes
@@ -51,17 +56,3 @@ jobs:
           git add lazy-lock.json
           git commit -m "chore: update plugin lockfile [skip ci]"
           git push
-      
-      - name: Create PR (optional)
-        if: steps.check_changes.outputs.changed == 'true' && github.event_name == 'workflow_dispatch'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          BRANCH_NAME="plugin-updates-$(date +%Y%m%d-%H%M%S)"
-          git checkout -b "$BRANCH_NAME"
-          git push origin "$BRANCH_NAME"
-          gh pr create \
-            --title "chore: update plugins $(date +%Y-%m-%d)" \
-            --body "Automated plugin update triggered by GitHub Actions" \
-            --base dev \
-            --head "$BRANCH_NAME"

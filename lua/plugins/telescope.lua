@@ -31,34 +31,49 @@ return {
 		},
 		config = function()
 			local telescope = require("telescope")
+			local actions = require("telescope.actions")
 
 			telescope.setup({
 				defaults = {
-					-- Use fzf-native for speed and proper fuzzy file support
-					file_sorter = require("telescope.sorters").get_fuzzy_file,
-					generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-					-- Better file finding
-					find_files = {
-						hidden = true,
-						no_ignore = false,
-						follow = true,
-					},
+					-- File ignore patterns
+					file_ignore_patterns = { "node_modules", ".git/" },
+					
 					-- Better UI
 					layout_strategy = "horizontal",
 					layout_config = {
 						horizontal = {
 							preview_width = 0.55,
+							width = 0.87,
+							height = 0.80,
 						},
 					},
+					
+					-- Keybindings
+					mappings = {
+						i = {
+							["<C-j>"] = actions.move_selection_next,
+							["<C-k>"] = actions.move_selection_previous,
+							["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+							["<esc>"] = actions.close,
+						},
+					},
+					
 					-- Preview configuration
 					preview = {
-						treesitter = {
-							enable = false, -- Disable to prevent ft_to_lang errors
-						},
+						treesitter = false, -- Disable to prevent ft_to_lang errors
+					},
+				},
+				pickers = {
+					find_files = {
+						hidden = true,
+						no_ignore = false,
+						follow = true,
 					},
 				},
 			})
-			telescope.load_extension("fzf")
+
+			-- Load extensions safely with pcall
+			pcall(telescope.load_extension, "fzf")
 		end,
 	},
 }
