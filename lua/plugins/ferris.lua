@@ -1,5 +1,6 @@
 return {
 	"vxpm/ferris.nvim",
+	enabled = false,
 	opts = {
 		-- If true, will automatically create commands for each LSP method
 		create_commands = true,
