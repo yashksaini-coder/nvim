@@ -177,6 +177,12 @@ return {
 				{ "<S-h>", desc = "Prev buffer" },
 				{ "<S-l>", desc = "Next buffer" },
 
+				-- Function Keys (C/C++ Compiler)
+				{ "<F5>", desc = "Build C/C++ program" },
+				{ "<F6>", desc = "Build & run C/C++ program" },
+				{ "<F7>", desc = "Toggle compilation results" },
+				{ "<F8>", desc = "Run C/C++ program" },
+
 				-- Windows
 				{
 					"<leader>w",

@@ -11,6 +11,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added (Latest)
+- **Native C/C++ Compiler** - Built-in compilation support using Neovim's `:make` and quickfix features (no external plugins)
 - **Telescope + snacks.nvim integration** - Added snacks.nvim as a dependency to Telescope for enhanced file preview capabilities
 - **snacks.nvim (image)** - Image preview with Kitty Graphics Protocol support for viewing images, PDFs, videos, and math expressions inline
 - **which-key.nvim** - Interactive keymap popup with LazyVim-style UI showing all available keybindings
@@ -54,6 +55,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **Treesitter** - Streamlined to essential languages (Rust, Python, TypeScript, JavaScript, C, C++)
 
 ### 🗑️ Removed
+- **compiler.nvim & overseer.nvim** - Replaced with native Neovim compilation features (fixes buffer errors)
 - **krust.nvim** - Removed enhanced Rust diagnostics (restored standard diagnostics)
 - **alpha** - Replaced with dashboard-nvim
 - **blink.cmp** - Replaced with nvim-cmp for compatibility
@@ -96,6 +98,13 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - `<leader>m` - Markdown/MiniMap
 - `<leader>r` - Rust tools (Ferris)
 - `<leader>t` - Terminal/Tabs
+- `<leader>x` - Trouble diagnostics
+
+**Function Keys (C/C++ Compilation):**
+- `F5` - Build current C/C++ file
+- `F6` - Build and run program
+- `F7` - Toggle quickfix (compilation results)
+- `F8` - Run last compiled program
 - `<leader>x` - Trouble diagnostics
 
 **Special Keys:**
@@ -192,6 +201,46 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 | Key | Description |
 |-----|-------------|
+
+### ⚙️ Native C/C++ Compiler
+
+**Native compiler** using Neovim's built-in `:make` command and quickfix features. No external plugins required.
+
+**Features:**
+- ✅ **Auto-detection** - Automatically configures gcc/g++ based on file type
+- ✅ **Smart output** - Compiles to `bin/program` in your project directory
+- ✅ **Error navigation** - Jump to errors using quickfix commands (`:cnext`, `:cprev`)
+- ✅ **Terminal integration** - Opens compiled programs in a terminal split
+- ✅ **No dependencies** - Uses only Neovim's native features
+
+**Function Keys (C/C++ files):**
+
+| Key | Action | Description |
+|-----|--------|-------------|
+| `F5` | Build | Compile current C/C++ file to `bin/program` |
+| `F6` | Build & Run | Compile and run if successful |
+| `F7` | Toggle Results | Show/hide compilation errors (quickfix) |
+| `F8` | Run Only | Run last compiled program |
+
+**Leader Key Alternatives:**
+
+| Key | Action | Description |
+|-----|--------|-------------|
+| `<leader>cb` | Build | Same as F5 |
+| `<leader>cr` | Build & Run | Same as F6 |
+| `<leader>ct` | Toggle Results | Same as F7 |
+| `<leader>cx` | Run Program | Same as F8 |
+
+**How it works:**
+1. Open any `.c` or `.cpp` file
+2. Press `F5` to compile (creates `bin/program`)
+3. Press `F6` to compile and run automatically
+4. If compilation fails, press `F7` to view errors
+5. Navigate errors with `:cnext` and `:cprev`
+
+**Compilation flags:**
+- C files: `gcc -Wall -g <file> -o bin/program`
+- C++ files: `g++ -Wall -g <file> -o bin/program`
 | `<leader>mt` | Toggle Mini Map |
 | `<leader>mo` | Open Mini Map |
 | `<leader>mc` | Close Mini Map |
