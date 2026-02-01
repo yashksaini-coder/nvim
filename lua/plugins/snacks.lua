@@ -81,7 +81,7 @@ return {
 				require("snacks").lazygit.log()
 			end,
 			desc = "LazyGit log (cwd)",
-		}
+		},
 	},
 	config = function(_, opts)
 		require("snacks").setup(opts)
