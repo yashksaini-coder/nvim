@@ -37,7 +37,7 @@ return {
 				defaults = {
 					-- File ignore patterns
 					file_ignore_patterns = { "node_modules", ".git/" },
-					
+
 					-- Better UI
 					layout_strategy = "horizontal",
 					layout_config = {
@@ -47,7 +47,7 @@ return {
 							height = 0.80,
 						},
 					},
-					
+
 					-- Keybindings
 					mappings = {
 						i = {
@@ -57,7 +57,7 @@ return {
 							["<esc>"] = actions.close,
 						},
 					},
-					
+
 					-- Preview configuration
 					preview = {
 						treesitter = false, -- Disable to prevent ft_to_lang errors
