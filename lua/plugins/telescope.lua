@@ -32,9 +32,41 @@ return {
 		config = function()
 			local telescope = require("telescope")
 			local actions = require("telescope.actions")
+			local previewers = require("telescope.previewers")
+
+			-- Custom buffer previewer maker with image support
+			local function buffer_previewer_maker(filepath, bufnr, opts)
+				opts = opts or {}
+				
+				-- Check if file is an image and snacks is available
+				local ok_snacks, snacks = pcall(require, "snacks")
+				if ok_snacks and snacks.image and snacks.image.supports_file(filepath) then
+					-- Use snacks to render the image in the preview buffer
+					local ok = pcall(function()
+						vim.schedule(function()
+							if vim.api.nvim_buf_is_valid(bufnr) then
+								snacks.image.buf.attach(bufnr, {
+									src = filepath,
+									auto_resize = true,
+								})
+							end
+						end)
+					end)
+					
+					if ok then
+						return
+					end
+				end
+				
+				-- Fall back to default previewer for non-images
+				previewers.buffer_previewer_maker(filepath, bufnr, opts)
+			end
 
 			telescope.setup({
 				defaults = {
+					-- Use custom previewer for images
+					buffer_previewer_maker = buffer_previewer_maker,
+					
 					-- File ignore patterns
 					file_ignore_patterns = { "node_modules", ".git/" },
 
