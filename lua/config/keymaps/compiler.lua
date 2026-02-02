@@ -1,9 +1,4 @@
--- Compiler: native :make (F5–F8, <leader>mb/mr/mt/mx) + compiler.nvim UI (<leader>co/cq/cy)
--- <leader>co = CompilerOpen (Telescope picker)
--- <leader>cq = CompilerToggleResults (Overseer task list)
--- <leader>cy = CompilerRedo (re-run last)
-
--- Native :make + quickfix (C/C++) ---
+-- Compiler: native :make + quickfix (C/C++). F5–F8 and <leader>mb/mr/mT/mx.
 -- Auto-detect and set makeprg for C/C++ files
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "c", "cpp" },

@@ -11,6 +11,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 ## 📝 Recent Changes
 
 ### ✨ Added (Latest)
+- **Utils (Boilerplates & Snippets)** - Full-buffer boilerplates (C/C++/Go/Rust, LeetCode, CSES) and insert-at-cursor snippets (primes, mod inverse, diophantine, PBDS, pow, loops). Keymaps via `config.keymaps.utils`.
 - **Native C/C++ Compiler** - Built-in compilation support using Neovim's `:make` and quickfix features (no external plugins)
 - **Telescope + snacks.nvim integration** - Added snacks.nvim as a dependency to Telescope for enhanced file preview capabilities
 - **snacks.nvim (image)** - Image preview with Kitty Graphics Protocol support for viewing images, PDFs, videos, and math expressions inline
@@ -90,24 +91,25 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Main Keymap Groups:**
 - `<leader>a` - Animations (cellular automaton)
 - `<leader>b` - Buffer operations
-- `<leader>c` - Code/Crates/Compiler (co/cq/cy = compiler.nvim; ct/cr/ca/etc = crates)
+- `<leader>c` - Code/Crates (ct/cr/ca/etc = crates)
 - `<leader>f` - File/Find operations
 - `<leader>g` - Git/Goto operations
 - `<leader>h` - Git hunks (stage, reset, preview)
 - `<leader>l` - Lazy plugin manager
 - `<leader>L` - LeetCode
-- `<leader>m` - Markdown/Make (F5–F8, mb/mr/mt/mx)/MiniMap
+- `<leader>m` - Markdown/Make (F5–F8: mb/mr/mT/mx)/MiniMap
 - `<leader>r` - Rust tools (Ferris)
 - `<leader>t` - Terminal/Tabs (t1–t4 = terminals; tn = new tab; tN = Node REPL; tH = Themery)
 - `<leader>T` - Go to tab (T1–T9)
 - `<leader>x` - Trouble diagnostics
+- **Utils** - Boilerplates (`blp`/`blc`/`got`/`rst`/`plc`/`cse`), snippets (`pov`/`mod`/`dio`), loops (`sfor`/`swh`/`sdo`/`srange`)
 
 **Function Keys (C/C++ Compilation):**
 - `F5` - Build current C/C++ file
 - `F6` - Build and run program
 - `F7` - Toggle quickfix (compilation results)
 - `F8` - Run last compiled program
-- `<leader>mb` / `mr` / `mt` / `mx` - Same as F5/F6/F7/F8 (leader alternatives)
+- `<leader>mb` / `mr` / `mT` / `mx` - Same as F5/F6/F7/F8 (leader alternatives)
 
 **Special Keys:**
 - `<leader>?` - Show buffer-local keymaps
@@ -210,9 +212,9 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>mr` | Refresh Mini Map |
 | `<leader>ms` | Toggle Mini Map position (left/right) |
 
-### ⚙️ Compiler (Native :make + compiler.nvim)
+### ⚙️ Compiler (Native :make)
 
-**Native compiler** uses Neovim's `:make` and quickfix. **compiler.nvim** adds a Telescope/Overseer UI for build/run across many languages.
+**Native C/C++ compiler** using Neovim's `:make` and quickfix. No picker UI; keymaps only.
 
 **Function Keys (C/C++):**
 
@@ -223,17 +225,9 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `F7` | Toggle Results | Show/hide compilation errors (quickfix) |
 | `F8` | Run Only | Run last compiled program |
 
-**Leader alternatives (native make):** `<leader>mb` (build), `<leader>mr` (build & run), `<leader>mT` (toggle results), `<leader>mx` (run). Same as F5–F8; `m` prefix avoids conflict with crates/LeetCode. (`mt` = Mini Map toggle.)
+**Leader alternatives:** `<leader>mb` (build), `<leader>mr` (build & run), `<leader>mT` (toggle results), `<leader>mx` (run). Same as F5–F8; `m` prefix avoids conflict with crates/LeetCode. (`mt` = Mini Map toggle.)
 
-**compiler.nvim (Telescope/Overseer UI):**
-
-| Key | Action | Description |
-|-----|--------|-------------|
-| `<leader>co` | CompilerOpen | Open build/run picker (Telescope) |
-| `<leader>cq` | CompilerToggleResults | Toggle task list (Overseer) |
-| `<leader>cy` | CompilerRedo | Re-run last selection |
-
-**How it works (native):**
+**How it works:**
 1. Open any `.c` or `.cpp` file
 2. Press `F5` to compile (creates `bin/program`)
 3. Press `F6` to compile and run automatically
@@ -408,6 +402,41 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>ca` | `vim.lsp.buf.code_action` | Show code actions |
 | `<leader>d` | `vim.diagnostic.open_float` | Show diagnostics at cursor |
 
+### 📦 Utils (Boilerplates & Snippets)
+
+Boilerplates replace the whole buffer; snippets insert at cursor. Templates live in `lua/utils/boilerplates/` and `lua/utils/snippets/`. Keymaps load via `config.keymaps.utils`.
+
+#### Boilerplates (full buffer)
+
+| Key | Description |
+|-----|-------------|
+| `<leader>blp` | C++ competitive programming template |
+| `<leader>blc` | C competitive programming template |
+| `<leader>got` | Go competitive programming template |
+| `<leader>rst` | Rust competitive programming template |
+| `<leader>plc` | LeetCode C++ template |
+| `<leader>cse` | CSES C++ template |
+
+#### Snippets (insert at cursor)
+
+| Key | Description |
+|-----|-------------|
+| `<leader>pov` | Print vector (C++) |
+| `<leader>mod` | Mod inverse (C++) |
+| `<leader>dio` | Diophantine equation (C++) |
+| `<leader>sfor` | For loop (C / C++ / Rust; filetype-aware) |
+| `<leader>swh` | While loop (C / C++ / Rust; filetype-aware) |
+| `<leader>sdo` | Do-while loop (C / C++; filetype-aware) |
+| `<leader>srange` | Range-based for (C++) or for-in (Rust); filetype-aware |
+
+#### Commands (insert at cursor)
+
+| Command | Description |
+|---------|-------------|
+| `:Sieve` | Sieve / SPF (primes) snippet |
+| `:PBDS` | Policy-based data structures (C++) |
+| `:Pow` | Pow (exponent mod M) snippet |
+
 ### 🦀 Rust Development
 
 This configuration includes a comprehensive Rust development setup with specialized plugins for enhanced development experience.
@@ -546,8 +575,7 @@ Display your current Neovim activity on Discord with workspace and file informat
 - `bm` - Move buffer right | `bM` - Move buffer left
 
 **Themes & UI:**
-- `th` - Themery picker
-- `mt/mo/mc/mf/mr/ms` - Mini map controls
+- `tH` - Themery picker | `mt/mo/mc/mf/mr/ms` - Mini map controls
 
 **Terminal/Tabs:**
 - `<C-\>` - Toggle default terminal (float) | `th` - Horizontal | `tv` - Vertical | `tf` - Float
@@ -563,7 +591,13 @@ Display your current Neovim activity on Discord with workspace and file informat
 
 **LeetCode:** `L` - Open | `Lr` - Run | `Ls` - Submit | `Ll` - List | `Ld` - Daily | `LR` - Reset
 
-**Compiler:** `co` - Open picker | `cq` - Toggle results | `cy` - Redo | `mb/mr/mT/mx` - Native make (F5–F8)
+**Compiler:** `mb` - Build | `mr` - Build & run | `mT` - Toggle results | `mx` - Run (F5–F8)
+
+**Utils (Boilerplates & Snippets):**
+- Boilerplates: `blp` - C++ | `blc` - C | `got` - Go | `rst` - Rust | `plc` - LeetCode C++ | `cse` - CSES C++
+- Snippets: `pov` - Print vector | `mod` - Mod inverse | `dio` - Diophantine
+- Loops (filetype-aware): `sfor` - For | `swh` - While | `sdo` - Do-while (C/C++) | `srange` - Range-for (C++) / for-in (Rust)
+- Commands: `:Sieve` | `:PBDS` | `:Pow`
 
 **Plugins & Tools:**
 - `ll` - Lazy menu | `ls` - Lazy sync | `lu` - Lazy update
@@ -580,9 +614,6 @@ Display your current Neovim activity on Discord with workspace and file informat
 **Buffers:**
 - `bp` - Pin buffer | `bP` - Delete unpinned | `bo` - Delete others
 - `br` - Delete right | `bl` - Delete left
-
-**Oil (File Editor):**
-- `o` - Oil explorer | `O` - Oil floating
 
 **Oil (File Editor):**
 - `o` - Oil explorer | `O` - Oil floating
@@ -962,4 +993,5 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 - **Trouble:** `<leader>xx/xX/xL/xQ` (diagnostics lists)
 - **Lazy:** `<leader>ll/ls/lu/li/lc/lx` (plugin management)
 - **Mason:** `<leader>M` (package manager)
+- **Utils:** Boilerplates `blp/blc/got/rst/plc/cse` | Snippets `pov/mod/dio` | Loops `sfor/swh/sdo/srange` | Commands `:Sieve` `:PBDS` `:Pow`
 

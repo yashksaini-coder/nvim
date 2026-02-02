@@ -39,6 +39,21 @@ return {
 				{ "<leader>bl", desc = "Close buffers left" },
 				{ "<leader>bm", desc = "Move buffer next" },
 				{ "<leader>bM", desc = "Move buffer prev" },
+				{ "<leader>blp", desc = "Boilerplate: C++ (utils)" },
+				{ "<leader>blc", desc = "Boilerplate: C (utils)" },
+
+				-- Utils: boilerplates & snippets (separate)
+				{ "<leader>got", desc = "Boilerplate: Go (utils)" },
+				{ "<leader>rst", desc = "Boilerplate: Rust (utils)" },
+				{ "<leader>plc", desc = "Boilerplate: LeetCode C++ (utils)" },
+				{ "<leader>cse", desc = "Boilerplate: CSES C++ (utils)" },
+				{ "<leader>pov", desc = "Snippet: print vector (utils)" },
+				{ "<leader>mod", desc = "Snippet: mod inverse (utils)" },
+				{ "<leader>dio", desc = "Snippet: diophantine (utils)" },
+				{ "<leader>sfor", desc = "Snippet: for loop (C/C++/Rust)" },
+				{ "<leader>swh", desc = "Snippet: while loop (C/C++/Rust)" },
+				{ "<leader>sdo", desc = "Snippet: do-while (C/C++)" },
+				{ "<leader>srange", desc = "Snippet: range-for (C++) / for-in (Rust)" },
 
 				-- Animations
 				{ "<leader>ar", desc = "Cellular automation: make it rain" },
@@ -62,10 +77,6 @@ return {
 				{ "<leader>cC", desc = "Open crate on crates.io" },
 				{ "<leader>cL", desc = "Open crate on lib.rs" },
 
-				-- Compiler.nvim
-				{ "<leader>co", desc = "Compiler: open picker" },
-				{ "<leader>cq", desc = "Compiler: toggle results" },
-				{ "<leader>cy", desc = "Compiler: redo last run" },
 				-- Native make (C/C++)
 				{ "<leader>mb", desc = "Make: build" },
 				{ "<leader>mr", desc = "Make: build & run" },
