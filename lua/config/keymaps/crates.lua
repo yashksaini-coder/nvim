@@ -33,7 +33,7 @@ vim.keymap.set("n", "<leader>cu", make_crates_handler("update_crate"), make_opts
 vim.keymap.set("v", "<leader>cu", make_crates_handler("update_crates"), make_opts("Update crates"))
 
 -- Update all crates in the buffer
-vim.keymap.set("n", "<leader>ca", make_crates_handler("update_all_crates"), make_opts("Update all crates"))
+vim.keymap.set("n", "<leader>cpa", make_crates_handler("update_all_crates"), make_opts("Update all crates"))
 
 -- Upgrade crate on current line
 vim.keymap.set("n", "<leader>cU", make_crates_handler("upgrade_crate"), make_opts("Upgrade crate"))

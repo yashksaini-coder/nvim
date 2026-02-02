@@ -22,6 +22,6 @@ return {
 		vim.lsp.enable("sourcekit")
 
 		vim.keymap.set("n", "<C-i>", vim.lsp.buf.definition, { desc = "Goto definition" })
-		vim.keymap.set("n", "<S-l>", vim.lsp.buf.hover, { desc = "Define the keyword under cursor" })
+		-- K for hover is set in config/keymaps/lsp.lua; <S-l> reserved for bufferline next
 	end,
 }

@@ -90,14 +90,16 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Main Keymap Groups:**
 - `<leader>a` - Animations (cellular automaton)
 - `<leader>b` - Buffer operations
-- `<leader>c` - Code/Crates/LeetCode actions
+- `<leader>c` - Code/Crates/Compiler (co/cq/cy = compiler.nvim; ct/cr/ca/etc = crates)
 - `<leader>f` - File/Find operations
 - `<leader>g` - Git/Goto operations
 - `<leader>h` - Git hunks (stage, reset, preview)
 - `<leader>l` - Lazy plugin manager
-- `<leader>m` - Markdown/MiniMap
+- `<leader>L` - LeetCode
+- `<leader>m` - Markdown/Make (F5–F8, mb/mr/mt/mx)/MiniMap
 - `<leader>r` - Rust tools (Ferris)
-- `<leader>t` - Terminal/Tabs
+- `<leader>t` - Terminal/Tabs (t1–t4 = terminals; tn = new tab; tN = Node REPL; tH = Themery)
+- `<leader>T` - Go to tab (T1–T9)
 - `<leader>x` - Trouble diagnostics
 
 **Function Keys (C/C++ Compilation):**
@@ -105,7 +107,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - `F6` - Build and run program
 - `F7` - Toggle quickfix (compilation results)
 - `F8` - Run last compiled program
-- `<leader>x` - Trouble diagnostics
+- `<leader>mb` / `mr` / `mt` / `mx` - Same as F5/F6/F7/F8 (leader alternatives)
 
 **Special Keys:**
 - `<leader>?` - Show buffer-local keymaps
@@ -138,16 +140,16 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 ### 💡 LeetCode (leetcode.nvim)
 
-**LeetCode** plugin for solving competitive programming problems directly in Neovim.
+**LeetCode** plugin for solving competitive programming problems directly in Neovim. Uses `<leader>L` prefix to avoid conflicts with crates/Trouble.
 
 | Key | Command | Description |
 |-----|---------|-------------|
-| `<leader>c` | `:Leet` | Open LeetCode |
-| `<leader>cr` | `:Leet run` | Run the current problem with test cases |
-| `<leader>cs` | `:Leet submit` | Submit your solution to LeetCode |
-| `<leader>cl` | `:Leet list` | Show all LeetCode problems |
-| `<leader>cd` | `:Leet daily` | Load today's daily challenge |
-| `<leader>cR` | `:Leet reset` | Reset the current problem |
+| `<leader>L` | `:Leet` | Open LeetCode |
+| `<leader>Lr` | `:Leet run` | Run the current problem with test cases |
+| `<leader>Ls` | `:Leet submit` | Submit your solution to LeetCode |
+| `<leader>Ll` | `:Leet list` | Show all LeetCode problems |
+| `<leader>Ld` | `:Leet daily` | Load today's daily challenge |
+| `<leader>LR` | `:Leet reset` | Reset the current problem |
 
 **LeetCode Features:**
 - Default language: **C++** (configurable to Python, Java, JavaScript, etc.)
@@ -201,19 +203,18 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 | Key | Description |
 |-----|-------------|
+| `<leader>mt` | Toggle Mini Map |
+| `<leader>mo` | Open Mini Map |
+| `<leader>mc` | Close Mini Map |
+| `<leader>mf` | Focus Mini Map |
+| `<leader>mr` | Refresh Mini Map |
+| `<leader>ms` | Toggle Mini Map position (left/right) |
 
-### ⚙️ Native C/C++ Compiler
+### ⚙️ Compiler (Native :make + compiler.nvim)
 
-**Native compiler** using Neovim's built-in `:make` command and quickfix features. No external plugins required.
+**Native compiler** uses Neovim's `:make` and quickfix. **compiler.nvim** adds a Telescope/Overseer UI for build/run across many languages.
 
-**Features:**
-- ✅ **Auto-detection** - Automatically configures gcc/g++ based on file type
-- ✅ **Smart output** - Compiles to `bin/program` in your project directory
-- ✅ **Error navigation** - Jump to errors using quickfix commands (`:cnext`, `:cprev`)
-- ✅ **Terminal integration** - Opens compiled programs in a terminal split
-- ✅ **No dependencies** - Uses only Neovim's native features
-
-**Function Keys (C/C++ files):**
+**Function Keys (C/C++):**
 
 | Key | Action | Description |
 |-----|--------|-------------|
@@ -222,16 +223,17 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `F7` | Toggle Results | Show/hide compilation errors (quickfix) |
 | `F8` | Run Only | Run last compiled program |
 
-**Leader Key Alternatives:**
+**Leader alternatives (native make):** `<leader>mb` (build), `<leader>mr` (build & run), `<leader>mT` (toggle results), `<leader>mx` (run). Same as F5–F8; `m` prefix avoids conflict with crates/LeetCode. (`mt` = Mini Map toggle.)
+
+**compiler.nvim (Telescope/Overseer UI):**
 
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<leader>cb` | Build | Same as F5 |
-| `<leader>cr` | Build & Run | Same as F6 |
-| `<leader>ct` | Toggle Results | Same as F7 |
-| `<leader>cx` | Run Program | Same as F8 |
+| `<leader>co` | CompilerOpen | Open build/run picker (Telescope) |
+| `<leader>cq` | CompilerToggleResults | Toggle task list (Overseer) |
+| `<leader>cy` | CompilerRedo | Re-run last selection |
 
-**How it works:**
+**How it works (native):**
 1. Open any `.c` or `.cpp` file
 2. Press `F5` to compile (creates `bin/program`)
 3. Press `F6` to compile and run automatically
@@ -241,18 +243,12 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Compilation flags:**
 - C files: `gcc -Wall -g <file> -o bin/program`
 - C++ files: `g++ -Wall -g <file> -o bin/program`
-| `<leader>mt` | Toggle Mini Map |
-| `<leader>mo` | Open Mini Map |
-| `<leader>mc` | Close Mini Map |
-| `<leader>mf` | Focus Mini Map |
-| `<leader>mr` | Refresh Mini Map |
-| `<leader>ms` | Toggle Mini Map position (left/right) |
 
 ### 🎨 Themes
 
 | Key | Theme | Description |
 |-----|-------|-------------|
-| `<leader>th` | Themery | Open Themery theme picker |
+| `<leader>tH` | Themery | Open Themery theme picker (`tH` avoids conflict with terminal horizontal) |
 
 ### 💻 Terminal (ToggleTerm) - LazyVim Style
 
@@ -279,14 +275,16 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 |-----|-------------|------|
 | `<leader>gg` | LazyGit - Full-screen git interface | lazygit |
 | `<leader>tp` | Python REPL - Interactive Python shell | python3 |
-| `<leader>tn` | Node REPL - Interactive Node.js shell | node |
+| `<leader>tN` | Node REPL - Interactive Node.js shell | node (`tN`; `tn` = new tab) |
 | `<leader>tm` | System Monitor - Resource monitoring | btop/htop |
 
-#### **Terminal Management**
+#### **Terminal & Tab Management**
 
 | Key | Description |
 |-----|-------------|
-| `<leader>t1-4` | Quick access to terminals 1-4 |
+| `<leader>t1`–`t4` | Quick access to terminals 1–4 |
+| `<leader>tn` | New tab |
+| `<leader>T1`–`T9` | Go to tab 1–9 |
 | `<leader>ta` | Toggle all terminals |
 | `<leader>ts` | Select terminal (or send selection in visual mode) |
 
@@ -446,7 +444,7 @@ Interactive Cargo.toml management with version checking, dependency exploration,
 | `<leader>cd` | `crates.show_dependencies_popup` | Show crate dependencies |
 | `<leader>cu` | `crates.update_crate` | Update crate on current line |
 | `<leader>cu` (visual) | `crates.update_crates` | Update selected crates |
-| `<leader>ca` | `crates.update_all_crates` | Update all crates in buffer |
+| `<leader>cpa` | `crates.update_all_crates` | Update all crates in buffer |
 | `<leader>cU` | `crates.upgrade_crate` | Upgrade crate to latest |
 | `<leader>cU` (visual) | `crates.upgrade_crates` | Upgrade selected crates |
 | `<leader>cA` | `crates.upgrade_all_crates` | Upgrade all crates to latest |
@@ -551,17 +549,21 @@ Display your current Neovim activity on Discord with workspace and file informat
 - `th` - Themery picker
 - `mt/mo/mc/mf/mr/ms` - Mini map controls
 
-**Terminal:**
-- `<C-\>` - Toggle default terminal (float) | `tb` - Horizontal | `tv` - Vertical | `tf` - Float
+**Terminal/Tabs:**
+- `<C-\>` - Toggle default terminal (float) | `th` - Horizontal | `tv` - Vertical | `tf` - Float
+- `tn` - New tab | `tN` - Node REPL | `t1`–`t4` - Terminals 1–4 | `T1`–`T9` - Go to tab
 
 **Rust Development:** *(Only in Rust files)*
-- `K` - Open Krust diagnostics window
 - `rm` - Expand macro | `rh` - View HIR | `rl` - View MIR | `rs` - Memory layout
 - `rt` - Syntax tree | `ri` - Item tree | `rc` - Open Cargo.toml | `rp` - Parent module
 - `rd` - Documentation | `rw` - Reload workspace | `rb` - Rebuild macros | `rj` - Join lines
 - `ct` - Toggle crates | `cr` - Reload crates | `cv` - Versions | `cf` - Features | `cd` - Dependencies
-- `cu/cU` - Update/upgrade crate | `ca/cA` - Update/upgrade all | `cx/cX` - Expand/extract
+- `cu/cU` - Update/upgrade crate | `cpa/cA` - Update/upgrade all | `cx/cX` - Expand/extract
 - `cH` - Homepage | `cR` - Repository | `cD` - Docs | `cC` - Crates.io | `cL` - Lib.rs
+
+**LeetCode:** `L` - Open | `Lr` - Run | `Ls` - Submit | `Ll` - List | `Ld` - Daily | `LR` - Reset
+
+**Compiler:** `co` - Open picker | `cq` - Toggle results | `cy` - Redo | `mb/mr/mT/mx` - Native make (F5–F8)
 
 **Plugins & Tools:**
 - `ll` - Lazy menu | `ls` - Lazy sync | `lu` - Lazy update
@@ -617,8 +619,8 @@ Display your current Neovim activity on Discord with workspace and file informat
 |-----------------|-------------------------------------------|
 | `<leader>xx`    | Toggle Diagnostics (all)                  |
 | `<leader>xX`    | Toggle Buffer Diagnostics                 |
-| `<leader>cs`    | Toggle Symbols                            |
-| `<leader>cl`    | Toggle LSP Definitions/References        |
+| `<leader>cs`    | Toggle Symbols (Trouble)                  |
+| `<leader>cl`    | Toggle LSP Definitions/References (Trouble) |
 | `<leader>xL`    | Toggle Location List                      |
 | `<leader>xQ`    | Toggle Quickfix List                      |
 | `[d`            | Previous Diagnostic                       |
@@ -948,13 +950,13 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 - **General:** `<Esc>` (clear highlights), `<C-h/j/k/l>` (window nav), `<C-s>` (save), `<leader>q` (quit)
 - **Telescope:** `<C-p>` (files), `<leader>ff/fr/fR/fg/fs/fb/fh/fd` (find/search)
 - **File Explorer:** `<leader>e` (toggle), `<leader>ef` (find file)
-- **LSP:** `K` (hover), `<C-i>` (definition), `<leader>lh` (hover alt), `<leader>gr` (references), `<leader>ca` (code action), `<leader>d` (diagnostics)
+- **LSP:** `K` (hover), `<C-i>` (definition), `<leader>gr` (references), `<leader>ca` (code action), `<leader>d` (diagnostics)
 - **Completion:** `<C-n/p>` (navigate), `<C-y>` (confirm), `<Tab>/<S-Tab>` (snippets)
-- **Diagnostics:** `<leader>xx/xX` (trouble), `[d`/`]d` (navigate), `<leader>cs/cl` (symbols/locations)
+- **Diagnostics:** `<leader>xx/xX` (trouble), `[d`/`]d` (navigate), `<leader>cs/cl` (Trouble symbols/LSP)
 - **Formatting:** `<leader>fm` (format), auto-format on save
 - **Git:** `]c/[c` (hunks), `<leader>hs/hr/hS/hR` (stage/reset), `<leader>hp` (preview), `<leader>hb` (blame)
 - **Terminal:** `<C-\>` (default), `<leader>th/tv/tf` (horizontal/vertical/float)
-- **Themes:** `<leader>th` (themery)
+- **Themes:** `<leader>tH` (themery)
 - **Mini Map:** `<leader>mt/mo/mc/mf/mr/ms` (map controls)
 - **Bufferline:** `<S-h/l>` (prev/next), `<leader>bp/bP/bo/br/bl` (buffer ops)
 - **Trouble:** `<leader>xx/xX/xL/xQ` (diagnostics lists)

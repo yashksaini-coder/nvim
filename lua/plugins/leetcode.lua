@@ -12,12 +12,12 @@ return {
 	},
 	cmd = "Leet",
 	keys = {
-		{ "<leader>c", "<cmd>Leet<cr>", desc = "LeetCode" },
-		{ "<leader>cr", "<cmd>Leet run<cr>", desc = "Run LeetCode problem" },
-		{ "<leader>cs", "<cmd>Leet submit<cr>", desc = "Submit LeetCode problem" },
-		{ "<leader>cl", "<cmd>Leet list<cr>", desc = "LeetCode problems list" },
-		{ "<leader>cd", "<cmd>Leet daily<cr>", desc = "LeetCode daily problem" },
-		{ "<leader>cR", "<cmd>Leet reset<cr>", desc = "Reset LeetCode problem" },
+		{ "<leader>L", "<cmd>Leet<cr>", desc = "LeetCode" },
+		{ "<leader>Lr", "<cmd>Leet run<cr>", desc = "Run LeetCode problem" },
+		{ "<leader>Ls", "<cmd>Leet submit<cr>", desc = "Submit LeetCode problem" },
+		{ "<leader>Ll", "<cmd>Leet list<cr>", desc = "LeetCode problems list" },
+		{ "<leader>Ld", "<cmd>Leet daily<cr>", desc = "LeetCode daily problem" },
+		{ "<leader>LR", "<cmd>Leet reset<cr>", desc = "Reset LeetCode problem" },
 	},
 	config = function()
 		require("leetcode").setup({

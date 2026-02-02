@@ -1,6 +1,9 @@
--- Native C/C++ Compiler Setup (No external plugins)
--- Uses Neovim's built-in :make, quickfix, and terminal features
+-- Compiler: native :make (F5–F8, <leader>mb/mr/mt/mx) + compiler.nvim UI (<leader>co/cq/cy)
+-- <leader>co = CompilerOpen (Telescope picker)
+-- <leader>cq = CompilerToggleResults (Overseer task list)
+-- <leader>cy = CompilerRedo (re-run last)
 
+-- Native :make + quickfix (C/C++) ---
 -- Auto-detect and set makeprg for C/C++ files
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "c", "cpp" },
@@ -77,8 +80,8 @@ vim.keymap.set("n", "<F8>", function()
 	end
 end, { desc = "Run Program" })
 
--- Leader key alternatives
-vim.keymap.set("n", "<leader>cb", "<F5>", { desc = "Build Program" })
-vim.keymap.set("n", "<leader>cr", "<F6>", { desc = "Build & Run" })
-vim.keymap.set("n", "<leader>ct", "<F7>", { desc = "Toggle Results" })
-vim.keymap.set("n", "<leader>cx", "<F8>", { desc = "Run Program" })
+-- Leader alternatives (avoid <leader>c* conflict with crates/leetcode)
+vim.keymap.set("n", "<leader>mb", "<F5>", { desc = "Build Program" })
+vim.keymap.set("n", "<leader>mr", "<F6>", { desc = "Build & Run" })
+vim.keymap.set("n", "<leader>mT", "<F7>", { desc = "Toggle Results" })
+vim.keymap.set("n", "<leader>mx", "<F8>", { desc = "Run Program" })

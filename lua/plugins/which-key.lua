@@ -21,12 +21,14 @@ return {
 				{ "<leader>g", group = "git/goto" },
 				{ "<leader>h", group = "git hunks" },
 				{ "<leader>l", group = "lazy" },
-				{ "<leader>m", group = "markdown/minimap" },
+				{ "<leader>m", group = "markdown/make/minimap" },
 				{ "<leader>q", desc = "Quit all" },
 				{ "<leader>r", group = "rust (ferris)" },
 				{ "<leader>t", group = "terminal/tabs" },
+				{ "<leader>T", group = "go to tab (T1-T9)" },
 				{ "<leader>tm", group = "tab move" },
 				{ "<leader>x", group = "trouble/diagnostics" },
+				{ "<leader>L", group = "leetcode" },
 
 				-- Buffer operations
 				{ "<leader>bd", desc = "Delete buffer" },
@@ -50,21 +52,32 @@ return {
 				{ "<leader>cd", desc = "Show crate dependencies" },
 				{ "<leader>cu", desc = "Update crate/crates" },
 				{ "<leader>cU", desc = "Upgrade crate/crates" },
-				{ "<leader>ca", desc = "Update all crates" },
+				{ "<leader>cpa", desc = "Update all crates" },
 				{ "<leader>cA", desc = "Upgrade all crates" },
 				{ "<leader>cx", desc = "Expand crate to inline table" },
 				{ "<leader>cX", desc = "Extract crate to table" },
 				{ "<leader>cH", desc = "Open crate homepage" },
-				{ "<leader>cR", desc = "Open crate repository" },
+				{ "<leader>cR", desc = "Crates: open repository" },
 				{ "<leader>cD", desc = "Open crate documentation" },
 				{ "<leader>cC", desc = "Open crate on crates.io" },
 				{ "<leader>cL", desc = "Open crate on lib.rs" },
 
-				-- LeetCode (using 'c' prefix as well)
-				{ "<leader>c", desc = "LeetCode/Code actions" },
-				{ "<leader>cs", desc = "Trouble symbols / LeetCode submit" },
-				{ "<leader>cl", desc = "Trouble LSP / LeetCode list" },
-				{ "<leader>cR", desc = "LeetCode reset" },
+				-- Compiler.nvim
+				{ "<leader>co", desc = "Compiler: open picker" },
+				{ "<leader>cq", desc = "Compiler: toggle results" },
+				{ "<leader>cy", desc = "Compiler: redo last run" },
+				-- Native make (C/C++)
+				{ "<leader>mb", desc = "Make: build" },
+				{ "<leader>mr", desc = "Make: build & run" },
+				{ "<leader>mT", desc = "Make: toggle results" },
+				{ "<leader>mx", desc = "Make: run" },
+				-- LeetCode (L prefix)
+				{ "<leader>L", desc = "LeetCode" },
+				{ "<leader>Lr", desc = "LeetCode run" },
+				{ "<leader>Ls", desc = "LeetCode submit" },
+				{ "<leader>Ll", desc = "LeetCode list" },
+				{ "<leader>Ld", desc = "LeetCode daily" },
+				{ "<leader>LR", desc = "LeetCode reset" },
 
 				-- File operations
 				{ "<leader>ff", desc = "Find files" },
@@ -131,17 +144,16 @@ return {
 				{ "<leader>tv", desc = "Terminal (vertical)" },
 				{ "<leader>gg", desc = "LazyGit" },
 				{ "<leader>tp", desc = "Python REPL" },
-				{ "<leader>tn", desc = "Node REPL" },
+				{ "<leader>tN", desc = "Node REPL" },
+				{ "<leader>tn", desc = "New tab" },
 				{ "<leader>tm", desc = "System Monitor" },
+				{ "<leader>tH", desc = "Themery" },
 				{ "<leader>ta", desc = "Toggle all terminals" },
 				{ "<leader>ts", desc = "Select terminal / Send to terminal" },
 				{ "<leader>t1", desc = "Terminal 1" },
 				{ "<leader>t2", desc = "Terminal 2" },
 				{ "<leader>t3", desc = "Terminal 3" },
 				{ "<leader>t4", desc = "Terminal 4" },
-
-				-- Theme
-				{ "<leader>th", desc = "Open Themery" },
 
 				-- Trouble
 				{ "<leader>xx", desc = "Diagnostics (Trouble)" },
@@ -175,7 +187,7 @@ return {
 				{ "<C-k>", desc = "Move to upper window" },
 				{ "<C-l>", desc = "Move to right window" },
 				{ "<S-h>", desc = "Prev buffer" },
-				{ "<S-l>", desc = "Next buffer" },
+				{ "<S-l>", desc = "Next buffer (bufferline)" },
 
 				-- Function Keys (C/C++ Compiler)
 				{ "<F5>", desc = "Build C/C++ program" },

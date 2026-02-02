@@ -107,7 +107,7 @@ end, { desc = "Terminal (vertical)" })
 -- Specialized terminals
 vim.keymap.set("n", "<leader>gg", toggle_lazygit, { desc = "Lazygit" })
 vim.keymap.set("n", "<leader>tp", toggle_python, { desc = "Python REPL" })
-vim.keymap.set("n", "<leader>tn", toggle_node, { desc = "Node REPL" })
+vim.keymap.set("n", "<leader>tN", toggle_node, { desc = "Node REPL" })
 vim.keymap.set("n", "<leader>tm", toggle_system_monitor, { desc = "System Monitor" })
 
 -- Terminal management
