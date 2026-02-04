@@ -47,6 +47,7 @@ return {
 				{ "<leader>rst", desc = "Boilerplate: Rust (utils)" },
 				{ "<leader>plc", desc = "Boilerplate: LeetCode C++ (utils)" },
 				{ "<leader>cse", desc = "Boilerplate: CSES C++ (utils)" },
+				{ "<leader>csh", desc = "Boilerplate: C# (utils)" },
 				{ "<leader>pov", desc = "Snippet: print vector (utils)" },
 				{ "<leader>mod", desc = "Snippet: mod inverse (utils)" },
 				{ "<leader>dio", desc = "Snippet: diophantine (utils)" },

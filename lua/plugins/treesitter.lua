@@ -19,7 +19,8 @@ return {
 							"typescript",
 							"javascript",
 							"c",
-							"cpp", -- Added C++
+							"cpp",
+							"c_sharp",
 						},
 
 						-- Install parsers synchronously (only applied to `ensure_installed`)

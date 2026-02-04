@@ -29,6 +29,10 @@ return {
 			-- Go
 			go = { "gofmt" },
 
+			-- C#
+			csharp = { "csharpier", lsp_format = "fallback" },
+			cs = { "csharpier", lsp_format = "fallback" },
+
 			-- Web Development - JavaScript/TypeScript
 			-- prettierd is faster, prettier is fallback
 			javascript = { "prettierd", "prettier", stop_after_first = true },
