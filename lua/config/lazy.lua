@@ -29,6 +29,5 @@ require("lazy").setup({
 		{ import = "plugins.themes" },
 		{ import = "plugins.mini" },
 	},
-	install = { colorscheme = { "tokyonight" } },
 	checker = { enabled = true },
 })
