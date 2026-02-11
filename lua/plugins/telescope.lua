@@ -101,6 +101,20 @@ return {
 
 			-- Load extensions safely with pcall
 			pcall(telescope.load_extension, "fzf")
+
+			-- Workaround: Telescope's buffer previewer can hold refs to buffers that get
+			-- wiped (e.g. when traversing find_files/oldfiles and going back). Guard
+			-- win_set_buf_noautocmd so we never pass an invalid buffer id (E5108).
+			local tele_utils = require("telescope.utils")
+			local orig_win_set_buf = tele_utils.win_set_buf_noautocmd
+			if orig_win_set_buf then
+				tele_utils.win_set_buf_noautocmd = function(win_id, buf_id)
+					if buf_id and vim.api.nvim_buf_is_valid(buf_id) then
+						return orig_win_set_buf(win_id, buf_id)
+					end
+					-- Invalid buffer (e.g. preview buffer was wiped): skip to avoid E5108
+				end
+			end
 		end,
 	},
 }
