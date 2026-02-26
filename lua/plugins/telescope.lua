@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "v0.2.0", -- Use stable release
+		tag = "v0.2.1", -- Use stable release
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			-- Native fzf sorter for performance
