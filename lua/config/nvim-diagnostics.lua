@@ -11,7 +11,7 @@ vim.diagnostic.config({
 	},
 	underline = true,
 	severity_sort = true,
-	update_in_insert = true, -- Ensure diagnostics update in insert mode
+	update_in_insert = false, -- Disabled: re-computing on every keystroke is expensive
 	float = {
 		border = "rounded",
 		focusable = true,
@@ -29,35 +29,12 @@ vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
 	return _open_floating_preview(contents, syntax, opts, ...)
 end
 
--- LSP Floating Window Borders (Redundant with the override above but good for safety)
-local _border = "rounded"
+-- NOTE: vim.lsp.handlers["textDocument/hover"] with vim.lsp.with() is deprecated.
+-- The open_floating_preview override above already handles borders for all LSP floats.
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = _border,
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = _border,
-})
-
--- Auto-show diagnostics on hover (only in normal mode, not during completion)
-vim.api.nvim_create_autocmd("CursorHold", {
-	callback = function()
-		-- Don't show diagnostics during insert mode (when completion might be active)
-		if vim.api.nvim_get_mode().mode == "i" then
-			return
-		end
-		local opts = {
-			focusable = false,
-			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-			border = "rounded",
-			source = "always",
-			prefix = " ",
-			scope = "cursor",
-		}
-		vim.diagnostic.open_float(nil, opts)
-	end,
-})
+-- NOTE: CursorHold auto-diagnostic float removed — it fires every 300ms (updatetime),
+-- overlaps with noice.nvim hover/signature floats, and fights with manual <leader>d.
+-- Use <leader>d to show diagnostics on demand instead.
 
 -- Keymap to show diagnostics
 vim.keymap.set("n", "<leader>d", function()

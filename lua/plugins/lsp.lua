@@ -23,7 +23,7 @@ return {
 		vim.lsp.enable("zls")
 		vim.lsp.enable("sourcekit")
 
-		vim.keymap.set("n", "<C-i>", vim.lsp.buf.definition, { desc = "Goto definition" })
-		-- K for hover is set in config/keymaps/lsp.lua; <S-l> reserved for bufferline next
+		-- NOTE: <C-i> is the same keycode as <Tab> in terminals — do NOT map it.
+		-- Use <leader>gd or gd instead. K for hover is in config/keymaps/lsp.lua.
 	end,
 }

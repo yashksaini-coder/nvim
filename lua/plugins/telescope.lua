@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "v0.2.1", -- Use stable release
+		branch = "master", -- v0.2.1 is very old; master has perf improvements and bug fixes
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			-- Native fzf sorter for performance

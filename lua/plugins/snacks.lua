@@ -7,7 +7,6 @@ return {
 		-- Image viewer configuration
 		image = {
 			enabled = true,
-			-- Supported image formats
 			formats = {
 				"png",
 				"jpg",
@@ -25,20 +24,16 @@ return {
 				"webm",
 				"pdf",
 			},
-			-- Document image rendering
 			doc = {
-				enabled = true, -- enable image viewer for documents
-				inline = true, -- render images inline in the buffer
-				float = true, -- render in floating window if inline is not supported
+				enabled = true,
+				inline = true,
+				float = true,
 				max_width = 80,
 				max_height = 40,
-				-- Conceal image text when rendering inline
 				conceal = function(type)
-					-- Only conceal math expressions
 					return type == "math"
 				end,
 			},
-			-- Window options for image buffers
 			wo = {
 				wrap = false,
 				number = false,
@@ -50,21 +45,69 @@ return {
 				spell = false,
 				statuscolumn = "",
 			},
-			-- Math expression rendering
 			math = {
 				enabled = true,
-				-- LaTeX configuration
 				latex = {
 					font_size = "Large",
 					packages = { "amsmath", "amssymb", "amsfonts", "amscd", "mathtools" },
 				},
 			},
-			-- Icons for inline image indicators
 			icons = {
 				math = "󰪚 ",
 				chart = "󰄧 ",
 				image = " ",
 			},
+		},
+		-- Indent guides (merged from mini-indentscope — was a separate snacks.nvim spec)
+		indent = {
+			enabled = true,
+			char = "│",
+			only_scope = false,
+			only_current = false,
+			hl = "SnacksIndent",
+			animate = {
+				enabled = vim.fn.has("nvim-0.10") == 1,
+				style = "out",
+				easing = "linear",
+				duration = {
+					step = 20,
+					total = 500,
+				},
+			},
+			scope = {
+				enabled = true,
+				char = "│",
+				underline = false,
+				only_current = false,
+				hl = "SnacksIndentScope",
+			},
+			chunk = {
+				enabled = false,
+			},
+			filter = function(buf)
+				local exclude_ft = {
+					"help",
+					"alpha",
+					"dashboard",
+					"neo-tree",
+					"nvim-tree",
+					"Trouble",
+					"lazy",
+					"mason",
+					"notify",
+					"toggleterm",
+					"lazyterm",
+				}
+				local ft = vim.bo[buf].filetype
+				for _, exclude in ipairs(exclude_ft) do
+					if ft == exclude then
+						return false
+					end
+				end
+				return vim.g.snacks_indent ~= false
+					and vim.b[buf].snacks_indent ~= false
+					and vim.bo[buf].buftype == ""
+			end,
 		},
 	},
 	keys = {
@@ -86,7 +129,6 @@ return {
 	config = function(_, opts)
 		require("snacks").setup(opts)
 
-		-- Auto-show images when opening image files
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = "image",
 			callback = function()

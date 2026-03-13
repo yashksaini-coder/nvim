@@ -1,2 +1,2 @@
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle Explorer" })
-vim.keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFile<cr>", { desc = "Find File in Explorer" })
+-- nvim-tree keymaps are defined in the plugin file (lua/plugins/nvim-tree.lua)
+-- via lazy.nvim's `keys` table, which also handles lazy-loading.

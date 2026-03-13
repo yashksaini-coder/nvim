@@ -52,9 +52,6 @@ vim.opt.signcolumn = "yes"
 -- Always show tabline
 vim.opt.showtabline = 2
 
--- Allow hidden buffers (required for proper buffer management)
-vim.opt.hidden = true
-
 -- Enable cursor line highlight
 vim.opt.cursorline = true
 

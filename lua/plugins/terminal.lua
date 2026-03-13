@@ -79,95 +79,36 @@ return {
 	config = function(_, opts)
 		require("toggleterm").setup(opts)
 
-		-- Create specialized terminals (LazyVim style)
 		local Terminal = require("toggleterm.terminal").Terminal
 
-		-- Lazygit terminal
+		local function float_size(pct)
+			return {
+				border = "curved",
+				width = function()
+					return math.floor(vim.o.columns * pct)
+				end,
+				height = function()
+					return math.floor(vim.o.lines * pct)
+				end,
+			}
+		end
+
+		local function on_open_with_q(term)
+			vim.cmd("startinsert!")
+			vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+		end
+
 		_G.lazygit = Terminal:new({
 			cmd = "lazygit",
 			dir = "git_dir",
 			direction = "float",
-			float_opts = {
-				border = "curved",
-				width = function()
-					return math.floor(vim.o.columns * 0.9)
-				end,
-				height = function()
-					return math.floor(vim.o.lines * 0.9)
-				end,
-			},
-			on_open = function(term)
-				vim.cmd("startinsert!")
-				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-			end,
+			float_opts = float_size(0.9),
+			on_open = on_open_with_q,
 		})
 
-		-- Python REPL terminal
-		_G.python = Terminal:new({
-			cmd = "python3",
-			direction = "float",
-			float_opts = {
-				border = "curved",
-				width = function()
-					return math.floor(vim.o.columns * 0.7)
-				end,
-				height = function()
-					return math.floor(vim.o.lines * 0.7)
-				end,
-			},
-		})
-
-		-- Node REPL terminal
-		_G.node = Terminal:new({
-			cmd = "node",
-			direction = "float",
-			float_opts = {
-				border = "curved",
-				width = function()
-					return math.floor(vim.o.columns * 0.7)
-				end,
-				height = function()
-					return math.floor(vim.o.lines * 0.7)
-				end,
-			},
-		})
-
-		-- Btop system monitor
-		_G.btop = Terminal:new({
-			cmd = "btop",
-			direction = "float",
-			float_opts = {
-				border = "curved",
-				width = function()
-					return math.floor(vim.o.columns * 0.9)
-				end,
-				height = function()
-					return math.floor(vim.o.lines * 0.9)
-				end,
-			},
-			on_open = function(term)
-				vim.cmd("startinsert!")
-				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-			end,
-		})
-
-		-- Htop system monitor (fallback)
-		_G.htop = Terminal:new({
-			cmd = "htop",
-			direction = "float",
-			float_opts = {
-				border = "curved",
-				width = function()
-					return math.floor(vim.o.columns * 0.9)
-				end,
-				height = function()
-					return math.floor(vim.o.lines * 0.9)
-				end,
-			},
-			on_open = function(term)
-				vim.cmd("startinsert!")
-				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-			end,
-		})
+		_G.python = Terminal:new({ cmd = "python3", direction = "float", float_opts = float_size(0.7) })
+		_G.node = Terminal:new({ cmd = "node", direction = "float", float_opts = float_size(0.7) })
+		_G.btop = Terminal:new({ cmd = "btop", direction = "float", float_opts = float_size(0.9), on_open = on_open_with_q })
+		_G.htop = Terminal:new({ cmd = "htop", direction = "float", float_opts = float_size(0.9), on_open = on_open_with_q })
 	end,
 }

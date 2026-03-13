@@ -75,7 +75,7 @@ return {
 		format_on_save = {
 			lsp_fallback = true,
 			async = false,
-			timeout_ms = 3000,
+			timeout_ms = 1000, -- Reduced from 3s — synchronous blocking freezes editor if formatter hangs
 		},
 	},
 }
