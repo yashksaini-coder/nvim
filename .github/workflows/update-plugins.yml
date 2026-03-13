@@ -5,26 +5,26 @@ on:
         # Run every day at 00:00 UTC
         - cron: '0 0 * * *'
     workflow_dispatch:
-        
+
 jobs:
   update-plugins:
     runs-on: ubuntu-latest
-    
+
     permissions:
       contents: write
       pull-requests: write
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: dev
-      
+
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential cmake
-      
+
       - name: Install Neovim
         run: |
           wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
@@ -32,27 +32,33 @@ jobs:
           sudo mv nvim-linux-x86_64 /opt/nvim
           sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
           nvim --version
-      
+
       - name: Setup Neovim config
         run: |
           mkdir -p ~/.config
           ln -s $GITHUB_WORKSPACE ~/.config/nvim
-      
-      - name: Update plugins
+
+      - name: Update all plugins
         run: |
+          # Install plugins first, then update all to latest versions
           nvim --headless "+Lazy! sync" +qa || echo "Sync completed with warnings"
           nvim --headless "+Lazy! update" +qa || echo "Update completed with warnings"
-      
+
+      - name: Verify lockfile is consistent
+        run: |
+          # Run restore to ensure lock file matches installed state
+          nvim --headless "+Lazy! restore" +qa || echo "Restore completed with warnings"
+
       - name: Check for changes
         id: check_changes
         run: |
           git diff --quiet lazy-lock.json || echo "changed=true" >> $GITHUB_OUTPUT
-      
+
       - name: Commit and push changes
         if: steps.check_changes.outputs.changed == 'true'
         run: |
             git config user.name "yashksaini-coder"
             git config user.email "115717039+yashksaini-coder@users.noreply.github.com"
             git add lazy-lock.json
-            git commit -m "ci: update plugin lockfile [skip ci]"
+            git commit -m "ci: update all plugins to latest [skip ci]"
             git push

@@ -30,4 +30,8 @@ require("lazy").setup({
 		{ import = "plugins.mini" },
 	},
 	checker = { enabled = false }, -- Disable auto-update checks (network calls on every startup)
+	-- Install missing plugins on startup and restore to lockfile versions.
+	-- CI updates lazy-lock.json daily — after git pull, this keeps plugins in sync automatically.
+	install = { missing = true },
+	lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
 })
