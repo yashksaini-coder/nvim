@@ -42,3 +42,18 @@ vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", {
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", {
 	desc = "Delete buffer",
 })
+
+-- Man pages (:Man is built-in)
+vim.keymap.set("n", "<leader>km", function()
+	local word = vim.fn.input("Man page: ")
+	if word ~= "" then
+		vim.cmd("Man " .. word)
+	end
+end, { desc = "Open man page" })
+
+vim.keymap.set("n", "<leader>kw", function()
+	local word = vim.fn.expand("<cword>")
+	if word ~= "" then
+		vim.cmd("Man " .. word)
+	end
+end, { desc = "Man page for word under cursor" })

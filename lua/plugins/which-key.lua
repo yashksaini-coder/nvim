@@ -20,6 +20,7 @@ return {
 				{ "<leader>f", group = "file/find" },
 				{ "<leader>g", group = "git/goto" },
 				{ "<leader>h", group = "git hunks" },
+				{ "<leader>k", group = "man/docs" },
 				{ "<leader>l", group = "lazy" },
 				{ "<leader>m", group = "markdown/make/minimap" },
 				{ "<leader>q", desc = "Quit all" },
@@ -132,6 +133,10 @@ return {
 				-- Image (snacks.nvim)
 				{ "<leader>i", group = "image" },
 				{ "<leader>is", desc = "Show image at cursor" },
+
+				-- Man pages / docs
+				{ "<leader>km", desc = "Open man page" },
+				{ "<leader>kw", desc = "Man page for word under cursor" },
 
 				-- Mason
 				{ "<leader>M", desc = "Open Mason" },

@@ -89,6 +89,12 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -----------------------------------------------------------
+-- Man Pages (built-in :Man)
+-----------------------------------------------------------
+-- Open man pages in a vertical split by default
+vim.g.man_default_sects = "2,3,1,5,7,8,4,9"
+
+-----------------------------------------------------------
 -- Background Options
 -----------------------------------------------------------
 -- Transparent background
