@@ -17,11 +17,25 @@ return {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff", "diagnostics" },
 				lualine_c = { "filename" },
-				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_x = {
+					{
+						function()
+							return require("dap").status()
+						end,
+						cond = function()
+							return package.loaded["dap"] and require("dap").status() ~= ""
+						end,
+						icon = { "", color = { fg = "#e7c664" } },
+					},
+					"aerial",
+					"encoding",
+					"fileformat",
+					"filetype",
+				},
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
-			extensions = { "nvim-tree", "lazy" },
+			extensions = { "nvim-tree", "lazy", "toggleterm", "aerial" },
 		})
 	end,
 }
