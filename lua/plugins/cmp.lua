@@ -7,6 +7,7 @@ return {
 		"hrsh7th/cmp-cmdline", -- command-line completions
 		"L3MON4D3/LuaSnip", -- snippet engine
 		"saadparwaiz1/cmp_luasnip", -- snippet source
+		"onsails/lspkind.nvim", -- completion icons
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -31,6 +32,13 @@ return {
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
+				formatting = {
+				format = require("lspkind").cmp_format({
+					mode = "symbol_text",
+					maxwidth = 50,
+					ellipsis_char = "...",
+				}),
+			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
