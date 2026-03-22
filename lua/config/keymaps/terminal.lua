@@ -187,14 +187,29 @@ vim.api.nvim_create_autocmd("TermClose", {
 	end,
 })
 
--- Close all terminal buffers before quitting
+-- Close all terminal buffers before quitting (two-phase: kill processes, then delete buffers)
 vim.api.nvim_create_autocmd("VimLeavePre", {
 	group = grp,
 	callback = function()
+		-- Phase 1: Shut down toggleterm-managed terminals gracefully
+		local ok, Terminal = pcall(require, "toggleterm.terminal")
+		if ok and Terminal and Terminal.get_all then
+			for _, term in ipairs(Terminal.get_all(true)) do
+				pcall(function()
+					term:shutdown()
+				end)
+			end
+		end
+
+		-- Phase 2: Kill remaining raw terminal buffers
 		for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 			if vim.api.nvim_buf_is_valid(buf) then
 				local buf_type = vim.api.nvim_get_option_value("buftype", { buf = buf })
 				if buf_type == "terminal" then
+					local job_id = vim.b[buf].terminal_job_id
+					if job_id then
+						pcall(vim.fn.jobstop, job_id)
+					end
 					pcall(vim.api.nvim_buf_delete, buf, { force = true })
 				end
 			end
