@@ -6,6 +6,10 @@ return {
 			"nvim-neotest/nvim-nio",
 			"mason-org/mason.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			{
+				"theHamsta/nvim-dap-virtual-text",
+				opts = {},
+			},
 		},
 		config = function()
 			local dap = require("dap")
