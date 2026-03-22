@@ -51,7 +51,7 @@ return {
 				},
 				livePreview = true,
 			})
-			
+
 			-- Set default theme to Kanagawa Dragon only on first run (when no theme is persisted)
 			vim.api.nvim_create_autocmd("VimEnter", {
 				once = true,
