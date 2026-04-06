@@ -101,3 +101,8 @@ vim.g.man_default_sects = "2,3,1,5,7,8,4,9"
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+
+-----------------------------------------------------------
+--- C inlay Hints
+-----------------------------------------------------------
+vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
