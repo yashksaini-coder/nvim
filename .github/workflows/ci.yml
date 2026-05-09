@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [dev]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install stylua
+        run: |
+          curl -L "https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux-x86_64.zip" -o /tmp/stylua.zip
+          unzip /tmp/stylua.zip -d /tmp
+          chmod +x /tmp/stylua
+          sudo mv /tmp/stylua /usr/local/bin/
+      - name: Install luacheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y luarocks
+          sudo luarocks install luacheck
+      - name: stylua check
+        run: stylua --check --column-width 100 --indent-type Spaces --indent-width 2 lua/
+      - name: luacheck
+        run: luacheck lua/
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: 'stable'
+      - name: Run plenary tests
+        run: make test
