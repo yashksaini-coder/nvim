@@ -46,6 +46,12 @@ return {
 				{ "<leader>tm", group = "tab move" },
 				{ "<leader>x", group = "trouble/diagnostics" },
 				{ "<leader>L", group = "leetcode" },
+				{ "<leader>G", group = "go" },
+				{ "<leader>Gt", "<cmd>GoTest<cr>", desc = "go: test" },
+				{ "<leader>GT", "<cmd>GoTestFunc<cr>", desc = "go: test func" },
+				{ "<leader>Gi", "<cmd>GoIfErr<cr>", desc = "go: insert if err" },
+				{ "<leader>Gs", "<cmd>GoFillStruct<cr>", desc = "go: fill struct" },
+				{ "<leader>GI", "<cmd>GoImpl<cr>", desc = "go: implement interface" },
 
 				-- Buffer operations
 				{ "<leader>bd", desc = "Delete buffer" },
