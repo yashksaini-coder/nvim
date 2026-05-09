@@ -22,7 +22,7 @@ jobs:
           sudo apt-get install -y luarocks
           sudo luarocks install luacheck
       - name: stylua check
-        run: stylua --check --column-width 100 --indent-type Spaces --indent-width 2 lua/
+        run: stylua --check lua/
       - name: luacheck
         run: luacheck lua/
 
