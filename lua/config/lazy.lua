@@ -28,6 +28,7 @@ require("lazy").setup({
 		{ import = "plugins" },
 		{ import = "plugins.themes" },
 		{ import = "plugins.mini" },
+		{ import = "plugins.lang" },
 	},
 	checker = { enabled = false }, -- Disable auto-update checks (network calls on every startup)
 	-- Install missing plugins on startup and restore to lockfile versions.
