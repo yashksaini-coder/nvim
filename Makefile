@@ -62,3 +62,7 @@ help:
 	@echo "  make fix-whitespace remove trailing whitespace"
 	@echo "  make clean        remove generated files"
 	@echo "  make help         show this help"
+
+.PHONY: test
+test:
+	nvim --headless -u tests/minimal_init.lua -c "PlenaryBustedDirectory tests {minimal_init = 'tests/minimal_init.lua'}" -c "qall"
