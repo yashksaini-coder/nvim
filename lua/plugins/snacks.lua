@@ -104,9 +104,7 @@ return {
 						return false
 					end
 				end
-				return vim.g.snacks_indent ~= false
-					and vim.b[buf].snacks_indent ~= false
-					and vim.bo[buf].buftype == ""
+				return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == ""
 			end,
 		},
 	},
