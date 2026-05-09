@@ -133,6 +133,18 @@ return {
 				{ "<leader>gd", desc = "Go to definition" },
 				{ "<leader>gr", desc = "Go to references" },
 				{ "<leader>ca", desc = "Code action" },
+				{ "<leader>r", group = "refactor/rust" },
+				{ "<leader>rn", desc = "Rename symbol (LSP)" },
+				{ "<leader>u", group = "ui/toggles" },
+				{ "<leader>uh", desc = "Toggle inlay hints" },
+				{ "<leader>gi", desc = "Goto implementation" },
+				{ "<leader>gt", desc = "Goto type definition" },
+				{ "<leader>gD", desc = "Goto declaration" },
+				{ "<leader>gci", desc = "Incoming calls" },
+				{ "<leader>gco", desc = "Outgoing calls" },
+				{ "<leader>fS", desc = "Document symbols (LSP)" },
+				{ "<leader>fW", desc = "Workspace symbols (LSP)" },
+				{ "<leader>cf", desc = "Format buffer (LSP)" },
 
 				-- Lazy plugin manager
 				{ "<leader>ll", desc = "Open Lazy" },
