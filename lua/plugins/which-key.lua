@@ -168,8 +168,25 @@ return {
 				{ "<leader>mp", desc = "Toggle markdown preview" },
 
 				-- Image (snacks.nvim)
-				{ "<leader>i", group = "image" },
 				{ "<leader>is", desc = "Show image at cursor" },
+
+				-- AI assistants (claude/copilot/opencode)
+				{ "<leader>i", group = "ai (claude/copilot/opencode)" },
+				{ "<leader>ic", desc = "Claude Code" },
+				{ "<leader>iC", desc = "Claude continue" },
+				{ "<leader>iR", desc = "Claude resume" },
+				{ "<leader>iv", desc = "Claude verbose" },
+				{ "<leader>iX", desc = "Copilot Chat" },
+				{ "<leader>ie", desc = "Copilot explain" },
+				{ "<leader>ir", desc = "Copilot review" },
+				{ "<leader>iF", desc = "Copilot fix" },
+				{ "<leader>iO", desc = "Copilot optimize" },
+				{ "<leader>iD", desc = "Copilot docs" },
+				{ "<leader>iT", desc = "Copilot tests" },
+				{ "<leader>io", desc = "OpenCode toggle" },
+				{ "<leader>ia", desc = "OpenCode ask buffer" },
+				{ "<leader>iA", desc = "OpenCode ask selection" },
+				{ "<leader>iN", desc = "OpenCode new session" },
 
 				-- Man pages / docs
 				{ "<leader>km", desc = "Open man page" },
