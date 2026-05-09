@@ -285,10 +285,16 @@ return {
 				end
 			end
 			dap.configurations.go = {
-				{ type = "delve", name = "Debug file",       request = "launch", program = "${file}" },
-				{ type = "delve", name = "Debug package",    request = "launch", program = "${fileDirname}" },
-				{ type = "delve", name = "Debug test",       request = "launch", mode = "test", program = "${file}" },
-				{ type = "delve", name = "Debug test (pkg)", request = "launch", mode = "test", program = "./${relativeFileDirname}" },
+				{ type = "delve", name = "Debug file", request = "launch", program = "${file}" },
+				{ type = "delve", name = "Debug package", request = "launch", program = "${fileDirname}" },
+				{ type = "delve", name = "Debug test", request = "launch", mode = "test", program = "${file}" },
+				{
+					type = "delve",
+					name = "Debug test (pkg)",
+					request = "launch",
+					mode = "test",
+					program = "./${relativeFileDirname}",
+				},
 			}
 
 			-- JavaScript / TypeScript (js-debug-adapter via mason)

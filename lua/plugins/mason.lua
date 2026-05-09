@@ -32,32 +32,32 @@ return {
 					"typescript-language-server",
 					"clangd",
 					"omnisharp",
-					"pyright",                  -- Python LSP (replaces bare pylsp default)
-					"gopls",                    -- Go LSP
+					"pyright", -- Python LSP (replaces bare pylsp default)
+					"gopls", -- Go LSP
 					"tailwindcss-language-server",
 
 					-- Linters
 					"luacheck",
-					"ruff",                     -- Python linter+formatter
-					"golangci-lint",            -- Go linter
-					"eslint_d",                 -- JS/TS linter
+					"ruff", -- Python linter+formatter
+					"golangci-lint", -- Go linter
+					"eslint_d", -- JS/TS linter
 
 					-- Formatters
 					"stylua",
 					"csharpier",
 					"prettier",
 					"prettierd",
-					"gofumpt",                  -- stricter gofmt
-					"goimports",                -- Go import organizer
-					"black",                    -- Python formatter
-					"isort",                    -- Python import sort
-					"clang-format",             -- C/C++ formatter
+					"gofumpt", -- stricter gofmt
+					"goimports", -- Go import organizer
+					"black", -- Python formatter
+					"isort", -- Python import sort
+					"clang-format", -- C/C++ formatter
 
 					-- DAP adapters
-					"codelldb",                 -- already present
-					"debugpy",                  -- Python debugger
-					"delve",                    -- Go debugger
-					"js-debug-adapter",         -- JS/TS debugger (Chrome DevTools protocol)
+					"codelldb", -- already present
+					"debugpy", -- Python debugger
+					"delve", -- Go debugger
+					"js-debug-adapter", -- JS/TS debugger (Chrome DevTools protocol)
 				},
 			})
 		end,
