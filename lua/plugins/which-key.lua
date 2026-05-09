@@ -171,6 +171,7 @@ return {
 				{ "<leader>is", desc = "Show image at cursor" },
 
 				-- AI assistants (claude/copilot/opencode)
+				{ "<leader>p", group = "pomo (timer/clock)" },
 				{ "<leader>i", group = "ai (claude/copilot/opencode)" },
 				{ "<leader>j", group = "harpoon" },
 				{ "<leader>R", group = "Refactor (refactoring.nvim)" },
