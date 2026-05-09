@@ -27,21 +27,37 @@ return {
 			mason_tool_installer.setup({
 				ensure_installed = {
 					-- LSP servers
-					"lua-language-server", -- Lua language server
-					"rust-analyzer", -- Rust LSP
-					"typescript-language-server", -- TypeScript/JavaScript LSP
-					"clangd", -- C/C++ LSP
-					"omnisharp", -- C# LSP
+					"lua-language-server",
+					"rust-analyzer",
+					"typescript-language-server",
+					"clangd",
+					"omnisharp",
+					"pyright",                  -- Python LSP (replaces bare pylsp default)
+					"gopls",                    -- Go LSP
+					"tailwindcss-language-server",
+
 					-- Linters
-					"luacheck", -- Lua linter
-					"ruff", -- Python linter
+					"luacheck",
+					"ruff",                     -- Python linter+formatter
+					"golangci-lint",            -- Go linter
+					"eslint_d",                 -- JS/TS linter
+
 					-- Formatters
-					"stylua", -- Lua formatter
-					"csharpier", -- C# formatter
-					"prettier", -- Web development formatter (JS/TS/CSS/HTML/JSON)
-					"prettierd", -- Prettier daemon (faster, optional)
-					-- DAP
-					"codelldb", -- Rust/C++ debugger (lldb)
+					"stylua",
+					"csharpier",
+					"prettier",
+					"prettierd",
+					"gofumpt",                  -- stricter gofmt
+					"goimports",                -- Go import organizer
+					"black",                    -- Python formatter
+					"isort",                    -- Python import sort
+					"clang-format",             -- C/C++ formatter
+
+					-- DAP adapters
+					"codelldb",                 -- already present
+					"debugpy",                  -- Python debugger
+					"delve",                    -- Go debugger
+					"js-debug-adapter",         -- JS/TS debugger (Chrome DevTools protocol)
 				},
 			})
 		end,
