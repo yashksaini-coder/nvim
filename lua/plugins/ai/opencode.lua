@@ -19,7 +19,7 @@ return {
 		{
 			"<leader>iA",
 			function()
-				require("opencode").ask("@selection ", { range = true })
+				require("opencode").ask("@selection ")
 			end,
 			mode = "v",
 			desc = "OpenCode: ask about selection",
