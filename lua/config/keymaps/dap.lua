@@ -39,3 +39,28 @@ end, { desc = "Toggle DAP UI" })
 map("n", "<leader>dt", function()
 	require("dap").terminate()
 end, { desc = "Terminate" })
+
+-- Hover variable under cursor
+map({ "n", "v" }, "<leader>dh", function()
+	require("dap.ui.widgets").hover()
+end, { desc = "DAP hover variable" })
+
+-- Floating scopes / frames
+map("n", "<leader>dS", function()
+	local widgets = require("dap.ui.widgets")
+	widgets.centered_float(widgets.scopes, { border = "rounded" })
+end, { desc = "DAP scopes (float)" })
+
+map("n", "<leader>df", function()
+	local widgets = require("dap.ui.widgets")
+	widgets.centered_float(widgets.frames, { border = "rounded" })
+end, { desc = "DAP frames (float)" })
+
+-- Evaluate expression / selection through dapui
+map("n", "<leader>de", function()
+	require("dapui")["eval"](vim.fn.input("Expression: "))
+end, { desc = "DAP evaluate expression" })
+
+map("v", "<leader>de", function()
+	require("dapui")["eval"]()
+end, { desc = "DAP evaluate selection" })
