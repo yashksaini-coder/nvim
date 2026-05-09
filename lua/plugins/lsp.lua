@@ -7,8 +7,11 @@ return {
 		vim.lsp.config("ts_ls", require("lsps.ts_ls"))
 		vim.lsp.config("ruby-lsp", require("lsps.ruby_lsp"))
 		vim.lsp.config("omnisharp", require("lsps.csharp"))
+		vim.lsp.config("pyright", require("lsps.pyright"))
+		vim.lsp.config("gopls", require("lsps.gopls"))
+		vim.lsp.config("clangd", require("lsps.clangd"))
 
-		vim.lsp.enable("pylsp")
+		vim.lsp.enable("pyright")
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("rust_analyzer")
 		vim.lsp.enable("clangd")
