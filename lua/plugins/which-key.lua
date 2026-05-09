@@ -46,6 +46,7 @@ return {
 				{ "<leader>tm", group = "tab move" },
 				{ "<leader>x", group = "trouble/diagnostics" },
 				{ "<leader>L", group = "leetcode" },
+				{ "<leader>D", group = "docs (online)" },
 				{ "<leader>G", group = "go" },
 				{ "<leader>Gt", "<cmd>GoTest<cr>", desc = "go: test" },
 				{ "<leader>GT", "<cmd>GoTestFunc<cr>", desc = "go: test func" },

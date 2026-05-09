@@ -1,0 +1,18 @@
+local docs = require("utils.docs")
+local map = vim.keymap.set
+
+map("n", "<leader>D", function()
+	docs.open()
+end, { desc = "Open online docs" })
+map("n", "<leader>Dk", function()
+	docs.open(docs.url .. "keymaps")
+end, { desc = "Docs: keymaps" })
+map("n", "<leader>Dp", function()
+	docs.open(docs.url .. "plugins")
+end, { desc = "Docs: plugins" })
+map("n", "<leader>Dl", function()
+	docs.open(docs.url .. "languages")
+end, { desc = "Docs: languages" })
+map("n", "<leader>Da", function()
+	docs.open(docs.url .. "ai")
+end, { desc = "Docs: AI" })
