@@ -175,6 +175,7 @@ return {
 				{ "<leader>p", group = "pomo (timer/clock)" },
 				{ "<leader>i", group = "ai (claude/copilot/opencode)" },
 				{ "<leader>j", group = "harpoon" },
+				{ "<leader>n", group = "neotest" },
 				{ "<leader>R", group = "Refactor (refactoring.nvim)" },
 				{ "<leader>ic", desc = "Claude Code" },
 				{ "<leader>iC", desc = "Claude continue" },
