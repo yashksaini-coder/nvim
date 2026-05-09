@@ -173,6 +173,7 @@ return {
 				-- AI assistants (claude/copilot/opencode)
 				{ "<leader>i", group = "ai (claude/copilot/opencode)" },
 				{ "<leader>j", group = "harpoon" },
+				{ "<leader>R", group = "Refactor (refactoring.nvim)" },
 				{ "<leader>ic", desc = "Claude Code" },
 				{ "<leader>iC", desc = "Claude continue" },
 				{ "<leader>iR", desc = "Claude resume" },
