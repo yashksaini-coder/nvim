@@ -16,5 +16,10 @@ vim.keymap.set("n", "<leader>tml", "<cmd>tabmove -1<cr>", { desc = "Move tab lef
 
 -- Go to specific tab (T1-T9 to avoid conflict with terminal t1-t4)
 for i = 1, 9 do
-	vim.keymap.set("n", "<leader>T" .. i, "<cmd>tabnext " .. i .. "<cr>", { desc = "Go to tab " .. i })
+  vim.keymap.set(
+    "n",
+    "<leader>T" .. i,
+    "<cmd>tabnext " .. i .. "<cr>",
+    { desc = "Go to tab " .. i }
+  )
 end

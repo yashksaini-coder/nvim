@@ -2,7 +2,7 @@
 -- No external plugins needed, uses :make and quickfix list
 
 return {
-	"Zeioth/compiler.nvim",
-	-- Optional: telescope for nice UI (but not required)
-	dependencies = { "nvim-telescope/telescope.nvim" },
+  "Zeioth/compiler.nvim",
+  -- Optional: telescope for nice UI (but not required)
+  dependencies = { "nvim-telescope/telescope.nvim" },
 }

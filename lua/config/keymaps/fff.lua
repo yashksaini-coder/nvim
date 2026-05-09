@@ -2,19 +2,19 @@
 -- These are mapped to <leader>s (Search) to distinguish from Telescope (<leader>f)
 
 vim.keymap.set("n", "<leader>sf", function()
-	require("fff").find_files()
+  require("fff").find_files()
 end, {
-	desc = "Search: find files (fff)",
+  desc = "Search: find files (fff)",
 })
 
 vim.keymap.set("n", "<leader>sg", function()
-	require("fff").live_grep()
+  require("fff").live_grep()
 end, {
-	desc = "Search: live grep (fff)",
+  desc = "Search: live grep (fff)",
 })
 
 vim.keymap.set("n", "<leader>sh", function()
-	require("fff").help()
+  require("fff").help()
 end, {
-	desc = "Search: help (fff)",
+  desc = "Search: help (fff)",
 })

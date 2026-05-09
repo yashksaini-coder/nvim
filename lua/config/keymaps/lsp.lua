@@ -13,18 +13,18 @@ map({ "i", "n" }, "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature help"
 
 -- Symbols
 map("n", "<leader>fS", function()
-	require("telescope.builtin").lsp_document_symbols()
+  require("telescope.builtin").lsp_document_symbols()
 end, { desc = "Document symbols" })
 map("n", "<leader>fW", function()
-	require("telescope.builtin").lsp_dynamic_workspace_symbols()
+  require("telescope.builtin").lsp_dynamic_workspace_symbols()
 end, { desc = "Workspace symbols" })
 
 -- Call hierarchy
 map("n", "<leader>gci", function()
-	require("telescope.builtin").lsp_incoming_calls()
+  require("telescope.builtin").lsp_incoming_calls()
 end, { desc = "Incoming calls" })
 map("n", "<leader>gco", function()
-	require("telescope.builtin").lsp_outgoing_calls()
+  require("telescope.builtin").lsp_outgoing_calls()
 end, { desc = "Outgoing calls" })
 
 -- Refactor
@@ -33,20 +33,20 @@ map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" 
 
 -- Diagnostics navigation
 map("n", "[d", function()
-	vim.diagnostic.jump({ count = -1, float = true })
+  vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Prev diagnostic" })
 map("n", "]d", function()
-	vim.diagnostic.jump({ count = 1, float = true })
+  vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Next diagnostic" })
 
 -- Inlay hints toggle
 map("n", "<leader>uh", function()
-	local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
-	vim.lsp.inlay_hint.enable(not enabled, { bufnr = 0 })
-	vim.notify("Inlay hints " .. (enabled and "OFF" or "ON"))
+  local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+  vim.lsp.inlay_hint.enable(not enabled, { bufnr = 0 })
+  vim.notify("Inlay hints " .. (enabled and "OFF" or "ON"))
 end, { desc = "Toggle inlay hints" })
 
 -- Format (delegates to conform via <leader>fm; this is convenience over LSP only)
 map({ "n", "v" }, "<leader>cf", function()
-	vim.lsp.buf.format({ async = false, timeout_ms = 2000 })
+  vim.lsp.buf.format({ async = false, timeout_ms = 2000 })
 end, { desc = "Format buffer (LSP)" })

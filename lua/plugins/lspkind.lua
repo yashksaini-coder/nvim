@@ -1,7 +1,7 @@
 return {
-	"onsails/lspkind.nvim",
-	lazy = true,
-	opts = {
-		preset = "codicons",
-	},
+  "onsails/lspkind.nvim",
+  lazy = true,
+  opts = {
+    preset = "codicons",
+  },
 }
