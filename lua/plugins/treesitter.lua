@@ -1,44 +1,69 @@
--- nvim-treesitter configuration
--- File: ~/.config/nvim/lua/plugins/treesitter.lua (if using lazy.nvim)
--- or add to your init.lua/init.vim
-
+-- nvim-treesitter on the `main` branch — the modern rewrite recommended for Neovim 0.11+.
+-- The legacy `master` branch breaks on Neovim 0.12 because its query predicates use
+-- the deprecated match-by-name API; `main` aligns with current core treesitter.
+--
+-- Trade-off: `main` does not bundle `incremental_selection` or `indent` modules.
+-- If you miss the `<CR>` expanding-node selection, install treewalker.nvim or use
+-- vim.treesitter.* APIs directly.
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = "0.9.*", -- Use 0.9.x series for Neovim 0.10 compatibility
+    branch = "main",
+    lazy = false,
+    -- `:TSUpdate` is a plugin-defined user command — invoked AFTER the plugin
+    -- loads, unlike a function `build` which would run before module require.
+    -- Requires the `tree-sitter` CLI on $PATH (`sudo pacman -S tree-sitter-cli`
+    -- or `npm i -g tree-sitter-cli`).
     build = ":TSUpdate",
-    lazy = false, -- Treesitter does not support lazy loading
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "rust",
-          "python",
-          "typescript",
-          "javascript",
-          "c",
-          "cpp",
-          "c_sharp",
-        },
-        sync_install = false,
-        auto_install = true,
-        ignore_install = {},
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
-        indent = {
-          enable = true,
-          disable = { "python" },
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<CR>",
-            node_incremental = "<CR>",
-            scope_incremental = "<S-CR>",
-            node_decremental = "<BS>",
-          },
-        },
+      local ok, ts = pcall(require, "nvim-treesitter")
+      if not ok then
+        return
+      end
+
+      -- Gate install on tree-sitter CLI presence. Without the CLI, `ts.install`
+      -- prints noisy ENOENT errors on every startup. With it, install is
+      -- idempotent — parsers already on disk are skipped.
+      if vim.fn.executable("tree-sitter") ~= 1 then
+        vim.schedule(function()
+          vim.notify(
+            "[nvim-treesitter] tree-sitter CLI missing — parsers won't auto-install. "
+              .. "Install with: sudo pacman -S tree-sitter (Arch) or npm i -g tree-sitter-cli",
+            vim.log.levels.WARN
+          )
+        end)
+        return
+      end
+
+      pcall(ts.install, {
+        "bash",
+        "c",
+        "c_sharp",
+        "cpp",
+        "css",
+        "go",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "rust",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "yaml",
+      })
+
+      -- Enable treesitter highlighting on FileType. pcall'd so missing parsers
+      -- (filetypes outside the list above) silently fall back to vim regex.
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("treesitter-start", { clear = true }),
+        callback = function(ev)
+          pcall(vim.treesitter.start, ev.buf)
+        end,
       })
     end,
   },
