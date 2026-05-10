@@ -13,7 +13,7 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **Full IDE for systems languages.** First-class LSP + DAP for **C, C++, Rust, Go, Python, JS/TS** with rename, signature help, type definitions, implementations, document/workspace symbols, call hierarchy, scopes, watches, and a hover-variable widget.
 - **AI assistants built in.** Claude Code, GitHub Copilot, and OpenCode coexist under the `<leader>i` prefix.
 - **Productivity stack.** flash.nvim, harpoon, oil.nvim, refactoring.nvim, neogit, diffview, undotree, zen-mode, twilight.
-- **Time discipline.** Pomodoro timer (`<leader>pp`) and 50-min RSI reminder built into the statusline.
+- **Time discipline.** Pomodoro timer (`<leader>pp`) with live countdown rendered in the lualine statusline, plus a clock segment.
 - **Hosted docs.** Live keymap and plugin reference at <https://yashksaini-coder.github.io/nvim/>. Open it from inside the editor with `<leader>D`.
 - **Tested.** plenary-based test harness; PR-blocking lint + test CI; daily lockfile drift PR via existing CI.
 
