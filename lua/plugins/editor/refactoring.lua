@@ -3,6 +3,9 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    -- refactoring.nvim 1.x (Neovim 0.12+) requires lewis6991/async.nvim at runtime;
+    -- without this dep, `require("async")` at refactoring.lua:45 fails on first load.
+    "lewis6991/async.nvim",
   },
   event = { "BufReadPre", "BufNewFile" },
   opts = {},
