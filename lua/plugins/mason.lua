@@ -31,13 +31,11 @@ return {
 					"rust-analyzer", -- Rust LSP
 					"typescript-language-server", -- TypeScript/JavaScript LSP
 					"clangd", -- C/C++ LSP
-					"omnisharp", -- C# LSP
 					-- Linters
 					"luacheck", -- Lua linter
 					"ruff", -- Python linter
 					-- Formatters
 					"stylua", -- Lua formatter
-					"csharpier", -- C# formatter
 					"prettier", -- Web development formatter (JS/TS/CSS/HTML/JSON)
 					"prettierd", -- Prettier daemon (faster, optional)
 					-- DAP
