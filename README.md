@@ -10,6 +10,18 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
 ## 📝 Recent Changes
 
+### 🧹 Cleanup (2026-05-12)
+
+Trimmed the plugin set from 65 → 57 active plugins to remove unused / novelty / overlapping plugins. Five logical commits on `dev`:
+
+1. **Removed empty plugin stubs and disabled `ferris.nvim`** — `auto-session`, `disable-news-alert`, `mini-tabline`, `mini-indentscope`, and `ferris.nvim` (was `enabled = false`).
+2. **Removed novelty / aesthetic plugins** — `smear-cursor.nvim`, `Tip.nvim`, `cellular-automaton.nvim` (also dropped the `<leader>ar`/`<leader>ag` keymaps).
+3. **Dropped unused language support** — `leetcode.nvim`, `lsps/ruby_lsp.lua`, `lsps/csharp.lua`; pruned `omnisharp` (LSP) and `csharpier` (formatter) from `mason.lua`; dropped the `ruby-lsp` / `omnisharp` entries from `plugins/lsp.lua`.
+4. **Removed `fff.nvim`** — Telescope already covered `<leader>ff`/`<leader>fg`/`<leader>fb`; `fff` had a single binding.
+5. **Renamed misleading filenames** — `plugins/alpha.lua` → `plugins/dashboard.lua` (the spec is `dashboard-nvim`); `config/keymaps/mini-tabline.lua` → `config/keymaps/mini-map.lua` (the keymaps are for `mini.map`).
+
+Followed by `:Lazy! clean` regenerating `lazy-lock.json`.
+
 ### ✨ Added (Latest)
 - **Utils (Boilerplates & Snippets)** - Full-buffer boilerplates (C/C++/Go/Rust, LeetCode, CSES) and insert-at-cursor snippets (primes, mod inverse, diophantine, PBDS, pow, loops). Keymaps via `config.keymaps.utils`.
 - **Native C/C++ Compiler** - Built-in compilation support using Neovim's `:make` and quickfix features (no external plugins)
@@ -17,8 +29,6 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **snacks.nvim (image)** - Image preview with Kitty Graphics Protocol support for viewing images, PDFs, videos, and math expressions inline
 - **which-key.nvim** - Interactive keymap popup with LazyVim-style UI showing all available keybindings
 - **bufferline.nvim** - LazyVim-style buffer/tab management with always-visible tabline, LSP diagnostics, and git status integration
-- **leetcode.nvim** - Solve LeetCode problems directly in Neovim with integrated testing and submission
-- **ferris.nvim** - Rust Analyzer extensions (macro expansion, HIR/MIR, memory layout viewing)
 - **crates.nvim** - Interactive Cargo.toml dependency manager with version checking and updates
 - **cord.nvim** - Discord Rich Presence integration for showing activity
 
@@ -34,9 +44,6 @@ Uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 - **gitsigns.nvim** - Git integration with signs, hunks, and blame
 - **mini.map** - Code minimap for navigation
 - **render-markdown.nvim** - Enhanced markdown rendering
-- **cellular-automaton.nvim** - Fun cellular automaton animations
-- **smear-cursor.nvim** - Smooth cursor animations
-- **tip.nvim** - Helpful tips and shortcuts
 - **numb.nvim** - Peek buffer lines when entering `:{number}` commands
 - **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
 
@@ -89,16 +96,13 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Auto-discovery** - Automatically shows available completions as you type
 
 **Main Keymap Groups:**
-- `<leader>a` - Animations (cellular automaton)
 - `<leader>b` - Buffer operations
 - `<leader>c` - Code/Crates (ct/cr/ca/etc = crates)
 - `<leader>f` - File/Find operations
 - `<leader>g` - Git/Goto operations
 - `<leader>h` - Git hunks (stage, reset, preview)
 - `<leader>l` - Lazy plugin manager
-- `<leader>L` - LeetCode
 - `<leader>m` - Markdown/Make (F5–F8: mb/mr/mT/mx)/MiniMap
-- `<leader>r` - Rust tools (Ferris)
 - `<leader>t` - Terminal/Tabs (t1–t4 = terminals; tn = new tab; tN = Node REPL; tH = Themery)
 - `<leader>T` - Go to tab (T1–T9)
 - `<leader>x` - Trouble diagnostics
@@ -139,27 +143,6 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `<leader>lu` | `:Lazy update` | Update all plugins |
 | `<leader>li` | `:Lazy install` | Install missing plugins |
 | `<leader>lx` | `:Lazy clean` | Remove unused plugins |
-
-### 💡 LeetCode (leetcode.nvim)
-
-**LeetCode** plugin for solving competitive programming problems directly in Neovim. Uses `<leader>L` prefix to avoid conflicts with crates/Trouble.
-
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<leader>L` | `:Leet` | Open LeetCode |
-| `<leader>Lr` | `:Leet run` | Run the current problem with test cases |
-| `<leader>Ls` | `:Leet submit` | Submit your solution to LeetCode |
-| `<leader>Ll` | `:Leet list` | Show all LeetCode problems |
-| `<leader>Ld` | `:Leet daily` | Load today's daily challenge |
-| `<leader>LR` | `:Leet reset` | Reset the current problem |
-
-**LeetCode Features:**
-- Default language: **C++** (configurable to Python, Java, JavaScript, etc.)
-- Integrated test case runner with real-time feedback
-- Problem description viewer with stats
-- Solution submission to LeetCode
-- Code caching for offline access
-- Problem progress tracking
 
 ### 🔭 Telescope (Fuzzy Finder)
 
@@ -225,7 +208,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 | `F7` | Toggle Results | Show/hide compilation errors (quickfix) |
 | `F8` | Run Only | Run last compiled program |
 
-**Leader alternatives:** `<leader>mb` (build), `<leader>mr` (build & run), `<leader>mT` (toggle results), `<leader>mx` (run). Same as F5–F8; `m` prefix avoids conflict with crates/LeetCode. (`mt` = Mini Map toggle.)
+**Leader alternatives:** `<leader>mb` (build), `<leader>mr` (build & run), `<leader>mT` (toggle results), `<leader>mx` (run). Same as F5–F8; `m` prefix avoids conflict with crates. (`mt` = Mini Map toggle.)
 
 **How it works:**
 1. Open any `.c` or `.cpp` file
@@ -441,25 +424,6 @@ Boilerplates replace the whole buffer; snippets insert at cursor. Templates live
 
 This configuration includes a comprehensive Rust development setup with specialized plugins for enhanced development experience.
 
-#### **ferris.nvim** - Rust Analyzer Extensions
-
-Powerful Rust analyzer extensions for viewing macros, HIR/MIR, memory layout, and more.
-
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<leader>rm` | `FerrisExpandMacro` | Expand macro under cursor |
-| `<leader>rj` | `FerrisJoinLines` | Join lines (normal & visual mode) |
-| `<leader>rh` | `FerrisViewHIR` | View HIR representation |
-| `<leader>rl` | `FerrisViewMIR` | View MIR representation |
-| `<leader>rs` | `FerrisViewMemoryLayout` | Show memory layout of struct/enum |
-| `<leader>rt` | `FerrisViewSyntaxTree` | Display syntax tree (normal & visual) |
-| `<leader>ri` | `FerrisViewItemTree` | Show item tree of current document |
-| `<leader>rc` | `FerrisOpenCargoToml` | Open project's Cargo.toml |
-| `<leader>rp` | `FerrisOpenParentModule` | Open parent module file |
-| `<leader>rd` | `FerrisOpenDocumentation` | Open documentation for symbol |
-| `<leader>rw` | `FerrisReloadWorkspace` | Reload project workspace |
-| `<leader>rb` | `FerrisRebuildMacros` | Rebuild procedural macros |
-
 #### **crates.nvim** - Cargo Dependency Manager
 
 Interactive Cargo.toml management with version checking, dependency exploration, and one-click updates.
@@ -582,14 +546,9 @@ Display your current Neovim activity on Discord with workspace and file informat
 - `tn` - New tab | `tN` - Node REPL | `t1`–`t4` - Terminals 1–4 | `T1`–`T9` - Go to tab
 
 **Rust Development:** *(Only in Rust files)*
-- `rm` - Expand macro | `rh` - View HIR | `rl` - View MIR | `rs` - Memory layout
-- `rt` - Syntax tree | `ri` - Item tree | `rc` - Open Cargo.toml | `rp` - Parent module
-- `rd` - Documentation | `rw` - Reload workspace | `rb` - Rebuild macros | `rj` - Join lines
 - `ct` - Toggle crates | `cr` - Reload crates | `cv` - Versions | `cf` - Features | `cd` - Dependencies
 - `cu/cU` - Update/upgrade crate | `cpa/cA` - Update/upgrade all | `cx/cX` - Expand/extract
 - `cH` - Homepage | `cR` - Repository | `cD` - Docs | `cC` - Crates.io | `cL` - Lib.rs
-
-**LeetCode:** `L` - Open | `Lr` - Run | `Ls` - Submit | `Ll` - List | `Ld` - Daily | `LR` - Reset
 
 **Compiler:** `mb` - Build | `mr` - Build & run | `mT` - Toggle results | `mx` - Run (F5–F8)
 
@@ -792,7 +751,7 @@ Display your current Neovim activity on Discord with workspace and file informat
 ### 🧠 LSP (Language Server) Setup
 - Uses Neovim 0.11+ native LSP API with Mason for tool installation.
 - Enhanced with diagnostic signs, hover on cursor, and better UI.
-- Configured LSPs: `lua_ls`, `ts_ls`, `rust_analyzer`, `pylsp`, `clangd`, `gopls`, `tailwindcss`, `phpactor`, `dartls`, `ocamllsp`, `ruby-lsp`, `zls`, `sourcekit`.
+- Configured LSPs: `lua_ls`, `ts_ls`, `rust_analyzer`, `pylsp`, `clangd`, `gopls`, `tailwindcss`, `phpactor`, `dartls`, `ocamllsp`, `zls`, `sourcekit`.
 - Integrated with **nvim-cmp** for intelligent LSP completion.
 - Auto-formatting via conform.nvim with LSP fallback.
 
@@ -931,18 +890,16 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 - LSP fallback if formatter not available
 
 #### Git Integration
-- **mini.diff** for Git diff visualization and hunk management
-- **mini.git** for Git command integration and repository tracking
-- Inline diff signs showing added/changed/deleted lines
-- Navigate hunks with `]h` / `[h`
-- Apply/reset hunks with `gha` / `ghr`
-- Execute git commands with `:Git <command>`
+- **gitsigns.nvim** for inline git signs and hunk management
+- Navigate hunks with `]c` / `[c`
+- Stage / reset / preview hunks with `<leader>hs` / `<leader>hr` / `<leader>hp`
+- Line and full-buffer blame via `<leader>tb` and `<leader>gb`
 
 #### Performance
 - Lazy loading for better startup time
 - Disabled unused rtp plugins
-- Plugin update checker (runs hourly)
-- Modern completion engine (blink.cmp) with auto-suggestions  
+- Plugin lockfile (`lazy-lock.json`) pins versions; auto-update checks disabled for clean startup
+- Modern completion engine (**nvim-cmp**) with auto-suggestions
 
 ---
 
