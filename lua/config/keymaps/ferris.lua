@@ -1,2 +1,0 @@
--- Ferris keymaps are disabled because the plugin is disabled (enabled = false).
--- Re-enable these if you re-enable vxpm/ferris.nvim in plugins/ferris.lua.
