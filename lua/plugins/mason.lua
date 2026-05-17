@@ -30,6 +30,7 @@ return {
 					"lua-language-server", -- Lua language server
 					"rust-analyzer", -- Rust LSP
 					"typescript-language-server", -- TypeScript/JavaScript LSP
+					"tailwindcss-language-server", -- Tailwind CSS LSP (used in TS/JSX/HTML projects)
 					"clangd", -- C/C++ LSP
 					-- Linters
 					"luacheck", -- Lua linter
