@@ -1,0 +1,4 @@
+# lazy.nvim generates this lockfile; CI bumps it on remote while it's edited
+# locally. Auto-resolve conflicts to the incoming (remote/latest) version,
+# then run `:Lazy restore` to sync plugins to the locked commits.
+lazy-lock.json merge=theirs
