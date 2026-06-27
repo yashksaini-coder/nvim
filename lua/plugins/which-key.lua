@@ -12,6 +12,7 @@ return {
 				mode = { "n", "x" },
 				-- Main groups
 				{ "<leader><tab>", group = "tabs" },
+				{ "<leader>a", group = "animations" },
 				{ "<leader>b", group = "buffer" },
 				{ "<leader>c", group = "code/crates" },
 				{ "<leader>d", group = "debug" },
@@ -32,8 +33,10 @@ return {
 				{ "<leader>h", group = "git hunks" },
 				{ "<leader>k", group = "man/docs" },
 				{ "<leader>l", group = "lazy" },
+				{ "<leader>L", group = "leetcode" },
 				{ "<leader>m", group = "markdown/make/minimap" },
 				{ "<leader>q", desc = "Quit all" },
+				{ "<leader>r", group = "rust (ferris)" },
 				{ "<leader>s", group = "search/snippets" },
 				{ "<leader>t", group = "terminal/tabs" },
 				{ "<leader>T", group = "go to tab (T1-T9)" },
