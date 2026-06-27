@@ -12,9 +12,8 @@ return {
 				mode = { "n", "x" },
 				-- Main groups
 				{ "<leader><tab>", group = "tabs" },
-				{ "<leader>a", group = "animations" },
 				{ "<leader>b", group = "buffer" },
-				{ "<leader>c", group = "code/crates/leetcode" },
+				{ "<leader>c", group = "code/crates" },
 				{ "<leader>d", group = "debug" },
 				{ "<leader>db", desc = "Toggle breakpoint" },
 				{ "<leader>dB", desc = "Conditional breakpoint" },
@@ -35,13 +34,11 @@ return {
 				{ "<leader>l", group = "lazy" },
 				{ "<leader>m", group = "markdown/make/minimap" },
 				{ "<leader>q", desc = "Quit all" },
-				{ "<leader>r", group = "rust (ferris)" },
 				{ "<leader>s", group = "search/snippets" },
 				{ "<leader>t", group = "terminal/tabs" },
 				{ "<leader>T", group = "go to tab (T1-T9)" },
 				{ "<leader>tm", group = "tab move" },
 				{ "<leader>x", group = "trouble/diagnostics" },
-				{ "<leader>L", group = "leetcode" },
 
 				-- Buffer operations
 				{ "<leader>bd", desc = "Delete buffer" },
@@ -64,17 +61,10 @@ return {
 				{ "<leader>pov", desc = "Snippet: print vector (utils)" },
 				{ "<leader>mod", desc = "Snippet: mod inverse (utils)" },
 				{ "<leader>dio", desc = "Snippet: diophantine (utils)" },
-				{ "<leader>sf", desc = "Search: find files (fff)" },
-				{ "<leader>sg", desc = "Search: live grep (fff)" },
-				{ "<leader>sh", desc = "Search: help (fff)" },
 				{ "<leader>sfor", desc = "Snippet: for loop (C/C++/Rust)" },
 				{ "<leader>swh", desc = "Snippet: while loop (C/C++/Rust)" },
 				{ "<leader>sdo", desc = "Snippet: do-while (C/C++)" },
 				{ "<leader>srange", desc = "Snippet: range-for (C++) / for-in (Rust)" },
-
-				-- Animations
-				{ "<leader>ar", desc = "Cellular automation: make it rain" },
-				{ "<leader>ag", desc = "Cellular automation: game of life" },
 
 				-- Crates.nvim (Rust Cargo.toml)
 				{ "<leader>ct", desc = "Toggle crates info" },
@@ -99,13 +89,6 @@ return {
 				{ "<leader>mr", desc = "Make: build & run" },
 				{ "<leader>mT", desc = "Make: toggle results" },
 				{ "<leader>mx", desc = "Make: run" },
-				-- LeetCode (L prefix)
-				{ "<leader>L", desc = "LeetCode" },
-				{ "<leader>Lr", desc = "LeetCode run" },
-				{ "<leader>Ls", desc = "LeetCode submit" },
-				{ "<leader>Ll", desc = "LeetCode list" },
-				{ "<leader>Ld", desc = "LeetCode daily" },
-				{ "<leader>LR", desc = "LeetCode reset" },
 
 				-- File operations
 				{ "<leader>ff", desc = "Find files" },
@@ -155,20 +138,6 @@ return {
 
 				-- Mason
 				{ "<leader>M", desc = "Open Mason" },
-
-				-- Rust / Ferris
-				{ "<leader>rm", desc = "Expand macro" },
-				{ "<leader>rj", desc = "Join lines" },
-				{ "<leader>rh", desc = "View HIR" },
-				{ "<leader>rl", desc = "View MIR" },
-				{ "<leader>rs", desc = "View memory layout" },
-				{ "<leader>rt", desc = "View syntax tree" },
-				{ "<leader>ri", desc = "View item tree" },
-				{ "<leader>rc", desc = "Open Cargo.toml" },
-				{ "<leader>rp", desc = "Open parent module" },
-				{ "<leader>rd", desc = "Open documentation" },
-				{ "<leader>rw", desc = "Reload workspace" },
-				{ "<leader>rb", desc = "Rebuild macros" },
 
 				-- Terminal (LazyVim style)
 				{ "<leader>tf", desc = "Terminal (float)" },
