@@ -5,9 +5,11 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		version = "0.9.*", -- Use 0.9.x series for Neovim 0.10 compatibility
+		-- The legacy `nvim-treesitter.configs` module (highlight/indent/incremental_selection)
+		-- lives on `master`. `main` is the v1.0+ rewrite that removed it.
+		branch = "master",
 		build = ":TSUpdate",
-		lazy = false, -- Treesitter does not support lazy loading
+		lazy = false,
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {

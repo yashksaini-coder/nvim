@@ -22,23 +22,13 @@ return {
 		"twig",
 	},
 	config = function()
+		-- nvim-ts-autotag v0.4+ expects options at the top level of setup(), not nested under `opts`.
 		require("nvim-ts-autotag").setup({
 			opts = {
-				-- Auto close tags when typing >
 				enable_close = true,
-				-- Auto rename pairs of tags (e.g., <div></div> -> <span></span>)
 				enable_rename = true,
-				-- Auto close on trailing </
 				enable_close_on_slash = false,
 			},
-			-- Override individual filetype configs if needed
-			-- Empty by default, useful if global settings don't work well in a specific filetype
-			-- per_filetype = {
-			-- 	-- Example: disable auto-close for HTML if needed
-			-- 	-- ["html"] = {
-			-- 	--   enable_close = false
-			-- 	-- }
-			-- },
 		})
 	end,
 }
