@@ -20,6 +20,8 @@ return {
 					"c",
 					"cpp",
 					"c_sharp",
+					"markdown",
+					"markdown_inline",
 				},
 				sync_install = false,
 				auto_install = true,
@@ -42,6 +44,31 @@ return {
 					},
 				},
 			})
+
+			-- Patch nvim-treesitter's `set-lang-from-info-string!` predicate. In
+			-- Neovim 0.11+, query-directive `match` values became TSNode[] lists
+			-- (quantifier support), so the upstream code's `get_node_text(nodes, bufnr)`
+			-- call crashes on `node:range()` when fed a list. The master branch is
+			-- archived and won't ship this fix; re-register the directive with the
+			-- correct unwrap. Without this, render-markdown errors on every parse.
+			local ts_query = require("vim.treesitter.query")
+			local lang_aliases = {
+				ex = "elixir",
+				pl = "perl",
+				sh = "bash",
+				uxn = "uxntal",
+				ts = "typescript",
+			}
+			ts_query.add_directive("set-lang-from-info-string!", function(match, _, bufnr, pred, metadata)
+				local nodes = match[pred[2]]
+				local node = type(nodes) == "table" and nodes[1] or nodes
+				if not node then
+					return
+				end
+				local alias = vim.treesitter.get_node_text(node, bufnr):lower()
+				local ft = vim.filetype.match({ filename = "a." .. alias })
+				metadata["injection.language"] = ft or lang_aliases[alias] or alias
+			end, { force = true, all = false })
 		end,
 	},
 }
