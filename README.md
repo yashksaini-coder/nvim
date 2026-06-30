@@ -23,6 +23,7 @@ Trimmed the plugin set from 65 → 57 active plugins to remove unused / novelty 
 Followed by `:Lazy! clean` regenerating `lazy-lock.json`.
 
 ### ✨ Added (Latest)
+
 - **Utils (Boilerplates & Snippets)** - Full-buffer boilerplates (C/C++/Go/Rust, LeetCode, CSES) and insert-at-cursor snippets (primes, mod inverse, diophantine, PBDS, pow, loops). Keymaps via `config.keymaps.utils`.
 - **Native C/C++ Compiler** - Built-in compilation support using Neovim's `:make` and quickfix features (no external plugins)
 - **Telescope + snacks.nvim integration** - Added snacks.nvim as a dependency to Telescope for enhanced file preview capabilities
@@ -33,6 +34,7 @@ Followed by `:Lazy! clean` regenerating `lazy-lock.json`.
 - **cord.nvim** - Discord Rich Presence integration for showing activity
 
 ### ✨ Added (Previous)
+
 - **dashboard-nvim** - Modern, feature-rich dashboard with shortcuts and theme support
 - **nvim-cmp** - Powerful completion engine with LSP integration and snippet support
 - **mason.nvim** - Package manager for LSP servers, linters, and formatters
@@ -48,6 +50,7 @@ Followed by `:Lazy! clean` regenerating `lazy-lock.json`.
 - **Enhanced Telescope keymaps** - Added `<leader>fR` (recent files in cwd) and `<leader>fd` (diagnostics)
 
 ### 🔄 Changed
+
 - **Terminal Configuration** - Upgraded to full LazyVim-style terminal with:
   - Specialized terminals (LazyGit, Python REPL, Node REPL, System Monitor)
   - Enhanced UI with curved borders and 80% × 80% floating windows
@@ -63,6 +66,7 @@ Followed by `:Lazy! clean` regenerating `lazy-lock.json`.
 - **Treesitter** - Streamlined to essential languages (Rust, Python, TypeScript, JavaScript, C, C++)
 
 ### 🗑️ Removed
+
 - **compiler.nvim & overseer.nvim** - Replaced with native Neovim compilation features (fixes buffer errors)
 - **krust.nvim** - Removed enhanced Rust diagnostics (restored standard diagnostics)
 - **alpha** - Replaced with dashboard-nvim
@@ -89,6 +93,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Which-Key** shows a popup with all available keybindings when you start typing a command, helping you discover and remember keymaps.
 
 **Features:**
+
 - **LazyVim-style UI** - Beautiful Helix preset matching LazyVim's aesthetic
 - **Organized Groups** - Keymaps grouped by category (buffer, code, file, git, etc.)
 - **Buffer Keymaps** - Press `<leader>?` to show buffer-local keymaps
@@ -96,6 +101,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Auto-discovery** - Automatically shows available completions as you type
 
 **Main Keymap Groups:**
+
 - `<leader>b` - Buffer operations
 - `<leader>c` - Code/Crates (ct/cr/ca/etc = crates)
 - `<leader>f` - File/Find operations
@@ -109,6 +115,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Utils** - Boilerplates (`blp`/`blc`/`got`/`rst`/`plc`/`cse`), snippets (`pov`/`mod`/`dio`), loops (`sfor`/`swh`/`sdo`/`srange`)
 
 **Function Keys (C/C++ Compilation):**
+
 - `F5` - Build current C/C++ file
 - `F6` - Build and run program
 - `F7` - Toggle quickfix (compilation results)
@@ -116,56 +123,59 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - `<leader>mb` / `mr` / `mT` / `mx` - Same as F5/F6/F7/F8 (leader alternatives)
 
 **Special Keys:**
+
 - `<leader>?` - Show buffer-local keymaps
 - `<C-w><space>` - Window Hydra Mode (repeat window operations)
 
 ### 🎯 General Keymaps
 
-| Key | Description |
-|-----|-------------|
-| `<Esc>` | Clear search highlights |
-| `<C-h>` | Move to left window |
-| `<C-j>` | Move to lower window |
-| `<C-k>` | Move to upper window |
-| `<C-l>` | Move to right window |
-| `<C-s>` | Save file |
-| `<leader>q` | Quit all |
-| `<leader>bd` | Delete current buffer |
-| `<leader>mp` | Toggle markdown preview |
-| `<C-/>` | Toggle comment (Visual mode) |
+| Key          | Description                  |
+| ------------ | ---------------------------- |
+| `<Esc>`      | Clear search highlights      |
+| `<C-h>`      | Move to left window          |
+| `<C-j>`      | Move to lower window         |
+| `<C-k>`      | Move to upper window         |
+| `<C-l>`      | Move to right window         |
+| `<C-s>`      | Save file                    |
+| `<leader>q`  | Quit all                     |
+| `<leader>bd` | Delete current buffer        |
+| `<leader>mp` | Toggle markdown preview      |
+| `<C-/>`      | Toggle comment (Visual mode) |
 
 ### 📦 Lazy.nvim Plugin Manager
 
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<leader>ll` | `:Lazy` | Open Lazy menu |
-| `<leader>ls` | `:Lazy sync` | Sync plugins (install/update/remove) |
-| `<leader>lu` | `:Lazy update` | Update all plugins |
-| `<leader>li` | `:Lazy install` | Install missing plugins |
-| `<leader>lx` | `:Lazy clean` | Remove unused plugins |
+| Key          | Command         | Description                          |
+| ------------ | --------------- | ------------------------------------ |
+| `<leader>ll` | `:Lazy`         | Open Lazy menu                       |
+| `<leader>ls` | `:Lazy sync`    | Sync plugins (install/update/remove) |
+| `<leader>lu` | `:Lazy update`  | Update all plugins                   |
+| `<leader>li` | `:Lazy install` | Install missing plugins              |
+| `<leader>lx` | `:Lazy clean`   | Remove unused plugins                |
 
 ### 🔭 Telescope (Fuzzy Finder)
 
 **Telescope** is a powerful fuzzy finder with extensive search capabilities and file preview support.
 
 **Dependencies:**
+
 - `telescope-fzf-native.nvim` - Native FZF sorter for improved performance
 - `nvim-treesitter` - Syntax highlighting in previews
 - `snacks.nvim` - Image preview support (automatically renders images in preview pane)
 
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<C-p>` | `:Telescope find_files` | Find files (quick access) |
-| `<leader>ff` | `:Telescope find_files` | Find files (hidden included) |
-| `<leader>fr` | `:Telescope oldfiles` | Open recent files |
+| Key          | Command                             | Description                      |
+| ------------ | ----------------------------------- | -------------------------------- |
+| `<C-p>`      | `:Telescope find_files`             | Find files (quick access)        |
+| `<leader>ff` | `:Telescope find_files`             | Find files (hidden included)     |
+| `<leader>fr` | `:Telescope oldfiles`               | Open recent files                |
 | `<leader>fR` | `:Telescope oldfiles only_cwd=true` | Recent files (current directory) |
-| `<leader>fg` | `:Telescope live_grep` | Live grep search in project |
-| `<leader>fs` | `:Telescope grep_string` | Grep word under cursor |
-| `<leader>fb` | `:Telescope buffers` | Find and switch between buffers |
-| `<leader>fh` | `:Telescope help_tags` | Search Neovim help documentation |
-| `<leader>fd` | `:Telescope diagnostics` | Show LSP diagnostics |
+| `<leader>fg` | `:Telescope live_grep`              | Live grep search in project      |
+| `<leader>fs` | `:Telescope grep_string`            | Grep word under cursor           |
+| `<leader>fb` | `:Telescope buffers`                | Find and switch between buffers  |
+| `<leader>fh` | `:Telescope help_tags`              | Search Neovim help documentation |
+| `<leader>fd` | `:Telescope diagnostics`            | Show LSP diagnostics             |
 
 **Features:**
+
 - **Fast fuzzy finding** - Native FZF algorithm for optimal performance
 - **File preview** - Live preview of file contents with syntax highlighting
 - **Smart search** - Respects `.gitignore` and follows symlinks
@@ -173,12 +183,13 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 ### 📂 Nvim-tree (File Explorer)
 
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<leader>e` | `:NvimTreeToggle` | Toggle file explorer |
+| Key          | Command             | Description                   |
+| ------------ | ------------------- | ----------------------------- |
+| `<leader>e`  | `:NvimTreeToggle`   | Toggle file explorer          |
 | `<leader>ef` | `:NvimTreeFindFile` | Find current file in explorer |
 
 **Nvim-tree Features:**
+
 - Git integration (shows git status icons)
 - Diagnostics integration (shows error/warning icons)
 - Auto-refresh on file changes
@@ -186,13 +197,13 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 ### 🗺️ Mini Map
 
-| Key | Description |
-|-----|-------------|
-| `<leader>mt` | Toggle Mini Map |
-| `<leader>mo` | Open Mini Map |
-| `<leader>mc` | Close Mini Map |
-| `<leader>mf` | Focus Mini Map |
-| `<leader>mr` | Refresh Mini Map |
+| Key          | Description                           |
+| ------------ | ------------------------------------- |
+| `<leader>mt` | Toggle Mini Map                       |
+| `<leader>mo` | Open Mini Map                         |
+| `<leader>mc` | Close Mini Map                        |
+| `<leader>mf` | Focus Mini Map                        |
+| `<leader>mr` | Refresh Mini Map                      |
 | `<leader>ms` | Toggle Mini Map position (left/right) |
 
 ### ⚙️ Compiler (Native :make)
@@ -201,16 +212,17 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 **Function Keys (C/C++):**
 
-| Key | Action | Description |
-|-----|--------|-------------|
-| `F5` | Build | Compile current C/C++ file to `bin/program` |
-| `F6` | Build & Run | Compile and run if successful |
-| `F7` | Toggle Results | Show/hide compilation errors (quickfix) |
-| `F8` | Run Only | Run last compiled program |
+| Key  | Action         | Description                                 |
+| ---- | -------------- | ------------------------------------------- |
+| `F5` | Build          | Compile current C/C++ file to `bin/program` |
+| `F6` | Build & Run    | Compile and run if successful               |
+| `F7` | Toggle Results | Show/hide compilation errors (quickfix)     |
+| `F8` | Run Only       | Run last compiled program                   |
 
 **Leader alternatives:** `<leader>mb` (build), `<leader>mr` (build & run), `<leader>mT` (toggle results), `<leader>mx` (run). Same as F5–F8; `m` prefix avoids conflict with crates. (`mt` = Mini Map toggle.)
 
 **How it works:**
+
 1. Open any `.c` or `.cpp` file
 2. Press `F5` to compile (creates `bin/program`)
 3. Press `F6` to compile and run automatically
@@ -218,13 +230,14 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 5. Navigate errors with `:cnext` and `:cprev`
 
 **Compilation flags:**
+
 - C files: `gcc -Wall -g <file> -o bin/program`
 - C++ files: `g++ -Wall -g <file> -o bin/program`
 
 ### 🎨 Themes
 
-| Key | Theme | Description |
-|-----|-------|-------------|
+| Key          | Theme   | Description                                                               |
+| ------------ | ------- | ------------------------------------------------------------------------- |
 | `<leader>tH` | Themery | Open Themery theme picker (`tH` avoids conflict with terminal horizontal) |
 
 ### 💻 Terminal (ToggleTerm) - LazyVim Style
@@ -233,46 +246,46 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 #### **Quick Terminal Access**
 
-| Key | Mode | Description |
-|-----|------|-------------|
-| `<C-\>` | Normal/Terminal | Quick toggle terminal (80% × 80% floating) |
-| `<Esc><Esc>` | Terminal | Exit terminal mode |
+| Key          | Mode            | Description                                |
+| ------------ | --------------- | ------------------------------------------ |
+| `<C-\>`      | Normal/Terminal | Quick toggle terminal (80% × 80% floating) |
+| `<Esc><Esc>` | Terminal        | Exit terminal mode                         |
 
 #### **Direction-Specific Terminals**
 
-| Key | Description |
-|-----|-------------|
-| `<leader>tf` | Toggle floating terminal (80% × 80%) |
+| Key          | Description                                   |
+| ------------ | --------------------------------------------- |
+| `<leader>tf` | Toggle floating terminal (80% × 80%)          |
 | `<leader>th` | Toggle horizontal terminal (bottom, 15 lines) |
-| `<leader>tv` | Toggle vertical terminal (40% width) |
+| `<leader>tv` | Toggle vertical terminal (40% width)          |
 
 #### **Specialized Terminals**
 
-| Key | Description | Tool |
-|-----|-------------|------|
-| `<leader>gg` | LazyGit - Full-screen git interface | lazygit |
-| `<leader>tp` | Python REPL - Interactive Python shell | python3 |
-| `<leader>tN` | Node REPL - Interactive Node.js shell | node (`tN`; `tn` = new tab) |
-| `<leader>tm` | System Monitor - Resource monitoring | btop/htop |
+| Key          | Description                            | Tool                        |
+| ------------ | -------------------------------------- | --------------------------- |
+| `<leader>gg` | LazyGit - Full-screen git interface    | lazygit                     |
+| `<leader>tp` | Python REPL - Interactive Python shell | python3                     |
+| `<leader>tN` | Node REPL - Interactive Node.js shell  | node (`tN`; `tn` = new tab) |
+| `<leader>tm` | System Monitor - Resource monitoring   | btop/htop                   |
 
 #### **Terminal & Tab Management**
 
-| Key | Description |
-|-----|-------------|
-| `<leader>t1`–`t4` | Quick access to terminals 1–4 |
-| `<leader>tn` | New tab |
-| `<leader>T1`–`T9` | Go to tab 1–9 |
-| `<leader>ta` | Toggle all terminals |
-| `<leader>ts` | Select terminal (or send selection in visual mode) |
+| Key               | Description                                        |
+| ----------------- | -------------------------------------------------- |
+| `<leader>t1`–`t4` | Quick access to terminals 1–4                      |
+| `<leader>tn`      | New tab                                            |
+| `<leader>T1`–`T9` | Go to tab 1–9                                      |
+| `<leader>ta`      | Toggle all terminals                               |
+| `<leader>ts`      | Select terminal (or send selection in visual mode) |
 
 #### **Terminal Navigation (Within Terminal Mode)**
 
-| Key | Description |
-|-----|-------------|
-| `<C-h>` | Move to left window |
+| Key     | Description           |
+| ------- | --------------------- |
+| `<C-h>` | Move to left window   |
 | `<C-j>` | Move to bottom window |
-| `<C-k>` | Move to top window |
-| `<C-l>` | Move to right window |
+| `<C-k>` | Move to top window    |
+| `<C-l>` | Move to right window  |
 | `<C-w>` | Window command prefix |
 
 #### **LazyVim Terminal Features**
@@ -283,7 +296,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Smart Navigation**: Navigate between windows seamlessly while in terminal mode
 - **Auto-insert Mode**: Automatically enters insert mode when terminal opens
 - **Auto-exit Insert**: Automatically exits insert mode when leaving terminal buffer
-- **Professional Styling**: 
+- **Professional Styling**:
   - Floating: 80% width × 80% height with curved borders
   - Horizontal: 15 lines at bottom
   - Vertical: 40% of screen width
@@ -296,6 +309,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 ### 📝 Markdown Preview (markdown-preview.nvim)
 
 **Features:**
+
 - **Live Preview** - Real-time markdown preview in your browser
 - **Synchronized Scrolling** - Preview scrolls with your markdown file
 - **Dark/Light Theme** - Automatically matches system preferences or set manually
@@ -304,11 +318,12 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 **Markdown Preview Keymaps:**
 
-| Key / CMD       | Mode | Purpose                                   |
-|-----------------|------|-------------------------------------------|
-| `<leader>mp`   | Normal | Toggle markdown preview                    |
+| Key / CMD    | Mode   | Purpose                 |
+| ------------ | ------ | ----------------------- |
+| `<leader>mp` | Normal | Toggle markdown preview |
 
 **How it works:**
+
 - Open a markdown file (`.md`)
 - Press `<leader>mp` to toggle the preview
 - The preview opens in your default browser
@@ -316,6 +331,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - The preview scrolls in sync with your cursor position
 
 **Supported Features:**
+
 - **Math** - KaTeX for mathematical expressions
 - **Diagrams** - PlantUML, Mermaid, flowchart, sequence diagrams
 - **Tables** - Full markdown table support
@@ -330,6 +346,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 **Snacks.nvim Image Viewer** provides powerful image preview capabilities using the Kitty Graphics Protocol.
 
 **Features:**
+
 - **Wide Format Support** - View images in formats: `png`, `jpg`, `jpeg`, `gif`, `bmp`, `webp`, `tiff`, `heic`, `avif`
 - **Video Support** - Preview videos: `mp4`, `mov`, `avi`, `mkv`, `webm`
 - **PDF Viewing** - View PDF documents directly in Neovim
@@ -338,6 +355,7 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 - **Auto-display** - Automatically shows images when opening image files
 
 **Terminal Support:**
+
 - ✅ Kitty
 - ✅ Ghostty
 - ✅ WezTerm (limited support, inline rendering not supported)
@@ -345,17 +363,19 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 
 **Keymaps:**
 
-| Key | Description |
-|-----|-------------|
+| Key          | Description                   |
+| ------------ | ----------------------------- |
 | `<leader>is` | Show image at cursor position |
 
 **Usage:**
+
 - Open an image file - it will be displayed automatically
 - In markdown/HTML: place cursor on image link and press `<leader>is` to preview
 - Math expressions in markdown are automatically rendered inline
 - Images are cached for better performance
 
 **Requirements:**
+
 - Terminal with Kitty Graphics Protocol support (Kitty, Ghostty, or WezTerm)
 - [ImageMagick](https://imagemagick.org/) for format conversion
 - Run `:checkhealth snacks` to verify setup
@@ -363,27 +383,29 @@ Press `<Space>` and pause to see all available keymaps via which-key.
 ### �📏 Indent Highlighting (snacks.indent)
 
 **Features:**
+
 - Visual indent guides showing code structure
 - Scope highlighting for current indentation level
 - Smooth animations (Neovim 0.10+)
 - Auto-excludes help, dashboard, and other special buffers
 
 **Visual Indicators:**
+
 - `│` character for indent guides
 - Highlighted current scope
 - Configurable highlight groups
 
 ### 🧠 LSP & Mason (Language Servers)
 
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<leader>M` | `:Mason` | Open Mason package manager |
-| `K` | `vim.lsp.buf.hover` | Show hover documentation |
-| `<C-i>` | `vim.lsp.buf.definition` | Go to definition |
-| `<leader>gd` | `vim.lsp.buf.definition` | Go to definition (alternative) |
-| `<leader>gr` | `vim.lsp.buf.references` | Find all references |
-| `<leader>ca` | `vim.lsp.buf.code_action` | Show code actions |
-| `<leader>d` | `vim.diagnostic.open_float` | Show diagnostics at cursor |
+| Key          | Command                     | Description                    |
+| ------------ | --------------------------- | ------------------------------ |
+| `<leader>M`  | `:Mason`                    | Open Mason package manager     |
+| `K`          | `vim.lsp.buf.hover`         | Show hover documentation       |
+| `<C-i>`      | `vim.lsp.buf.definition`    | Go to definition               |
+| `<leader>gd` | `vim.lsp.buf.definition`    | Go to definition (alternative) |
+| `<leader>gr` | `vim.lsp.buf.references`    | Find all references            |
+| `<leader>ca` | `vim.lsp.buf.code_action`   | Show code actions              |
+| `<leader>d`  | `vim.diagnostic.open_float` | Show diagnostics at cursor     |
 
 ### 📦 Utils (Boilerplates & Snippets)
 
@@ -391,34 +413,34 @@ Boilerplates replace the whole buffer; snippets insert at cursor. Templates live
 
 #### Boilerplates (full buffer)
 
-| Key | Description |
-|-----|-------------|
-| `<leader>blp` | C++ competitive programming template |
-| `<leader>blc` | C competitive programming template |
-| `<leader>got` | Go competitive programming template |
+| Key           | Description                           |
+| ------------- | ------------------------------------- |
+| `<leader>blp` | C++ competitive programming template  |
+| `<leader>blc` | C competitive programming template    |
+| `<leader>got` | Go competitive programming template   |
 | `<leader>rst` | Rust competitive programming template |
-| `<leader>plc` | LeetCode C++ template |
-| `<leader>cse` | CSES C++ template |
+| `<leader>plc` | LeetCode C++ template                 |
+| `<leader>cse` | CSES C++ template                     |
 
 #### Snippets (insert at cursor)
 
-| Key | Description |
-|-----|-------------|
-| `<leader>pov` | Print vector (C++) |
-| `<leader>mod` | Mod inverse (C++) |
-| `<leader>dio` | Diophantine equation (C++) |
-| `<leader>sfor` | For loop (C / C++ / Rust; filetype-aware) |
-| `<leader>swh` | While loop (C / C++ / Rust; filetype-aware) |
-| `<leader>sdo` | Do-while loop (C / C++; filetype-aware) |
+| Key              | Description                                            |
+| ---------------- | ------------------------------------------------------ |
+| `<leader>pov`    | Print vector (C++)                                     |
+| `<leader>mod`    | Mod inverse (C++)                                      |
+| `<leader>dio`    | Diophantine equation (C++)                             |
+| `<leader>sfor`   | For loop (C / C++ / Rust; filetype-aware)              |
+| `<leader>swh`    | While loop (C / C++ / Rust; filetype-aware)            |
+| `<leader>sdo`    | Do-while loop (C / C++; filetype-aware)                |
 | `<leader>srange` | Range-based for (C++) or for-in (Rust); filetype-aware |
 
 #### Commands (insert at cursor)
 
-| Command | Description |
-|---------|-------------|
-| `:Sieve` | Sieve / SPF (primes) snippet |
-| `:PBDS` | Policy-based data structures (C++) |
-| `:Pow` | Pow (exponent mod M) snippet |
+| Command  | Description                        |
+| -------- | ---------------------------------- |
+| `:Sieve` | Sieve / SPF (primes) snippet       |
+| `:PBDS`  | Policy-based data structures (C++) |
+| `:Pow`   | Pow (exponent mod M) snippet       |
 
 ### 🦀 Rust Development
 
@@ -428,28 +450,29 @@ This configuration includes a comprehensive Rust development setup with speciali
 
 Interactive Cargo.toml management with version checking, dependency exploration, and one-click updates.
 
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<leader>ct` | `crates.toggle` | Toggle crates info (virtual text) |
-| `<leader>cr` | `crates.reload` | Reload crates data |
-| `<leader>cv` | `crates.show_versions_popup` | Show available versions |
-| `<leader>cf` | `crates.show_features_popup` | Show available features |
-| `<leader>cd` | `crates.show_dependencies_popup` | Show crate dependencies |
-| `<leader>cu` | `crates.update_crate` | Update crate on current line |
-| `<leader>cu` (visual) | `crates.update_crates` | Update selected crates |
-| `<leader>cpa` | `crates.update_all_crates` | Update all crates in buffer |
-| `<leader>cU` | `crates.upgrade_crate` | Upgrade crate to latest |
-| `<leader>cU` (visual) | `crates.upgrade_crates` | Upgrade selected crates |
-| `<leader>cA` | `crates.upgrade_all_crates` | Upgrade all crates to latest |
-| `<leader>cx` | `crates.expand_plain_crate_to_inline_table` | Expand crate to inline table |
-| `<leader>cX` | `crates.extract_crate_into_table` | Extract crate into table format |
-| `<leader>cH` | `crates.open_homepage` | Open crate's homepage |
-| `<leader>cR` | `crates.open_repository` | Open crate's repository |
-| `<leader>cD` | `crates.open_documentation` | Open crate's documentation |
-| `<leader>cC` | `crates.open_crates_io` | Open on crates.io |
-| `<leader>cL` | `crates.open_lib_rs` | Open on lib.rs |
+| Key                   | Command                                     | Description                       |
+| --------------------- | ------------------------------------------- | --------------------------------- |
+| `<leader>ct`          | `crates.toggle`                             | Toggle crates info (virtual text) |
+| `<leader>cr`          | `crates.reload`                             | Reload crates data                |
+| `<leader>cv`          | `crates.show_versions_popup`                | Show available versions           |
+| `<leader>cf`          | `crates.show_features_popup`                | Show available features           |
+| `<leader>cd`          | `crates.show_dependencies_popup`            | Show crate dependencies           |
+| `<leader>cu`          | `crates.update_crate`                       | Update crate on current line      |
+| `<leader>cu` (visual) | `crates.update_crates`                      | Update selected crates            |
+| `<leader>cpa`         | `crates.update_all_crates`                  | Update all crates in buffer       |
+| `<leader>cU`          | `crates.upgrade_crate`                      | Upgrade crate to latest           |
+| `<leader>cU` (visual) | `crates.upgrade_crates`                     | Upgrade selected crates           |
+| `<leader>cA`          | `crates.upgrade_all_crates`                 | Upgrade all crates to latest      |
+| `<leader>cx`          | `crates.expand_plain_crate_to_inline_table` | Expand crate to inline table      |
+| `<leader>cX`          | `crates.extract_crate_into_table`           | Extract crate into table format   |
+| `<leader>cH`          | `crates.open_homepage`                      | Open crate's homepage             |
+| `<leader>cR`          | `crates.open_repository`                    | Open crate's repository           |
+| `<leader>cD`          | `crates.open_documentation`                 | Open crate's documentation        |
+| `<leader>cC`          | `crates.open_crates_io`                     | Open on crates.io                 |
+| `<leader>cL`          | `crates.open_lib_rs`                        | Open on lib.rs                    |
 
 **Features:**
+
 - Smart version handling with semantic versioning
 - Feature popup with full feature list
 - Dependency visualization
@@ -462,6 +485,7 @@ Interactive Cargo.toml management with version checking, dependency exploration,
 Display your current Neovim activity on Discord with workspace and file information.
 
 **Features:**
+
 - Real-time activity broadcast to Discord
 - Shows current file being edited
 - Displays workspace name
@@ -471,12 +495,13 @@ Display your current Neovim activity on Discord with workspace and file informat
 
 ### 🔧 Oil (File Buffer Editor)
 
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<leader>o` | `:Oil` | Open oil file explorer |
+| Key         | Command           | Description                 |
+| ----------- | ----------------- | --------------------------- |
+| `<leader>o` | `:Oil`            | Open oil file explorer      |
 | `<leader>O` | `:Oil --floating` | Open oil in floating window |
 
 **Oil Keyboard Shortcuts (inside oil buffer):**
+
 - `<CR>` - Open/select file
 - `<C-s>` - Open in vertical split
 - `<C-h>` - Open in horizontal split
@@ -498,25 +523,26 @@ Display your current Neovim activity on Discord with workspace and file informat
 
 **Navigation:**
 
-| Key | Command | Description |
-|-----|---------|-------------|
+| Key             | Command                | Description                 |
+| --------------- | ---------------------- | --------------------------- |
 | `<S-h>` or `[b` | `:BufferLineCyclePrev` | Navigate to previous buffer |
-| `<S-l>` or `]b` | `:BufferLineCycleNext` | Navigate to next buffer |
+| `<S-l>` or `]b` | `:BufferLineCycleNext` | Navigate to next buffer     |
 
 **Buffer Management:**
 
-| Key | Command | Description |
-|-----|---------|-------------|
-| `<leader>bd` | `:bdelete` | Delete current buffer |
-| `<leader>bp` | `:BufferLineTogglePin` | Pin/unpin current buffer |
-| `<leader>bP` | `:BufferLineGroupClose ungrouped` | Delete all non-pinned buffers |
-| `<leader>bo` | `:BufferLineCloseOthers` | Close all other buffers |
-| `<leader>br` | `:BufferLineCloseRight` | Close all buffers to the right |
-| `<leader>bl` | `:BufferLineCloseLeft` | Close all buffers to the left |
-| `<leader>bm` | `:BufferLineMoveNext` | Move buffer to the right |
-| `<leader>bM` | `:BufferLineMovePrev` | Move buffer to the left |
+| Key          | Command                           | Description                    |
+| ------------ | --------------------------------- | ------------------------------ |
+| `<leader>bd` | `:bdelete`                        | Delete current buffer          |
+| `<leader>bp` | `:BufferLineTogglePin`            | Pin/unpin current buffer       |
+| `<leader>bP` | `:BufferLineGroupClose ungrouped` | Delete all non-pinned buffers  |
+| `<leader>bo` | `:BufferLineCloseOthers`          | Close all other buffers        |
+| `<leader>br` | `:BufferLineCloseRight`           | Close all buffers to the right |
+| `<leader>bl` | `:BufferLineCloseLeft`            | Close all buffers to the left  |
+| `<leader>bm` | `:BufferLineMoveNext`             | Move buffer to the right       |
+| `<leader>bM` | `:BufferLineMovePrev`             | Move buffer to the left        |
 
 **Features:**
+
 - Always visible tabline (even with single file)
 - LSP diagnostics integration (shows errors/warnings)
 - Git status icons
@@ -528,24 +554,29 @@ Display your current Neovim activity on Discord with workspace and file informat
 ### ⌨️ Keymap Quick Reference (All `<leader>` Mappings)
 
 **Navigation & Files:**
+
 - `ff` - Find files | `fg` - Live grep | `fb` - Buffers | `fh` - Help
 - `fs` - Grep string | `fr` - Recent files | `fR` - Recent files (cwd) | `fd` - Diagnostics
 - `e` - Toggle explorer | `ef` - Find file in explorer
 
 **Buffers:**
+
 - `<S-h>` / `[b` - Previous buffer | `<S-l>` / `]b` - Next buffer
 - `bd` - Delete buffer | `bp` - Pin/unpin buffer | `bP` - Delete non-pinned
 - `bo` - Close others | `br` - Close right | `bl` - Close left
 - `bm` - Move buffer right | `bM` - Move buffer left
 
 **Themes & UI:**
+
 - `tH` - Themery picker | `mt/mo/mc/mf/mr/ms` - Mini map controls
 
 **Terminal/Tabs:**
+
 - `<C-\>` - Toggle default terminal (float) | `th` - Horizontal | `tv` - Vertical | `tf` - Float
 - `tn` - New tab | `tN` - Node REPL | `t1`–`t4` - Terminals 1–4 | `T1`–`T9` - Go to tab
 
-**Rust Development:** *(Only in Rust files)*
+**Rust Development:** _(Only in Rust files)_
+
 - `ct` - Toggle crates | `cr` - Reload crates | `cv` - Versions | `cf` - Features | `cd` - Dependencies
 - `cu/cU` - Update/upgrade crate | `cpa/cA` - Update/upgrade all | `cx/cX` - Expand/extract
 - `cH` - Homepage | `cR` - Repository | `cD` - Docs | `cC` - Crates.io | `cL` - Lib.rs
@@ -553,43 +584,50 @@ Display your current Neovim activity on Discord with workspace and file informat
 **Compiler:** `mb` - Build | `mr` - Build & run | `mT` - Toggle results | `mx` - Run (F5–F8)
 
 **Utils (Boilerplates & Snippets):**
+
 - Boilerplates: `blp` - C++ | `blc` - C | `got` - Go | `rst` - Rust | `plc` - LeetCode C++ | `cse` - CSES C++
 - Snippets: `pov` - Print vector | `mod` - Mod inverse | `dio` - Diophantine
 - Loops (filetype-aware): `sfor` - For | `swh` - While | `sdo` - Do-while (C/C++) | `srange` - Range-for (C++) / for-in (Rust)
 - Commands: `:Sieve` | `:PBDS` | `:Pow`
 
 **Plugins & Tools:**
+
 - `ll` - Lazy menu | `ls` - Lazy sync | `lu` - Lazy update
 - `li` - Lazy install | `lc` - Lazy check | `lx` - Lazy clean
 - `M` - Mason packages
 
 **Git Operations:**
+
 - `]c` / `[c` - Navigate diff hunks | `hs` - Stage hunk | `hr` - Reset hunk | `gb` - Full buffer blame
 
 **Code & Diagnostics:**
+
 - `gd` - Definition | `gr` - References | `ca` - Code action | `d` - Show diagnostics
 - `fm` - Format file/range | `xx` - Trouble diagnostics | `xX` - Buffer diagnostics
 
 **Buffers:**
+
 - `bp` - Pin buffer | `bP` - Delete unpinned | `bo` - Delete others
 - `br` - Delete right | `bl` - Delete left
 
 **Oil (File Editor):**
+
 - `o` - Oil explorer | `O` - Oil floating
 
 ### ✨ Code Completion (nvim-cmp)
 
-| Key / CMD       | Mode | Purpose                                   |
-|-----------------|------|-------------------------------------------|
-| `<C-n>`         | Insert | Select next completion item               |
-| `<C-p>`         | Insert | Select previous completion item           |
-| `<C-n>`         | Insert | Select next completion item               |
-| `<C-p>`         | Insert | Select previous completion item           |
-| `<C-y>`         | Insert | Confirm completion selection              |
-| `<Tab>`         | Insert | Expand snippet                            |
-| `<S-Tab>`       | Insert | Previous snippet node                     |
+| Key / CMD | Mode   | Purpose                         |
+| --------- | ------ | ------------------------------- |
+| `<C-n>`   | Insert | Select next completion item     |
+| `<C-p>`   | Insert | Select previous completion item |
+| `<C-n>`   | Insert | Select next completion item     |
+| `<C-p>`   | Insert | Select previous completion item |
+| `<C-y>`   | Insert | Confirm completion selection    |
+| `<Tab>`   | Insert | Expand snippet                  |
+| `<S-Tab>` | Insert | Previous snippet node           |
 
 **Features:**
+
 - **Auto-completion** - Intelligent completion menu appears as you type
 - **LSP Integration** - Full language server protocol support
 - **Snippet Support** - LuaSnip integration for code snippets
@@ -598,6 +636,7 @@ Display your current Neovim activity on Discord with workspace and file informat
 - **Smart Selection** - Auto-select first item, manual navigation available
 
 **Configuration:**
+
 - **Documentation Delay:** 500ms (auto-shows after hovering completion item)
 - **Menu Auto-show:** Enabled (completion menu appears automatically)
 - **Signature Help:** Enabled for function parameters
@@ -605,25 +644,26 @@ Display your current Neovim activity on Discord with workspace and file informat
 
 ### 🩺 Diagnostics & Troubleshooting (Trouble.nvim)
 
-| Key / CMD       | Purpose                                   |
-|-----------------|-------------------------------------------|
-| `<leader>xx`    | Toggle Diagnostics (all)                  |
-| `<leader>xX`    | Toggle Buffer Diagnostics                 |
-| `<leader>cs`    | Toggle Symbols (Trouble)                  |
-| `<leader>cl`    | Toggle LSP Definitions/References (Trouble) |
-| `<leader>xL`    | Toggle Location List                      |
-| `<leader>xQ`    | Toggle Quickfix List                      |
-| `[d`            | Previous Diagnostic                       |
-| `]d`            | Next Diagnostic                           |
+| Key / CMD    | Purpose                                     |
+| ------------ | ------------------------------------------- |
+| `<leader>xx` | Toggle Diagnostics (all)                    |
+| `<leader>xX` | Toggle Buffer Diagnostics                   |
+| `<leader>cs` | Toggle Symbols (Trouble)                    |
+| `<leader>cl` | Toggle LSP Definitions/References (Trouble) |
+| `<leader>xL` | Toggle Location List                        |
+| `<leader>xQ` | Toggle Quickfix List                        |
+| `[d`         | Previous Diagnostic                         |
+| `]d`         | Next Diagnostic                             |
 
 ### 🔧 Code Formatting (conform.nvim)
 
-| Key / CMD       | Mode | Purpose                                   |
-|-----------------|------|-------------------------------------------|
-| `<leader>fm`    | Normal/Visual | Format file or range (in visual mode)     |
-| *Auto-format*   | -    | Formats on save (if formatter available)  |
+| Key / CMD     | Mode          | Purpose                                  |
+| ------------- | ------------- | ---------------------------------------- |
+| `<leader>fm`  | Normal/Visual | Format file or range (in visual mode)    |
+| _Auto-format_ | -             | Formats on save (if formatter available) |
 
 **Supported Formatters:**
+
 - Lua: `stylua`
 - Python: `isort`, `black`
 - Rust: `rustfmt`
@@ -633,23 +673,27 @@ Display your current Neovim activity on Discord with workspace and file informat
 ### 🏷️ Auto Tag (nvim-ts-autotag)
 
 **Features:**
+
 - **Auto-close tags** - Automatically closes HTML/JSX/TSX tags when typing `>`
 - **Auto-rename tags** - Automatically renames paired tags (e.g., `<div></div>` → `<span></span>`)
 - **Treesitter-powered** - Uses treesitter for accurate tag detection
 - **Multi-language support** - Works with HTML, JSX, TSX, Vue, Svelte, and more
 
 **How it works:**
+
 - Type `<div>` and press `>` → Automatically becomes `<div></div>`
 - Change `<div></div>` to `<span></span>` by typing `ciwspan<esc>` → Both tags update
 - Works automatically in supported filetypes - no keymaps needed!
 
 **Supported Filetypes:**
+
 - HTML, JavaScript, JSX, TypeScript, TSX
 - Vue, Svelte, Astro
 - Markdown, PHP, XML
 - Handlebars, Liquid, Twig, Glimmer, Rescript
 
 **Configuration:**
+
 - **Auto-close:** Enabled (closes tags on `>`)
 - **Auto-rename:** Enabled (renames paired tags)
 - **Close on slash:** Disabled (doesn't auto-close on trailing `</`)
@@ -659,6 +703,7 @@ Display your current Neovim activity on Discord with workspace and file informat
 ### 🔀 Git Integration (gitsigns.nvim)
 
 **Features:**
+
 - **Git Signs** - Visual indicators for added/changed/deleted lines in the sign column
 - **Hunk Navigation** - Jump between changes with `]c`/`[c`
 - **Hunk Management** - Stage, reset, and preview hunks directly in editor
@@ -668,56 +713,58 @@ Display your current Neovim activity on Discord with workspace and file informat
 
 **Hunk Navigation & Actions:**
 
-| Key / CMD       | Mode | Purpose                                   |
-|-----------------|------|-------------------------------------------|
-| `]c` / `[c`     | Normal | Navigate to next/previous hunk          |
-| `<leader>hs`    | Normal | Stage hunk                                |
-| `<leader>hr`    | Normal | Reset hunk                                |
-| `<leader>hS`    | Normal | Stage buffer                              |
-| `<leader>hR`    | Normal | Reset buffer                              |
-| `<leader>hp`    | Normal | Preview hunk                              |
-| `<leader>hi`    | Normal | Preview hunk inline                       |
+| Key / CMD    | Mode   | Purpose                        |
+| ------------ | ------ | ------------------------------ |
+| `]c` / `[c`  | Normal | Navigate to next/previous hunk |
+| `<leader>hs` | Normal | Stage hunk                     |
+| `<leader>hr` | Normal | Reset hunk                     |
+| `<leader>hS` | Normal | Stage buffer                   |
+| `<leader>hR` | Normal | Reset buffer                   |
+| `<leader>hp` | Normal | Preview hunk                   |
+| `<leader>hi` | Normal | Preview hunk inline            |
 
 **Blame & Diff:**
 
-| Key / CMD       | Mode | Purpose                                   |
-|-----------------|------|-------------------------------------------|
-| `<leader>hb`    | Normal | Blame line (full info)                    |
-| `<leader>hd`    | Normal | Diff this file                            |
-| `<leader>hD`    | Normal | Diff this file (~HEAD)                    |
+| Key / CMD    | Mode   | Purpose                |
+| ------------ | ------ | ---------------------- |
+| `<leader>hb` | Normal | Blame line (full info) |
+| `<leader>hd` | Normal | Diff this file         |
+| `<leader>hD` | Normal | Diff this file (~HEAD) |
 
 **Quickfix & Toggles:**
 
-| Key / CMD       | Mode | Purpose                                   |
-|-----------------|------|-------------------------------------------|
-| `<leader>hq`    | Normal | Set quickfix list (current file)          |
-| `<leader>hQ`    | Normal | Set quickfix list (all files)             |
-| `<leader>tb`    | Normal | Toggle current line blame                 |
-| `<leader>gb`    | Normal | Toggle full-buffer blame window           |
-| `<leader>tw`    | Normal | Toggle word diff                          |
-| `ih`            | Operator/Visual | Select hunk (text object)        |
+| Key / CMD    | Mode            | Purpose                          |
+| ------------ | --------------- | -------------------------------- |
+| `<leader>hq` | Normal          | Set quickfix list (current file) |
+| `<leader>hQ` | Normal          | Set quickfix list (all files)    |
+| `<leader>tb` | Normal          | Toggle current line blame        |
+| `<leader>gb` | Normal          | Toggle full-buffer blame window  |
+| `<leader>tw` | Normal          | Toggle word diff                 |
+| `ih`         | Operator/Visual | Select hunk (text object)        |
 
-###  Dashboard (dashboard-nvim)
+### Dashboard (dashboard-nvim)
 
-| Key / CMD       | Purpose                                   |
-|-----------------|-------------------------------------------|
-| `u`             | 🔄 Update plugins (`:Lazy update`)        |
-| `f`             | 🔍 Find file using Telescope (`<leader>ff`) |
-| `n`             | ➕ Create a new empty buffer              |
-| `r`             | 📂 Open recent files (Telescope)          |
-| `g`             | 🔍 Find text (`<leader>fg`)               |
-| `c`             | ⚙️ Open Neovim config files               |
-| `M`             | 📦 Open Mason menu (`<leader>M`)           |
-| `l`             | ⚡ Open Lazy plugin manager (`<leader>ll`) |
-| `q`             | 🚪 Quit Neovim (`<leader>q`)              |
+| Key / CMD | Purpose                                     |
+| --------- | ------------------------------------------- |
+| `u`       | 🔄 Update plugins (`:Lazy update`)          |
+| `f`       | 🔍 Find file using Telescope (`<leader>ff`) |
+| `n`       | ➕ Create a new empty buffer                |
+| `r`       | 📂 Open recent files (Telescope)            |
+| `g`       | 🔍 Find text (`<leader>fg`)                 |
+| `c`       | ⚙️ Open Neovim config files                 |
+| `M`       | 📦 Open Mason menu (`<leader>M`)            |
+| `l`       | ⚡ Open Lazy plugin manager (`<leader>ll`)  |
+| `q`       | 🚪 Quit Neovim (`<leader>q`)                |
 
 **Features:**
+
 - **Modern Design** - Clean, hyper-themed dashboard with shortcuts
 - **Plugin Updates** - Direct access to update plugins
 - **Quick Actions** - Fast access to common Neovim operations
 - **Theme Support** - Adapts to your current colorscheme
 
 ### Plugin Shortcuts
+
 - `:Dashboard` → Open dashboard
   - `:Lazy` → Open Lazy plugin manager
   - `:Lazy update` → Update all installed plugins
@@ -726,6 +773,7 @@ Display your current Neovim activity on Discord with workspace and file informat
   - `:Telescope oldfiles` → Open recent files
 
 ### 🔑 WhichKey Integration
+
 - Press `<Space>` (leader) and pause to see a popup of available keymaps.
 - Group headers configured:
   - `<leader>f` - **+telescope** (file search, buffers, grep, etc.)
@@ -743,12 +791,14 @@ Display your current Neovim activity on Discord with workspace and file informat
   - Trigger is set to leader in normal/visual mode with a short delay (200ms).
 
 ### 🔭 Telescope Features
+
 - **FZF Native Integration** - Native FZF sorter for optimal performance and fuzzy file support
 - **Fast File Finding** - Optimized file and generic sorters for quick navigation
 - **Comprehensive Keymaps** - Quick access with `<C-p>` and full leader-based mappings
 - **Diagnostics Integration** - Quick access to LSP diagnostics via `<leader>fd`
 
 ### 🧠 LSP (Language Server) Setup
+
 - Uses Neovim 0.11+ native LSP API with Mason for tool installation.
 - Enhanced with diagnostic signs, hover on cursor, and better UI.
 - Configured LSPs: `lua_ls`, `ts_ls`, `rust_analyzer`, `pylsp`, `clangd`, `gopls`, `tailwindcss`, `phpactor`, `dartls`, `ocamllsp`, `zls`, `sourcekit`.
@@ -760,24 +810,29 @@ Display your current Neovim activity on Discord with workspace and file informat
 **numb.nvim** peeks buffer lines when you enter `:{number}` commands, making it easy to see where you're jumping to.
 
 #### **Features**
+
 - **Visual Preview** - See the target line before jumping
 - **Centered Peeking** - Peeked line is centered in the window
 - **Non-Intrusive** - Only activates when typing line numbers in command mode
 - **Smart Display** - Shows line numbers and cursorline while peeking
 
 #### **Usage**
+
 Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
+
 1. Show a preview of that line
 2. Center it in the window
 3. Highlight it with cursorline
 4. Display line numbers for context
 
 **Example:**
+
 - Type `:25` to see line 25 before jumping
 - Type `:100` to preview line 100
 - Works with any number command like `:42d` (delete line 42)
 
 **Configuration:**
+
 - `show_numbers = true` - Show line numbers while peeking
 - `show_cursorline = true` - Highlight the peeked line
 - `hide_relativenumbers = true` - Hide relative numbers during peek
@@ -789,20 +844,23 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 **Flash.nvim** provides enhanced navigation with search labels, character motions, and Treesitter integration.
 
 #### **Basic Navigation**
-| Key / CMD | Mode | Description |
-|-----------|------|-------------|
-| `s` | Normal/Visual/Operator | Flash jump - Search and jump with labels |
-| `S` | Normal/Operator/Visual | Flash Treesitter - Navigate Treesitter nodes |
-| `r` | Operator | Remote Flash - Flash for operators (d, y, c, etc.) |
-| `R` | Operator/Visual | Treesitter Search - Search within Treesitter nodes |
-| `<c-s>` | Command | Toggle Flash Search - Enable/disable flash in command mode |
+
+| Key / CMD | Mode                   | Description                                                |
+| --------- | ---------------------- | ---------------------------------------------------------- |
+| `s`       | Normal/Visual/Operator | Flash jump - Search and jump with labels                   |
+| `S`       | Normal/Operator/Visual | Flash Treesitter - Navigate Treesitter nodes               |
+| `r`       | Operator               | Remote Flash - Flash for operators (d, y, c, etc.)         |
+| `R`       | Operator/Visual        | Treesitter Search - Search within Treesitter nodes         |
+| `<c-s>`   | Command                | Toggle Flash Search - Enable/disable flash in command mode |
 
 #### **Enhanced Character Motions**
+
 - **f/t/F/T with labels**: When enabled, pressing `f`, `t`, `F`, or `T` will show jump labels automatically
 - **Smart search**: Uses exact matching by default for precise navigation
 - **Multi-window**: Treesitter modes support searching across multiple windows
 
 #### **Features**
+
 - 🎯 **Jump Labels** - Visual labels appear on matches for quick navigation
 - 🌳 **Treesitter Integration** - Navigate code structure using Treesitter nodes
 - 🔍 **Backdrop Highlighting** - Dims non-matching text for better focus
@@ -810,6 +868,7 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 - 🎨 **Customizable** - Configurable labels, highlights, and behavior
 
 #### **Usage Tips**
+
 1. Press `s` to start a flash jump
 2. Type characters to search for matches
 3. Labels appear on all matches
@@ -822,17 +881,19 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 **Bufferline.nvim** provides a modern, snazzy buffer line with tab integration for Neovim.
 
 #### **Buffer Navigation**
-| Key / CMD | Description |
-|-----------|-------------|
-| `<S-h>` or `[b` | Navigate to previous buffer |
-| `<S-l>` or `]b` | Navigate to next buffer |
-| `<leader>bp` | Toggle pin current buffer |
-| `<leader>bP` | Delete all non-pinned buffers |
-| `<leader>bo` | Close all other buffers |
-| `<leader>br` | Close all buffers to the right |
-| `<leader>bl` | Close all buffers to the left |
+
+| Key / CMD       | Description                    |
+| --------------- | ------------------------------ |
+| `<S-h>` or `[b` | Navigate to previous buffer    |
+| `<S-l>` or `]b` | Navigate to next buffer        |
+| `<leader>bp`    | Toggle pin current buffer      |
+| `<leader>bP`    | Delete all non-pinned buffers  |
+| `<leader>bo`    | Close all other buffers        |
+| `<leader>br`    | Close all buffers to the right |
+| `<leader>bl`    | Close all buffers to the left  |
 
 #### **Features**
+
 - 🎨 **Modern Design** - Clean, snazzy buffer tabs with icons
 - 🔍 **LSP Integration** - Shows diagnostic indicators (errors/warnings) on buffers
 - 📌 **Buffer Pinning** - Pin important buffers to prevent accidental closure
@@ -843,6 +904,7 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 - 🔄 **Persistent Order** - Buffer order persists between sessions
 
 #### **Visual Features**
+
 - **Separator Style**: Slant separators between buffers
 - **Close Icons**: Visual close buttons on each buffer
 - **Modified Indicator**: Shows dot (●) for modified buffers
@@ -850,6 +912,7 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 - **Active Buffer Highlighting**: Clear visual indication of current buffer
 
 #### **Configuration Highlights**
+
 - Excludes alpha dashboard from bufferline
 - Supports sidebar offsets for file explorers (neo-tree, NvimTree)
 - Customizable diagnostics indicator
@@ -858,14 +921,16 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 ---
 
 ### 📊 Statusline (lualine.nvim)
+
 - **Always visible at the bottom** (global statusline)
 - Shows:
-  - Mode, branch, diff, diagnostics  
-  - Filename + relative path  
-  - Encoding / fileformat / filetype  
-  - Progress + location  
+  - Mode, branch, diff, diagnostics
+  - Filename + relative path
+  - Encoding / fileformat / filetype
+  - Progress + location
 
 **Extra Integrations:**
+
 - ✍️ **File information** → shows encoding, format, and file type
 - 🔍 **Diagnostics** → error/warning counts
 - 🌿 **Git branch** → current branch name
@@ -873,29 +938,34 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 ### 🎨 New Features
 
 #### Code Completion
+
 - **nvim-cmp** - Powerful completion engine with LSP integration
 - **LSP Integration** - Full LSP completion support
 - **Snippet Support** - Integrated with LuaSnip
 - **Multiple Sources** - LSP, snippets, buffer, and path completions
 
 #### Diagnostics
+
 - **Trouble.nvim** for beautiful diagnostics UI
 - Navigate diagnostics with `[d` and `]d`
 - Quick access to all error/warning/info/hint lists
 
 #### Auto-Formatting
+
 - **conform.nvim** for code formatting
 - Auto-format on save
 - Support for multiple formatters per language
 - LSP fallback if formatter not available
 
 #### Git Integration
+
 - **gitsigns.nvim** for inline git signs and hunk management
 - Navigate hunks with `]c` / `[c`
 - Stage / reset / preview hunks with `<leader>hs` / `<leader>hr` / `<leader>hp`
 - Line and full-buffer blame via `<leader>tb` and `<leader>gb`
 
 #### Performance
+
 - Lazy loading for better startup time
 - Disabled unused rtp plugins
 - Plugin lockfile (`lazy-lock.json`) pins versions; auto-update checks disabled for clean startup
@@ -905,21 +975,21 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 
 ## 📌 Notes
 
-* Built & tested on **Linux** (compatible with Windows/macOS).
-* **Enhanced Configuration:** Now includes completion, diagnostics, formatting, Git integration, and modern LSP setup.
-* **Performance Optimized:** Lazy loading, optimized settings, stable completion engine.
-* **Well Organized:** Proper directory structure following Neovim best practices.
-* **Telescope Integration:** Streamlined configuration with optimal performance.
-* **Theme Integration:** Dashboard and UI adapt to your current colorscheme.
-* **Auto-Formatting:** Configured for multiple languages with LSP fallback.
-* **Modern LSP:** Using Neovim 0.11+ native API with Mason for tool management.
-* **Completion:** nvim-cmp with LSP and snippet support.
+- Built & tested on **Linux** (compatible with Windows/macOS).
+- **Enhanced Configuration:** Now includes completion, diagnostics, formatting, Git integration, and modern LSP setup.
+- **Performance Optimized:** Lazy loading, optimized settings, stable completion engine.
+- **Well Organized:** Proper directory structure following Neovim best practices.
+- **Telescope Integration:** Streamlined configuration with optimal performance.
+- **Theme Integration:** Dashboard and UI adapt to your current colorscheme.
+- **Auto-Formatting:** Configured for multiple languages with LSP fallback.
+- **Modern LSP:** Using Neovim 0.11+ native API with Mason for tool management.
+- **Completion:** nvim-cmp with LSP and snippet support.
 
 ## 🚀 Getting Started
 
 1. **Install dependencies:** Mason will handle most tools, but ensure you have:
-    - Node.js (for some LSPs and tools)
-    - Language toolchains (Rust, Go, Python, etc.) for respective LSPs
+   - Node.js (for some LSPs and tools)
+   - Language toolchains (Rust, Go, Python, etc.) for respective LSPs
 
 2. **First launch:** Run `:Lazy sync` to install all plugins.
 
@@ -951,4 +1021,3 @@ Simply type `:{number}` in command mode (e.g., `:42`) and the plugin will:
 - **Lazy:** `<leader>ll/ls/lu/li/lc/lx` (plugin management)
 - **Mason:** `<leader>M` (package manager)
 - **Utils:** Boilerplates `blp/blc/got/rst/plc/cse` | Snippets `pov/mod/dio` | Loops `sfor/swh/sdo/srange` | Commands `:Sieve` `:PBDS` `:Pow`
-
