@@ -1,6 +1,19 @@
 -- Discord Rich Presence. Requires a native Discord client running (Vesktop /
 -- pacman `discord` / etc.) so that /run/user/$UID/discord-ipc-0 exists.
 -- Config uses cord.nvim v2 schema.
+
+-- Show " — N problems" if the current buffer has WARN-or-worse diagnostics.
+-- Inlined instead of using cord's `diagnostics` extension because that
+-- extension force-overrides `viewing`/`editing` back to "Viewing"/"Editing",
+-- which clashes with the "Reading" wording chosen below.
+local function problems_suffix(bufnr)
+	local n = #vim.diagnostic.get(bufnr or 0, {
+		severity = { min = vim.diagnostic.severity.WARN },
+	})
+	if n == 0 then return "" end
+	return " — " .. n .. " " .. (n == 1 and "problem" or "problems")
+end
+
 return {
 	"vyfor/cord.nvim",
 	event = "VeryLazy",
@@ -37,8 +50,8 @@ return {
 			workspace = function(opts)
 				return (opts.workspace and opts.workspace ~= "") and ("In " .. opts.workspace) or "In nvim"
 			end,
-			viewing = function(opts) return "Reading " .. opts.filename end,
-			editing = function(opts) return "Editing " .. opts.filename end,
+			viewing = function(opts) return "Reading " .. opts.filename .. problems_suffix() end,
+			editing = function(opts) return "Editing " .. opts.filename .. problems_suffix() end,
 			file_browser = function(opts) return "Browsing files in " .. opts.name end,
 			plugin_manager = function(opts) return "Managing plugins in " .. opts.name end,
 			lsp = function(opts) return "Configuring LSP in " .. opts.name end,
@@ -55,6 +68,15 @@ return {
 		buttons = {
 			-- Up to 2 buttons. Discord requires http(s) URLs.
 			{ label = "GitHub", url = "https://github.com/yashksaini-coder" },
+		},
+		hooks = {
+			-- Emit a one-time notification when the Discord handshake completes.
+			-- Fires when the session enters `ready`; helps confirm setup on first use.
+			ready = function()
+				vim.schedule(function()
+					vim.notify("Connected to Discord", vim.log.levels.INFO, { title = "cord.nvim" })
+				end)
+			end,
 		},
 		advanced = {
 			discord = {
