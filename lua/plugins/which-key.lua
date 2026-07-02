@@ -33,14 +33,12 @@ return {
 				{ "<leader>h", group = "git hunks" },
 				{ "<leader>k", group = "man/docs" },
 				{ "<leader>l", group = "lazy" },
-				{ "<leader>L", group = "leetcode" },
 				{ "<leader>m", group = "markdown/make/minimap" },
 				{ "<leader>q", desc = "Quit all" },
 				{ "<leader>r", group = "rust (ferris)" },
 				{ "<leader>s", group = "search/snippets" },
 				{ "<leader>t", group = "terminal/tabs" },
-				{ "<leader>T", group = "go to tab (T1-T9)" },
-				{ "<leader>tm", group = "tab move" },
+				{ "<leader>T", group = "tabs (goto T1-T9, move Tm{r,l})" },
 				{ "<leader>x", group = "trouble/diagnostics" },
 
 				-- Buffer operations

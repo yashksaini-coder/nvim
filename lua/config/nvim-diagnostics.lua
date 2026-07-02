@@ -36,7 +36,9 @@ end
 -- overlaps with noice.nvim hover/signature floats, and fights with manual <leader>d.
 -- Use <leader>d to show diagnostics on demand instead.
 
--- Keymap to show diagnostics
-vim.keymap.set("n", "<leader>d", function()
+-- Show line diagnostics in a float. Moved from `<leader>d` to `<leader>xd`
+-- (under the trouble/diagnostics group) because `<leader>d*` is the DAP prefix
+-- and a leaf on `<leader>d` forced a timeoutlen delay before DAP subkeys.
+vim.keymap.set("n", "<leader>xd", function()
 	vim.diagnostic.open_float(nil, { border = "rounded" })
-end, { desc = "Show diagnostics" })
+end, { desc = "Show line diagnostics" })

@@ -10,9 +10,10 @@ vim.keymap.set("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Close other tabs
 vim.keymap.set("n", "gt", "<cmd>tabnext<cr>", { desc = "Next tab" })
 vim.keymap.set("n", "gT", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
--- Tab movement
-vim.keymap.set("n", "<leader>tmr", "<cmd>tabmove +1<cr>", { desc = "Move tab right" })
-vim.keymap.set("n", "<leader>tml", "<cmd>tabmove -1<cr>", { desc = "Move tab left" })
+-- Tab movement — under `<leader>T` (tabs) instead of `<leader>tm` to avoid
+-- shadowing `<leader>tm` (System Monitor) in terminal.lua.
+vim.keymap.set("n", "<leader>Tmr", "<cmd>tabmove +1<cr>", { desc = "Move tab right" })
+vim.keymap.set("n", "<leader>Tml", "<cmd>tabmove -1<cr>", { desc = "Move tab left" })
 
 -- Go to specific tab (T1-T9 to avoid conflict with terminal t1-t4)
 for i = 1, 9 do
