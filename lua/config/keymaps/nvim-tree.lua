@@ -1,2 +1,0 @@
--- nvim-tree keymaps are defined in the plugin file (lua/plugins/nvim-tree.lua)
--- via lazy.nvim's `keys` table, which also handles lazy-loading.

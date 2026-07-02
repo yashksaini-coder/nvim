@@ -1,2 +1,0 @@
--- Telescope keymaps are now defined in the plugin file (lua/plugins/telescope.lua)
--- This file is kept for reference but keymaps are managed by lazy.nvim via the plugin's keys table

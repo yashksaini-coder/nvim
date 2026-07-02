@@ -1,3 +1,0 @@
--- Bufferline keymaps are defined in the plugin file (lua/plugins/bufferline.lua)
--- via lazy.nvim's `keys` table, which also handles lazy-loading.
--- Duplicating them here would cause double registration.
