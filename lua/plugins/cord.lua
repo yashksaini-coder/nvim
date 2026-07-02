@@ -1,13 +1,13 @@
--- Discord Rich Presence. First launch fetches the server binary automatically
--- (advanced.server.update = "fetch"). Config uses cord.nvim v2 schema — the
--- old top-level `client`/`icon` are now under `editor`.
+-- Discord Rich Presence. Requires a native Discord client running (Vesktop /
+-- pacman `discord` / etc.) so that /run/user/$UID/discord-ipc-0 exists.
+-- Config uses cord.nvim v2 schema.
 return {
 	"vyfor/cord.nvim",
 	event = "VeryLazy",
 	---@type CordConfig
 	opts = {
 		editor = {
-			-- Show up as Vim on Discord (matches your earlier preference).
+			-- Show up as Vim on Discord.
 			client = "vim",
 			icon = "vim",
 			tooltip = "The Superior Text Editor",
@@ -19,16 +19,15 @@ return {
 		},
 		timestamp = {
 			enabled = true,
-			-- Fresh "coding for" counter each time you switch projects, so time
-			-- reflects the current session in this workspace, not total nvim uptime.
+			-- Reset the "coding for X" counter each time you cd into a new project.
 			reset_on_change = true,
 			reset_on_idle = false,
 		},
 		idle = {
 			enabled = true,
-			timeout = 5 * 60 * 1000, -- 5 min untouched → idle
+			timeout = 5 * 60 * 1000, -- 5 minutes of inactivity → idle
 			show_status = true,
-			ignore_focus = true, -- go idle even if nvim keeps window focus
+			ignore_focus = true,
 			smart_idle = true,
 			details = "Idling",
 			tooltip = "💤",
@@ -54,13 +53,12 @@ return {
 			dashboard = "On the dashboard",
 		},
 		buttons = {
-			-- Up to 2 buttons. Discord validates URLs must be http(s).
+			-- Up to 2 buttons. Discord requires http(s) URLs.
 			{ label = "GitHub", url = "https://github.com/yashksaini-coder" },
 		},
 		advanced = {
 			discord = {
-				-- Retry when Discord starts later or restarts; without this cord
-				-- silently gives up on the initial connection.
+				-- Retry when Discord starts later or restarts.
 				reconnect = { enabled = true, interval = 30000, initial = true },
 			},
 		},
