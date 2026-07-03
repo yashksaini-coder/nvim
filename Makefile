@@ -7,7 +7,7 @@ MASON_BIN    := $(HOME)/.local/share/nvim/mason/bin
 LUA_FILES    := $(shell find $(ROOT)/lua $(ROOT)/plugin $(ROOT)/after -name '*.lua' 2>/dev/null)
 STYLUA_TOML  := $(ROOT)/stylua.toml
 STYLUA       := $(MASON_BIN)/stylua
-LUACHECK     := $(MASON_BIN)/luacheck
+LUACHECK     := luacheck
 JOBS         := $(shell nproc 2>/dev/null || echo 4)
 
 .PHONY: all fmt lint check clean fmt-fix help
