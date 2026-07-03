@@ -1,1116 +1,398 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>nvim :: keymaps :: yashksaini-coder</title>
-    <meta
-      name="description"
-      content="Keymap reference for yashksaini-coder/nvim — Neovim config keymaps by prefix."
-    />
-    <meta name="color-scheme" content="dark" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=VT323&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main class="crt">
-      <header class="hero">
-        <pre class="ascii-title" aria-label="NVIM keymap reference">
-    ███╗   ██╗██╗   ██╗██╗███╗   ███╗
-    ████╗  ██║██║   ██║██║████╗ ████║
-    ██╔██╗ ██║██║   ██║██║██╔████╔██║
-    ██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║
-    ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║
-    ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
-        </pre>
-        <p class="hero-sub">
-          keymap reference &nbsp;<span class="dim">::</span>&nbsp;
-          <a href="https://github.com/yashksaini-coder/nvim" rel="noopener"
-            >yashksaini-coder/nvim</a
-          >
-        </p>
-        <p class="hero-legend">
-          <span class="dim">leader</span> =
-          <span class="key">SPC</span> &nbsp;&middot;&nbsp; press
-          <span class="key">/</span> to filter &nbsp;&middot;&nbsp;
-          <span class="key">Esc</span> resets
-        </p>
-      </header>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>nvim.keys — yashksaini-coder</title>
+<meta name="description" content="Keymap reference for yashksaini-coder/nvim — grouped by leader prefix.">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="page">
 
-      <section class="search" aria-label="Filter">
-        <label class="prompt" for="q">&gt;&nbsp;filter</label>
-        <input
-          type="search"
-          id="q"
-          placeholder="type to search &mdash; e.g. buffer, dap, rust, sfor"
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="off"
-          spellcheck="false"
-        />
-        <span class="cursor" aria-hidden="true">▊</span>
-      </section>
+  <header class="hero">
+    <h1 class="logo">nvim<span class="dot">.</span>keys</h1>
+    <p class="hero-sub">keymap reference · <a href="https://github.com/yashksaini-coder/nvim" rel="noopener">yashksaini-coder/nvim</a></p>
+    <p class="hero-legend">
+      <kbd>&lt;leader&gt;</kbd> is <kbd>SPC</kbd>
+      <span class="sep">·</span>
+      press <kbd>/</kbd> to filter
+      <span class="sep">·</span>
+      <kbd>Esc</kbd> resets
+    </p>
+  </header>
 
-      <nav class="quick-jump" aria-label="Jump to section">
-        <span class="prompt dim">&gt;&nbsp;jump</span>
-        <a href="#globals">globals</a>
-        <a href="#windows">windows</a>
-        <a href="#buffer">buffer</a>
-        <a href="#find">find</a>
-        <a href="#git">git</a>
-        <a href="#code">code</a>
-        <a href="#crates">crates</a>
-        <a href="#debug">debug</a>
-        <a href="#rust">rust</a>
-        <a href="#docs">docs</a>
-        <a href="#terminal">terminal</a>
-        <a href="#tabs">tabs</a>
-        <a href="#trouble">trouble</a>
-        <a href="#markdown">markdown</a>
-        <a href="#themes">themes</a>
-        <a href="#lazy">lazy</a>
-        <a href="#mason">mason</a>
-        <a href="#dashboard">dashboard</a>
-        <a href="#boilerplates">boilerplates</a>
-        <a href="#snippets">snippets</a>
-        <a href="#animations">animations</a>
-        <a href="#misc">misc</a>
-      </nav>
+  <div class="search-wrap">
+    <div class="search">
+      <span class="search-icon" aria-hidden="true">/</span>
+      <input type="search" id="q" placeholder="filter keymaps — e.g. buffer, dap, rust, sfor" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Filter keymaps">
+      <span class="search-count" id="count" aria-live="polite"></span>
+    </div>
+  </div>
 
-      <!-- ═══════════════ GLOBALS ═══════════════ -->
-      <section class="group" id="globals" data-tags="global editor essential">
-        <h2 class="group-title">═&nbsp;globals</h2>
-        <p class="group-hint">The always-there keys.</p>
-        <ul class="keymaps">
-          <li class="km" data-tags="clear search highlight">
-            <span class="key">Esc</span
-            ><span class="desc">Clear search highlights</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km" data-tags="save write file">
-            <span class="key">Ctrl s</span><span class="desc">Save file</span
-            ><span class="mode">n i x s</span>
-          </li>
-          <li class="km" data-tags="quit exit">
-            <span class="key"><i>SPC</i> q</span
-            ><span class="desc">Quit all</span><span class="mode">n</span>
-          </li>
-          <li class="km" data-tags="which-key buffer keymap help">
-            <span class="key"><i>SPC</i> ?</span
-            ><span class="desc">Buffer keymaps (which-key)</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <nav class="jump" aria-label="Jump to section">
+    <a href="#globals">globals</a>
+    <a href="#windows">windows</a>
+    <a href="#buffer">buffer</a>
+    <a href="#find">find</a>
+    <a href="#git">git</a>
+    <a href="#code">code</a>
+    <a href="#crates">crates</a>
+    <a href="#debug">debug</a>
+    <a href="#rust">rust</a>
+    <a href="#docs">docs</a>
+    <a href="#terminal">terminal</a>
+    <a href="#tabs">tabs</a>
+    <a href="#trouble">trouble</a>
+    <a href="#markdown">markdown</a>
+    <a href="#themes">themes</a>
+    <a href="#lazy">lazy</a>
+    <a href="#mason">mason</a>
+    <a href="#noice">noice</a>
+    <a href="#boilerplates">boilerplates</a>
+    <a href="#snippets">snippets</a>
+    <a href="#animations">animations</a>
+    <a href="#misc">misc</a>
+  </nav>
 
-      <!-- ═══════════════ WINDOWS ═══════════════ -->
-      <section
-        class="group"
-        id="windows"
-        data-tags="window split pane navigate"
-      >
-        <h2 class="group-title">═&nbsp;windows</h2>
-        <p class="group-hint">Navigate and resize splits.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key">Ctrl h</span
-            ><span class="desc">Move to left window</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">Ctrl j</span
-            ><span class="desc">Move to lower window</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">Ctrl k</span
-            ><span class="desc">Move to upper window</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">Ctrl l</span
-            ><span class="desc">Move to right window</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">Ctrl ↑</span
-            ><span class="desc">Increase window height</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">Ctrl ↓</span
-            ><span class="desc">Decrease window height</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">Ctrl ←</span
-            ><span class="desc">Decrease window width</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">Ctrl →</span
-            ><span class="desc">Increase window width</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km" data-tags="hydra">
-            <span class="key">Ctrl w Space</span
-            ><span class="desc">Window hydra (which-key)</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="globals" data-tags="global editor essential save quit">
+    <h2 class="group-title">globals</h2>
+    <p class="group-hint">Always-there keys.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key">Esc</span><span class="desc">Clear search highlights</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-s&gt;</span><span class="desc">Save file</span><span class="mode">n i x s</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>q</span><span class="desc">Quit all</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>?</span><span class="desc">Buffer keymaps (which-key)</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ BUFFER ═══════════════ -->
-      <section class="group" id="buffer" data-tags="buffer bufferline">
-        <h2 class="group-title">═&nbsp;buffer</h2>
-        <p class="group-hint"><i>SPC</i> b · bufferline &amp; buffer ops.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> b d</span
-            ><span class="desc">Delete buffer</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> b p</span
-            ><span class="desc">Toggle pin</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> b P</span
-            ><span class="desc">Delete non-pinned</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> b o</span
-            ><span class="desc">Close other buffers</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> b r</span
-            ><span class="desc">Close buffers right</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> b l</span
-            ><span class="desc">Close buffers left</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> b m</span
-            ><span class="desc">Move buffer next</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> b M</span
-            ><span class="desc">Move buffer prev</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">S h</span><span class="desc">Prev buffer</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">S l</span><span class="desc">Next buffer</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">[ b</span><span class="desc">Prev buffer</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">] b</span><span class="desc">Next buffer</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="windows" data-tags="window split pane navigate resize hydra">
+    <h2 class="group-title">windows</h2>
+    <p class="group-hint">Navigate &amp; resize splits.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key">&lt;C-h&gt;</span><span class="desc">Move to left window</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-j&gt;</span><span class="desc">Move to lower window</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-k&gt;</span><span class="desc">Move to upper window</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-l&gt;</span><span class="desc">Move to right window</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-Up&gt;</span><span class="desc">Increase height</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-Down&gt;</span><span class="desc">Decrease height</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-Left&gt;</span><span class="desc">Decrease width</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-Right&gt;</span><span class="desc">Increase width</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-w&gt;&lt;Space&gt;</span><span class="desc">Window hydra (which-key)</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ FIND / TELESCOPE ═══════════════ -->
-      <section class="group" id="find" data-tags="file find telescope search">
-        <h2 class="group-title">═&nbsp;file &amp; find</h2>
-        <p class="group-hint"><i>SPC</i> f · Telescope pickers.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> f f</span
-            ><span class="desc">Find files</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">Ctrl p</span><span class="desc">Find files</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> f r</span
-            ><span class="desc">Recent files</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> f R</span
-            ><span class="desc">Recent files (cwd)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> f g</span
-            ><span class="desc">Live grep</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> f s</span
-            ><span class="desc">Grep string under cursor</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> f b</span
-            ><span class="desc">Find buffers</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> f h</span
-            ><span class="desc">Help tags</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> f d</span
-            ><span class="desc">Diagnostics</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> f p</span
-            ><span class="desc">Projects</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> f m</span
-            ><span class="desc">Format file / range</span
-            ><span class="mode">n v</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="buffer" data-tags="buffer bufferline pin delete close move">
+    <h2 class="group-title">buffer</h2>
+    <p class="group-hint"><code>&lt;leader&gt;b</code> — bufferline &amp; buffer ops.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bd</span><span class="desc">Delete buffer</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bp</span><span class="desc">Toggle pin</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bP</span><span class="desc">Delete non-pinned</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bo</span><span class="desc">Close other buffers</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>br</span><span class="desc">Close buffers right</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bl</span><span class="desc">Close buffers left</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bm</span><span class="desc">Move buffer next</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bM</span><span class="desc">Move buffer prev</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;S-h&gt;</span><span class="desc">Prev buffer</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;S-l&gt;</span><span class="desc">Next buffer</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">[b</span><span class="desc">Prev buffer</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">]b</span><span class="desc">Next buffer</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ GIT ═══════════════ -->
-      <section
-        class="group"
-        id="git"
-        data-tags="git gitsigns lazygit hunk blame diff"
-      >
-        <h2 class="group-title">═&nbsp;git</h2>
-        <p class="group-hint">
-          <i>SPC</i> g / <i>SPC</i> h · gitsigns hunks, lazygit &amp; friends.
-        </p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> g g</span
-            ><span class="desc">Open Lazygit (toggleterm)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> g l</span
-            ><span class="desc">Lazygit log (cwd, snacks)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> g d</span
-            ><span class="desc">Go to definition (LSP)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> g r</span
-            ><span class="desc">Go to references (LSP)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> h s</span
-            ><span class="desc">Stage hunk</span><span class="mode">n v</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> h r</span
-            ><span class="desc">Reset hunk</span><span class="mode">n v</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> h S</span
-            ><span class="desc">Stage buffer</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> h R</span
-            ><span class="desc">Reset buffer</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> h p</span
-            ><span class="desc">Preview hunk</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> h i</span
-            ><span class="desc">Preview hunk inline</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> h b</span
-            ><span class="desc">Blame line</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> h d</span
-            ><span class="desc">Diff this</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">[ c</span><span class="desc">Prev git hunk</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">] c</span><span class="desc">Next git hunk</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="find" data-tags="file find telescope search grep help project format">
+    <h2 class="group-title">file &amp; find</h2>
+    <p class="group-hint"><code>&lt;leader&gt;f</code> — Telescope pickers.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ff</span><span class="desc">Find files</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-p&gt;</span><span class="desc">Find files</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fr</span><span class="desc">Recent files</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fR</span><span class="desc">Recent files (cwd)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fg</span><span class="desc">Live grep</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fs</span><span class="desc">Grep string under cursor</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fb</span><span class="desc">Find buffers</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fh</span><span class="desc">Help tags</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fd</span><span class="desc">Diagnostics</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fp</span><span class="desc">Projects</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fm</span><span class="desc">Format file / range</span><span class="mode">n v</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ CODE / LSP ═══════════════ -->
-      <section
-        class="group"
-        id="code"
-        data-tags="lsp code hover definition references action explorer outline format"
-      >
-        <h2 class="group-title">═&nbsp;code &amp; lsp</h2>
-        <p class="group-hint">LSP actions, explorer, outline.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key">K</span><span class="desc">LSP hover</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c a</span
-            ><span class="desc">Code action</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c s</span
-            ><span class="desc">Symbols (Trouble)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c l</span
-            ><span class="desc">LSP definitions / references (Trouble)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> e</span
-            ><span class="desc">Toggle Explorer (nvim-tree)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> o</span
-            ><span class="desc">Toggle outline (aerial)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> f m</span
-            ><span class="desc">Format file / range (conform)</span
-            ><span class="mode">n v</span>
-          </li>
-          <li class="km">
-            <span class="key">g x</span
-            ><span class="desc">Open with system app</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="git" data-tags="git gitsigns lazygit hunk blame diff stage reset">
+    <h2 class="group-title">git</h2>
+    <p class="group-hint"><code>&lt;leader&gt;g</code> · <code>&lt;leader&gt;h</code> — gitsigns hunks, lazygit &amp; friends.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gg</span><span class="desc">Open Lazygit (toggleterm)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gl</span><span class="desc">Lazygit log — cwd (snacks)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gd</span><span class="desc">Go to definition (LSP)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gr</span><span class="desc">Go to references (LSP)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hs</span><span class="desc">Stage hunk</span><span class="mode">n v</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hr</span><span class="desc">Reset hunk</span><span class="mode">n v</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hS</span><span class="desc">Stage buffer</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hR</span><span class="desc">Reset buffer</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hp</span><span class="desc">Preview hunk</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hi</span><span class="desc">Preview hunk inline</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hb</span><span class="desc">Blame line</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hd</span><span class="desc">Diff this</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">[c</span><span class="desc">Prev git hunk</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">]c</span><span class="desc">Next git hunk</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ CRATES ═══════════════ -->
-      <section class="group" id="crates" data-tags="crates rust cargo toml">
-        <h2 class="group-title">
-          ═&nbsp;crates &nbsp;<i class="ghost">(cargo.toml)</i>
-        </h2>
-        <p class="group-hint"><i>SPC</i> c · crates.nvim in Cargo.toml.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> c t</span
-            ><span class="desc">Toggle crates info</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c r</span
-            ><span class="desc">Reload crates</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c v</span
-            ><span class="desc">Show crate versions</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c f</span
-            ><span class="desc">Show crate features</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c d</span
-            ><span class="desc">Show crate dependencies</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c u</span
-            ><span class="desc">Update crate / crates</span
-            ><span class="mode">n v</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c U</span
-            ><span class="desc">Upgrade crate / crates</span
-            ><span class="mode">n v</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c p a</span
-            ><span class="desc">Update all crates</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c A</span
-            ><span class="desc">Upgrade all crates</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c x</span
-            ><span class="desc">Expand crate to inline table</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c X</span
-            ><span class="desc">Extract crate to table</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c H</span
-            ><span class="desc">Open crate homepage</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c R</span
-            ><span class="desc">Open crate repository</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c D</span
-            ><span class="desc">Open crate documentation</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c C</span
-            ><span class="desc">Open crate on crates.io</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c L</span
-            ><span class="desc">Open crate on lib.rs</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="code" data-tags="lsp code hover definition references action explorer outline format symbol">
+    <h2 class="group-title">code &amp; lsp</h2>
+    <p class="group-hint">LSP actions, explorer, outline.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key">K</span><span class="desc">LSP hover</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ca</span><span class="desc">Code action</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cs</span><span class="desc">Symbols (Trouble)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cl</span><span class="desc">LSP defs / refs (Trouble)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>e</span><span class="desc">Toggle Explorer (nvim-tree)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>o</span><span class="desc">Toggle outline (aerial)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fm</span><span class="desc">Format file / range (conform)</span><span class="mode">n v</span></li>
+      <li class="km"><span class="key">gx</span><span class="desc">Open with system app</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ DEBUG (DAP) ═══════════════ -->
-      <section class="group" id="debug" data-tags="debug dap breakpoint step">
-        <h2 class="group-title">
-          ═&nbsp;debug &nbsp;<i class="ghost">(dap)</i>
-        </h2>
-        <p class="group-hint"><i>SPC</i> d · nvim-dap controls.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> d b</span
-            ><span class="desc">Toggle breakpoint</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> d B</span
-            ><span class="desc">Conditional breakpoint</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> d c</span
-            ><span class="desc">Continue / start</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> d i</span
-            ><span class="desc">Step into</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> d o</span
-            ><span class="desc">Step over</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> d O</span
-            ><span class="desc">Step out</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> d r</span
-            ><span class="desc">Toggle REPL</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> d l</span
-            ><span class="desc">Run last</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> d u</span
-            ><span class="desc">Toggle DAP UI</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> d t</span
-            ><span class="desc">Terminate</span><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="crates" data-tags="crates rust cargo toml versions features dependencies">
+    <h2 class="group-title">crates <span class="group-suffix">cargo.toml</span></h2>
+    <p class="group-hint"><code>&lt;leader&gt;c</code> — crates.nvim in Cargo.toml.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ct</span><span class="desc">Toggle crates info</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cr</span><span class="desc">Reload crates</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cv</span><span class="desc">Show crate versions</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cf</span><span class="desc">Show crate features</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cd</span><span class="desc">Show crate dependencies</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cu</span><span class="desc">Update crate / crates</span><span class="mode">n v</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cU</span><span class="desc">Upgrade crate / crates</span><span class="mode">n v</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cpa</span><span class="desc">Update all crates</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cA</span><span class="desc">Upgrade all crates</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cx</span><span class="desc">Expand crate to inline table</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cX</span><span class="desc">Extract crate to table</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cH</span><span class="desc">Open crate homepage</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cR</span><span class="desc">Open crate repository</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cD</span><span class="desc">Open crate documentation</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cC</span><span class="desc">Open crate on crates.io</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cL</span><span class="desc">Open crate on lib.rs</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ RUST (FERRIS) ═══════════════ -->
-      <section
-        class="group"
-        id="rust"
-        data-tags="rust ferris hir mir macro cargo"
-      >
-        <h2 class="group-title">
-          ═&nbsp;rust &nbsp;<i class="ghost">(ferris)</i>
-        </h2>
-        <p class="group-hint">
-          <i>SPC</i> r · rust-analyzer extras in .rs files.
-        </p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> r m</span
-            ><span class="desc">Expand macro</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r j</span
-            ><span class="desc">Join lines</span><span class="mode">n v</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r h</span
-            ><span class="desc">View HIR</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r l</span
-            ><span class="desc">View MIR</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r s</span
-            ><span class="desc">View memory layout</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r t</span
-            ><span class="desc">View syntax tree</span
-            ><span class="mode">n v</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r i</span
-            ><span class="desc">View item tree</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r c</span
-            ><span class="desc">Open Cargo.toml</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r p</span
-            ><span class="desc">Parent module</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r d</span
-            ><span class="desc">Open documentation</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r w</span
-            ><span class="desc">Reload workspace</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r b</span
-            ><span class="desc">Rebuild proc macros</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="debug" data-tags="debug dap breakpoint step continue repl">
+    <h2 class="group-title">debug <span class="group-suffix">dap</span></h2>
+    <p class="group-hint"><code>&lt;leader&gt;d</code> — nvim-dap controls.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>db</span><span class="desc">Toggle breakpoint</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dB</span><span class="desc">Conditional breakpoint</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dc</span><span class="desc">Continue / start</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>di</span><span class="desc">Step into</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>do</span><span class="desc">Step over</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dO</span><span class="desc">Step out</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dr</span><span class="desc">Toggle REPL</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dl</span><span class="desc">Run last</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>du</span><span class="desc">Toggle DAP UI</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dt</span><span class="desc">Terminate</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ DOCS / MAN ═══════════════ -->
-      <section
-        class="group"
-        id="docs"
-        data-tags="docs man manpage keymap reference help"
-      >
-        <h2 class="group-title">═&nbsp;docs &amp; man</h2>
-        <p class="group-hint"><i>SPC</i> k · reach for a manual.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> k k</span
-            ><span class="desc">Open this keymap reference site</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> k m</span
-            ><span class="desc">Open man page (prompted)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> k w</span
-            ><span class="desc">Man page for word under cursor</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="rust" data-tags="rust ferris hir mir macro cargo module documentation workspace">
+    <h2 class="group-title">rust <span class="group-suffix">ferris</span></h2>
+    <p class="group-hint"><code>&lt;leader&gt;r</code> — rust-analyzer extras in .rs files.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rm</span><span class="desc">Expand macro</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rj</span><span class="desc">Join lines</span><span class="mode">n v</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rh</span><span class="desc">View HIR</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rl</span><span class="desc">View MIR</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rs</span><span class="desc">View memory layout</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rt</span><span class="desc">View syntax tree</span><span class="mode">n v</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ri</span><span class="desc">View item tree</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rc</span><span class="desc">Open Cargo.toml</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rp</span><span class="desc">Parent module</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rd</span><span class="desc">Open documentation</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rw</span><span class="desc">Reload workspace</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rb</span><span class="desc">Rebuild proc macros</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ TERMINAL ═══════════════ -->
-      <section
-        class="group"
-        id="terminal"
-        data-tags="terminal toggleterm shell repl python node system monitor"
-      >
-        <h2 class="group-title">═&nbsp;terminal</h2>
-        <p class="group-hint">
-          <i>SPC</i> t · toggleterm splits, REPLs, monitor.
-        </p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key">Ctrl \</span
-            ><span class="desc">Toggle terminal</span
-            ><span class="mode">n t</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t f</span
-            ><span class="desc">Terminal (float)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t h</span
-            ><span class="desc">Terminal (horizontal)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t v</span
-            ><span class="desc">Terminal (vertical)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t p</span
-            ><span class="desc">Python REPL</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t N</span
-            ><span class="desc">Node REPL</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t m</span
-            ><span class="desc">System Monitor</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t a</span
-            ><span class="desc">Toggle all terminals</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t s</span
-            ><span class="desc">Select terminal / send to terminal</span
-            ><span class="mode">n v</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t 1</span
-            ><span class="desc">Terminal 1</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t 2</span
-            ><span class="desc">Terminal 2</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t 3</span
-            ><span class="desc">Terminal 3</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t 4</span
-            ><span class="desc">Terminal 4</span><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="docs" data-tags="docs man manpage keymap reference help">
+    <h2 class="group-title">docs &amp; man</h2>
+    <p class="group-hint"><code>&lt;leader&gt;k</code> — reach for a manual.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>kk</span><span class="desc">Open this keymap reference site</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>km</span><span class="desc">Open man page (prompted)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>kw</span><span class="desc">Man page for word under cursor</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ TABS ═══════════════ -->
-      <section class="group" id="tabs" data-tags="tab tabs mini-tabline">
-        <h2 class="group-title">═&nbsp;tabs</h2>
-        <p class="group-hint">
-          <i>SPC</i> T · goto Tn, move Tm{r,l}. <i>SPC</i> t · new/close/only.
-        </p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> t n</span
-            ><span class="desc">New tab</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t c</span
-            ><span class="desc">Close tab</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> t o</span
-            ><span class="desc">Close other tabs</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">g t</span><span class="desc">Next tab</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">g T</span><span class="desc">Previous tab</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> T m r</span
-            ><span class="desc">Move tab right</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> T m l</span
-            ><span class="desc">Move tab left</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> T 1..9</span
-            ><span class="desc">Go to tab N</span><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="terminal" data-tags="terminal toggleterm shell repl python node system monitor float horizontal vertical">
+    <h2 class="group-title">terminal</h2>
+    <p class="group-hint"><code>&lt;leader&gt;t</code> — toggleterm splits, REPLs, monitor.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key">&lt;C-\&gt;</span><span class="desc">Toggle terminal</span><span class="mode">n t</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tf</span><span class="desc">Terminal (float)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>th</span><span class="desc">Terminal (horizontal)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tv</span><span class="desc">Terminal (vertical)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tp</span><span class="desc">Python REPL</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tN</span><span class="desc">Node REPL</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tm</span><span class="desc">System Monitor</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ta</span><span class="desc">Toggle all terminals</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ts</span><span class="desc">Select terminal / send to terminal</span><span class="mode">n v</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>t1</span><span class="desc">Terminal 1</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>t2</span><span class="desc">Terminal 2</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>t3</span><span class="desc">Terminal 3</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>t4</span><span class="desc">Terminal 4</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ TROUBLE / DIAGNOSTICS ═══════════════ -->
-      <section
-        class="group"
-        id="trouble"
-        data-tags="trouble diagnostics quickfix loclist"
-      >
-        <h2 class="group-title">═&nbsp;trouble &amp; diagnostics</h2>
-        <p class="group-hint"><i>SPC</i> x · trouble.nvim panels + float.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> x d</span
-            ><span class="desc">Show line diagnostics (float)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> x x</span
-            ><span class="desc">Diagnostics (Trouble)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> x X</span
-            ><span class="desc">Buffer diagnostics (Trouble)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> x L</span
-            ><span class="desc">Location list (Trouble)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> x Q</span
-            ><span class="desc">Quickfix list (Trouble)</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="tabs" data-tags="tab tabs mini-tabline goto move new close">
+    <h2 class="group-title">tabs</h2>
+    <p class="group-hint"><code>&lt;leader&gt;T</code> — goto <code>Tn</code>, move <code>Tm{r,l}</code>. <code>&lt;leader&gt;t</code> — new / close / only.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tn</span><span class="desc">New tab</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tc</span><span class="desc">Close tab</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>to</span><span class="desc">Close other tabs</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">gt</span><span class="desc">Next tab</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">gT</span><span class="desc">Previous tab</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>Tmr</span><span class="desc">Move tab right</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>Tml</span><span class="desc">Move tab left</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>T1..9</span><span class="desc">Go to tab N</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ MARKDOWN, MAKE, MINIMAP ═══════════════ -->
-      <section
-        class="group"
-        id="markdown"
-        data-tags="markdown make mini-map compile build run"
-      >
-        <h2 class="group-title">═&nbsp;markdown, make, minimap</h2>
-        <p class="group-hint">
-          <i>SPC</i> m · render-markdown + native make + minimap.
-        </p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> m p</span
-            ><span class="desc">Toggle markdown preview (render-markdown)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> m b</span
-            ><span class="desc">Make: build (C / C++)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> m r</span
-            ><span class="desc">Make: build &amp; run</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> m T</span
-            ><span class="desc">Make: toggle results (quickfix)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> m x</span
-            ><span class="desc">Make: run</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">F5</span
-            ><span class="desc">Build C / C++ program</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">F6</span
-            ><span class="desc">Build &amp; run C / C++ program</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">F7</span
-            ><span class="desc">Toggle compilation results</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">F8</span
-            ><span class="desc">Run C / C++ program</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="trouble" data-tags="trouble diagnostics quickfix loclist location">
+    <h2 class="group-title">trouble &amp; diagnostics</h2>
+    <p class="group-hint"><code>&lt;leader&gt;x</code> — trouble.nvim panels + line float.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xd</span><span class="desc">Show line diagnostics (float)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xx</span><span class="desc">Diagnostics (Trouble)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xX</span><span class="desc">Buffer diagnostics (Trouble)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xL</span><span class="desc">Location list (Trouble)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xQ</span><span class="desc">Quickfix list (Trouble)</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ THEMES ═══════════════ -->
-      <section class="group" id="themes" data-tags="theme themery colorscheme">
-        <h2 class="group-title">═&nbsp;themes</h2>
-        <p class="group-hint">Themery picker.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> t H</span
-            ><span class="desc">Theme: open Themery</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="markdown" data-tags="markdown make mini-map compile build run function-keys f5 f6 f7 f8">
+    <h2 class="group-title">markdown, make, minimap</h2>
+    <p class="group-hint"><code>&lt;leader&gt;m</code> — render-markdown, native make, minimap.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mp</span><span class="desc">Toggle markdown preview (render-markdown)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mb</span><span class="desc">Make: build (C / C++)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mr</span><span class="desc">Make: build &amp; run</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mT</span><span class="desc">Make: toggle results (quickfix)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mx</span><span class="desc">Make: run</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;F5&gt;</span><span class="desc">Build C / C++ program</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;F6&gt;</span><span class="desc">Build &amp; run C / C++ program</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;F7&gt;</span><span class="desc">Toggle compilation results</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;F8&gt;</span><span class="desc">Run C / C++ program</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ LAZY ═══════════════ -->
-      <section
-        class="group"
-        id="lazy"
-        data-tags="lazy plugin manager sync update install check clean"
-      >
-        <h2 class="group-title">═&nbsp;lazy</h2>
-        <p class="group-hint"><i>SPC</i> l · plugin manager.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> l l</span
-            ><span class="desc">Open Lazy</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> l s</span
-            ><span class="desc">Sync plugins</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> l u</span
-            ><span class="desc">Update plugins</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> l i</span
-            ><span class="desc">Install plugins</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> l c</span
-            ><span class="desc">Check plugin health</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> l x</span
-            ><span class="desc">Clean unused plugins</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="themes" data-tags="theme themery colorscheme">
+    <h2 class="group-title">themes</h2>
+    <p class="group-hint">Themery picker.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tH</span><span class="desc">Theme: open Themery</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ MASON ═══════════════ -->
-      <section class="group" id="mason" data-tags="mason lsp installer">
-        <h2 class="group-title">═&nbsp;mason</h2>
-        <p class="group-hint">LSP / DAP / linter / formatter installer.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> M</span
-            ><span class="desc">Open Mason</span><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="lazy" data-tags="lazy plugin manager sync update install check clean">
+    <h2 class="group-title">lazy</h2>
+    <p class="group-hint"><code>&lt;leader&gt;l</code> — plugin manager.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ll</span><span class="desc">Open Lazy</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ls</span><span class="desc">Sync plugins</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>lu</span><span class="desc">Update plugins</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>li</span><span class="desc">Install plugins</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>lc</span><span class="desc">Check plugin health</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>lx</span><span class="desc">Clean unused plugins</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ DASHBOARD ═══════════════ -->
-      <section class="group" id="dashboard" data-tags="dashboard splash">
-        <h2 class="group-title">═&nbsp;dashboard &amp; noice</h2>
-        <p class="group-hint">
-          <i>SPC</i> n · noice.nvim history &amp; messages.
-        </p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> n h</span
-            ><span class="desc">Noice history</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> n l</span
-            ><span class="desc">Noice last message</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> n e</span
-            ><span class="desc">Noice errors</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> n d</span
-            ><span class="desc">Dismiss notifications</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> n p</span
-            ><span class="desc">Noice picker</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> n s</span
-            ><span class="desc">Noice stats</span><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="mason" data-tags="mason lsp installer">
+    <h2 class="group-title">mason</h2>
+    <p class="group-hint">LSP / DAP / linter / formatter installer.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>M</span><span class="desc">Open Mason</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ BOILERPLATES ═══════════════ -->
-      <section
-        class="group"
-        id="boilerplates"
-        data-tags="boilerplate template cp competitive-programming leetcode cses csharp go rust c cpp"
-      >
-        <h2 class="group-title">═&nbsp;boilerplates</h2>
-        <p class="group-hint">Full-buffer templates for CP &amp; new files.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> b l p</span
-            ><span class="desc">C++ (competitive programming)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> b l c</span
-            ><span class="desc">C (competitive programming)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> g o t</span><span class="desc">Go</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> r s t</span
-            ><span class="desc">Rust</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> p l c</span
-            ><span class="desc">C++ (LeetCode style)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c s e</span
-            ><span class="desc">C++ (CSES)</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> c s h</span><span class="desc">C#</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="noice" data-tags="noice notification history message error dismiss picker">
+    <h2 class="group-title">noice</h2>
+    <p class="group-hint"><code>&lt;leader&gt;n</code> — noice.nvim history &amp; messages.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>nh</span><span class="desc">Noice history</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>nl</span><span class="desc">Noice last message</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ne</span><span class="desc">Noice errors</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>nd</span><span class="desc">Dismiss notifications</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>np</span><span class="desc">Noice picker</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ns</span><span class="desc">Noice stats</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ SNIPPETS ═══════════════ -->
-      <section
-        class="group"
-        id="snippets"
-        data-tags="snippet vector loop for while do range modinverse diophantine"
-      >
-        <h2 class="group-title">═&nbsp;snippets</h2>
-        <p class="group-hint">Insert-at-cursor code fragments.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> p o v</span
-            ><span class="desc">print vector (C++)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> m o d</span
-            ><span class="desc">mod inverse (C++)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> d i o</span
-            ><span class="desc">diophantine (C++)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> s f o r</span
-            ><span class="desc">for loop (C / C++ / Rust)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> s w h</span
-            ><span class="desc">while loop (C / C++ / Rust)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> s d o</span
-            ><span class="desc">do-while (C / C++)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> s r a n g e</span
-            ><span class="desc">range-for (C++) / for-in (Rust)</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="boilerplates" data-tags="boilerplate template cp competitive-programming leetcode cses csharp go rust c cpp">
+    <h2 class="group-title">boilerplates</h2>
+    <p class="group-hint">Full-buffer templates for CP &amp; new files.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>blp</span><span class="desc">C++ (competitive programming)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>blc</span><span class="desc">C (competitive programming)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>got</span><span class="desc">Go</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rst</span><span class="desc">Rust</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>plc</span><span class="desc">C++ (LeetCode style)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cse</span><span class="desc">C++ (CSES)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>csh</span><span class="desc">C#</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ ANIMATIONS ═══════════════ -->
-      <section
-        class="group"
-        id="animations"
-        data-tags="cellular animation rain game of life"
-      >
-        <h2 class="group-title">═&nbsp;animations</h2>
-        <p class="group-hint"><i>SPC</i> a · cellular-automaton eye candy.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> a r</span
-            ><span class="desc">Make it rain</span><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key"><i>SPC</i> a g</span
-            ><span class="desc">Game of life</span><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="snippets" data-tags="snippet vector loop for while do range modinverse diophantine print">
+    <h2 class="group-title">snippets</h2>
+    <p class="group-hint">Insert-at-cursor code fragments.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>pov</span><span class="desc">print vector (C++)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mod</span><span class="desc">mod inverse (C++)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dio</span><span class="desc">diophantine (C++)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>sfor</span><span class="desc">for loop (C / C++ / Rust)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>swh</span><span class="desc">while loop (C / C++ / Rust)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>sdo</span><span class="desc">do-while (C / C++)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>srange</span><span class="desc">range-for (C++) / for-in (Rust)</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <!-- ═══════════════ MISC ═══════════════ -->
-      <section
-        class="group"
-        id="misc"
-        data-tags="misc image snacks surround fold"
-      >
-        <h2 class="group-title">═&nbsp;misc</h2>
-        <p class="group-hint">Everything else.</p>
-        <ul class="keymaps">
-          <li class="km">
-            <span class="key"><i>SPC</i> i s</span
-            ><span class="desc">Show image at cursor (snacks)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">Ctrl /</span
-            ><span class="desc">Toggle comment (visual)</span
-            ><span class="mode">v</span>
-          </li>
-          <li class="km">
-            <span class="key">g s</span
-            ><span class="desc">Surround (prefix)</span
-            ><span class="mode">n</span>
-          </li>
-          <li class="km">
-            <span class="key">z</span><span class="desc">Fold (prefix)</span
-            ><span class="mode">n</span>
-          </li>
-        </ul>
-      </section>
+  <section class="group" id="animations" data-tags="cellular animation rain game of life">
+    <h2 class="group-title">animations</h2>
+    <p class="group-hint"><code>&lt;leader&gt;a</code> — cellular-automaton eye candy.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ar</span><span class="desc">Make it rain</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ag</span><span class="desc">Game of life</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-      <footer>
-        <p class="foot-line dim">═════════════════════════════════════════</p>
-        <p>
-          press <span class="key"><i>SPC</i> k k</span> in nvim to reach this
-          page &nbsp;<span class="dim">::</span>&nbsp;
-          <a href="https://github.com/yashksaini-coder/nvim">source ↗</a>
-        </p>
-        <p class="dim tiny">
-          generated from lua/plugins/which-key.lua &amp; friends. authoritative
-          source is the config itself.
-        </p>
-      </footer>
-    </main>
+  <section class="group" id="misc" data-tags="misc image snacks surround fold comment">
+    <h2 class="group-title">misc</h2>
+    <p class="group-hint">Everything else.</p>
+    <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>is</span><span class="desc">Show image at cursor (snacks)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;C-/&gt;</span><span class="desc">Toggle comment (visual)</span><span class="mode">v</span></li>
+      <li class="km"><span class="key">gs</span><span class="desc">Surround (prefix)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">z</span><span class="desc">Fold (prefix)</span><span class="mode">n</span></li>
+    </ul>
+  </section>
 
-    <script src="keymaps.js" defer></script>
-  </body>
+  <div class="empty-state" id="empty" hidden>
+    <p>No keymaps match.</p>
+    <p class="hint">try <code>rust</code>, <code>dap</code>, <code>buffer</code>, <code>sfor</code></p>
+  </div>
+
+  <footer>
+    <p>press <kbd>&lt;leader&gt; k k</kbd> in nvim to open this page</p>
+    <p class="tiny"><a href="https://github.com/yashksaini-coder/nvim">source ↗</a></p>
+  </footer>
+
+</main>
+
+<script src="keymaps.js" defer></script>
+</body>
 </html>
