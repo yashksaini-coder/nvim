@@ -32,7 +32,7 @@ return {
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
-				formatting = {
+			formatting = {
 				format = require("lspkind").cmp_format({
 					mode = "symbol_text",
 					maxwidth = 50,

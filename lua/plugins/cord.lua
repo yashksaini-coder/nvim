@@ -10,7 +10,9 @@ local function problems_suffix(bufnr)
 	local n = #vim.diagnostic.get(bufnr or 0, {
 		severity = { min = vim.diagnostic.severity.WARN },
 	})
-	if n == 0 then return "" end
+	if n == 0 then
+		return ""
+	end
 	return " — " .. n .. " " .. (n == 1 and "problem" or "problems")
 end
 
@@ -50,19 +52,45 @@ return {
 			workspace = function(opts)
 				return (opts.workspace and opts.workspace ~= "") and ("In " .. opts.workspace) or "In nvim"
 			end,
-			viewing = function(opts) return "Reading " .. opts.filename .. problems_suffix() end,
-			editing = function(opts) return "Editing " .. opts.filename .. problems_suffix() end,
-			file_browser = function(opts) return "Browsing files in " .. opts.name end,
-			plugin_manager = function(opts) return "Managing plugins in " .. opts.name end,
-			lsp = function(opts) return "Configuring LSP in " .. opts.name end,
-			docs = function(opts) return "Reading " .. opts.name .. " docs" end,
-			vcs = function(opts) return "Committing changes in " .. opts.name end,
-			notes = function(opts) return "Taking notes in " .. opts.name end,
-			debug = function(opts) return "Debugging in " .. opts.name end,
-			test = function(opts) return "Testing in " .. opts.name end,
-			diagnostics = function(opts) return "Fixing problems in " .. opts.name end,
-			games = function(opts) return "Playing " .. opts.name end,
-			terminal = function(opts) return "In a terminal (" .. opts.name .. ")" end,
+			viewing = function(opts)
+				return "Reading " .. opts.filename .. problems_suffix()
+			end,
+			editing = function(opts)
+				return "Editing " .. opts.filename .. problems_suffix()
+			end,
+			file_browser = function(opts)
+				return "Browsing files in " .. opts.name
+			end,
+			plugin_manager = function(opts)
+				return "Managing plugins in " .. opts.name
+			end,
+			lsp = function(opts)
+				return "Configuring LSP in " .. opts.name
+			end,
+			docs = function(opts)
+				return "Reading " .. opts.name .. " docs"
+			end,
+			vcs = function(opts)
+				return "Committing changes in " .. opts.name
+			end,
+			notes = function(opts)
+				return "Taking notes in " .. opts.name
+			end,
+			debug = function(opts)
+				return "Debugging in " .. opts.name
+			end,
+			test = function(opts)
+				return "Testing in " .. opts.name
+			end,
+			diagnostics = function(opts)
+				return "Fixing problems in " .. opts.name
+			end,
+			games = function(opts)
+				return "Playing " .. opts.name
+			end,
+			terminal = function(opts)
+				return "In a terminal (" .. opts.name .. ")"
+			end,
 			dashboard = "On the dashboard",
 		},
 		buttons = {

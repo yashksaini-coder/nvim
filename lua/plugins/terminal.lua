@@ -108,7 +108,9 @@ return {
 
 		_G.python = Terminal:new({ cmd = "python3", direction = "float", float_opts = float_size(0.7) })
 		_G.node = Terminal:new({ cmd = "node", direction = "float", float_opts = float_size(0.7) })
-		_G.btop = Terminal:new({ cmd = "btop", direction = "float", float_opts = float_size(0.9), on_open = on_open_with_q })
-		_G.htop = Terminal:new({ cmd = "htop", direction = "float", float_opts = float_size(0.9), on_open = on_open_with_q })
+		_G.btop =
+			Terminal:new({ cmd = "btop", direction = "float", float_opts = float_size(0.9), on_open = on_open_with_q })
+		_G.htop =
+			Terminal:new({ cmd = "htop", direction = "float", float_opts = float_size(0.9), on_open = on_open_with_q })
 	end,
 }
