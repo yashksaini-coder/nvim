@@ -1,0 +1,305 @@
+/* ─────────────────────────────────────────────────────────────
+   90s CRT terminal — phosphor green on tinted black.
+   VT323 for display, JetBrains Mono for body.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --bg: #0a0f0a;
+  --fg: #33ff66;
+  --fg-hi: #b6ffb6;
+  --fg-dim: #1f6b2e;
+  --amber: #ffb000;
+  --glow: 0 0 4px rgba(51, 255, 102, 0.55);
+  --glow-hi: 0 0 6px rgba(182, 255, 182, 0.7);
+  --glow-amber: 0 0 5px rgba(255, 176, 0, 0.55);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "JetBrains Mono", ui-monospace, "Cascadia Code", "SF Mono", Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.65;
+  text-shadow: var(--glow);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection glows like the rest of the phosphor */
+::selection { background: rgba(51, 255, 102, 0.25); color: var(--fg-hi); }
+
+/* ── Scanlines overlay: subtle, non-interactive ── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.18) 3px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+.crt {
+  max-width: 92ch;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.ascii-title {
+  font-family: "VT323", monospace;
+  font-size: clamp(1.75rem, 6vw, 3.5rem);
+  color: var(--fg-hi);
+  line-height: 1;
+  margin: 0 auto;
+  text-shadow: var(--glow-hi);
+  white-space: pre;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.hero-sub, .hero-legend {
+  margin: 0.4rem 0;
+  color: var(--fg);
+  font-size: 0.95rem;
+}
+
+.hero-legend { color: var(--fg-dim); text-shadow: none; }
+
+.hero-sub a {
+  color: var(--fg-hi);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--fg-dim);
+}
+.hero-sub a:hover { border-bottom-color: var(--fg-hi); }
+
+/* ── SEARCH ───────────────────────────────────────────────── */
+.search {
+  margin: 2.5rem 0 1.25rem;
+  border: 1px solid var(--fg-dim);
+  padding: 0.55rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  position: sticky;
+  top: 0.6rem;
+  background: var(--bg);
+  z-index: 10;
+}
+
+.search .prompt {
+  color: var(--amber);
+  text-shadow: var(--glow-amber);
+  white-space: nowrap;
+  font-family: "VT323", monospace;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.search input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--fg-hi);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  text-shadow: var(--glow-hi);
+  min-width: 0;
+}
+
+.search input::placeholder {
+  color: var(--fg-dim);
+  text-shadow: none;
+}
+
+.cursor {
+  color: var(--amber);
+  text-shadow: var(--glow-amber);
+  animation: blink 1.05s steps(2, end) infinite;
+  font-family: "VT323", monospace;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ── QUICK JUMP ───────────────────────────────────────────── */
+.quick-jump {
+  border-block: 1px solid var(--fg-dim);
+  padding: 0.55rem 0;
+  margin: 0 0 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.4rem;
+  font-size: 0.85rem;
+  line-height: 1.9;
+}
+
+.quick-jump .prompt {
+  color: var(--fg-dim);
+  margin-right: 0.4rem;
+  font-family: "VT323", monospace;
+  font-size: 1.15rem;
+  line-height: 1;
+  align-self: center;
+}
+
+.quick-jump a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.quick-jump a::before { content: "["; color: var(--fg-dim); margin-right: 0.15em; }
+.quick-jump a::after  { content: "]"; color: var(--fg-dim); margin-left: 0.15em; }
+
+.quick-jump a:hover,
+.quick-jump a:focus-visible {
+  color: var(--amber);
+  text-shadow: var(--glow-amber);
+}
+.quick-jump a:hover::before, .quick-jump a:hover::after,
+.quick-jump a:focus-visible::before, .quick-jump a:focus-visible::after {
+  color: var(--amber);
+}
+
+/* ── SECTIONS ─────────────────────────────────────────────── */
+.group {
+  margin: 2.5rem 0;
+  scroll-margin-top: 5.5rem;
+}
+
+.group-title {
+  font-family: "VT323", monospace;
+  font-weight: normal;
+  font-size: 1.9rem;
+  color: var(--fg-hi);
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.01em;
+  text-shadow: var(--glow-hi);
+  line-height: 1.15;
+}
+
+.group-title .ghost { color: var(--fg-dim); font-size: 1.2rem; font-style: normal; text-shadow: none; }
+
+.group-hint {
+  color: var(--fg-dim);
+  font-size: 0.85rem;
+  margin: 0 0 1rem;
+  text-shadow: none;
+}
+
+.group.empty { display: none; }
+
+/* ── KEYMAP LIST ──────────────────────────────────────────── */
+.keymaps { list-style: none; margin: 0; padding: 0; }
+
+.km {
+  display: grid;
+  grid-template-columns: minmax(14ch, 24ch) 1fr minmax(3ch, auto);
+  gap: 1.2rem;
+  padding: 0.2rem 0.15rem;
+  align-items: baseline;
+  border-block-end: 1px solid transparent;
+}
+
+.km:hover {
+  background: rgba(51, 255, 102, 0.04);
+  border-block-end-color: var(--fg-dim);
+}
+
+.km .key {
+  color: var(--fg-hi);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* <i> inside .key is our leader mark — always dimmed */
+.km .key i {
+  color: var(--fg-dim);
+  font-style: normal;
+  margin-right: 0.05em;
+}
+
+.km .desc { color: var(--fg); }
+
+.km .mode {
+  color: var(--fg-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-align: right;
+  text-shadow: none;
+  align-self: center;
+  text-transform: uppercase;
+}
+
+/* filtered-out rows */
+.km.hidden { display: none; }
+
+/* ── SMALL INLINE KEY (used in hero + footer) ─────────────── */
+.key {
+  color: var(--fg-hi);
+  white-space: nowrap;
+}
+.key i {
+  color: var(--fg-dim);
+  font-style: normal;
+}
+
+.dim { color: var(--fg-dim); text-shadow: none; }
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+footer {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  text-align: center;
+  color: var(--fg-dim);
+  font-size: 0.9rem;
+  text-shadow: none;
+}
+
+footer .foot-line { font-family: "VT323", monospace; font-size: 1.3rem; line-height: 1; margin: 0 0 1rem; }
+footer p { margin: 0.35rem 0; }
+footer a { color: var(--fg); border-bottom: 1px dashed var(--fg-dim); text-decoration: none; }
+footer a:hover { color: var(--fg-hi); border-bottom-color: var(--fg-hi); }
+.tiny { font-size: 0.75rem; }
+
+/* ── FOCUS RING ───────────────────────────────────────────── */
+a:focus-visible, input:focus-visible {
+  outline: 1px solid var(--amber);
+  outline-offset: 3px;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .crt { padding: 1.75rem 1rem 4rem; }
+  .ascii-title { font-size: clamp(1.35rem, 8vw, 2.2rem); }
+  .km {
+    grid-template-columns: minmax(12ch, 40%) 1fr;
+    gap: 0.8rem;
+  }
+  .km .mode { display: none; }
+  .search { position: static; }
+  .group-title { font-size: 1.55rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; opacity: 1; }
+}
