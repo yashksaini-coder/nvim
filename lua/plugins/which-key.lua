@@ -134,6 +134,7 @@ return {
 				{ "<leader>is", desc = "Show image at cursor" },
 
 				-- Man pages / docs
+				{ "<leader>kk", desc = "Open keymap reference site" },
 				{ "<leader>km", desc = "Open man page" },
 				{ "<leader>kw", desc = "Man page for word under cursor" },
 

@@ -54,6 +54,12 @@ vim.keymap.set("n", "<leader>kw", function()
 	end
 end, { desc = "Man page for word under cursor" })
 
+-- Open the deployed keymap-reference site in the system browser.
+-- Site source lives in site/, deployed via .github/workflows/pages.yml.
+vim.keymap.set("n", "<leader>kk", function()
+	vim.ui.open("https://yashksaini-coder.github.io/nvim/")
+end, { desc = "Open keymap reference site" })
+
 -- Window resize
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Increase window height" })
 vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Decrease window height" })
