@@ -16,6 +16,9 @@ return {
 		filesystem = {
 			follow_current_file = { enabled = true },
 			use_libuv_file_watcher = true,
+			-- Don't hijack directory buffers: on `nvim .` we want snacks.dashboard
+			-- to own the main window; neo-tree opens on the side via an autocmd.
+			hijack_netrw_behavior = "disabled",
 			filtered_items = {
 				visible = false,
 				hide_dotfiles = false,
