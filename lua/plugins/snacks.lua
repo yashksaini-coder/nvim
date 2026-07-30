@@ -61,9 +61,10 @@ return {
 		-- picker powers <leader>fp (recent projects). Tree lives in neo-tree.
 		picker = { enabled = true },
 		-- Flag-only: enabling explorer flips snacks.dashboard's `skip` branch,
-		-- which is what lets the dashboard render on `nvim .`. No keybinding —
-		-- neo-tree is our actual tree.
-		explorer = { enabled = true },
+		-- which is what lets the dashboard render on `nvim .`. But turn off
+		-- replace_netrw so snacks doesn't ALSO hijack the directory buffer
+		-- and open its own explorer alongside neo-tree.
+		explorer = { enabled = true, replace_netrw = false },
 		-- Minimal start screen — just a handful of key hints. No ASCII logo,
 		-- no plugin-load banner, no long button list. Replaces dashboard-nvim.
 		dashboard = {
