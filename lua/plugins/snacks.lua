@@ -58,6 +58,9 @@ return {
 				image = " ",
 			},
 		},
+		-- File explorer (replaces nvim-tree; picker-based, no persistent side panel)
+		explorer = { enabled = true },
+		picker = { enabled = true }, -- explorer rides on picker
 		-- Indent guides (merged from mini-indentscope — was a separate snacks.nvim spec)
 		indent = {
 			enabled = true,
@@ -87,10 +90,8 @@ return {
 			filter = function(buf)
 				local exclude_ft = {
 					"help",
-					"alpha",
-					"dashboard",
-					"neo-tree",
-					"nvim-tree",
+					"snacks_dashboard",
+					"snacks_picker_list",
 					"Trouble",
 					"lazy",
 					"mason",
@@ -110,18 +111,18 @@ return {
 	},
 	keys = {
 		{
+			"<leader>e",
+			function()
+				require("snacks").explorer()
+			end,
+			desc = "File Explorer",
+		},
+		{
 			"<leader>is",
 			function()
 				require("snacks").image.hover()
 			end,
 			desc = "Show image at cursor",
-		},
-		{
-			"<leader>gl",
-			function()
-				require("snacks").lazygit.log()
-			end,
-			desc = "LazyGit log (cwd)",
 		},
 	},
 	config = function(_, opts)
