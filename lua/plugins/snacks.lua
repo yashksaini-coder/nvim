@@ -72,13 +72,13 @@ return {
 			width = 55,
 			preset = {
 				keys = {
-					{ icon = " ", key = "e", desc = "File Explorer",   action = ":Neotree toggle" },
-					{ icon = " ", key = "f", desc = "Find Files",      action = ":Telescope find_files" },
-					{ icon = " ", key = "g", desc = "Live Grep",       action = ":Telescope live_grep" },
-					{ icon = " ", key = "p", desc = "Recent Projects", action = ":lua Snacks.picker.projects()" },
+					{ icon = "󰉋 ", key = "e", desc = "File Explorer",   action = ":Neotree toggle" },
+					{ icon = "󰈞 ", key = "f", desc = "Find Files",      action = ":Telescope find_files" },
+					{ icon = "󰭎 ", key = "g", desc = "Live Grep",       action = ":Telescope live_grep" },
+					{ icon = "󰋚 ", key = "p", desc = "Recent Projects", action = ":lua Snacks.picker.projects()" },
 					{ icon = "󰋖 ", key = "k", desc = "Keymap Docs",     action = ":lua vim.ui.open('https://yashksaini-coder.github.io/nvim/')" },
 					{ icon = "󰒲 ", key = "l", desc = "Lazy",            action = ":Lazy" },
-					{ icon = " ", key = "q", desc = "Quit",            action = ":qa" },
+					{ icon = "󰗼 ", key = "q", desc = "Quit",            action = ":qa" },
 				},
 			},
 			sections = {
