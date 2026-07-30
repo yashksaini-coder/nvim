@@ -58,9 +58,8 @@ return {
 				image = " ",
 			},
 		},
-		-- File explorer (replaces nvim-tree; picker-based, no persistent side panel)
-		explorer = { enabled = true },
-		picker = { enabled = true }, -- explorer rides on picker
+		-- picker powers <leader>fp (recent projects). Tree lives in neo-tree.
+		picker = { enabled = true },
 		-- Indent guides (merged from mini-indentscope — was a separate snacks.nvim spec)
 		indent = {
 			enabled = true,
@@ -110,13 +109,6 @@ return {
 		},
 	},
 	keys = {
-		{
-			"<leader>e",
-			function()
-				require("snacks").explorer()
-			end,
-			desc = "File Explorer",
-		},
 		{
 			"<leader>fp",
 			function()
