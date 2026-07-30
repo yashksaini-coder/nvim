@@ -118,6 +118,13 @@ return {
 			desc = "File Explorer",
 		},
 		{
+			"<leader>fp",
+			function()
+				require("snacks").picker.projects()
+			end,
+			desc = "Recent Projects",
+		},
+		{
 			"<leader>is",
 			function()
 				require("snacks").image.hover()

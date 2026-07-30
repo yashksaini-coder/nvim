@@ -88,6 +88,7 @@ return {
 				{ "<leader>fb", desc = "Find buffers" },
 				{ "<leader>fh", desc = "Help tags" },
 				{ "<leader>fd", desc = "Diagnostics" },
+				{ "<leader>fp", desc = "Recent Projects" },
 				{ "<leader>fm", desc = "Format file/range" },
 
 				-- Git hunks (gitsigns)
