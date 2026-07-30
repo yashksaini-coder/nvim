@@ -29,7 +29,7 @@ return {
 					{ action = "enew",                                                    desc = " New File",        icon = "📄 ", key = "n" },
 					{ action = "lua require('telescope.builtin').oldfiles()",             desc = " Recent Files",    icon = "🕐 ", key = "r" },
 					{ action = "lua require('telescope.builtin').live_grep()",            desc = " Find Text",       icon = "🔎 ", key = "g" },
-					{ action = "lua require('telescope').extensions.project.project()",   desc = " Projects",        icon = "📂 ", key = "p" },
+					{ action = "lua require('snacks').picker.projects()",                desc = " Projects",        icon = "📂 ", key = "p" },
 					{ action = "lua require('telescope.builtin').find_files({cwd = vim.fn.stdpath('config')})", desc = " Config",          icon = "⚙️ ", key = "c" },
 					{ action = "lua require('telescope.builtin').buffers()",         	  desc = " Buffers",         icon = "📋 ", key = "b" },
 					{ action = "Lazy",                                                    desc = " Lazy",            icon = "💤 ", key = "l" },
@@ -42,7 +42,13 @@ return {
 				footer = function()
 					local stats = require("lazy").stats()
 					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-					return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
+					return {
+						"⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
+						"",
+						"<leader>ff  find files      <leader>fg  live grep       <leader>e   file tree",
+						"<leader>fp  recent projects  <leader>gg  lazygit         <leader>?   which-key",
+						"<leader>kk  keymap docs     <leader>o   outline          <leader>fm  format",
+					}
 				end,
 			},
 		}
