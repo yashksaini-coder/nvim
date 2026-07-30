@@ -15,6 +15,7 @@ return {
 				{ "<leader>b", group = "buffer" },
 				{ "<leader>c", group = "code/crates" },
 				{ "<leader>e", desc = "File Explorer" },
+				{ "<leader>o", desc = "Toggle outline (aerial)" },
 				{ "<leader>f", group = "file/find" },
 				{ "<leader>g", group = "git/goto" },
 				{ "<leader>h", group = "git hunks" },
