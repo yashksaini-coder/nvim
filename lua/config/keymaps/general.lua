@@ -34,10 +34,28 @@ vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", {
 	desc = "Quit all",
 })
 
--- Better buffer delete
-vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", {
-	desc = "Delete buffer",
-})
+-- Delete current buffer. When it's the last real one, re-open the dashboard
+-- in place of the auto-created [No Name] scratch buffer.
+vim.keymap.set("n", "<leader>bd", function()
+	local cur = vim.api.nvim_get_current_buf()
+	local others = 0
+	for _, b in ipairs(vim.api.nvim_list_bufs()) do
+		if b ~= cur and vim.bo[b].buflisted and vim.bo[b].filetype ~= "snacks_dashboard" then
+			others = others + 1
+		end
+	end
+	vim.cmd("silent! bdelete " .. cur)
+	if others == 0 then
+		vim.schedule(function()
+			pcall(function()
+				require("snacks").dashboard({
+					buf = vim.api.nvim_get_current_buf(),
+					win = vim.api.nvim_get_current_win(),
+				})
+			end)
+		end)
+	end
+end, { desc = "Delete buffer" })
 
 -- Man pages (:Man is built-in)
 vim.keymap.set("n", "<leader>km", function()
