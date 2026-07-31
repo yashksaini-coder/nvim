@@ -2,8 +2,8 @@ name: Update Neovim Plugins
 
 on:
     schedule:
-        # Run every day at 00:00 UTC
-        - cron: '0 0 * * *'
+        # Sundays at 00:00 IST (UTC+5:30) → Saturdays at 18:30 UTC
+        - cron: '30 18 * * 6'
     workflow_dispatch:
 
 jobs:
