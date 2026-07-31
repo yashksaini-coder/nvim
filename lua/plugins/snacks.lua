@@ -75,6 +75,7 @@ return {
 					{ icon = "󰉋 ", key = "e", desc = "File Explorer", action = ":Neotree toggle" },
 					{ icon = "󰈞 ", key = "f", desc = "Find Files", action = ":Telescope find_files" },
 					{ icon = "󰭎 ", key = "g", desc = "Live Grep", action = ":Telescope live_grep" },
+					{ icon = "󱋢 ", key = "r", desc = "Recent Files", action = ":Telescope oldfiles" },
 					{ icon = "󰋚 ", key = "p", desc = "Recent Projects", action = ":lua Snacks.picker.projects()" },
 					{
 						icon = "󰋖 ",
