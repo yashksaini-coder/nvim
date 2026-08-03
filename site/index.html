@@ -29,7 +29,7 @@
   <div class="search-wrap">
     <div class="search">
       <span class="search-icon" aria-hidden="true">/</span>
-      <input type="search" id="q" placeholder="filter keymaps — e.g. buffer, dap, rust, sfor" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Filter keymaps">
+      <input type="search" id="q" placeholder="filter keymaps — e.g. buffer, git, rust, sfor" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Filter keymaps">
       <span class="search-count" id="count" aria-live="polite"></span>
     </div>
   </div>
@@ -42,7 +42,6 @@
     <a href="#git">git</a>
     <a href="#code">code</a>
     <a href="#crates">crates</a>
-    <a href="#debug">debug</a>
     <a href="#rust">rust</a>
     <a href="#docs">docs</a>
     <a href="#terminal">terminal</a>
@@ -55,7 +54,6 @@
     <a href="#noice">noice</a>
     <a href="#boilerplates">boilerplates</a>
     <a href="#snippets">snippets</a>
-    <a href="#animations">animations</a>
     <a href="#misc">misc</a>
   </nav>
 
@@ -118,7 +116,7 @@
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>fb</span><span class="desc">Find buffers</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>fh</span><span class="desc">Help tags</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>fd</span><span class="desc">Diagnostics</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fp</span><span class="desc">Projects</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fp</span><span class="desc">Recent Projects (snacks)</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>fm</span><span class="desc">Format file / range</span><span class="mode">n v</span></li>
     </ul>
   </section>
@@ -152,7 +150,7 @@
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>ca</span><span class="desc">Code action</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>cs</span><span class="desc">Symbols (Trouble)</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>cl</span><span class="desc">LSP defs / refs (Trouble)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>e</span><span class="desc">Toggle Explorer (nvim-tree)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>e</span><span class="desc">Toggle Explorer (neo-tree)</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>o</span><span class="desc">Toggle outline (aerial)</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>fm</span><span class="desc">Format file / range (conform)</span><span class="mode">n v</span></li>
       <li class="km"><span class="key">gx</span><span class="desc">Open with system app</span><span class="mode">n</span></li>
@@ -182,24 +180,7 @@
     </ul>
   </section>
 
-  <section class="group" id="debug" data-tags="debug dap breakpoint step continue repl">
-    <h2 class="group-title">debug <span class="group-suffix">dap</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;d</code> — nvim-dap controls.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>db</span><span class="desc">Toggle breakpoint</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dB</span><span class="desc">Conditional breakpoint</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dc</span><span class="desc">Continue / start</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>di</span><span class="desc">Step into</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>do</span><span class="desc">Step over</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dO</span><span class="desc">Step out</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dr</span><span class="desc">Toggle REPL</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dl</span><span class="desc">Run last</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>du</span><span class="desc">Toggle DAP UI</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dt</span><span class="desc">Terminate</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="rust" data-tags="rust ferris hir mir macro cargo module documentation workspace">
+<section class="group" id="rust" data-tags="rust ferris hir mir macro cargo module documentation workspace">
     <h2 class="group-title">rust <span class="group-suffix">ferris</span></h2>
     <p class="group-hint"><code>&lt;leader&gt;r</code> — rust-analyzer extras in .rs files.</p>
     <ul class="keymaps">
@@ -275,9 +256,9 @@
     </ul>
   </section>
 
-  <section class="group" id="markdown" data-tags="markdown make mini-map compile build run function-keys f5 f6 f7 f8">
-    <h2 class="group-title">markdown, make, minimap</h2>
-    <p class="group-hint"><code>&lt;leader&gt;m</code> — render-markdown, native make, minimap.</p>
+  <section class="group" id="markdown" data-tags="markdown make compile build run function-keys f5 f6 f7 f8">
+    <h2 class="group-title">markdown &amp; make</h2>
+    <p class="group-hint"><code>&lt;leader&gt;m</code> — render-markdown, native make.</p>
     <ul class="keymaps">
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>mp</span><span class="desc">Toggle markdown preview (render-markdown)</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>mb</span><span class="desc">Make: build (C / C++)</span><span class="mode">n</span></li>
@@ -361,16 +342,7 @@
     </ul>
   </section>
 
-  <section class="group" id="animations" data-tags="cellular animation rain game of life">
-    <h2 class="group-title">animations</h2>
-    <p class="group-hint"><code>&lt;leader&gt;a</code> — cellular-automaton eye candy.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ar</span><span class="desc">Make it rain</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ag</span><span class="desc">Game of life</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="misc" data-tags="misc image snacks surround fold comment">
+<section class="group" id="misc" data-tags="misc image snacks surround fold comment">
     <h2 class="group-title">misc</h2>
     <p class="group-hint">Everything else.</p>
     <ul class="keymaps">
@@ -383,7 +355,7 @@
 
   <div class="empty-state" id="empty" hidden>
     <p>No keymaps match.</p>
-    <p class="hint">try <code>rust</code>, <code>dap</code>, <code>buffer</code>, <code>sfor</code></p>
+    <p class="hint">try <code>rust</code>, <code>git</code>, <code>buffer</code>, <code>sfor</code></p>
   </div>
 
   <footer>
