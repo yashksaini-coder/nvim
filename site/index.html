@@ -14,48 +14,21 @@
 <body>
 <main class="page">
 
-  <header class="hero">
-    <h1 class="logo">nvim<span class="dot">.</span>keys</h1>
-    <p class="hero-sub">keymap reference · <a href="https://github.com/yashksaini-coder/nvim" rel="noopener">yashksaini-coder/nvim</a></p>
-    <p class="hero-legend">
-      <kbd>&lt;leader&gt;</kbd> is <kbd>SPC</kbd>
-      <span class="sep">·</span>
-      press <kbd>/</kbd> to filter
-      <span class="sep">·</span>
-      <kbd>Esc</kbd> resets
-    </p>
-  </header>
+  <div class="groups">
 
-  <div class="search-wrap">
+  <section class="group group--hero" aria-label="site">
+    <h1 class="logo">nvim<span class="dot">.</span>keys</h1>
+    <p class="hero-sub">keymap reference<br><a href="https://github.com/yashksaini-coder/nvim" rel="noopener">yashksaini-coder/nvim</a></p>
     <div class="search">
       <span class="search-icon" aria-hidden="true">/</span>
-      <input type="search" id="q" placeholder="filter keymaps — e.g. buffer, git, rust, sfor" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Filter keymaps">
+      <input type="search" id="q" placeholder="filter…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Filter keymaps">
       <span class="search-count" id="count" aria-live="polite"></span>
     </div>
-  </div>
-
-  <nav class="jump" aria-label="Jump to section">
-    <a href="#globals">globals</a>
-    <a href="#windows">windows</a>
-    <a href="#buffer">buffer</a>
-    <a href="#find">find</a>
-    <a href="#git">git</a>
-    <a href="#code">code</a>
-    <a href="#crates">crates</a>
-    <a href="#rust">rust</a>
-    <a href="#docs">docs</a>
-    <a href="#terminal">terminal</a>
-    <a href="#tabs">tabs</a>
-    <a href="#trouble">trouble</a>
-    <a href="#markdown">markdown</a>
-    <a href="#themes">themes</a>
-    <a href="#lazy">lazy</a>
-    <a href="#mason">mason</a>
-    <a href="#noice">noice</a>
-    <a href="#boilerplates">boilerplates</a>
-    <a href="#snippets">snippets</a>
-    <a href="#misc">misc</a>
-  </nav>
+    <p class="hero-legend">
+      <kbd>&lt;leader&gt;</kbd> is <kbd>SPC</kbd> <span class="sep">·</span>
+      <kbd>/</kbd> filter <span class="sep">·</span> <kbd>Esc</kbd> resets
+    </p>
+  </section>
 
   <section class="group" id="globals" data-tags="global editor essential save quit">
     <h2 class="group-title">globals</h2>
@@ -352,6 +325,8 @@
       <li class="km"><span class="key">z</span><span class="desc">Fold (prefix)</span><span class="mode">n</span></li>
     </ul>
   </section>
+
+  </div><!-- /.groups -->
 
   <div class="empty-state" id="empty" hidden>
     <p>No keymaps match.</p>
