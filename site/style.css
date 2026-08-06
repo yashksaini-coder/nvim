@@ -59,6 +59,7 @@ html, body {
 .groups {
   columns: var(--card-w);
   column-gap: var(--card-gap);
+  column-fill: balance; /* balance heights across columns */
 }
 
 /* ─── CARD ──────────────────────────────────────────────────── */
