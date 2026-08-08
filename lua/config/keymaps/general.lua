@@ -44,7 +44,7 @@ vim.keymap.set("n", "<leader>bd", function()
 			others = others + 1
 		end
 	end
-	vim.cmd("silent! bdelete " .. cur)
+	vim.cmd("silent! BufferClose")
 	if others == 0 then
 		vim.schedule(function()
 			pcall(function()
