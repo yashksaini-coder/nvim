@@ -30,13 +30,23 @@ return {
 				["<C-n>"] = cmp.mapping.select_next_item(),
 				["<C-p>"] = cmp.mapping.select_prev_item(),
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				-- <CR> only confirms if you've explicitly selected an item —
+				-- lets you press Enter to insert a real newline without picking
+				-- whatever ghost-suggestion happens to be highlighted.
+				["<CR>"] = cmp.mapping.confirm({ select = false }),
 			}),
 			formatting = {
+				fields = { "kind", "abbr", "menu" },
 				format = require("lspkind").cmp_format({
 					mode = "symbol_text",
 					maxwidth = 50,
 					ellipsis_char = "...",
+					menu = {
+						nvim_lsp = "[LSP]",
+						luasnip = "[Snip]",
+						buffer = "[Buf]",
+						path = "[Path]",
+					},
 				}),
 			},
 			sources = cmp.config.sources({

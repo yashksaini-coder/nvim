@@ -1,17 +1,17 @@
 -- Diagnostic Configuration
 vim.diagnostic.config({
-	virtual_text = true,
+	virtual_text = { prefix = "●", spacing = 2 },
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = " ",
-			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
 			[vim.diagnostic.severity.HINT] = "󰠠 ",
-			[vim.diagnostic.severity.INFO] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
 		},
 	},
 	underline = true,
 	severity_sort = true,
-	update_in_insert = false, -- Disabled: re-computing on every keystroke is expensive
+	update_in_insert = false,
 	float = {
 		border = "rounded",
 		focusable = true,
@@ -19,26 +19,14 @@ vim.diagnostic.config({
 	},
 })
 
--- Override floating preview to ensure borders and size
-local _open_floating_preview = vim.lsp.util.open_floating_preview
-vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
-	opts = opts or {}
-	opts.border = opts.border or "rounded" -- Using rounded instead of double for consistency
-	opts.max_width = opts.max_width or 80
-	opts.max_height = opts.max_height or 20
-	return _open_floating_preview(contents, syntax, opts, ...)
-end
+-- The previous vim.lsp.util.open_floating_preview monkey-patch is gone. On
+-- Neovim 0.11+ hover/signature use vim.lsp.buf.hover / signature_help, and
+-- the diagnostic float border above covers the rest. Add per-callsite
+-- `border = "rounded"` if you ever drop below 0.11.
 
--- NOTE: vim.lsp.handlers["textDocument/hover"] with vim.lsp.with() is deprecated.
--- The open_floating_preview override above already handles borders for all LSP floats.
-
--- NOTE: CursorHold auto-diagnostic float removed — it fires every 300ms (updatetime),
--- overlaps with noice.nvim hover/signature floats, and fights with manual <leader>d.
--- Use <leader>d to show diagnostics on demand instead.
-
--- Show line diagnostics in a float. Moved from `<leader>d` to `<leader>xd`
--- (under the trouble/diagnostics group) because `<leader>d*` is the DAP prefix
--- and a leaf on `<leader>d` forced a timeoutlen delay before DAP subkeys.
+-- Show line diagnostics in a float. Placed under <leader>x (trouble/diagnostics)
+-- because <leader>d* was the DAP prefix and a leaf on <leader>d added
+-- timeoutlen delay before DAP subkeys.
 vim.keymap.set("n", "<leader>xd", function()
 	vim.diagnostic.open_float(nil, { border = "rounded" })
 end, { desc = "Show line diagnostics" })

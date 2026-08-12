@@ -1,6 +1,14 @@
 return {
 	"neovim/nvim-lspconfig",
+	dependencies = { "hrsh7th/cmp-nvim-lsp" },
 	config = function()
+		-- Forward cmp's default capabilities to every server so completion
+		-- gets snippetSupport, additionalTextEdits, etc.
+		local ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+		if ok then
+			vim.lsp.config("*", { capabilities = cmp_lsp.default_capabilities() })
+		end
+
 		vim.lsp.config("lua_ls", require("lsps.lua_ls"))
 		vim.lsp.config("ts_ls", require("lsps.ts_ls"))
 
