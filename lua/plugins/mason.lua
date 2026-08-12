@@ -32,6 +32,7 @@ return {
 					"typescript-language-server", -- TypeScript/JavaScript LSP
 					"tailwindcss-language-server", -- Tailwind CSS LSP (used in TS/JSX/HTML projects)
 					"clangd", -- C/C++ LSP
+					"pyright", -- Python LSP (types + syntax + imports)
 					-- Linters
 					"luacheck", -- Lua linter
 					"ruff", -- Python linter

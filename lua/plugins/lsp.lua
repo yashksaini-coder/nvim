@@ -30,7 +30,7 @@ return {
 			ts_ls = "typescript-language-server",
 			rust_analyzer = "rust-analyzer",
 			clangd = "clangd",
-			pylsp = "pylsp",
+			pyright = "pyright-langserver",
 			gopls = "gopls",
 			tailwindcss = "tailwindcss-language-server",
 			phpactor = "phpactor",
