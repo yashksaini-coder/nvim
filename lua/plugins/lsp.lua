@@ -1,6 +1,13 @@
 return {
 	"neovim/nvim-lspconfig",
-	dependencies = { "hrsh7th/cmp-nvim-lsp" },
+	-- Load once a buffer is actually read. This guarantees mason.setup()
+	-- (eager) has already prepended ~/.local/share/nvim/mason/bin to $PATH,
+	-- so the `executable()` gate below sees every Mason-installed server.
+	event = { "BufReadPre", "BufNewFile" },
+	dependencies = {
+		"mason-org/mason.nvim", -- must load first so mason bins are on $PATH
+		"hrsh7th/cmp-nvim-lsp", -- capabilities forwarded via vim.lsp.config("*", ...)
+	},
 	config = function()
 		-- Forward cmp's default capabilities to every server so completion
 		-- gets snippetSupport, additionalTextEdits, etc.
@@ -42,6 +49,16 @@ return {
 
 		for server, cmd in pairs(servers) do
 			enable_if_installed(server, cmd)
+		end
+
+		-- Belt & suspenders — nvim-lspconfig's plugin/lspconfig.lua registers
+		-- :LspInfo as an alias to `checkhealth vim.lsp`, but lazy.nvim's
+		-- plugin-file sourcing under event-loading has been flaky. Guarantee
+		-- the command exists no matter what.
+		if vim.fn.exists(":LspInfo") ~= 2 then
+			vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", {
+				desc = "LSP health check (alias for :checkhealth vim.lsp)",
+			})
 		end
 
 		-- NOTE: <C-i> is the same keycode as <Tab> in terminals — do NOT map it.
