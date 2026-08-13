@@ -102,6 +102,7 @@ return {
 				{ "<leader>hd", desc = "Diff this" },
 
 				-- LSP / Code actions
+				{ "<leader>gg", desc = "Lazygit (snacks)" },
 				{ "<leader>gd", desc = "Go to definition" },
 				{ "<leader>gr", desc = "Go to references" },
 				{ "<leader>ca", desc = "Code action" },

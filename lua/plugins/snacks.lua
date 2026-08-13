@@ -149,6 +149,13 @@ return {
 	},
 	keys = {
 		{
+			"<leader>gg",
+			function()
+				require("snacks").lazygit()
+			end,
+			desc = "Lazygit",
+		},
+		{
 			"<leader>fp",
 			function()
 				require("snacks").picker.projects()
