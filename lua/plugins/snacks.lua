@@ -136,8 +136,6 @@ return {
 					"lazy",
 					"mason",
 					"notify",
-					"toggleterm",
-					"lazyterm",
 				}
 				local ft = vim.bo[buf].filetype
 				for _, exclude in ipairs(exclude_ft) do

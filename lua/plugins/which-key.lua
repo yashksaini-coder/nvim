@@ -25,7 +25,7 @@ return {
 				{ "<leader>q", desc = "Quit all" },
 				{ "<leader>r", group = "rust (ferris)" },
 				{ "<leader>s", group = "search/snippets" },
-				{ "<leader>t", group = "terminal/tabs" },
+				{ "<leader>t", group = "tabs" },
 				{ "<leader>T", group = "tabs (goto T1-T9, move Tm{r,l})" },
 				{ "<leader>x", group = "trouble/diagnostics" },
 
@@ -129,22 +129,9 @@ return {
 				-- Mason
 				{ "<leader>M", desc = "Open Mason" },
 
-				-- Terminal (LazyVim style)
-				{ "<leader>tf", desc = "Terminal (float)" },
-				{ "<leader>th", desc = "Terminal (horizontal)" },
-				{ "<leader>tv", desc = "Terminal (vertical)" },
-				{ "<leader>gg", desc = "LazyGit" },
-				{ "<leader>tp", desc = "Python REPL" },
-				{ "<leader>tN", desc = "Node REPL" },
+				-- Tabs (mini-map.lua)
 				{ "<leader>tn", desc = "New tab" },
-				{ "<leader>tm", desc = "System Monitor" },
 				{ "<leader>tH", desc = "Themery" },
-				{ "<leader>ta", desc = "Toggle all terminals" },
-				{ "<leader>ts", desc = "Select terminal / Send to terminal" },
-				{ "<leader>t1", desc = "Terminal 1" },
-				{ "<leader>t2", desc = "Terminal 2" },
-				{ "<leader>t3", desc = "Terminal 3" },
-				{ "<leader>t4", desc = "Terminal 4" },
 
 				-- Trouble
 				{ "<leader>xx", desc = "Diagnostics (Trouble)" },

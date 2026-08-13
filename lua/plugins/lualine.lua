@@ -65,7 +65,7 @@ return {
 					{ "filename", path = 1, symbols = file_symbols },
 				},
 			},
-			extensions = { "neo-tree", "lazy", "mason", "trouble", "toggleterm" },
+			extensions = { "neo-tree", "lazy", "mason", "trouble" },
 		}
 	end,
 }
