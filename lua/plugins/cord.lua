@@ -22,9 +22,9 @@ return {
 	---@type CordConfig
 	opts = {
 		editor = {
-			-- Show up as Vim on Discord.
-			client = "vim",
-			icon = "vim",
+			-- Show up as Neovim on Discord (name + logo).
+			client = "neovim",
+			icon = "neovim",
 			tooltip = "The Superior Text Editor",
 		},
 		display = {
