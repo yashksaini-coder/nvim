@@ -1,74 +1,104 @@
--- nvim-treesitter configuration
--- File: ~/.config/nvim/lua/plugins/treesitter.lua (if using lazy.nvim)
--- or add to your init.lua/init.vim
+-- nvim-treesitter, `main` branch (the v1.0 rewrite).
+--
+-- `master` is archived: it froze against Neovim 0.11 and needed a hand-written
+-- patch here to survive 0.12. `main` ships no feature modules at all -- there is
+-- no `nvim-treesitter.configs`. Highlighting, indentation and selection are
+-- Neovim's own features; the plugin only installs parsers and provides queries.
+-- This file wires Neovim's features up per filetype. See `:h nvim-treesitter`.
+
+local ENSURE_INSTALLED = {
+	"rust",
+	"python",
+	"typescript",
+	"javascript",
+	"c",
+	"cpp",
+	"c_sharp",
+	"markdown",
+	"markdown_inline",
+}
+
+-- Was `indent.disable = { "python" }` under master.
+local INDENT_DISABLED = { python = true }
 
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		-- The legacy `nvim-treesitter.configs` module (highlight/indent/incremental_selection)
-		-- lives on `master`. `main` is the v1.0+ rewrite that removed it.
-		branch = "master",
+		branch = "main",
 		build = ":TSUpdate",
-		lazy = false,
+		lazy = false, -- `main` does not support lazy-loading
 		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"rust",
-					"python",
-					"typescript",
-					"javascript",
-					"c",
-					"cpp",
-					"c_sharp",
-					"markdown",
-					"markdown_inline",
-				},
-				sync_install = false,
-				auto_install = true,
-				ignore_install = {},
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = false,
-				},
-				indent = {
-					enable = true,
-					disable = { "python" },
-				},
-				incremental_selection = {
-					enable = true,
-					keymaps = {
-						init_selection = "<CR>",
-						node_incremental = "<CR>",
-						scope_incremental = "<S-CR>",
-						node_decremental = "<BS>",
-					},
-				},
-			})
+			local ts = require("nvim-treesitter")
 
-			-- Patch nvim-treesitter's `set-lang-from-info-string!` predicate. In
-			-- Neovim 0.11+, query-directive `match` values became TSNode[] lists
-			-- (quantifier support), so the upstream code's `get_node_text(nodes, bufnr)`
-			-- call crashes on `node:range()` when fed a list. The master branch is
-			-- archived and won't ship this fix; re-register the directive with the
-			-- correct unwrap. Without this, render-markdown errors on every parse.
-			local ts_query = require("vim.treesitter.query")
-			local lang_aliases = {
-				ex = "elixir",
-				pl = "perl",
-				sh = "bash",
-				uxn = "uxntal",
-				ts = "typescript",
-			}
-			ts_query.add_directive("set-lang-from-info-string!", function(match, _, bufnr, pred, metadata)
-				local nodes = match[pred[2]]
-				local node = type(nodes) == "table" and nodes[1] or nodes
-				if not node then
-					return
+			-- Async. The handle is kept so the FileType handler can wait on this
+			-- install rather than starting a competing one: a second `install()`
+			-- for an in-flight language blocks in a 60s `vim.wait`.
+			local bootstrap = ts.install(ENSURE_INSTALLED)
+
+			-- `get_available()` broadcasts `User TSUpdate` and sorts ~320 entries,
+			-- so it is called once here, not on every FileType event.
+			local available = {}
+			for _, lang in ipairs(ts.get_available()) do
+				available[lang] = true
+			end
+
+			local function attach(buf, lang)
+				-- Deliberately not wrapped in pcall: a broken parser/query pair
+				-- must fail loudly rather than silently drop highlighting.
+				vim.treesitter.start(buf, lang)
+
+				-- Only about half the languages ship `indents.scm`; without one,
+				-- `indentexpr()` returns 0 for every line, which would flatten
+				-- indentation and clobber Neovim's own indent plugin (e.g. `cs`).
+				if not INDENT_DISABLED[lang] and vim.treesitter.query.get(lang, "indents") then
+					vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 				end
-				local alias = vim.treesitter.get_node_text(node, bufnr):lower()
-				local ft = vim.filetype.match({ filename = "a." .. alias })
-				metadata["injection.language"] = ft or lang_aliases[alias] or alias
-			end, { force = true, all = false })
+
+				-- master's `incremental_selection`. Neovim 0.12 provides this
+				-- natively, so it needs no plugin code. Buffer-local, so <CR>
+				-- keeps its normal meaning everywhere else (quickfix, prompts).
+				vim.keymap.set({ "n", "x" }, "<CR>", function()
+					vim.treesitter.select("parent")
+				end, { buffer = buf, desc = "Treesitter: grow selection" })
+				vim.keymap.set("x", "<BS>", function()
+					vim.treesitter.select("child")
+				end, { buffer = buf, desc = "Treesitter: shrink selection" })
+			end
+
+			-- Attach once `task` settles. A failed install is reported as a false
+			-- result rather than an error, so re-check the parser instead of the
+			-- task's outcome; `language.add` returns nil rather than throwing.
+			local function attach_after(task, buf, lang)
+				task:await(function()
+					vim.schedule(function()
+						if vim.api.nvim_buf_is_valid(buf) and vim.treesitter.language.add(lang) then
+							attach(buf, lang)
+						end
+					end)
+				end)
+			end
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("treesitter_attach", { clear = true }),
+				callback = function(ev)
+					-- `get_lang` falls back to returning the filetype itself, so
+					-- plugin buffers (neo-tree, lazy, qf, ...) reach here too and
+					-- are filtered by the `available` lookup.
+					local lang = vim.treesitter.language.get_lang(ev.match)
+					if not lang or not available[lang] then
+						return
+					end
+
+					if vim.treesitter.language.add(lang) then
+						attach(ev.buf, lang)
+					elseif vim.list_contains(ENSURE_INSTALLED, lang) then
+						attach_after(bootstrap, ev.buf, lang)
+					else
+						-- Replaces master's `auto_install = true`.
+						attach_after(ts.install(lang), ev.buf, lang)
+					end
+				end,
+			})
 		end,
 	},
 }
