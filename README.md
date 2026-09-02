@@ -16,7 +16,7 @@ Personal Neovim config. Lua, [lazy.nvim](https://github.com/folke/lazy.nvim), Ne
 
 **LSP / diagnostics** — `mason` + `mason-tool-installer`, `nvim-lspconfig`, `conform.nvim` for formatting, `trouble.nvim` for the diagnostic panel, `lazydev.nvim` so `lua_ls` understands this config. Servers are only enabled when their binary is actually on `$PATH` (see `lua/plugins/lsp.lua`); per-server settings live in `lua/lsps/`.
 
-**Git** — `gitsigns.nvim` for hunks and blame, `lazygit` in a floating window via `<leader>gg` (snacks).
+**Git** — `gitsigns.nvim` for hunks and blame, `lazygit` in a floating window via `<leader>gg` (snacks), `diffview.nvim` for a changed-files panel with per-file line counts (`<leader>gv`), `octo.nvim` for GitHub issues and PR review without leaving the editor (`<leader>go` — needs the `gh` CLI, authenticated).
 
 **Rust** — `rustaceanvim` drives rust-analyzer (clippy on save, `allFeatures`, inlay hints, `<leader>rr` runnables), `crates.nvim` for the `Cargo.toml` UI, and a two-key `ferris.nvim` for the memory-layout and item-tree views rustaceanvim does not implement.
 
@@ -69,4 +69,5 @@ site/               source for the keymap reference site
 
 - **File tree** — `snacks.explorer` (picker-based, not a persistent side panel). If you want a persistent tree instead, `nvim-neo-tree/neo-tree.nvim` is the closest drop-in replacement.
 - **Cord (Discord RP)** — needs the *native* Discord app (or Vesktop). Doesn't work with the browser/PWA Discord that Omarchy installs by default.
-- **Treesitter** — pinned to `master` (legacy API); the `main` branch is the v1.0+ rewrite with a different config surface.
+- **Treesitter** — on `main` (the v1.0 rewrite; `master` is archived). Parsers *and* queries install together under `~/.local/share/nvim/site/`, which is what stops them drifting apart — a stale parser paired with newer queries dies with `Invalid node type "..."` on every file open. Feature modules are gone: highlight, indent and selection are Neovim's own, wired up in `lua/plugins/treesitter.lua`.
+- **Diffview vs Octo** — both draw a "changed files" panel with line counts, and neither substitutes for the other. `diffview` reads the local working tree, index, or any git rev, and needs no network; `octo` reads a GitHub PR over the `gh` CLI. Octo renders the diffstat as a *bar*, diffview as numeric `+N, -M`. Inside a diffview panel, `i` toggles list/tree and `<tab>`/`<s-tab>` cycle files.

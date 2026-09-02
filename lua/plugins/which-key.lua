@@ -111,6 +111,15 @@ return {
 				{ "<leader>gr", desc = "Go to references" },
 				{ "<leader>ca", desc = "Code action" },
 
+				-- Diffs (diffview) / GitHub (octo)
+				{ "<leader>gv", desc = "Diffview: changed files" },
+				{ "<leader>gV", desc = "Diffview: close" },
+				{ "<leader>gh", desc = "Diffview: repo history" },
+				{ "<leader>gf", desc = "Diffview: current file history" },
+				{ "<leader>go", desc = "Octo: command palette" },
+				{ "<leader>gp", desc = "Octo: pull requests" },
+				{ "<leader>gi", desc = "Octo: issues" },
+
 				-- Lazy plugin manager
 				{ "<leader>ll", desc = "Open Lazy" },
 				{ "<leader>ls", desc = "Sync plugins" },

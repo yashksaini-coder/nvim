@@ -53,13 +53,20 @@
     </ul>
   </section>
 
-  <section class="group" id="git" data-tags="git gitsigns lazygit hunk blame diff stage reset">
+  <section class="group" id="git" data-tags="git gitsigns lazygit hunk blame diff stage reset diffview octo github pr pull request issue review changed files panel diffstat history">
     <h2 class="group-title">git</h2>
-    <p class="group-hint"><code>&lt;leader&gt;g</code> · <code>&lt;leader&gt;h</code> — gitsigns hunks, lazygit &amp; friends.</p>
+    <p class="group-hint"><code>&lt;leader&gt;g</code> · <code>&lt;leader&gt;h</code> — gitsigns hunks, lazygit, diffview (local changes) &amp; octo (GitHub PRs).</p>
     <ul class="keymaps">
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>gg</span><span class="desc">Open Lazygit (snacks)</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>gd</span><span class="desc">Go to definition (LSP)</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>gr</span><span class="desc">Go to references (LSP)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gv</span><span class="desc">Diffview: changed files (local)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gV</span><span class="desc">Diffview: close</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gh</span><span class="desc">Diffview: repo history</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gf</span><span class="desc">Diffview: current file history</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>go</span><span class="desc">Octo: command palette (GitHub)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gp</span><span class="desc">Octo: pull requests</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gi</span><span class="desc">Octo: issues</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>hs</span><span class="desc">Stage hunk</span><span class="mode">n v</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>hr</span><span class="desc">Reset hunk</span><span class="mode">n v</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>hS</span><span class="desc">Stage buffer</span><span class="mode">n</span></li>
@@ -251,7 +258,7 @@
     </ul>
   </section>
 
-  <section class="group" id="misc" data-tags="misc image snacks surround flash jump textobject fold comment">
+  <section class="group" id="misc" data-tags="misc image snacks surround flash jump textobject fold comment treesitter selection incremental node expand shrink">
     <h2 class="group-title">misc</h2>
     <p class="group-hint">Everything else.</p>
     <ul class="keymaps">
@@ -263,6 +270,8 @@
       <li class="km"><span class="key">s</span><span class="desc">Flash jump (replaces substitute-char; use cl)</span><span class="mode">n x o</span></li>
       <li class="km"><span class="key">S</span><span class="desc">Flash treesitter</span><span class="mode">n x o</span></li>
       <li class="km"><span class="key">af</span><span class="desc">A function (mini.ai) — also if, ac, ic</span><span class="mode">o x</span></li>
+      <li class="km"><span class="key">&lt;CR&gt;</span><span class="desc">Grow selection to parent node (treesitter)</span><span class="mode">n x</span></li>
+      <li class="km"><span class="key">&lt;BS&gt;</span><span class="desc">Shrink selection to child node</span><span class="mode">x</span></li>
       <li class="km"><span class="key">z</span><span class="desc">Fold (prefix)</span><span class="mode">n</span></li>
     </ul>
   </section>
