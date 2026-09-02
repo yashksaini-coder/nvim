@@ -1,12 +1,17 @@
 return {
 	"hrsh7th/nvim-cmp",
+	-- Nothing needs cmp before you start typing. lsp.lua pulls cmp-nvim-lsp in as
+	-- its own dependency for capabilities, so the LSP side does not wait on this.
+	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp", -- LSP source
 		"hrsh7th/cmp-buffer", -- buffer completions
 		"hrsh7th/cmp-path", -- path completions
-		"hrsh7th/cmp-cmdline", -- command-line completions
-		"L3MON4D3/LuaSnip", -- snippet engine
-		"saadparwaiz1/cmp_luasnip", -- snippet source
+		-- LuaSnip is the snippet ENGINE, not a source: nvim-cmp requires a
+		-- snippet.expand implementation to accept LSP snippet completions at all.
+		-- cmp_luasnip and its `luasnip` source are gone — no snippets are defined
+		-- anywhere in this config, so that source could only ever return nothing.
+		"L3MON4D3/LuaSnip",
 		"onsails/lspkind.nvim", -- completion icons
 	},
 	config = function()
@@ -43,15 +48,19 @@ return {
 					ellipsis_char = "...",
 					menu = {
 						nvim_lsp = "[LSP]",
-						luasnip = "[Snip]",
+						lazydev = "[Lua]",
 						buffer = "[Buf]",
 						path = "[Path]",
 					},
 				}),
 			},
 			sources = cmp.config.sources({
+				-- Its own leading group: cmp.config.sources overwrites group_index with
+				-- the group's position, so a leading group is the only way to let
+				-- lazydev's require("…") module names beat lua_ls's path guesses.
+				{ name = "lazydev" },
+			}, {
 				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
 			}, {
 				{ name = "buffer" },
 				{ name = "path" },

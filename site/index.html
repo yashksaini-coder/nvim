@@ -94,22 +94,25 @@
     </ul>
   </section>
 
-  <section class="group" id="rust" data-tags="rust ferris hir mir macro cargo module documentation workspace">
-    <h2 class="group-title">rust <span class="group-suffix">ferris</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;r</code> — rust-analyzer extras in .rs files.</p>
+  <section class="group" id="rust" data-tags="rust rustaceanvim ferris runnable clippy hir mir macro cargo module documentation workspace">
+    <h2 class="group-title">rust <span class="group-suffix">rustaceanvim</span></h2>
+    <p class="group-hint"><code>&lt;leader&gt;r</code> — rust-analyzer, in .rs files. Clippy runs on save.</p>
     <ul class="keymaps">
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rr</span><span class="desc">Runnables (pick a target)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rR</span><span class="desc">Re-run last runnable</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rE</span><span class="desc">Explain error</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>rm</span><span class="desc">Expand macro</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>rj</span><span class="desc">Join lines</span><span class="mode">n v</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>rh</span><span class="desc">View HIR</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>rl</span><span class="desc">View MIR</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rs</span><span class="desc">View memory layout</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rt</span><span class="desc">View syntax tree</span><span class="mode">n v</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ri</span><span class="desc">View item tree</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rt</span><span class="desc">View syntax tree</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>rc</span><span class="desc">Open Cargo.toml</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>rp</span><span class="desc">Parent module</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>rd</span><span class="desc">Open documentation</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>rw</span><span class="desc">Reload workspace</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>rb</span><span class="desc">Rebuild proc macros</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rM</span><span class="desc">View memory layout (ferris)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rI</span><span class="desc">View item tree (ferris)</span><span class="mode">n</span></li>
     </ul>
   </section>
 
@@ -128,6 +131,8 @@
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>fd</span><span class="desc">Diagnostics</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>fp</span><span class="desc">Recent Projects (snacks)</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>fm</span><span class="desc">Format file / range</span><span class="mode">n v</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ft</span><span class="desc">Todo comments</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fS</span><span class="desc">Search &amp; replace, project-wide (grug-far)</span><span class="mode">n v</span></li>
     </ul>
   </section>
 
@@ -147,19 +152,19 @@
     </ul>
   </section>
 
-  <section class="group" id="markdown" data-tags="markdown make compile build run function-keys f5 f6 f7 f8">
-    <h2 class="group-title">markdown &amp; make</h2>
-    <p class="group-hint"><code>&lt;leader&gt;m</code> — render-markdown, native make.</p>
+  <section class="group" id="markdown" data-tags="markdown compile compile-mode build run stdin history function-keys f5 f6 f8">
+    <h2 class="group-title">markdown &amp; compile</h2>
+    <p class="group-hint"><code>&lt;leader&gt;m</code> — render-markdown, compile-mode. The compile buffer runs on a pty, so <code>i</code> sends a line to the program's stdin (empty line = EOF).</p>
     <ul class="keymaps">
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>mp</span><span class="desc">Toggle markdown preview (render-markdown)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mb</span><span class="desc">Make: build (C / C++)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mr</span><span class="desc">Make: build &amp; run</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mT</span><span class="desc">Make: toggle results (quickfix)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mx</span><span class="desc">Make: run</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;F5&gt;</span><span class="desc">Build C / C++ program</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;F6&gt;</span><span class="desc">Build &amp; run C / C++ program</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;F7&gt;</span><span class="desc">Toggle compilation results</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;F8&gt;</span><span class="desc">Run C / C++ program</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mm</span><span class="desc">Compile (prompt)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mr</span><span class="desc">Recompile (last command)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mh</span><span class="desc">Compile history</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mq</span><span class="desc">Compile errors to quickfix</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mx</span><span class="desc">Run last build (no rebuild)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;F5&gt;</span><span class="desc">Recompile</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;F6&gt;</span><span class="desc">Compile (prompt)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">&lt;F8&gt;</span><span class="desc">Run last build (no rebuild)</span><span class="mode">n</span></li>
     </ul>
   </section>
 
@@ -190,34 +195,6 @@
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>Tmr</span><span class="desc">Move tab right</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>Tml</span><span class="desc">Move tab left</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>T1..9</span><span class="desc">Go to tab N</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="boilerplates" data-tags="boilerplate template cp competitive-programming leetcode cses csharp go rust c cpp">
-    <h2 class="group-title">boilerplates</h2>
-    <p class="group-hint">Full-buffer templates for CP &amp; new files.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>blp</span><span class="desc">C++ (competitive programming)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>blc</span><span class="desc">C (competitive programming)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>got</span><span class="desc">Go</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rst</span><span class="desc">Rust</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>plc</span><span class="desc">C++ (LeetCode style)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cse</span><span class="desc">C++ (CSES)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>csh</span><span class="desc">C#</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="snippets" data-tags="snippet vector loop for while do range modinverse diophantine print">
-    <h2 class="group-title">snippets</h2>
-    <p class="group-hint">Insert-at-cursor code fragments.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>pov</span><span class="desc">print vector (C++)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mod</span><span class="desc">mod inverse (C++)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>dio</span><span class="desc">diophantine (C++)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>sfor</span><span class="desc">for loop (C / C++ / Rust)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>swh</span><span class="desc">while loop (C / C++ / Rust)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>sdo</span><span class="desc">do-while (C / C++)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>srange</span><span class="desc">range-for (C++) / for-in (Rust)</span><span class="mode">n</span></li>
     </ul>
   </section>
 
@@ -256,6 +233,10 @@
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>xX</span><span class="desc">Buffer diagnostics (Trouble)</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>xL</span><span class="desc">Location list (Trouble)</span><span class="mode">n</span></li>
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>xQ</span><span class="desc">Quickfix list (Trouble)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xt</span><span class="desc">Todo comments (Trouble)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xv</span><span class="desc">Toggle inline virtual diagnostic</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">]t</span><span class="desc">Next todo comment</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">[t</span><span class="desc">Prev todo comment</span><span class="mode">n</span></li>
     </ul>
   </section>
 
@@ -270,13 +251,18 @@
     </ul>
   </section>
 
-  <section class="group" id="misc" data-tags="misc image snacks surround fold comment">
+  <section class="group" id="misc" data-tags="misc image snacks surround flash jump textobject fold comment">
     <h2 class="group-title">misc</h2>
     <p class="group-hint">Everything else.</p>
     <ul class="keymaps">
       <li class="km"><span class="key"><i>&lt;leader&gt;</i>is</span><span class="desc">Show image at cursor (snacks)</span><span class="mode">n</span></li>
       <li class="km"><span class="key">&lt;C-/&gt;</span><span class="desc">Toggle comment (visual)</span><span class="mode">v</span></li>
-      <li class="km"><span class="key">gs</span><span class="desc">Surround (prefix)</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">gsa</span><span class="desc">Add surrounding (mini.surround)</span><span class="mode">n v</span></li>
+      <li class="km"><span class="key">gsd</span><span class="desc">Delete surrounding</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">gsr</span><span class="desc">Replace surrounding</span><span class="mode">n</span></li>
+      <li class="km"><span class="key">s</span><span class="desc">Flash jump (replaces substitute-char; use cl)</span><span class="mode">n x o</span></li>
+      <li class="km"><span class="key">S</span><span class="desc">Flash treesitter</span><span class="mode">n x o</span></li>
+      <li class="km"><span class="key">af</span><span class="desc">A function (mini.ai) — also if, ac, ic</span><span class="mode">o x</span></li>
       <li class="km"><span class="key">z</span><span class="desc">Fold (prefix)</span><span class="mode">n</span></li>
     </ul>
   </section>
@@ -311,7 +297,7 @@
 
   <div class="empty-state" id="empty" hidden>
     <p>No keymaps match.</p>
-    <p class="hint">try <code>rust</code>, <code>git</code>, <code>buffer</code>, <code>sfor</code></p>
+    <p class="hint">try <code>rust</code>, <code>git</code>, <code>buffer</code>, <code>hunk</code></p>
   </div>
 
   <footer>

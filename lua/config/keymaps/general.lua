@@ -17,9 +17,11 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", {
 	desc = "Move to right window",
 })
 
--- Autopairs Keymap
-vim.keymap.set("v", "<C-/>", "<Plug>(comment_toggle_linewise_visual)", {
-	noremap = true,
+-- Toggle comment in visual mode. Must be recursive: the built-in `gc` is itself a
+-- Lua mapping, so noremap would bypass it. Mode is "x", not "v" — the built-in only
+-- maps x, and firing an operator from select mode is wrong anyway.
+vim.keymap.set("x", "<C-/>", "gc", {
+	remap = true,
 	silent = true,
 	desc = "Toggle comment",
 })

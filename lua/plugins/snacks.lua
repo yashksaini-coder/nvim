@@ -58,6 +58,10 @@ return {
 				image = " ",
 			},
 		},
+		-- Skips syntax, treesitter and LSP on huge files so opening one doesn't hang.
+		bigfile = { enabled = true },
+		-- Renders the file from the command line before plugins finish loading.
+		quickfile = { enabled = true },
 		-- picker powers <leader>fp (recent projects). Tree lives in neo-tree.
 		picker = { enabled = true },
 		-- Flag-only: enabling explorer flips snacks.dashboard's `skip` branch,

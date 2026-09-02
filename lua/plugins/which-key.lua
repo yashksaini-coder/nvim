@@ -21,10 +21,10 @@ return {
 				{ "<leader>h", group = "git hunks" },
 				{ "<leader>k", group = "man/docs" },
 				{ "<leader>l", group = "lazy" },
-				{ "<leader>m", group = "markdown/make" },
+				{ "<leader>m", group = "markdown/compile" },
+				{ "<leader>n", group = "noice" },
 				{ "<leader>q", desc = "Quit all" },
-				{ "<leader>r", group = "rust (ferris)" },
-				{ "<leader>s", group = "search/snippets" },
+				{ "<leader>r", group = "rust" },
 				{ "<leader>t", group = "tabs" },
 				{ "<leader>T", group = "tabs (goto T1-T9, move Tm{r,l})" },
 				{ "<leader>x", group = "trouble/diagnostics" },
@@ -38,22 +38,6 @@ return {
 				{ "<leader>bl", desc = "Close buffers left" },
 				{ "<leader>bm", desc = "Move buffer next" },
 				{ "<leader>bM", desc = "Move buffer prev" },
-				{ "<leader>blp", desc = "Boilerplate: C++ (utils)" },
-				{ "<leader>blc", desc = "Boilerplate: C (utils)" },
-
-				-- Utils: boilerplates & snippets (separate)
-				{ "<leader>got", desc = "Boilerplate: Go (utils)" },
-				{ "<leader>rst", desc = "Boilerplate: Rust (utils)" },
-				{ "<leader>plc", desc = "Boilerplate: LeetCode C++ (utils)" },
-				{ "<leader>cse", desc = "Boilerplate: CSES C++ (utils)" },
-				{ "<leader>csh", desc = "Boilerplate: C# (utils)" },
-				{ "<leader>pov", desc = "Snippet: print vector (utils)" },
-				{ "<leader>mod", desc = "Snippet: mod inverse (utils)" },
-				{ "<leader>dio", desc = "Snippet: diophantine (utils)" },
-				{ "<leader>sfor", desc = "Snippet: for loop (C/C++/Rust)" },
-				{ "<leader>swh", desc = "Snippet: while loop (C/C++/Rust)" },
-				{ "<leader>sdo", desc = "Snippet: do-while (C/C++)" },
-				{ "<leader>srange", desc = "Snippet: range-for (C++) / for-in (Rust)" },
 
 				-- Crates.nvim (Rust Cargo.toml)
 				{ "<leader>ct", desc = "Toggle crates info" },
@@ -73,11 +57,29 @@ return {
 				{ "<leader>cC", desc = "Open crate on crates.io" },
 				{ "<leader>cL", desc = "Open crate on lib.rs" },
 
-				-- Native make (C/C++)
-				{ "<leader>mb", desc = "Make: build" },
-				{ "<leader>mr", desc = "Make: build & run" },
-				{ "<leader>mT", desc = "Make: toggle results" },
-				{ "<leader>mx", desc = "Make: run" },
+				-- compile-mode (default command is per-filetype)
+				{ "<leader>mm", desc = "Compile (prompt)" },
+				{ "<leader>mr", desc = "Recompile (last command)" },
+				{ "<leader>mh", desc = "Compile history" },
+				{ "<leader>mq", desc = "Compile errors to quickfix" },
+				{ "<leader>mx", desc = "Run last build (no rebuild)" },
+
+				-- Rust (rustaceanvim; rM/rI are ferris)
+				{ "<leader>rr", desc = "Runnables" },
+				{ "<leader>rR", desc = "Re-run last runnable" },
+				{ "<leader>rE", desc = "Explain error" },
+				{ "<leader>rm", desc = "Expand macro" },
+				{ "<leader>rj", desc = "Join lines" },
+				{ "<leader>rh", desc = "View HIR" },
+				{ "<leader>rl", desc = "View MIR" },
+				{ "<leader>rt", desc = "View syntax tree" },
+				{ "<leader>rc", desc = "Open Cargo.toml" },
+				{ "<leader>rp", desc = "Parent module" },
+				{ "<leader>rd", desc = "Open documentation" },
+				{ "<leader>rw", desc = "Reload workspace" },
+				{ "<leader>rb", desc = "Rebuild proc macros" },
+				{ "<leader>rM", desc = "View memory layout" },
+				{ "<leader>rI", desc = "View item tree" },
 
 				-- File operations
 				{ "<leader>ff", desc = "Find files" },
@@ -90,6 +92,8 @@ return {
 				{ "<leader>fd", desc = "Diagnostics" },
 				{ "<leader>fp", desc = "Recent Projects" },
 				{ "<leader>fm", desc = "Format file/range" },
+				{ "<leader>ft", desc = "Todo comments" },
+				{ "<leader>fS", desc = "Search & replace (project-wide)" },
 
 				-- Git hunks (gitsigns)
 				{ "<leader>hs", desc = "Stage hunk" },
@@ -130,7 +134,7 @@ return {
 				-- Mason
 				{ "<leader>M", desc = "Open Mason" },
 
-				-- Tabs (mini-map.lua)
+				-- Tabs / themes
 				{ "<leader>tn", desc = "New tab" },
 				{ "<leader>tH", desc = "Themery" },
 
@@ -139,6 +143,17 @@ return {
 				{ "<leader>xX", desc = "Buffer diagnostics (Trouble)" },
 				{ "<leader>xL", desc = "Location list (Trouble)" },
 				{ "<leader>xQ", desc = "Quickfix list (Trouble)" },
+				{ "<leader>xt", desc = "Todo comments (Trouble)" },
+				{ "<leader>xd", desc = "Show line diagnostics" },
+				{ "<leader>xv", desc = "Toggle inline virtual diagnostic" },
+
+				-- Noice
+				{ "<leader>nh", desc = "Noice history" },
+				{ "<leader>nl", desc = "Noice last message" },
+				{ "<leader>ne", desc = "Noice errors" },
+				{ "<leader>nd", desc = "Dismiss notifications" },
+				{ "<leader>np", desc = "Noice picker" },
+				{ "<leader>ns", desc = "Noice stats" },
 
 				-- Navigation
 				{ "[", group = "prev" },
@@ -147,11 +162,20 @@ return {
 				{ "]b", desc = "Next buffer" },
 				{ "[c", desc = "Prev git hunk" },
 				{ "]c", desc = "Next git hunk" },
+				{ "[t", desc = "Prev todo comment" },
+				{ "]t", desc = "Next todo comment" },
 
 				-- Goto
 				{ "g", group = "goto" },
 				{ "gx", desc = "Open with system app" },
 				{ "gs", group = "surround" },
+				{ "gsa", desc = "Add surrounding" },
+				{ "gsd", desc = "Delete surrounding" },
+				{ "gsf", desc = "Find right surrounding" },
+				{ "gsF", desc = "Find left surrounding" },
+				{ "gsh", desc = "Highlight surrounding" },
+				{ "gsr", desc = "Replace surrounding" },
+				{ "gsn", desc = "Update n_lines" },
 				{ "gt", desc = "Next tab" },
 				{ "gT", desc = "Previous tab" },
 
@@ -160,7 +184,6 @@ return {
 				{ "K", desc = "LSP hover" },
 				{ "<C-s>", desc = "Save file" },
 				{ "<C-p>", desc = "Find files" },
-				{ "<C-\\>", desc = "Toggle terminal" },
 				{ "<C-Up>", desc = "Increase window height" },
 				{ "<C-Down>", desc = "Decrease window height" },
 				{ "<C-Left>", desc = "Decrease window width" },
@@ -170,13 +193,14 @@ return {
 				{ "<C-k>", desc = "Move to upper window" },
 				{ "<C-l>", desc = "Move to right window" },
 				{ "<S-h>", desc = "Prev buffer" },
-				{ "<S-l>", desc = "Next buffer (bufferline)" },
+				{ "<S-l>", desc = "Next buffer (barbar)" },
+				{ "s", desc = "Flash jump" },
+				{ "S", desc = "Flash treesitter" },
 
-				-- Function Keys (C/C++ Compiler)
-				{ "<F5>", desc = "Build C/C++ program" },
-				{ "<F6>", desc = "Build & run C/C++ program" },
-				{ "<F7>", desc = "Toggle compilation results" },
-				{ "<F8>", desc = "Run C/C++ program" },
+				-- Function keys (compile-mode)
+				{ "<F5>", desc = "Recompile" },
+				{ "<F6>", desc = "Compile (prompt)" },
+				{ "<F8>", desc = "Run last build (no rebuild)" },
 
 				-- Windows
 				{

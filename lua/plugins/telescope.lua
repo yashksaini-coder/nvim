@@ -11,6 +11,11 @@ return {
 			-- Snacks for image preview
 			"folke/snacks.nvim",
 		},
+		-- `cmd` is not redundant with `keys`: snacks.dashboard's buttons fire
+		-- `:Telescope find_files/live_grep/oldfiles` as raw command strings, and
+		-- nothing pulls telescope in at startup any more now that the eager
+		-- compiler.nvim spec (which listed it as a dependency) is gone.
+		cmd = "Telescope",
 		keys = {
 			-- File operations
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },

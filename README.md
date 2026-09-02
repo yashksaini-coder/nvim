@@ -8,23 +8,21 @@ Personal Neovim config. Lua, [lazy.nvim](https://github.com/folke/lazy.nvim), Ne
 
 ## What's inside
 
-**Editing** — `nvim-cmp` + `LuaSnip` completion, `autopairs`, `autotag` for JSX/HTML, `Comment.nvim`.
+**Editing** — `nvim-cmp` completion (`LuaSnip` is the expander for LSP snippets, not a snippet library), `autopairs`, `autotag` for JSX/HTML, `mini.surround` on `gs`, `mini.ai` text objects (`af`/`if`, `ac`/`ic`), `flash.nvim` for `s`-jumps. Commenting is Neovim's built-in `gc` — it reads `commentstring` from treesitter metadata, so JSX comments come out right without a plugin.
 
-**UI** — `bufferline` (buffers), `lualine` (statusline), `which-key` (popup), `noice` + `nvim-notify` (cmdline & notifications), `snacks.nvim` (image viewer + indent guides + file explorer), `lspkind` (completion icons), `mini.icons` (icon set).
+**UI** — `barbar` (buffer tabs), `lualine` (statusline + winbar), `which-key` (popup), `noice` + `nvim-notify` (cmdline & notifications), `snacks.nvim` (image viewer, indent guides, dashboard, bigfile/quickfile), `lspkind` (completion icons), `mini.icons` (icon set).
 
-**Files & search** — `telescope.nvim` with `fzf-native`. File explorer is `snacks.explorer` — bound to `<leader>e`.
+**Files & search** — `telescope.nvim` with `fzf-native`. File explorer is `neo-tree` — bound to `<leader>e`. `todo-comments` for TODO/FIXME, `grug-far` for project-wide find-and-replace on `<leader>fS`.
 
-**LSP / diagnostics** — `mason` + `mason-tool-installer` for installing language servers and tools, `nvim-lspconfig`, `conform.nvim` for formatting, `trouble.nvim` for the diagnostic panel.
+**LSP / diagnostics** — `mason` + `mason-tool-installer`, `nvim-lspconfig`, `conform.nvim` for formatting, `trouble.nvim` for the diagnostic panel, `lazydev.nvim` so `lua_ls` understands this config. Servers are only enabled when their binary is actually on `$PATH` (see `lua/plugins/lsp.lua`); per-server settings live in `lua/lsps/`.
 
-**Git** — `gitsigns.nvim` for hunks and blame, `lazygit` opened in a floating `toggleterm` via `<leader>gg`.
+**Git** — `gitsigns.nvim` for hunks and blame, `lazygit` in a floating window via `<leader>gg` (snacks).
 
-**Terminal** — `toggleterm.nvim` — floats, splits, REPLs, system monitor.
+**Rust** — `rustaceanvim` drives rust-analyzer (clippy on save, `allFeatures`, inlay hints, `<leader>rr` runnables), `crates.nvim` for the `Cargo.toml` UI, and a two-key `ferris.nvim` for the memory-layout and item-tree views rustaceanvim does not implement.
 
-**Rust** — `crates.nvim` (Cargo.toml UI), `ferris.nvim` (rust-analyzer extras: `expandMacro`, `viewHIR`, etc.).
+**Languages** — `nvim-treesitter` on the `main` branch (the v1.0 rewrite — highlighting, indent and selection are Neovim's own features now; see the header comment in `lua/plugins/treesitter.lua`), `render-markdown.nvim`.
 
-**Languages** — `nvim-treesitter` on the `master` branch (legacy API — v1.0/main removed the configs module we rely on), `render-markdown.nvim`.
-
-**Utilities** — `compiler.nvim` (`:make` for C/C++), `lua/utils/` boilerplates + snippets, [`cord.nvim`](https://github.com/vyfor/cord.nvim) (Discord Rich Presence — needs a native Discord client running for the IPC socket at `/run/user/$UID/discord-ipc-0`), [`vim-wakatime`](https://wakatime.com/vim).
+**Utilities** — `compile-mode.nvim` for build & run (`<leader>mm`; runs on a pty, so `scanf`/`cin` actually block for input), [`cord.nvim`](https://github.com/vyfor/cord.nvim) (Discord Rich Presence — needs a native Discord client running for the IPC socket at `/run/user/$UID/discord-ipc-0`), [`vim-wakatime`](https://wakatime.com/vim).
 
 **Themes** — Catppuccin, Kanagawa, Gruvbox, Rose Pine, Chai, Osmium — switch with `<leader>tH` (Themery).
 
@@ -50,8 +48,7 @@ lazy-lock.json
 lua/
   config/           options, lazy bootstrap, diagnostics, keymap requires
   plugins/          one file per plugin (mini/ and themes/ grouped)
-  lsps/             per-server LSP settings (lua_ls, ts_ls)
-  utils/            boilerplates & snippets
+  lsps/             per-server LSP settings (clangd, gopls, pyright, tailwindcss, ts_ls)
 site/               source for the keymap reference site
 .github/
   workflows/

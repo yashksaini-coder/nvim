@@ -5,12 +5,14 @@ SHELL        := bash
 ROOT         := $(CURDIR)
 MASON_BIN    := $(HOME)/.local/share/nvim/mason/bin
 LUA_FILES    := $(shell find $(ROOT)/lua $(ROOT)/plugin $(ROOT)/after -name '*.lua' 2>/dev/null)
-STYLUA_TOML  := $(ROOT)/stylua.toml
 STYLUA       := $(MASON_BIN)/stylua
 LUACHECK     := luacheck
-JOBS         := $(shell nproc 2>/dev/null || echo 4)
+# Mason's bin dir is only on $PATH inside nvim. Put it on the shell's too, after
+# the system path so a system luacheck still wins. Without this `make lint` fails
+# with "luacheck: command not found"; install it with :MasonToolsInstall.
+export PATH := $(PATH):$(MASON_BIN)
 
-.PHONY: all fmt lint check clean fmt-fix help
+.PHONY: all fmt lint fmt-fix fix-whitespace help
 all: fmt lint
 
 # 1. Format -------------------------------------------------------------------
@@ -23,12 +25,6 @@ else \
 	$(STYLUA) . ; \
 	echo "Formatting complete." ; \
 fi
-
-$(STYLUA_TOML):
-	@echo "→  Creating minimal stylua.toml …"
-	@echo 'column_width = 100' > $@
-	@echo 'indent_type    = "Spaces"' >> $@
-	@echo 'indent_width   = 2' >> $@
 
 # 2. Lint ---------------------------------------------------------------------
 lint:
@@ -48,10 +44,6 @@ fix-whitespace:
 	@find $(ROOT)/lua -name '*.lua' -type f -exec sed -i 's/[[:space:]]*$$//' {} +
 	@echo "Whitespace cleanup complete."
 
-# 5. Clean artefacts ----------------------------------------------------------
-clean:
-	rm -f $(STYLUA_TOML)
-
 # 6. Help / list --------------------------------------------------------------
 help:
 	@echo "Available targets:"
@@ -60,5 +52,4 @@ help:
 	@echo "  make lint         lint only"
 	@echo "  make fmt-fix      auto-format files in place"
 	@echo "  make fix-whitespace remove trailing whitespace"
-	@echo "  make clean        remove generated files"
 	@echo "  make help         show this help"

@@ -3,7 +3,9 @@ return {
 	event = "VeryLazy",
 	dependencies = {
 		"MunifTanjim/nui.nvim",
-		"rcarriga/nvim-notify",
+		-- opts absorbed from the deleted standalone plugins/notify.lua: a top-level
+		-- fragment cleared lazy.nvim's dep flag and made nvim-notify load eagerly.
+		{ "rcarriga/nvim-notify", opts = { background_colour = "#3d3c3cff" } },
 	},
 	opts = {
 		-- I. PRESETS ---------------------------

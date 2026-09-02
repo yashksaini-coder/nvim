@@ -1,3 +1,0 @@
-for (auto& x : container) {
-
-}

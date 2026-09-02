@@ -20,8 +20,10 @@ return {
 			-- Lua
 			lua = { "stylua" },
 
-			-- Python (install via: pip install black isort)
-			python = { "isort", "black", lsp_format = "fallback" },
+			-- Python: ruff does import sorting and formatting in one tool, and it is
+			-- already installed by mason for the ruff language server. The previous
+			-- isort+black pair was never installed, so saving a .py file did nothing.
+			python = { "ruff_organize_imports", "ruff_format" },
 
 			-- Rust
 			rust = { "rustfmt", lsp_format = "fallback" },
