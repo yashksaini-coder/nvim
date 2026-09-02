@@ -22,7 +22,7 @@ Personal Neovim config. Lua, [lazy.nvim](https://github.com/folke/lazy.nvim), Ne
 
 **Languages** — `nvim-treesitter` on the `main` branch (the v1.0 rewrite — highlighting, indent and selection are Neovim's own features now; see the header comment in `lua/plugins/treesitter.lua`), `render-markdown.nvim`.
 
-**Utilities** — `compile-mode.nvim` for build & run (`<leader>mm`; runs on a pty, so `scanf`/`cin` actually block for input), [`cord.nvim`](https://github.com/vyfor/cord.nvim) (Discord Rich Presence — needs a native Discord client running for the IPC socket at `/run/user/$UID/discord-ipc-0`), [`vim-wakatime`](https://wakatime.com/vim).
+**Utilities** — `compile-mode.nvim` for build & run (`<leader>mm`; runs on a pty, so `scanf`/`cin` actually block for input), [`cord.nvim`](https://github.com/vyfor/cord.nvim) (Discord Rich Presence — needs a native Discord client running for the IPC socket at `/run/user/$UID/discord-ipc-0`).
 
 **Themes** — Catppuccin, Kanagawa, Gruvbox, Rose Pine, Chai, Osmium — switch with `<leader>tH` (Themery).
 
@@ -36,7 +36,7 @@ nvim               # lazy.nvim bootstraps and installs everything
 :Mason             # optional — install more LSPs / tools
 ```
 
-Neovim 0.11+ required. A Nerd Font is recommended for icons. For WakaTime, `wakatime-cli` reads `~/.wakatime.cfg` — set your API key there.
+Neovim 0.11+ required. A Nerd Font is recommended for icons.
 
 ---
 
