@@ -47,9 +47,10 @@ init.lua
 lazy-lock.json
 lua/
   config/           options, lazy bootstrap, diagnostics, keymap requires
+    keymap-export.lua  builds the site's keymap rows from the live keymaps
   plugins/          one file per plugin (mini/ and themes/ grouped)
   lsps/             per-server LSP settings (clangd, gopls, pyright, tailwindcss, ts_ls)
-site/               source for the keymap reference site
+site/               keymap reference site (index.html rows are GENERATED)
 .github/
   workflows/
     update-plugins.yml    daily `Lazy sync` + lockfile commit
@@ -60,7 +61,7 @@ site/               source for the keymap reference site
 
 ## Checks
 
-`make` runs both gates: `stylua` (format — auto-fixes in place) and `luacheck` (lint — expect 0 warnings across 64 files). `make fmt` and `make lint` run them separately.
+`make` runs both gates: `stylua` (format — auto-fixes in place) and `luacheck` (lint — expect 0 warnings across 64 files). `make fmt` and `make lint` run them separately. `make site` regenerates the keymap site (below).
 
 `stylua` comes from Mason. `luacheck` should **not** — Mason builds it against whatever Lua is current, and the 5.5 build dies on its own source with `attempt to assign to const variable 'field_name'`. Install a working one instead:
 
@@ -70,6 +71,22 @@ sudo pacman -S luacheck                               # or Arch's 1.2.0, built a
 ```
 
 The Makefile puts `~/.luarocks/bin` ahead of Mason's on `PATH`, so either choice wins over the broken one.
+
+---
+
+## Keymap site
+
+`site/index.html` is not hand-written. Everything between `<!-- BEGIN GENERATED -->` and `<!-- END GENERATED -->` comes from `:KeymapExport` (or `make site`), which reads the live keymap table after force-loading every plugin. The shell around it — hero, search, empty state, footer — is hand-owned and never touched.
+
+Three tables in `lua/config/keymap-export.lua` are maintained by hand because nothing can derive them:
+
+- **`GROUPS`** — group titles, hints and search tags.
+- **`ROUTE`** — which group a key belongs to; first match wins, fallthrough is `misc`.
+- **`BUFLOCAL`** — buffer-local maps. `nvim_get_keymap` cannot see rustaceanvim's `<leader>r*`, gitsigns' `<leader>h*` or the LSP maps, because they do not exist until the right buffer is open. They are listed explicitly and tagged on the page with the plugin that owns them.
+
+There is also a **`DENY`** list. A raw dump is mostly noise — Neovim's own bracket maps (`[A` → `:rewind`), its built-in LSP defaults (`gra`), and mini.surround's full l/n variant matrix would bury the keys you actually look up.
+
+Run `make site` after adding or removing a keymap; the output is deterministic, so a no-op change produces an empty diff.
 
 ---
 

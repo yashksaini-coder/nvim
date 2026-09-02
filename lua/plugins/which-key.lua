@@ -25,8 +25,7 @@ return {
 				{ "<leader>n", group = "noice" },
 				{ "<leader>q", desc = "Quit all" },
 				{ "<leader>r", group = "rust" },
-				{ "<leader>t", group = "tabs" },
-				{ "<leader>T", group = "tabs (goto T1-T9, move Tm{r,l})" },
+				{ "<leader>t", group = "theme" },
 				{ "<leader>x", group = "trouble/diagnostics" },
 
 				-- Buffer operations
@@ -144,7 +143,6 @@ return {
 				{ "<leader>M", desc = "Open Mason" },
 
 				-- Tabs / themes
-				{ "<leader>tn", desc = "New tab" },
 				{ "<leader>tH", desc = "Themery" },
 
 				-- Trouble

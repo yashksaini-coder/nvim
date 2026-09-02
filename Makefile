@@ -18,7 +18,7 @@ LUACHECK     := luacheck
 #   sudo pacman -S luacheck            # Arch: 1.2.0, built against lua54
 export PATH := $(PATH):$(LUAROCKS_BIN):$(MASON_BIN)
 
-.PHONY: all fmt lint fmt-fix fix-whitespace help
+.PHONY: all fmt lint fmt-fix fix-whitespace site help
 all: fmt lint
 
 # 1. Format -------------------------------------------------------------------
@@ -44,7 +44,14 @@ lint:
 fmt-fix:
 	$(STYLUA) .
 
-# 4. Fix trailing whitespace --------------------------------------------------
+# 4. Regenerate the keymap reference site -------------------------------------
+# Rewrites everything between the GENERATED markers in site/index.html from the
+# live keymap table. Loads every plugin first so lazy-loaded `keys` register.
+site:
+	@echo "→  Regenerating site/index.html from live keymaps …"
+	@nvim --headless -c 'lua local ok, res = pcall(require("config.keymap-export").export) print(ok and ("wrote " .. res .. " keymaps") or ("ERROR: " .. tostring(res))) vim.cmd(ok and "qa!" or "cq")'
+
+# 5. Fix trailing whitespace --------------------------------------------------
 fix-whitespace:
 	@echo "→  Removing trailing whitespace from Lua files …"
 	@find $(ROOT)/lua -name '*.lua' -type f -exec sed -i 's/[[:space:]]*$$//' {} +
@@ -57,5 +64,6 @@ help:
 	@echo "  make fmt          format-check only"
 	@echo "  make lint         lint only"
 	@echo "  make fmt-fix      auto-format files in place"
+	@echo "  make site         regenerate site/index.html from live keymaps"
 	@echo "  make fix-whitespace remove trailing whitespace"
 	@echo "  make help         show this help"

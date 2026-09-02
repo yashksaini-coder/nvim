@@ -17,3 +17,5 @@ require("config.lazy")
 require("config.nvim-diagnostics")
 require("config.keymaps")
 require("config.autocmds")
+-- :KeymapExport (or `make site`) regenerates site/index.html from the live keymaps.
+require("config.keymap-export")
