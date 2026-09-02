@@ -58,6 +58,21 @@ site/               source for the keymap reference site
 
 ---
 
+## Checks
+
+`make` runs both gates: `stylua` (format — auto-fixes in place) and `luacheck` (lint — expect 0 warnings across 64 files). `make fmt` and `make lint` run them separately.
+
+`stylua` comes from Mason. `luacheck` should **not** — Mason builds it against whatever Lua is current, and the 5.5 build dies on its own source with `attempt to assign to const variable 'field_name'`. Install a working one instead:
+
+```bash
+luarocks --local --lua-version=5.4 install luacheck   # no sudo
+sudo pacman -S luacheck                               # or Arch's 1.2.0, built against lua54
+```
+
+The Makefile puts `~/.luarocks/bin` ahead of Mason's on `PATH`, so either choice wins over the broken one.
+
+---
+
 ## CI
 
 - **`update-plugins.yml`** — runs daily at 00:00 UTC. `Lazy sync` + `Lazy update` + `Lazy restore`, commits any `lazy-lock.json` drift as `ci: update all plugins to latest [skip ci]`. This is why `git pull` sometimes conflicts on `lazy-lock.json` — take the newer hash, it's monotonic.
@@ -67,7 +82,7 @@ site/               source for the keymap reference site
 
 ## Notes
 
-- **File tree** — `snacks.explorer` (picker-based, not a persistent side panel). If you want a persistent tree instead, `nvim-neo-tree/neo-tree.nvim` is the closest drop-in replacement.
+- **File tree** — `neo-tree` on `<leader>e`, a persistent side panel. `snacks.explorer` is switched on but only as a flag: it flips `snacks.dashboard`'s `skip` branch so the dashboard still renders on `nvim .`. Its `replace_netrw` is off on purpose, so it never hijacks a directory buffer and opens a second tree next to neo-tree (see `lua/plugins/snacks.lua`).
 - **Cord (Discord RP)** — needs the *native* Discord app (or Vesktop). Doesn't work with the browser/PWA Discord that Omarchy installs by default.
 - **Treesitter** — on `main` (the v1.0 rewrite; `master` is archived). Parsers *and* queries install together under `~/.local/share/nvim/site/`, which is what stops them drifting apart — a stale parser paired with newer queries dies with `Invalid node type "..."` on every file open. Feature modules are gone: highlight, indent and selection are Neovim's own, wired up in `lua/plugins/treesitter.lua`.
 - **Diffview vs Octo** — both draw a "changed files" panel with line counts, and neither substitutes for the other. `diffview` reads the local working tree, index, or any git rev, and needs no network; `octo` reads a GitHub PR over the `gh` CLI. Octo renders the diffstat as a *bar*, diffview as numeric `+N, -M`. Inside a diffview panel, `i` toggles list/tree and `<tab>`/`<s-tab>` cycle files.
