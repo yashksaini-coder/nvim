@@ -3,6 +3,7 @@
 return {
 	"sphamba/smear-cursor.nvim",
 	event = "VeryLazy",
+	-- stylua: ignore
 	opts = {
 		stiffness = 0.6,           -- head speed toward target (0..1, higher = snappier)
 		trailing_stiffness = 0.4,  -- tail speed; keep below stiffness so the smear reads

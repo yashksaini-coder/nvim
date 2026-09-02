@@ -4,13 +4,19 @@
 SHELL        := bash
 ROOT         := $(CURDIR)
 MASON_BIN    := $(HOME)/.local/share/nvim/mason/bin
+LUAROCKS_BIN := $(HOME)/.luarocks/bin
 LUA_FILES    := $(shell find $(ROOT)/lua $(ROOT)/plugin $(ROOT)/after -name '*.lua' 2>/dev/null)
 STYLUA       := $(MASON_BIN)/stylua
 LUACHECK     := luacheck
 # Mason's bin dir is only on $PATH inside nvim. Put it on the shell's too, after
-# the system path so a system luacheck still wins. Without this `make lint` fails
-# with "luacheck: command not found"; install it with :MasonToolsInstall.
-export PATH := $(PATH):$(MASON_BIN)
+# the system path so a system luacheck still wins.
+#
+# ~/.luarocks/bin goes ahead of mason's: mason installs luacheck against whatever
+# Lua is current, and the 5.5 build dies on its own source with "attempt to assign
+# to const variable 'field_name'". Get a working one with either
+#   luarocks --local --lua-version=5.4 install luacheck
+#   sudo pacman -S luacheck            # Arch: 1.2.0, built against lua54
+export PATH := $(PATH):$(LUAROCKS_BIN):$(MASON_BIN)
 
 .PHONY: all fmt lint fmt-fix fix-whitespace help
 all: fmt lint
