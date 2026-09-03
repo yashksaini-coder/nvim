@@ -23,7 +23,7 @@ return {
 		{
 			"<leader>gf",
 			function()
-				-- `%` expands to nothing useful in the dashboard, neo-tree or a
+				-- `%` expands to nothing useful in the dashboard, the explorer or a
 				-- scratch buffer, and DiffviewFileHistory then errors out.
 				if vim.bo.buftype ~= "" or vim.fn.expand("%") == "" then
 					vim.notify("No file here — <leader>gh for repo history", vim.log.levels.WARN)
@@ -43,7 +43,7 @@ return {
 			-- would swallow this config's whole <leader>b barbar prefix (bd, bp,
 			-- bo, bb, b1..b9) inside any diff. Close with <leader>gV instead.
 			-- <leader>e (focus file panel) is left alone on purpose: inside a
-			-- diff it is the direct analogue of <leader>e opening neo-tree.
+			-- diff it is the direct analogue of <leader>e opening the explorer.
 			view = { { "n", "<leader>b", false } },
 			file_panel = { { "n", "<leader>b", false } },
 			file_history_panel = { { "n", "<leader>b", false } },

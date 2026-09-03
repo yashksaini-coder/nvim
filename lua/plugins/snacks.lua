@@ -12,12 +12,12 @@ return {
 		bigfile = { enabled = true },
 		-- Renders the file from the command line before plugins finish loading.
 		quickfile = { enabled = true },
-		-- picker powers <leader>fp (recent projects). Tree lives in neo-tree.
+		-- picker powers <leader>fp and the explorer below, which is a picker
+		-- underneath.
 		picker = { enabled = true },
-		-- Flag-only: enabling explorer flips snacks.dashboard's `skip` branch,
-		-- which is what lets the dashboard render on `nvim .`. But turn off
-		-- replace_netrw so snacks doesn't ALSO hijack the directory buffer
-		-- and open its own explorer alongside neo-tree.
+		-- The file tree (<leader>e). replace_netrw stays off so `nvim .` still
+		-- lands on snacks.dashboard rather than the explorer hijacking the
+		-- directory buffer; config/autocmds.lua opens the side panel after.
 		explorer = { enabled = true, replace_netrw = false },
 		-- Minimal start screen — just a handful of key hints. No ASCII logo,
 		-- no plugin-load banner, no long button list. Replaces dashboard-nvim.
@@ -26,7 +26,7 @@ return {
 			width = 55,
 			preset = {
 				keys = {
-					{ icon = "󰉋 ", key = "e", desc = "File Explorer", action = ":Neotree toggle" },
+					{ icon = "󰉋 ", key = "e", desc = "File Explorer", action = ":lua Snacks.explorer()" },
 					{ icon = "󰈞 ", key = "f", desc = "Find Files", action = ":Telescope find_files" },
 					{ icon = "󰭎 ", key = "g", desc = "Live Grep", action = ":Telescope live_grep" },
 					{ icon = "󱋢 ", key = "r", desc = "Recent Files", action = ":Telescope oldfiles" },
@@ -108,6 +108,14 @@ return {
 				require("snacks").lazygit()
 			end,
 			desc = "Lazygit",
+		},
+		{
+			"<leader>e",
+			function()
+				-- Calling it while open closes it, so this is a toggle.
+				require("snacks").explorer()
+			end,
+			desc = "File Explorer (snacks)",
 		},
 		{
 			"<leader>fp",

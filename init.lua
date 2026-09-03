@@ -1,4 +1,4 @@
--- Disable netrw (neo-tree replaces it)
+-- Disable netrw (the snacks explorer replaces it)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.clipboard = "unnamedplus"

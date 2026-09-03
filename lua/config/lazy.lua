@@ -50,7 +50,7 @@ require("lazy").setup({
 			-- tags), matchparen, editorconfig, osc52 (clipboard over SSH), shada, net.
 			disabled_plugins = {
 				"gzip",
-				"netrwPlugin", -- neo-tree replaces it; init.lua also sets loaded_netrw
+				"netrwPlugin", -- the explorer replaces it; init.lua also sets loaded_netrw
 				"rplugin", -- no python3/node remote plugins here; remove first if one breaks
 				"spellfile",
 				"tarPlugin",

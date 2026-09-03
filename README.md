@@ -12,7 +12,7 @@ Personal Neovim config. Lua, [lazy.nvim](https://github.com/folke/lazy.nvim), Ne
 
 **UI** — `barbar` (buffer tabs), `lualine` (statusline + winbar), `which-key` (popup), `noice` + `nvim-notify` (cmdline & notifications), `snacks.nvim` (indent guides, dashboard, bigfile/quickfile — image rendering is explicitly off), `lspkind` (completion icons), `mini.icons` (icon set).
 
-**Files & search** — `telescope.nvim` with `fzf-native`. File explorer is `neo-tree` — bound to `<leader>e`. `todo-comments` for TODO/FIXME, `grug-far` for project-wide find-and-replace on `<leader>fS`.
+**Files & search** — `telescope.nvim` with `fzf-native`. File explorer is `snacks.explorer` — bound to `<leader>e`. `todo-comments` for TODO/FIXME, `grug-far` for project-wide find-and-replace on `<leader>fS`.
 
 **LSP / diagnostics** — `mason` + `mason-tool-installer`, `nvim-lspconfig`, `conform.nvim` for formatting, `trouble.nvim` for the diagnostic panel, `lazydev.nvim` so `lua_ls` understands this config. Servers are only enabled when their binary is actually on `$PATH` (see `lua/plugins/lsp.lua`); per-server settings live in `lua/lsps/`.
 
@@ -99,7 +99,7 @@ Run `make site` after adding or removing a keymap; the output is deterministic, 
 
 ## Notes
 
-- **File tree** — `neo-tree` on `<leader>e`, a persistent side panel. `snacks.explorer` is switched on but only as a flag: it flips `snacks.dashboard`'s `skip` branch so the dashboard still renders on `nvim .`. Its `replace_netrw` is off on purpose, so it never hijacks a directory buffer and opens a second tree next to neo-tree (see `lua/plugins/snacks.lua`).
+- **File tree** — `snacks.explorer` on `<leader>e`, a persistent side panel. Calling it while open closes it, so the one mapping is a toggle. It is a picker underneath: a real split (`snacks_layout_box`) hosting the list and filter input as floats — which is why lualine hides all three filetypes and barbar offsets against the box, not the list. `replace_netrw` stays off on purpose so `nvim .` lands on `snacks.dashboard`; `lua/config/autocmds.lua` then opens the side panel on `UIEnter`.
 - **Cord (Discord RP)** — needs the *native* Discord app (or Vesktop). Doesn't work with the browser/PWA Discord that Omarchy installs by default.
 - **Treesitter** — on `main` (the v1.0 rewrite; `master` is archived). Parsers *and* queries install together under `~/.local/share/nvim/site/`, which is what stops them drifting apart — a stale parser paired with newer queries dies with `Invalid node type "..."` on every file open. Feature modules are gone: highlight, indent and selection are Neovim's own, wired up in `lua/plugins/treesitter.lua`.
 - **Diffview vs Octo** — both draw a "changed files" panel with line counts, and neither substitutes for the other. `diffview` reads the local working tree, index, or any git rev, and needs no network; `octo` reads a GitHub PR over the `gh` CLI. Octo renders the diffstat as a *bar*, diffview as numeric `+N, -M`. Inside a diffview panel, `i` toggles list/tree and `<tab>`/`<s-tab>` cycle files.

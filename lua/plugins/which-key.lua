@@ -14,7 +14,7 @@ return {
 				{ "<leader><tab>", group = "tabs" },
 				{ "<leader>b", group = "buffer" },
 				{ "<leader>c", group = "code/crates" },
-				{ "<leader>e", desc = "File Explorer" },
+				{ "<leader>e", desc = "File Explorer (snacks)" },
 				{ "<leader>o", desc = "Toggle outline" },
 				{ "<leader>f", group = "file/find" },
 				{ "<leader>g", group = "git/goto" },

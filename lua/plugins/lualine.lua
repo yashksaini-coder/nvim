@@ -17,7 +17,19 @@ return {
 			removed = "󰍶 ",
 		}
 		local file_symbols = { modified = "󰆓 ", readonly = "󰌾 ", unnamed = "[No Name]", newfile = "󰝒 " }
-		local hidden_ft = { "dashboard", "snacks_dashboard", "neo-tree", "TelescopePrompt", "lazy", "mason", "help" }
+		local hidden_ft = {
+			"dashboard",
+			"snacks_dashboard",
+			-- snacks.explorer is a picker: a real split (layout_box) hosting two
+			-- floats (list + input).
+			"snacks_layout_box",
+			"snacks_picker_list",
+			"snacks_picker_input",
+			"TelescopePrompt",
+			"lazy",
+			"mason",
+			"help",
+		}
 
 		return {
 			options = {
@@ -65,7 +77,7 @@ return {
 					{ "filename", path = 1, symbols = file_symbols },
 				},
 			},
-			extensions = { "neo-tree", "lazy", "mason", "trouble" },
+			extensions = { "lazy", "mason", "trouble" },
 		}
 	end,
 }

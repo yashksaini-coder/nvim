@@ -82,7 +82,7 @@ return {
 				group = vim.api.nvim_create_augroup("treesitter_attach", { clear = true }),
 				callback = function(ev)
 					-- `get_lang` falls back to returning the filetype itself, so
-					-- plugin buffers (neo-tree, lazy, qf, ...) reach here too and
+					-- plugin buffers (snacks pickers, lazy, qf, ...) reach here too and
 					-- are filtered by the `available` lookup.
 					local lang = vim.treesitter.language.get_lang(ev.match)
 					if not lang or not available[lang] then

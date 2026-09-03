@@ -66,9 +66,10 @@ return {
 		minimum_padding = 1,
 		maximum_length = 30,
 		semantic_letters = true,
-		-- Leave room for neo-tree pane on the left
+		-- Leave room for the snacks.explorer pane on the left. layout_box is the
+		-- real split; the list/input above it are floats and take no tabline room.
 		sidebar_filetypes = {
-			["neo-tree"] = { event = "BufWipeout", text = "" },
+			snacks_layout_box = { event = "BufWipeout", text = "" },
 		},
 	},
 	keys = keys,
