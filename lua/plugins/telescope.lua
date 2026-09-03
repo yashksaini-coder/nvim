@@ -8,8 +8,6 @@ return {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			-- Treesitter for syntax highlighting in previews
 			"nvim-treesitter/nvim-treesitter",
-			-- Snacks for image preview
-			"folke/snacks.nvim",
 		},
 		-- `cmd` is not redundant with `keys`: snacks.dashboard's buttons fire
 		-- `:Telescope find_files/live_grep/oldfiles` as raw command strings, and
@@ -37,36 +35,9 @@ return {
 		config = function()
 			local telescope = require("telescope")
 			local actions = require("telescope.actions")
-			local previewers = require("telescope.previewers")
-
-			-- Custom buffer previewer maker with image support
-			local function buffer_previewer_maker(filepath, bufnr, opts)
-				opts = opts or {}
-
-				local ok_snacks, snacks = pcall(require, "snacks")
-				if ok_snacks and snacks.image and snacks.image.supports_file(filepath) then
-					-- No vim.schedule — attach synchronously while bufnr is still valid
-					if vim.api.nvim_buf_is_valid(bufnr) then
-						local ok, err = pcall(snacks.image.buf.attach, bufnr, {
-							src = filepath,
-							auto_resize = true,
-						})
-						if ok then
-							return
-						else
-							return print("Snacks image attach error: " .. err)
-						end
-					end
-				end
-
-				previewers.buffer_previewer_maker(filepath, bufnr, opts)
-			end
 
 			telescope.setup({
 				defaults = {
-					-- Use custom previewer for images
-					buffer_previewer_maker = buffer_previewer_maker,
-
 					-- File ignore patterns
 					file_ignore_patterns = { "node_modules", ".git/" },
 

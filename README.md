@@ -10,7 +10,7 @@ Personal Neovim config. Lua, [lazy.nvim](https://github.com/folke/lazy.nvim), Ne
 
 **Editing** — `nvim-cmp` completion (`LuaSnip` is the expander for LSP snippets, not a snippet library), `autopairs`, `autotag` for JSX/HTML, `mini.surround` on `gs`, `mini.ai` text objects (`af`/`if`, `ac`/`ic`), `flash.nvim` for `s`-jumps. Commenting is Neovim's built-in `gc` — it reads `commentstring` from treesitter metadata, so JSX comments come out right without a plugin.
 
-**UI** — `barbar` (buffer tabs), `lualine` (statusline + winbar), `which-key` (popup), `noice` + `nvim-notify` (cmdline & notifications), `snacks.nvim` (image viewer, indent guides, dashboard, bigfile/quickfile), `lspkind` (completion icons), `mini.icons` (icon set).
+**UI** — `barbar` (buffer tabs), `lualine` (statusline + winbar), `which-key` (popup), `noice` + `nvim-notify` (cmdline & notifications), `snacks.nvim` (indent guides, dashboard, bigfile/quickfile — image rendering is explicitly off), `lspkind` (completion icons), `mini.icons` (icon set).
 
 **Files & search** — `telescope.nvim` with `fzf-native`. File explorer is `neo-tree` — bound to `<leader>e`. `todo-comments` for TODO/FIXME, `grug-far` for project-wide find-and-replace on `<leader>fS`.
 

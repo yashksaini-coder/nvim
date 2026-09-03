@@ -116,7 +116,7 @@ local GROUPS = {
 	{
 		id = "misc",
 		title = "misc",
-		tags = "misc image snacks surround flash jump textobject fold comment treesitter selection incremental node expand shrink todo",
+		tags = "misc surround flash jump textobject fold comment treesitter selection incremental node expand shrink todo",
 		hint = "Everything else.",
 	},
 	{

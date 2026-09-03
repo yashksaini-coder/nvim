@@ -130,10 +130,6 @@ return {
 				-- Markdown
 				{ "<leader>mp", desc = "Toggle markdown preview" },
 
-				-- Image (snacks.nvim)
-				{ "<leader>i", group = "image" },
-				{ "<leader>is", desc = "Show image at cursor" },
-
 				-- Man pages / docs
 				{ "<leader>kk", desc = "Open keymap reference site" },
 				{ "<leader>km", desc = "Open man page" },

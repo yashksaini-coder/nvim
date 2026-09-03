@@ -4,60 +4,10 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
-		-- Image viewer configuration
-		image = {
-			enabled = true,
-			formats = {
-				"png",
-				"jpg",
-				"jpeg",
-				"gif",
-				"bmp",
-				"webp",
-				"tiff",
-				"heic",
-				"avif",
-				"mp4",
-				"mov",
-				"avi",
-				"mkv",
-				"webm",
-				"pdf",
-			},
-			doc = {
-				enabled = true,
-				inline = true,
-				float = true,
-				max_width = 80,
-				max_height = 40,
-				conceal = function(type)
-					return type == "math"
-				end,
-			},
-			wo = {
-				wrap = false,
-				number = false,
-				relativenumber = false,
-				cursorcolumn = false,
-				signcolumn = "no",
-				foldcolumn = "0",
-				list = false,
-				spell = false,
-				statuscolumn = "",
-			},
-			math = {
-				enabled = true,
-				latex = {
-					font_size = "Large",
-					packages = { "amsmath", "amssymb", "amsfonts", "amscd", "mathtools" },
-				},
-			},
-			icons = {
-				math = "󰪚 ",
-				chart = "󰄧 ",
-				image = " ",
-			},
-		},
+		-- Image rendering off: no inline images, no LaTeX/math rendering, no
+		-- BufReadCmd hook on image files. snacks defaults image.enabled to true
+		-- (snacks/image/init.lua), so deleting this block would switch it back ON.
+		image = { enabled = false },
 		-- Skips syntax, treesitter and LSP on huge files so opening one doesn't hang.
 		bigfile = { enabled = true },
 		-- Renders the file from the command line before plugins finish loading.
@@ -166,22 +116,8 @@ return {
 			end,
 			desc = "Recent Projects",
 		},
-		{
-			"<leader>is",
-			function()
-				require("snacks").image.hover()
-			end,
-			desc = "Show image at cursor",
-		},
 	},
 	config = function(_, opts)
 		require("snacks").setup(opts)
-
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = "image",
-			callback = function()
-				vim.bo.bufhidden = "wipe"
-			end,
-		})
 	end,
 }
