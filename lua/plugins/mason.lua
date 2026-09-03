@@ -38,8 +38,32 @@ return {
 				},
 			})
 
+			-- Most mason packages are downloaded as prebuilt binaries, but a few are
+			-- BUILT on install and need their language toolchain present. Asking for
+			-- one without it fails on every single startup with a notification:
+			-- gopls shells out to `go install`, so with no Go on the box mason logs
+			-- `Could not find executable "go" in PATH` and retries forever.
+			--
+			-- Same executable() philosophy as lsp.lua's enable gate, applied at
+			-- install time instead: request the package the moment its toolchain
+			-- shows up, and stay quiet until then.
+			local needs_toolchain = {
+				gopls = "go",
+			}
+
+			local function installable(packages)
+				local out = {}
+				for _, pkg in ipairs(packages) do
+					local need = needs_toolchain[pkg]
+					if not need or vim.fn.executable(need) == 1 then
+						out[#out + 1] = pkg
+					end
+				end
+				return out
+			end
+
 			mason_tool_installer.setup({
-				ensure_installed = {
+				ensure_installed = installable({
 					-- LSP servers
 					"lua-language-server", -- Lua language server
 					"rust-analyzer", -- Rust LSP (rustaceanvim starts it; see plugins/rustaceanvim.lua)
@@ -58,7 +82,7 @@ return {
 					-- luacheck is consumed by `make lint`, not by the editor — there is no
 					-- nvim-lint here. The Makefile puts this bin dir on $PATH to find it.
 					"luacheck",
-				},
+				}),
 			})
 
 			-- mason-tool-installer's auto-install runs from a VimEnter autocmd in its
