@@ -78,10 +78,11 @@ return {
 					"stylua", -- Lua formatter
 					"prettier", -- Web development formatter (JS/TS/CSS/HTML/JSON)
 					"prettierd", -- Prettier daemon (faster, preferred by conform)
-					-- Linters
-					-- luacheck is consumed by `make lint`, not by the editor — there is no
-					-- nvim-lint here. The Makefile puts this bin dir on $PATH to find it.
-					"luacheck",
+					-- Linters: none. luacheck is consumed by `make lint`, not the editor
+					-- (there is no nvim-lint here), and mason is the wrong source for it:
+					-- mason builds it against whatever Lua is current, and the 5.5 build
+					-- aborts on its own source. The Makefile takes it from ~/.luarocks/bin
+					-- or the system package instead — see the PATH note there.
 				}),
 			})
 

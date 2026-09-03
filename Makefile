@@ -11,9 +11,9 @@ LUACHECK     := luacheck
 # Mason's bin dir is only on $PATH inside nvim. Put it on the shell's too, after
 # the system path so a system luacheck still wins.
 #
-# ~/.luarocks/bin goes ahead of mason's: mason installs luacheck against whatever
-# Lua is current, and the 5.5 build dies on its own source with "attempt to assign
-# to const variable 'field_name'". Get a working one with either
+# luacheck deliberately does NOT come from mason (see plugins/mason.lua): mason
+# builds it against whatever Lua is current, and the 5.5 build dies on its own
+# source with "attempt to assign to const variable 'field_name'". Get one with
 #   luarocks --local --lua-version=5.4 install luacheck
 #   sudo pacman -S luacheck            # Arch: 1.2.0, built against lua54
 export PATH := $(PATH):$(LUAROCKS_BIN):$(MASON_BIN)
