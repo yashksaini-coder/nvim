@@ -53,6 +53,24 @@ vim.keymap.set("n", "<leader>bd", function()
 		return
 	end
 
+	-- A blank [No Name] window is leftover scaffolding rather than something you
+	-- opened -- `botright new` leaves one behind when the terminal it held is
+	-- closed. Deleting its buffer would just drop another empty one into the same
+	-- split, so close the window instead. If it is the only window left, fall
+	-- through: the dashboard below is the right thing to land on.
+	local function blank(b)
+		return vim.api.nvim_buf_get_name(b) == ""
+			and vim.bo[b].buftype == ""
+			and not vim.bo[b].modified
+			and vim.api.nvim_buf_line_count(b) == 1
+			and vim.api.nvim_buf_get_lines(b, 0, 1, false)[1] == ""
+	end
+
+	if blank(buf) and #vim.api.nvim_tabpage_list_wins(0) > 1 then
+		vim.cmd("close")
+		return
+	end
+
 	-- Count the survivors before deleting; the dashboard itself is not one.
 	local others = 0
 	for _, b in ipairs(vim.api.nvim_list_bufs()) do
