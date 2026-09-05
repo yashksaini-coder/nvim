@@ -1,90 +1,110 @@
-// Minimal client-side filter with result count + URL persistence.
-// - "/" focuses the search input (mirrors nvim's own /)
-// - Esc clears and unfocuses
-// - Filter query synced to URL ?q= so links are shareable
-// - Search matches key text, description, and each row/group's data-tags
+// Filter + rail for the keymap reference.
+//
+// Rows show only the tail of a key sequence ("A" under <leader>c), so the full
+// sequence lives in data-key and MUST be part of the search text — otherwise
+// typing "leader" or "<leader>cA" would match nothing.
 (function () {
   "use strict";
 
   var q = document.getElementById("q");
   var countEl = document.getElementById("count");
   var emptyEl = document.getElementById("empty");
-  var items = document.querySelectorAll(".km");
-  var groups = document.querySelectorAll(".group");
-  if (!q || !items.length) return;
+  var rows = [].slice.call(document.querySelectorAll(".km"));
+  var groups = [].slice.call(document.querySelectorAll(".grp"));
+  var links = [].slice.call(document.querySelectorAll(".rail a"));
+  if (!q || !rows.length) return;
 
-  var TOTAL = items.length;
+  var TOTAL = rows.length;
+  var linkFor = {};
+  links.forEach(function (a) { linkFor[a.getAttribute("href").slice(1)] = a; });
 
-  // Pre-index each row to avoid re-reading textContent on every keystroke.
-  var index = new Array(TOTAL);
-  for (var i = 0; i < TOTAL; i++) {
-    var it = items[i];
-    var hay = it.textContent + " " + (it.dataset.tags || "");
-    var g = it.closest(".group");
-    if (g && g.dataset.tags) hay += " " + g.dataset.tags;
-    index[i] = hay.toLowerCase();
+  // Pre-index once: row text + full key + the group's tags.
+  var hay = rows.map(function (r) {
+    var g = r.closest(".grp");
+    return (
+      r.textContent + " " + (r.dataset.key || "") + " " + ((g && g.dataset.tags) || "")
+    ).toLowerCase();
+  });
+
+  function apply(push) {
+    var term = q.value.trim().toLowerCase();
+    var shown = 0;
+
+    for (var i = 0; i < TOTAL; i++) {
+      var hit = !term || hay[i].indexOf(term) !== -1;
+      rows[i].classList.toggle("hide", !hit);
+      if (hit) shown++;
+    }
+
+    groups.forEach(function (g) {
+      var any = !!g.querySelector(".km:not(.hide)");
+      g.classList.toggle("hide", !any);
+      var a = linkFor[g.id];
+      if (a) a.classList.toggle("dim", !any);
+    });
+
+    if (emptyEl) emptyEl.hidden = shown !== 0;
+    if (countEl) countEl.textContent = term ? shown + "/" + TOTAL : TOTAL + " keymaps";
+    if (push) sync();
   }
 
-  function updateCount(visible) {
-    if (!countEl) return;
-    countEl.textContent = (!q.value || visible === TOTAL)
-      ? TOTAL + " keymaps"
-      : visible + " of " + TOTAL;
-  }
-
-  function updateURL() {
+  function sync() {
     if (!history.replaceState) return;
     var url = new URL(location.href);
     if (q.value) url.searchParams.set("q", q.value);
     else url.searchParams.delete("q");
-    // Preserve hash so #anchor navigation still works
     history.replaceState(null, "", url.pathname + url.search + url.hash);
-  }
-
-  function apply(pushURL) {
-    var term = q.value.trim().toLowerCase();
-    var visible = 0;
-    for (var i = 0; i < TOTAL; i++) {
-      var match = !term || index[i].indexOf(term) !== -1;
-      items[i].classList.toggle("hidden", !match);
-      if (match) visible++;
-    }
-    for (var j = 0; j < groups.length; j++) {
-      var any = groups[j].querySelector(".km:not(.hidden)");
-      groups[j].classList.toggle("empty", !any);
-    }
-    if (emptyEl) emptyEl.hidden = visible !== 0;
-    updateCount(visible);
-    if (pushURL) updateURL();
   }
 
   q.addEventListener("input", function () { apply(true); });
 
   q.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      if (q.value) { q.value = ""; apply(true); }
-      q.blur();
-    }
+    if (e.key !== "Escape") return;
+    if (q.value) { q.value = ""; apply(true); }
+    else q.blur();
   });
 
-  // Global "/" hotkey — focus search unless the user is already typing somewhere.
+  // "/" focuses the filter, the way it would in the editor this documents.
   document.addEventListener("keydown", function (e) {
-    if (e.target === q) return;
+    if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey) return;
     var t = e.target;
-    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
-    if (e.key !== "/") return;
-    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (t === q || (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable))) return;
     e.preventDefault();
     q.focus();
     q.select();
   });
 
-  // Initial load: hydrate query from URL if present.
-  var initial = new URLSearchParams(location.search).get("q");
-  if (initial) {
-    q.value = initial;
-    apply(false);
-  } else {
-    updateCount(TOTAL);
+  if (emptyEl) {
+    emptyEl.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-q]");
+      if (!b) return;
+      q.value = b.dataset.q;
+      apply(true);
+      q.focus();
+    });
   }
+
+  // Mark the group you are currently reading. rootMargin pins the trigger just
+  // under the sticky command line rather than at the viewport edge.
+  if ("IntersectionObserver" in window && links.length) {
+    var seen = new Set();
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) seen.add(en.target.id);
+          else seen.delete(en.target.id);
+        });
+        var first = groups.filter(function (g) { return seen.has(g.id); })[0];
+        links.forEach(function (a) {
+          a.classList.toggle("on", !!first && a.getAttribute("href") === "#" + first.id);
+        });
+      },
+      { rootMargin: "-4.5rem 0px -70% 0px" }
+    );
+    groups.forEach(function (g) { io.observe(g); });
+  }
+
+  var initial = new URLSearchParams(location.search).get("q");
+  if (initial) q.value = initial;
+  apply(false);
 })();

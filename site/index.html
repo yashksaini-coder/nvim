@@ -3,353 +3,421 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>nvim.keys — yashksaini-coder</title>
-<meta name="description" content="Keymap reference for yashksaini-coder/nvim — grouped by leader prefix.">
+<title>nvim keymaps — yashksaini-coder</title>
+<meta name="description" content="Every keymap in yashksaini-coder's Neovim config, by leader prefix.">
 <meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<header class="top">
+  <span class="top-name">nvim keymaps</span>
+  <a class="top-src" href="https://github.com/yashksaini-coder/nvim" rel="noopener">yashksaini-coder/nvim</a>
+</header>
+
+<!-- The search is the page's actual job, so it leads and it stays. Set as vim's
+     own command line: a slash, a live buffer, a count on the right. -->
+<div class="cmd">
+  <label class="cmd-slash" for="q">/</label>
+  <input type="search" id="q" placeholder="type to filter" autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false" aria-label="Filter keymaps">
+  <span class="cmd-count" id="count" aria-live="polite"></span>
+</div>
+
 <main class="page">
-
-  <div class="groups">
-
-  <section class="group group--hero" aria-label="site">
-    <h1 class="logo">nvim<span class="dot">.</span>keys</h1>
-    <p class="hero-sub">keymap reference<br><a href="https://github.com/yashksaini-coder/nvim" rel="noopener">yashksaini-coder/nvim</a></p>
-    <div class="search">
-      <span class="search-icon" aria-hidden="true">/</span>
-      <input type="search" id="q" placeholder="filter…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Filter keymaps">
-      <span class="search-count" id="count" aria-live="polite"></span>
-    </div>
-    <p class="hero-legend">
-      <kbd>&lt;leader&gt;</kbd> is <kbd>SPC</kbd> <span class="sep">·</span>
-      <kbd>/</kbd> filter <span class="sep">·</span> <kbd>Esc</kbd> resets
-    </p>
-  </section>
-
   <!-- BEGIN GENERATED -->
-  <section class="group" id="crates" data-tags="crates rust cargo toml versions features dependencies">
-    <h2 class="group-title">crates <span class="group-suffix">cargo.toml</span> <span class="group-count">20</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;c</code> — crates.nvim in Cargo.toml.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cA</span><span class="desc">Upgrade all crates</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cC</span><span class="desc">Open crates.io</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cD</span><span class="desc">Open documentation</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cH</span><span class="desc">Open homepage</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cL</span><span class="desc">Open lib.rs</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cR</span><span class="desc">Open repository</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cU</span><span class="desc">Upgrade crate</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cU</span><span class="desc">Upgrade crates</span><span class="mode">v</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cX</span><span class="desc">Extract crate to table</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cd</span><span class="desc">Show dependencies</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cf</span><span class="desc">Show features</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cl</span><span class="desc">LSP Definitions / references / ... (Trouble)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cr</span><span class="desc">Reload crates</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cs</span><span class="desc">Symbols (Trouble)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ct</span><span class="desc">Toggle crates info</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cu</span><span class="desc">Update crate</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cu</span><span class="desc">Update crates</span><span class="mode">v</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cv</span><span class="desc">Show versions</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cx</span><span class="desc">Expand crate to inline table</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>cpa</span><span class="desc">Update all crates</span><span class="mode">n</span></li>
-    </ul>
-  </section>
+  <nav class="rail" aria-label="Jump to group">
+    <a href="#crates"><b>c</b>crates<i>20</i></a>
+    <a href="#git"><b>g</b>git<i>23</i></a>
+    <a href="#buffer"><b>b</b>buffer<i>22</i></a>
+    <a href="#rust"><b>r</b>rust<i>15</i></a>
+    <a href="#find"><b>f</b>find<i>13</i></a>
+    <a href="#windows"><b>^w</b>windows<i>11</i></a>
+    <a href="#terminal"><b>t</b>terminal<i>4</i></a>
+    <a href="#markdown"><b>m</b>markdown<i>9</i></a>
+    <a href="#code"><b>g</b>code<i>10</i></a>
+    <a href="#lazy"><b>l</b>lazy<i>6</i></a>
+    <a href="#noice"><b>n</b>noice<i>6</i></a>
+    <a href="#trouble"><b>x</b>trouble<i>11</i></a>
+    <a href="#docs"><b>k</b>docs<i>3</i></a>
+    <a href="#themes"><b>t</b>themes<i>1</i></a>
+    <a href="#mason"><b>M</b>mason<i>1</i></a>
+    <a href="#misc"><b>·</b>misc<i>27</i></a>
+    <a href="#globals"><b>·</b>globals<i>4</i></a>
+  </nav>
+  <div class="col">
+    <section class="grp" id="crates" data-tags="crates rust cargo toml versions features dependencies">
+      <header class="grp-h">
+        <h2>crates</h2>
+        <span class="grp-x">cargo.toml</span>
+        <span class="grp-p">&lt;leader&gt;c</span>
+        <span class="grp-n">20</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;c</code> — crates.nvim in Cargo.toml.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;leader&gt;cA"><span class="k">A</span><span class="d">Upgrade all crates</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cC"><span class="k">C</span><span class="d">Open crates.io</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cD"><span class="k">D</span><span class="d">Open documentation</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cH"><span class="k">H</span><span class="d">Open homepage</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cL"><span class="k">L</span><span class="d">Open lib.rs</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cR"><span class="k">R</span><span class="d">Open repository</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cU"><span class="k">U</span><span class="d">Upgrade crate</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cU"><span class="k">U</span><span class="d">Upgrade crates</span><span class="m">v</span></li>
+        <li class="km" data-key="&lt;leader&gt;cX"><span class="k">X</span><span class="d">Extract crate to table</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cd"><span class="k">d</span><span class="d">Show dependencies</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cf"><span class="k">f</span><span class="d">Show features</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cl"><span class="k">l</span><span class="d">LSP Definitions / references / ... (Trouble)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cr"><span class="k">r</span><span class="d">Reload crates</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cs"><span class="k">s</span><span class="d">Symbols (Trouble)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;ct"><span class="k">t</span><span class="d">Toggle crates info</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cu"><span class="k">u</span><span class="d">Update crate</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cu"><span class="k">u</span><span class="d">Update crates</span><span class="m">v</span></li>
+        <li class="km" data-key="&lt;leader&gt;cv"><span class="k">v</span><span class="d">Show versions</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cx"><span class="k">x</span><span class="d">Expand crate to inline table</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;cpa"><span class="k">pa</span><span class="d">Update all crates</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="git" data-tags="git gitsigns lazygit hunk blame diff stage reset diffview octo github pr pull request issue review changed files panel diffstat history">
+      <header class="grp-h">
+        <h2>git</h2>
+        <span class="grp-p">&lt;leader&gt;g  &lt;leader&gt;h</span>
+        <span class="grp-n">23</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;g</code> · <code>&lt;leader&gt;h</code> — gitsigns hunks, lazygit, diffview (local changes) &amp; octo (GitHub PRs).</p>
+      <ul class="rows">
+        <li class="km" data-key="i"><span class="k k--full">i</span><span class="d">Toggle list/tree layout <span class="n">diffview panel</span></span><span class="m">n</span></li>
+        <li class="km" data-key="[c"><span class="k k--full">[c</span><span class="d">Prev git hunk <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="]c"><span class="k k--full">]c</span><span class="d">Next git hunk <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;Tab&gt;"><span class="k k--full">&lt;Tab&gt;</span><span class="d">Cycle to next changed file <span class="n">diffview panel</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;gV"><span class="k">gV</span><span class="d">Diffview: close</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;gf"><span class="k">gf</span><span class="d">Diffview: current file history</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;gg"><span class="k">gg</span><span class="d">Lazygit</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;gh"><span class="k">gh</span><span class="d">Diffview: repo history</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;gi"><span class="k">gi</span><span class="d">Octo: issues</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;go"><span class="k">go</span><span class="d">Octo: command palette</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;gp"><span class="k">gp</span><span class="d">Octo: pull requests</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;gv"><span class="k">gv</span><span class="d">Diffview: changed files</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;hD"><span class="k">hD</span><span class="d">Diff against ~ <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;hQ"><span class="k">hQ</span><span class="d">All hunks to quickfix <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;hR"><span class="k">hR</span><span class="d">Reset buffer <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;hS"><span class="k">hS</span><span class="d">Stage buffer <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;hb"><span class="k">hb</span><span class="d">Blame line <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;hd"><span class="k">hd</span><span class="d">Diff this <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;hi"><span class="k">hi</span><span class="d">Preview hunk inline <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;hp"><span class="k">hp</span><span class="d">Preview hunk <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;hq"><span class="k">hq</span><span class="d">Hunks to quickfix <span class="n">gitsigns</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;hr"><span class="k">hr</span><span class="d">Reset hunk <span class="n">gitsigns</span></span><span class="m">n v</span></li>
+        <li class="km" data-key="&lt;leader&gt;hs"><span class="k">hs</span><span class="d">Stage hunk <span class="n">gitsigns</span></span><span class="m">n v</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="buffer" data-tags="buffer barbar pin delete close move goto">
+      <header class="grp-h">
+        <h2>buffer</h2>
+        <span class="grp-p">&lt;leader&gt;b</span>
+        <span class="grp-n">22</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;b</code> — barbar tabs &amp; buffer ops.</p>
+      <ul class="rows">
+        <li class="km" data-key="H"><span class="k k--full">H</span><span class="d">Prev buffer</span><span class="m">n</span></li>
+        <li class="km" data-key="L"><span class="k k--full">L</span><span class="d">Next buffer</span><span class="m">n</span></li>
+        <li class="km" data-key="[b"><span class="k k--full">[b</span><span class="d">Prev buffer</span><span class="m">n</span></li>
+        <li class="km" data-key="]b"><span class="k k--full">]b</span><span class="d">Next buffer</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;b1"><span class="k">1</span><span class="d">Go to buffer 1</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;b2"><span class="k">2</span><span class="d">Go to buffer 2</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;b3"><span class="k">3</span><span class="d">Go to buffer 3</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;b4"><span class="k">4</span><span class="d">Go to buffer 4</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;b5"><span class="k">5</span><span class="d">Go to buffer 5</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;b6"><span class="k">6</span><span class="d">Go to buffer 6</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;b7"><span class="k">7</span><span class="d">Go to buffer 7</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;b8"><span class="k">8</span><span class="d">Go to buffer 8</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;b9"><span class="k">9</span><span class="d">Go to buffer 9</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;bM"><span class="k">M</span><span class="d">Move buffer prev</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;bP"><span class="k">P</span><span class="d">Close non-pinned</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;bb"><span class="k">b</span><span class="d">Pick buffer (letter)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;bd"><span class="k">d</span><span class="d">Close buffer</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;bl"><span class="k">l</span><span class="d">Close buffers left</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;bm"><span class="k">m</span><span class="d">Move buffer next</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;bo"><span class="k">o</span><span class="d">Close other buffers</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;bp"><span class="k">p</span><span class="d">Toggle pin</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;br"><span class="k">r</span><span class="d">Close buffers right</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="rust" data-tags="rust rustaceanvim ferris runnable clippy hir mir macro cargo module documentation workspace">
+      <header class="grp-h">
+        <h2>rust</h2>
+        <span class="grp-x">rustaceanvim</span>
+        <span class="grp-p">&lt;leader&gt;r</span>
+        <span class="grp-n">15</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;r</code> — rust-analyzer, in .rs files.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;leader&gt;rE"><span class="k">E</span><span class="d">Explain error <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rI"><span class="k">I</span><span class="d">View item tree <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rM"><span class="k">M</span><span class="d">View memory layout <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rR"><span class="k">R</span><span class="d">Re-run last runnable <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rb"><span class="k">b</span><span class="d">Rebuild proc macros <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rc"><span class="k">c</span><span class="d">Open Cargo.toml <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rd"><span class="k">d</span><span class="d">Open documentation <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rh"><span class="k">h</span><span class="d">View HIR <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rj"><span class="k">j</span><span class="d">Join lines <span class="n">rustaceanvim</span></span><span class="m">n v</span></li>
+        <li class="km" data-key="&lt;leader&gt;rl"><span class="k">l</span><span class="d">View MIR <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rm"><span class="k">m</span><span class="d">Expand macro <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rp"><span class="k">p</span><span class="d">Parent module <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rr"><span class="k">r</span><span class="d">Runnables <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rt"><span class="k">t</span><span class="d">View syntax tree <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rw"><span class="k">w</span><span class="d">Reload workspace <span class="n">rustaceanvim</span></span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="find" data-tags="find file search telescope grep buffers help oldfiles todo replace">
+      <header class="grp-h">
+        <h2>file &amp; find</h2>
+        <span class="grp-p">&lt;leader&gt;f</span>
+        <span class="grp-n">13</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;f</code> — Telescope pickers.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;C-P&gt;"><span class="k k--full">&lt;C-P&gt;</span><span class="d">Find files</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;fR"><span class="k">R</span><span class="d">Recent files (cwd)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;fS"><span class="k">S</span><span class="d">Search &amp; replace (project-wide)</span><span class="m">n v</span></li>
+        <li class="km" data-key="&lt;leader&gt;fb"><span class="k">b</span><span class="d">Buffers</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;fd"><span class="k">d</span><span class="d">Diagnostics</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;ff"><span class="k">f</span><span class="d">Find files</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;fg"><span class="k">g</span><span class="d">Live grep</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;fh"><span class="k">h</span><span class="d">Help tags</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;fm"><span class="k">m</span><span class="d">Format file or range (in visual mode)</span><span class="m">n v</span></li>
+        <li class="km" data-key="&lt;leader&gt;fp"><span class="k">p</span><span class="d">Recent Projects</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;fr"><span class="k">r</span><span class="d">Recent files</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;fs"><span class="k">s</span><span class="d">Grep string</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;ft"><span class="k">t</span><span class="d">Todo comments</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="windows" data-tags="window split resize navigate hydra">
+      <header class="grp-h">
+        <h2>windows</h2>
+        <span class="grp-p">&lt;C-w&gt;  &lt;C-hjkl&gt;</span>
+        <span class="grp-n">11</span>
+      </header>
+      <p class="grp-note">Navigate &amp; resize splits.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;C-H&gt;"><span class="k k--full">&lt;C-H&gt;</span><span class="d">Move to left window</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-J&gt;"><span class="k k--full">&lt;C-J&gt;</span><span class="d">Move to lower window</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-K&gt;"><span class="k k--full">&lt;C-K&gt;</span><span class="d">Move to upper window</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-L&gt;"><span class="k k--full">&lt;C-L&gt;</span><span class="d">Move to right window</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-Up&gt;"><span class="k k--full">&lt;C-Up&gt;</span><span class="d">Increase window height</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-W&gt; "><span class="k k--full">&lt;C-W&gt;<i>&lt;Space&gt;</i></span><span class="d">Window Hydra Mode (which-key)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-W&gt;d"><span class="k k--full">&lt;C-W&gt;d</span><span class="d">Show diagnostics under the cursor</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-Down&gt;"><span class="k k--full">&lt;C-Down&gt;</span><span class="d">Decrease window height</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-Left&gt;"><span class="k k--full">&lt;C-Left&gt;</span><span class="d">Decrease window width</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-Right&gt;"><span class="k k--full">&lt;C-Right&gt;</span><span class="d">Increase window width</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-W&gt;&lt;C-D&gt;"><span class="k k--full">&lt;C-W&gt;&lt;C-D&gt;</span><span class="d">Show diagnostics under the cursor</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="terminal" data-tags="terminal term shell split vsplit exit insert mode">
+      <header class="grp-h">
+        <h2>terminal</h2>
+        <span class="grp-p">&lt;leader&gt;t</span>
+        <span class="grp-n">4</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;t</code> — plain <code>:terminal</code>, no plugin.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;Esc&gt;&lt;Esc&gt;"><span class="k k--full">&lt;Esc&gt;&lt;Esc&gt;</span><span class="d">Exit terminal mode</span><span class="m">t</span></li>
+        <li class="km" data-key="&lt;leader&gt;ts"><span class="k">s</span><span class="d">Terminal (split)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;tt"><span class="k">t</span><span class="d">Terminal (this window)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;tv"><span class="k">v</span><span class="d">Terminal (vsplit)</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="markdown" data-tags="markdown render compile build run make pty">
+      <header class="grp-h">
+        <h2>markdown &amp; compile</h2>
+        <span class="grp-p">&lt;leader&gt;m</span>
+        <span class="grp-n">9</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;m</code> — render-markdown, compile-mode.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;F5&gt;"><span class="k k--full">&lt;F5&gt;</span><span class="d">Recompile</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;F6&gt;"><span class="k k--full">&lt;F6&gt;</span><span class="d">Compile (prompt)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;F8&gt;"><span class="k k--full">&lt;F8&gt;</span><span class="d">Run last build (no rebuild)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;mh"><span class="k">h</span><span class="d">Compile history</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;mm"><span class="k">m</span><span class="d">Compile (prompt)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;mp"><span class="k">p</span><span class="d">Toggle markdown rendering</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;mq"><span class="k">q</span><span class="d">Compile errors to quickfix</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;mr"><span class="k">r</span><span class="d">Recompile (last command)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;mx"><span class="k">x</span><span class="d">Run last build (no rebuild)</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="code" data-tags="lsp code hover definition references action explorer outline format symbol">
+      <header class="grp-h">
+        <h2>code &amp; lsp</h2>
+        <span class="grp-n">10</span>
+      </header>
+      <p class="grp-note">LSP actions, explorer, outline.</p>
+      <ul class="rows">
+        <li class="km" data-key="K"><span class="k k--full">K</span><span class="d">Hover <span class="n">LSP</span></span><span class="m">n</span></li>
+        <li class="km" data-key="gD"><span class="k k--full">gD</span><span class="d">Goto declaration <span class="n">LSP</span></span><span class="m">n</span></li>
+        <li class="km" data-key="gx"><span class="k k--full">gx</span><span class="d">Opens filepath or URI under cursor with the system handler (file explorer, web browser, …)</span><span class="m">n v</span></li>
+        <li class="km" data-key="&lt;C-k&gt;"><span class="k k--full">&lt;C-k&gt;</span><span class="d">Signature help <span class="n">LSP</span></span><span class="m">i s</span></li>
+        <li class="km" data-key="&lt;leader&gt;e"><span class="k k--full">&lt;leader&gt;e</span><span class="d">File Explorer (snacks)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;o"><span class="k k--full">&lt;leader&gt;o</span><span class="d">Toggle outline</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;ca"><span class="k k--full">&lt;leader&gt;ca</span><span class="d">Code action <span class="n">LSP</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;gd"><span class="k k--full">&lt;leader&gt;gd</span><span class="d">Go to definition <span class="n">LSP</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;gr"><span class="k k--full">&lt;leader&gt;gr</span><span class="d">Go to references <span class="n">LSP</span></span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;rn"><span class="k k--full">&lt;leader&gt;rn</span><span class="d">Rename symbol <span class="n">LSP</span></span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="lazy" data-tags="lazy plugin manager sync update install clean">
+      <header class="grp-h">
+        <h2>lazy</h2>
+        <span class="grp-p">&lt;leader&gt;l</span>
+        <span class="grp-n">6</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;l</code> — plugin manager.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;leader&gt;lc"><span class="k">c</span><span class="d">Check plugin health</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;li"><span class="k">i</span><span class="d">Install plugins</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;ll"><span class="k">l</span><span class="d">Open Lazy menu</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;ls"><span class="k">s</span><span class="d">Sync plugins</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;lu"><span class="k">u</span><span class="d">Update plugins</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;lx"><span class="k">x</span><span class="d">Remove unused plugins</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="noice" data-tags="noice notification message history cmdline dismiss">
+      <header class="grp-h">
+        <h2>noice</h2>
+        <span class="grp-p">&lt;leader&gt;n</span>
+        <span class="grp-n">6</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;n</code> — noice.nvim history &amp; messages.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;leader&gt;nd"><span class="k">d</span><span class="d">Dismiss Notifications</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;ne"><span class="k">e</span><span class="d">Noice Errors</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;nh"><span class="k">h</span><span class="d">Noice History</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;nl"><span class="k">l</span><span class="d">Noice Last Message</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;np"><span class="k">p</span><span class="d">Noice Picker</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;ns"><span class="k">s</span><span class="d">Noice Stats</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="trouble" data-tags="trouble diagnostics quickfix loclist symbols error warning">
+      <header class="grp-h">
+        <h2>trouble &amp; diagnostics</h2>
+        <span class="grp-p">&lt;leader&gt;x</span>
+        <span class="grp-n">11</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;x</code> — trouble.nvim panels + line float.</p>
+      <ul class="rows">
+        <li class="km" data-key="[D"><span class="k k--full">[D</span><span class="d">Jump to the first diagnostic in the current buffer</span><span class="m">n</span></li>
+        <li class="km" data-key="[d"><span class="k k--full">[d</span><span class="d">Jump to the previous diagnostic in the current buffer</span><span class="m">n</span></li>
+        <li class="km" data-key="]D"><span class="k k--full">]D</span><span class="d">Jump to the last diagnostic in the current buffer</span><span class="m">n</span></li>
+        <li class="km" data-key="]d"><span class="k k--full">]d</span><span class="d">Jump to the next diagnostic in the current buffer</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;xL"><span class="k">L</span><span class="d">Location List (Trouble)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;xQ"><span class="k">Q</span><span class="d">Quickfix List (Trouble)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;xX"><span class="k">X</span><span class="d">Buffer Diagnostics (Trouble)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;xd"><span class="k">d</span><span class="d">Show line diagnostics</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;xt"><span class="k">t</span><span class="d">Todo comments (Trouble)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;xv"><span class="k">v</span><span class="d">Toggle inline virtual diagnostic</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;xx"><span class="k">x</span><span class="d">Diagnostics (Trouble)</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="docs" data-tags="docs man manpage keymap reference help">
+      <header class="grp-h">
+        <h2>docs &amp; man</h2>
+        <span class="grp-p">&lt;leader&gt;k</span>
+        <span class="grp-n">3</span>
+      </header>
+      <p class="grp-note"><code>&lt;leader&gt;k</code> — reach for a manual.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;leader&gt;kk"><span class="k">k</span><span class="d">Open keymap reference site</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;km"><span class="k">m</span><span class="d">Open man page</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;kw"><span class="k">w</span><span class="d">Man page for word under cursor</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="themes" data-tags="theme colorscheme themery catppuccin kanagawa gruvbox">
+      <header class="grp-h">
+        <h2>themes</h2>
+        <span class="grp-p">&lt;leader&gt;t</span>
+        <span class="grp-n">1</span>
+      </header>
+      <p class="grp-note">Themery picker.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;leader&gt;tH"><span class="k">H</span><span class="d">Theme: Open Themery</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="mason" data-tags="mason lsp installer">
+      <header class="grp-h">
+        <h2>mason</h2>
+        <span class="grp-n">1</span>
+      </header>
+      <p class="grp-note">LSP / DAP / linter / formatter installer.</p>
+      <ul class="rows">
+        <li class="km" data-key="&lt;leader&gt;M"><span class="k k--full">&lt;leader&gt;M</span><span class="d">Open Mason command menu</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="misc" data-tags="misc surround flash jump textobject fold comment treesitter selection incremental node expand shrink todo">
+      <header class="grp-h">
+        <h2>misc</h2>
+        <span class="grp-n">27</span>
+      </header>
+      <p class="grp-note">Everything else.</p>
+      <ul class="rows">
+        <li class="km" data-key="R"><span class="k k--full">R</span><span class="d">Treesitter search</span><span class="m">v o</span></li>
+        <li class="km" data-key="S"><span class="k k--full">S</span><span class="d">Flash treesitter</span><span class="m">n v o</span></li>
+        <li class="km" data-key="r"><span class="k k--full">r</span><span class="d">Remote flash</span><span class="m">o</span></li>
+        <li class="km" data-key="s"><span class="k k--full">s</span><span class="d">Flash jump</span><span class="m">n v o</span></li>
+        <li class="km" data-key="[N"><span class="k k--full">[N</span><span class="d">Select previous sibling node</span><span class="m">v</span></li>
+        <li class="km" data-key="[n"><span class="k k--full">[n</span><span class="d">Select previous node</span><span class="m">v</span></li>
+        <li class="km" data-key="[t"><span class="k k--full">[t</span><span class="d">Prev todo comment</span><span class="m">n</span></li>
+        <li class="km" data-key="]N"><span class="k k--full">]N</span><span class="d">Select next sibling node</span><span class="m">v</span></li>
+        <li class="km" data-key="]n"><span class="k k--full">]n</span><span class="d">Select next node</span><span class="m">v</span></li>
+        <li class="km" data-key="]t"><span class="k k--full">]t</span><span class="d">Next todo comment</span><span class="m">n</span></li>
+        <li class="km" data-key="g["><span class="k k--full">g[</span><span class="d">Move to left "around"</span><span class="m">n v o</span></li>
+        <li class="km" data-key="g]"><span class="k k--full">g]</span><span class="d">Move to right "around"</span><span class="m">n v o</span></li>
+        <li class="km" data-key="gc"><span class="k k--full">gc</span><span class="d">Comment textobject</span><span class="m">o</span></li>
+        <li class="km" data-key="gc"><span class="k k--full">gc</span><span class="d">Toggle comment</span><span class="m">n v</span></li>
+        <li class="km" data-key="gcc"><span class="k k--full">gcc</span><span class="d">Toggle comment line</span><span class="m">n</span></li>
+        <li class="km" data-key="gsF"><span class="k k--full">gsF</span><span class="d">Find left surrounding</span><span class="m">n v o</span></li>
+        <li class="km" data-key="gsa"><span class="k k--full">gsa</span><span class="d">Add surrounding</span><span class="m">n</span></li>
+        <li class="km" data-key="gsa"><span class="k k--full">gsa</span><span class="d">Add surrounding to selection</span><span class="m">v</span></li>
+        <li class="km" data-key="gsd"><span class="k k--full">gsd</span><span class="d">Delete surrounding</span><span class="m">n</span></li>
+        <li class="km" data-key="gsf"><span class="k k--full">gsf</span><span class="d">Find right surrounding</span><span class="m">n v o</span></li>
+        <li class="km" data-key="gsh"><span class="k k--full">gsh</span><span class="d">Highlight surrounding</span><span class="m">n</span></li>
+        <li class="km" data-key="gsr"><span class="k k--full">gsr</span><span class="d">Replace surrounding</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;BS&gt;"><span class="k k--full">&lt;BS&gt;</span><span class="d">Shrink selection to child node <span class="n">treesitter</span></span><span class="m">x</span></li>
+        <li class="km" data-key="&lt;CR&gt;"><span class="k k--full">&lt;CR&gt;</span><span class="d">Grow selection to parent node <span class="n">treesitter</span></span><span class="m">n x</span></li>
+        <li class="km" data-key="&lt;C-/&gt;"><span class="k k--full">&lt;C-/&gt;</span><span class="d">Toggle comment</span><span class="m">v</span></li>
+        <li class="km" data-key="&lt;leader&gt;?"><span class="k k--full">&lt;leader&gt;?</span><span class="d">Buffer Keymaps (which-key)</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;leader&gt;q"><span class="k k--full">&lt;leader&gt;q</span><span class="d">Quit all</span><span class="m">n</span></li>
+      </ul>
+    </section>
+    <section class="grp" id="globals" data-tags="global escape save blank line">
+      <header class="grp-h">
+        <h2>globals</h2>
+        <span class="grp-n">4</span>
+      </header>
+      <p class="grp-note">Always-there keys.</p>
+      <ul class="rows">
+        <li class="km" data-key="[ "><span class="k k--full">[<i>&lt;Space&gt;</i></span><span class="d">Add empty line above cursor</span><span class="m">n</span></li>
+        <li class="km" data-key="] "><span class="k k--full">]<i>&lt;Space&gt;</i></span><span class="d">Add empty line below cursor</span><span class="m">n</span></li>
+        <li class="km" data-key="&lt;C-S&gt;"><span class="k k--full">&lt;C-S&gt;</span><span class="d">Save file</span><span class="m">n v i</span></li>
+        <li class="km" data-key="&lt;Esc&gt;"><span class="k k--full">&lt;Esc&gt;</span><span class="d">Clear search highlights</span><span class="m">n</span></li>
+      </ul>
+    </section>
+  </div><!-- END GENERATED -->
 
-  <section class="group" id="git" data-tags="git gitsigns lazygit hunk blame diff stage reset diffview octo github pr pull request issue review changed files panel diffstat history">
-    <h2 class="group-title">git <span class="group-count">23</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;g</code> · <code>&lt;leader&gt;h</code> — gitsigns hunks, lazygit, diffview (local changes) &amp; octo (GitHub PRs).</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key">i</span><span class="desc">Toggle list/tree layout <span class="km-note">diffview panel</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key">[c</span><span class="desc">Prev git hunk <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key">]c</span><span class="desc">Next git hunk <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;Tab&gt;</span><span class="desc">Cycle to next changed file <span class="km-note">diffview panel</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gV</span><span class="desc">Diffview: close</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gf</span><span class="desc">Diffview: current file history</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gg</span><span class="desc">Lazygit</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gh</span><span class="desc">Diffview: repo history</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gi</span><span class="desc">Octo: issues</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>go</span><span class="desc">Octo: command palette</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gp</span><span class="desc">Octo: pull requests</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gv</span><span class="desc">Diffview: changed files</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hD</span><span class="desc">Diff against ~ <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hQ</span><span class="desc">All hunks to quickfix <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hR</span><span class="desc">Reset buffer <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hS</span><span class="desc">Stage buffer <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hb</span><span class="desc">Blame line <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hd</span><span class="desc">Diff this <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hi</span><span class="desc">Preview hunk inline <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hp</span><span class="desc">Preview hunk <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hq</span><span class="desc">Hunks to quickfix <span class="km-note">gitsigns</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hr</span><span class="desc">Reset hunk <span class="km-note">gitsigns</span></span><span class="mode">n v</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>hs</span><span class="desc">Stage hunk <span class="km-note">gitsigns</span></span><span class="mode">n v</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="buffer" data-tags="buffer barbar pin delete close move goto">
-    <h2 class="group-title">buffer <span class="group-count">22</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;b</code> — barbar tabs &amp; buffer ops.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key">H</span><span class="desc">Prev buffer</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">L</span><span class="desc">Next buffer</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">[b</span><span class="desc">Prev buffer</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">]b</span><span class="desc">Next buffer</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>b1</span><span class="desc">Go to buffer 1</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>b2</span><span class="desc">Go to buffer 2</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>b3</span><span class="desc">Go to buffer 3</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>b4</span><span class="desc">Go to buffer 4</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>b5</span><span class="desc">Go to buffer 5</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>b6</span><span class="desc">Go to buffer 6</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>b7</span><span class="desc">Go to buffer 7</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>b8</span><span class="desc">Go to buffer 8</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>b9</span><span class="desc">Go to buffer 9</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bM</span><span class="desc">Move buffer prev</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bP</span><span class="desc">Close non-pinned</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bb</span><span class="desc">Pick buffer (letter)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bd</span><span class="desc">Close buffer</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bl</span><span class="desc">Close buffers left</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bm</span><span class="desc">Move buffer next</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bo</span><span class="desc">Close other buffers</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>bp</span><span class="desc">Toggle pin</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>br</span><span class="desc">Close buffers right</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="rust" data-tags="rust rustaceanvim ferris runnable clippy hir mir macro cargo module documentation workspace">
-    <h2 class="group-title">rust <span class="group-suffix">rustaceanvim</span> <span class="group-count">15</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;r</code> — rust-analyzer, in .rs files.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rE</span><span class="desc">Explain error <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rI</span><span class="desc">View item tree <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rM</span><span class="desc">View memory layout <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rR</span><span class="desc">Re-run last runnable <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rb</span><span class="desc">Rebuild proc macros <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rc</span><span class="desc">Open Cargo.toml <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rd</span><span class="desc">Open documentation <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rh</span><span class="desc">View HIR <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rj</span><span class="desc">Join lines <span class="km-note">rustaceanvim</span></span><span class="mode">n v</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rl</span><span class="desc">View MIR <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rm</span><span class="desc">Expand macro <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rp</span><span class="desc">Parent module <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rr</span><span class="desc">Runnables <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rt</span><span class="desc">View syntax tree <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rw</span><span class="desc">Reload workspace <span class="km-note">rustaceanvim</span></span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="find" data-tags="find file search telescope grep buffers help oldfiles todo replace">
-    <h2 class="group-title">file &amp; find <span class="group-count">13</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;f</code> — Telescope pickers.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key">&lt;C-P&gt;</span><span class="desc">Find files</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fR</span><span class="desc">Recent files (cwd)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fS</span><span class="desc">Search &amp; replace (project-wide)</span><span class="mode">n v</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fb</span><span class="desc">Buffers</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fd</span><span class="desc">Diagnostics</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ff</span><span class="desc">Find files</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fg</span><span class="desc">Live grep</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fh</span><span class="desc">Help tags</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fm</span><span class="desc">Format file or range (in visual mode)</span><span class="mode">n v</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fp</span><span class="desc">Recent Projects</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fr</span><span class="desc">Recent files</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>fs</span><span class="desc">Grep string</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ft</span><span class="desc">Todo comments</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="windows" data-tags="window split resize navigate hydra">
-    <h2 class="group-title">windows <span class="group-count">11</span></h2>
-    <p class="group-hint">Navigate &amp; resize splits.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key">&lt;C-H&gt;</span><span class="desc">Move to left window</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-J&gt;</span><span class="desc">Move to lower window</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-K&gt;</span><span class="desc">Move to upper window</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-L&gt;</span><span class="desc">Move to right window</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-Up&gt;</span><span class="desc">Increase window height</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-W&gt;<i>&lt;Space&gt;</i></span><span class="desc">Window Hydra Mode (which-key)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-W&gt;d</span><span class="desc">Show diagnostics under the cursor</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-Down&gt;</span><span class="desc">Decrease window height</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-Left&gt;</span><span class="desc">Decrease window width</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-Right&gt;</span><span class="desc">Increase window width</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-W&gt;&lt;C-D&gt;</span><span class="desc">Show diagnostics under the cursor</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="terminal" data-tags="terminal term shell split vsplit exit insert mode">
-    <h2 class="group-title">terminal <span class="group-count">4</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;t</code> — plain <code>:terminal</code>, no plugin.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key">&lt;Esc&gt;&lt;Esc&gt;</span><span class="desc">Exit terminal mode</span><span class="mode">t</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ts</span><span class="desc">Terminal (split)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tt</span><span class="desc">Terminal (this window)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tv</span><span class="desc">Terminal (vsplit)</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="markdown" data-tags="markdown render compile build run make pty">
-    <h2 class="group-title">markdown &amp; compile <span class="group-count">9</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;m</code> — render-markdown, compile-mode.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key">&lt;F5&gt;</span><span class="desc">Recompile</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;F6&gt;</span><span class="desc">Compile (prompt)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;F8&gt;</span><span class="desc">Run last build (no rebuild)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mh</span><span class="desc">Compile history</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mm</span><span class="desc">Compile (prompt)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mp</span><span class="desc">Toggle markdown rendering</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mq</span><span class="desc">Compile errors to quickfix</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mr</span><span class="desc">Recompile (last command)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>mx</span><span class="desc">Run last build (no rebuild)</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="code" data-tags="lsp code hover definition references action explorer outline format symbol">
-    <h2 class="group-title">code &amp; lsp <span class="group-count">10</span></h2>
-    <p class="group-hint">LSP actions, explorer, outline.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key">K</span><span class="desc">Hover <span class="km-note">LSP</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key">gD</span><span class="desc">Goto declaration <span class="km-note">LSP</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key">gx</span><span class="desc">Opens filepath or URI under cursor with the system handler (file explorer, web browser, …)</span><span class="mode">n v</span></li>
-      <li class="km"><span class="key">&lt;C-k&gt;</span><span class="desc">Signature help <span class="km-note">LSP</span></span><span class="mode">i s</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>e</span><span class="desc">File Explorer (snacks)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>o</span><span class="desc">Toggle outline</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ca</span><span class="desc">Code action <span class="km-note">LSP</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gd</span><span class="desc">Go to definition <span class="km-note">LSP</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>gr</span><span class="desc">Go to references <span class="km-note">LSP</span></span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>rn</span><span class="desc">Rename symbol <span class="km-note">LSP</span></span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="lazy" data-tags="lazy plugin manager sync update install clean">
-    <h2 class="group-title">lazy <span class="group-count">6</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;l</code> — plugin manager.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>lc</span><span class="desc">Check plugin health</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>li</span><span class="desc">Install plugins</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ll</span><span class="desc">Open Lazy menu</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ls</span><span class="desc">Sync plugins</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>lu</span><span class="desc">Update plugins</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>lx</span><span class="desc">Remove unused plugins</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="noice" data-tags="noice notification message history cmdline dismiss">
-    <h2 class="group-title">noice <span class="group-count">6</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;n</code> — noice.nvim history &amp; messages.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>nd</span><span class="desc">Dismiss Notifications</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ne</span><span class="desc">Noice Errors</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>nh</span><span class="desc">Noice History</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>nl</span><span class="desc">Noice Last Message</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>np</span><span class="desc">Noice Picker</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>ns</span><span class="desc">Noice Stats</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="trouble" data-tags="trouble diagnostics quickfix loclist symbols error warning">
-    <h2 class="group-title">trouble &amp; diagnostics <span class="group-count">11</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;x</code> — trouble.nvim panels + line float.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key">[D</span><span class="desc">Jump to the first diagnostic in the current buffer</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">[d</span><span class="desc">Jump to the previous diagnostic in the current buffer</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">]D</span><span class="desc">Jump to the last diagnostic in the current buffer</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">]d</span><span class="desc">Jump to the next diagnostic in the current buffer</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xL</span><span class="desc">Location List (Trouble)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xQ</span><span class="desc">Quickfix List (Trouble)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xX</span><span class="desc">Buffer Diagnostics (Trouble)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xd</span><span class="desc">Show line diagnostics</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xt</span><span class="desc">Todo comments (Trouble)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xv</span><span class="desc">Toggle inline virtual diagnostic</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>xx</span><span class="desc">Diagnostics (Trouble)</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="docs" data-tags="docs man manpage keymap reference help">
-    <h2 class="group-title">docs &amp; man <span class="group-count">3</span></h2>
-    <p class="group-hint"><code>&lt;leader&gt;k</code> — reach for a manual.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>kk</span><span class="desc">Open keymap reference site</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>km</span><span class="desc">Open man page</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>kw</span><span class="desc">Man page for word under cursor</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="themes" data-tags="theme colorscheme themery catppuccin kanagawa gruvbox">
-    <h2 class="group-title">themes <span class="group-count">1</span></h2>
-    <p class="group-hint">Themery picker.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>tH</span><span class="desc">Theme: Open Themery</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="mason" data-tags="mason lsp installer">
-    <h2 class="group-title">mason <span class="group-count">1</span></h2>
-    <p class="group-hint">LSP / DAP / linter / formatter installer.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>M</span><span class="desc">Open Mason command menu</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="misc" data-tags="misc surround flash jump textobject fold comment treesitter selection incremental node expand shrink todo">
-    <h2 class="group-title">misc <span class="group-count">27</span></h2>
-    <p class="group-hint">Everything else.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key">R</span><span class="desc">Treesitter search</span><span class="mode">v o</span></li>
-      <li class="km"><span class="key">S</span><span class="desc">Flash treesitter</span><span class="mode">n v o</span></li>
-      <li class="km"><span class="key">r</span><span class="desc">Remote flash</span><span class="mode">o</span></li>
-      <li class="km"><span class="key">s</span><span class="desc">Flash jump</span><span class="mode">n v o</span></li>
-      <li class="km"><span class="key">[N</span><span class="desc">Select previous sibling node</span><span class="mode">v</span></li>
-      <li class="km"><span class="key">[n</span><span class="desc">Select previous node</span><span class="mode">v</span></li>
-      <li class="km"><span class="key">[t</span><span class="desc">Prev todo comment</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">]N</span><span class="desc">Select next sibling node</span><span class="mode">v</span></li>
-      <li class="km"><span class="key">]n</span><span class="desc">Select next node</span><span class="mode">v</span></li>
-      <li class="km"><span class="key">]t</span><span class="desc">Next todo comment</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">g[</span><span class="desc">Move to left "around"</span><span class="mode">n v o</span></li>
-      <li class="km"><span class="key">g]</span><span class="desc">Move to right "around"</span><span class="mode">n v o</span></li>
-      <li class="km"><span class="key">gc</span><span class="desc">Comment textobject</span><span class="mode">o</span></li>
-      <li class="km"><span class="key">gc</span><span class="desc">Toggle comment</span><span class="mode">n v</span></li>
-      <li class="km"><span class="key">gcc</span><span class="desc">Toggle comment line</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">gsF</span><span class="desc">Find left surrounding</span><span class="mode">n v o</span></li>
-      <li class="km"><span class="key">gsa</span><span class="desc">Add surrounding</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">gsa</span><span class="desc">Add surrounding to selection</span><span class="mode">v</span></li>
-      <li class="km"><span class="key">gsd</span><span class="desc">Delete surrounding</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">gsf</span><span class="desc">Find right surrounding</span><span class="mode">n v o</span></li>
-      <li class="km"><span class="key">gsh</span><span class="desc">Highlight surrounding</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">gsr</span><span class="desc">Replace surrounding</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;BS&gt;</span><span class="desc">Shrink selection to child node <span class="km-note">treesitter</span></span><span class="mode">x</span></li>
-      <li class="km"><span class="key">&lt;CR&gt;</span><span class="desc">Grow selection to parent node <span class="km-note">treesitter</span></span><span class="mode">n x</span></li>
-      <li class="km"><span class="key">&lt;C-/&gt;</span><span class="desc">Toggle comment</span><span class="mode">v</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>?</span><span class="desc">Buffer Keymaps (which-key)</span><span class="mode">n</span></li>
-      <li class="km"><span class="key"><i>&lt;leader&gt;</i>q</span><span class="desc">Quit all</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-
-  <section class="group" id="globals" data-tags="global escape save blank line">
-    <h2 class="group-title">globals <span class="group-count">4</span></h2>
-    <p class="group-hint">Always-there keys.</p>
-    <ul class="keymaps">
-      <li class="km"><span class="key">[<i>&lt;Space&gt;</i></span><span class="desc">Add empty line above cursor</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">]<i>&lt;Space&gt;</i></span><span class="desc">Add empty line below cursor</span><span class="mode">n</span></li>
-      <li class="km"><span class="key">&lt;C-S&gt;</span><span class="desc">Save file</span><span class="mode">n v i</span></li>
-      <li class="km"><span class="key">&lt;Esc&gt;</span><span class="desc">Clear search highlights</span><span class="mode">n</span></li>
-    </ul>
-  </section>
-<!-- END GENERATED -->
-
-  </div><!-- /.groups -->
-
-  <div class="empty-state" id="empty" hidden>
-    <p>No keymaps match.</p>
-    <p class="hint">try <code>rust</code>, <code>git</code>, <code>buffer</code>, <code>hunk</code></p>
-  </div>
-
-  <footer>
-    <p>press <kbd>&lt;leader&gt; k k</kbd> in nvim to open this page</p>
-    <p class="tiny"><a href="https://github.com/yashksaini-coder/nvim">source ↗</a></p>
-  </footer>
-
+  <p class="empty" id="empty" hidden>
+    Nothing matches. Try <button type="button" data-q="git">git</button>,
+    <button type="button" data-q="buffer">buffer</button>,
+    <button type="button" data-q="rust">rust</button> or
+    <button type="button" data-q="terminal">terminal</button>.
+  </p>
 </main>
+
+<footer class="foot">
+  <span><kbd>&lt;leader&gt;</kbd> is <kbd>Space</kbd></span>
+  <span><kbd>/</kbd> filters, <kbd>Esc</kbd> clears</span>
+  <span><kbd>&lt;leader&gt;kk</kbd> opens this page from nvim</span>
+</footer>
 
 <script src="keymaps.js" defer></script>
 </body>

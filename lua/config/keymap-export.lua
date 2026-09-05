@@ -29,6 +29,9 @@ local PAGE = ROOT .. "site/index.html"
 local GROUPS = {
 	{
 		id = "crates",
+		rail = "c",
+		prefix = "<leader>c",
+		shown = "<leader>c",
 		title = "crates",
 		suffix = "cargo.toml",
 		tags = "crates rust cargo toml versions features dependencies",
@@ -36,18 +39,27 @@ local GROUPS = {
 	},
 	{
 		id = "git",
+		rail = "g",
+		prefix = "<leader>",
+		shown = "<leader>g  <leader>h",
 		title = "git",
 		tags = "git gitsigns lazygit hunk blame diff stage reset diffview octo github pr pull request issue review changed files panel diffstat history",
 		hint = "<code>&lt;leader&gt;g</code> · <code>&lt;leader&gt;h</code> — gitsigns hunks, lazygit, diffview (local changes) &amp; octo (GitHub PRs).",
 	},
 	{
 		id = "buffer",
+		rail = "b",
+		prefix = "<leader>b",
+		shown = "<leader>b",
 		title = "buffer",
 		tags = "buffer barbar pin delete close move goto",
 		hint = "<code>&lt;leader&gt;b</code> — barbar tabs &amp; buffer ops.",
 	},
 	{
 		id = "rust",
+		rail = "r",
+		prefix = "<leader>r",
+		shown = "<leader>r",
 		title = "rust",
 		suffix = "rustaceanvim",
 		tags = "rust rustaceanvim ferris runnable clippy hir mir macro cargo module documentation workspace",
@@ -55,78 +67,117 @@ local GROUPS = {
 	},
 	{
 		id = "find",
+		rail = "f",
+		prefix = "<leader>f",
+		shown = "<leader>f",
 		title = "file &amp; find",
 		tags = "find file search telescope grep buffers help oldfiles todo replace",
 		hint = "<code>&lt;leader&gt;f</code> — Telescope pickers.",
 	},
 	{
 		id = "windows",
+		rail = "^w",
+		prefix = nil,
+		shown = "<C-w>  <C-hjkl>",
 		title = "windows",
 		tags = "window split resize navigate hydra",
 		hint = "Navigate &amp; resize splits.",
 	},
 	{
 		id = "terminal",
+		rail = "t",
+		prefix = "<leader>t",
+		shown = "<leader>t",
 		title = "terminal",
 		tags = "terminal term shell split vsplit exit insert mode",
 		hint = "<code>&lt;leader&gt;t</code> — plain <code>:terminal</code>, no plugin.",
 	},
 	{
 		id = "markdown",
+		rail = "m",
+		prefix = "<leader>m",
+		shown = "<leader>m",
 		title = "markdown &amp; compile",
 		tags = "markdown render compile build run make pty",
 		hint = "<code>&lt;leader&gt;m</code> — render-markdown, compile-mode.",
 	},
 	{
 		id = "code",
+		rail = "g",
+		prefix = nil,
+		shown = nil,
 		title = "code &amp; lsp",
 		tags = "lsp code hover definition references action explorer outline format symbol",
 		hint = "LSP actions, explorer, outline.",
 	},
 	{
 		id = "lazy",
+		rail = "l",
+		prefix = "<leader>l",
+		shown = "<leader>l",
 		title = "lazy",
 		tags = "lazy plugin manager sync update install clean",
 		hint = "<code>&lt;leader&gt;l</code> — plugin manager.",
 	},
 	{
 		id = "noice",
+		rail = "n",
+		prefix = "<leader>n",
+		shown = "<leader>n",
 		title = "noice",
 		tags = "noice notification message history cmdline dismiss",
 		hint = "<code>&lt;leader&gt;n</code> — noice.nvim history &amp; messages.",
 	},
 	{
 		id = "trouble",
+		rail = "x",
+		prefix = "<leader>x",
+		shown = "<leader>x",
 		title = "trouble &amp; diagnostics",
 		tags = "trouble diagnostics quickfix loclist symbols error warning",
 		hint = "<code>&lt;leader&gt;x</code> — trouble.nvim panels + line float.",
 	},
 	{
 		id = "docs",
+		rail = "k",
+		prefix = "<leader>k",
+		shown = "<leader>k",
 		title = "docs &amp; man",
 		tags = "docs man manpage keymap reference help",
 		hint = "<code>&lt;leader&gt;k</code> — reach for a manual.",
 	},
 	{
 		id = "themes",
+		rail = "t",
+		prefix = "<leader>t",
+		shown = "<leader>t",
 		title = "themes",
 		tags = "theme colorscheme themery catppuccin kanagawa gruvbox",
 		hint = "Themery picker.",
 	},
 	{
 		id = "mason",
+		rail = "M",
+		prefix = nil,
+		shown = nil,
 		title = "mason",
 		tags = "mason lsp installer",
 		hint = "LSP / DAP / linter / formatter installer.",
 	},
 	{
 		id = "misc",
+		rail = "·",
+		prefix = nil,
+		shown = nil,
 		title = "misc",
 		tags = "misc surround flash jump textobject fold comment treesitter selection incremental node expand shrink todo",
 		hint = "Everything else.",
 	},
 	{
 		id = "globals",
+		rail = "·",
+		prefix = nil,
+		shown = nil,
 		title = "globals",
 		tags = "global escape save blank line",
 		hint = "Always-there keys.",
@@ -319,52 +370,65 @@ local function esc(s)
 	return (s:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"))
 end
 
---- `<leader>gv` renders the prefix in its own <i> so CSS can dim it.
-local function render_key(lhs)
-	-- A literal space inside a lhs is a real <Space> press (`[ ` is [<Space>);
-	-- rendered raw it is invisible on the page.
-	local function spaces(s)
-		return (esc(s):gsub(" ", "<i>&lt;Space&gt;</i>"))
-	end
-	local rest = lhs:match("^<leader>(.*)$")
-	if rest then
-		return "<i>&lt;leader&gt;</i>" .. spaces(rest)
-	end
-	return spaces(lhs)
+--- A literal space inside a lhs is a real <Space> press (`[ ` is [<Space>);
+--- rendered raw it would be an invisible gap on the page.
+local function spaces(str)
+	return (esc(str):gsub(" ", "<i>&lt;Space&gt;</i>"))
 end
 
 function M.render(by_group)
-	local out, total = {}, 0
+	local rail, out, total = {}, {}, 0
+
+	-- The rail is the leader tree: one entry per group, keyed by the letter you
+	-- actually press. Groups with no single prefix show a dot.
+	rail[#rail + 1] = '  <nav class="rail" aria-label="Jump to group">'
+
 	for _, g in ipairs(GROUPS) do
 		local rows = by_group[g.id] or {}
 		if #rows > 0 then
-			local title = g.title
+			rail[#rail + 1] = ('    <a href="#%s"><b>%s</b>%s<i>%d</i></a>'):format(g.id, esc(g.rail), g.id, #rows)
+
+			out[#out + 1] = ('    <section class="grp" id="%s" data-tags="%s">'):format(g.id, g.tags)
+			out[#out + 1] = '      <header class="grp-h">'
+			out[#out + 1] = ("        <h2>%s</h2>"):format(g.title)
 			if g.suffix then
-				title = title .. ' <span class="group-suffix">' .. g.suffix .. "</span>"
+				out[#out + 1] = ('        <span class="grp-x">%s</span>'):format(g.suffix)
 			end
-			out[#out + 1] = ('  <section class="group" id="%s" data-tags="%s">'):format(g.id, g.tags)
-			out[#out + 1] = ('    <h2 class="group-title">%s <span class="group-count">%d</span></h2>'):format(
-				title,
-				#rows
-			)
-			out[#out + 1] = ('    <p class="group-hint">%s</p>'):format(g.hint)
-			out[#out + 1] = '    <ul class="keymaps">'
+			if g.shown then
+				out[#out + 1] = ('        <span class="grp-p">%s</span>'):format(esc(g.shown))
+			end
+			out[#out + 1] = ('        <span class="grp-n">%d</span>'):format(#rows)
+			out[#out + 1] = "      </header>"
+			out[#out + 1] = ('      <p class="grp-note">%s</p>'):format(g.hint)
+			out[#out + 1] = '      <ul class="rows">'
+
 			for _, r in ipairs(rows) do
-				local note = r.note and (' <span class="km-note">%s</span>'):format(esc(r.note)) or ""
-				out[#out + 1] = ('      <li class="km"><span class="key">%s</span><span class="desc">%s%s</span><span class="mode">%s</span></li>'):format(
-					render_key(r.lhs),
+				-- Strip the group prefix so the column shows only what you press
+				-- next; the full sequence stays in data-key so the filter and a
+				-- copy still see it. Rows outside the prefix keep their whole key.
+				local shown_key, lead = r.lhs, false
+				if g.prefix and #r.lhs > #g.prefix and r.lhs:sub(1, #g.prefix) == g.prefix then
+					shown_key, lead = r.lhs:sub(#g.prefix + 1), true
+				end
+				local note = r.note and (' <span class="n">%s</span>'):format(esc(r.note)) or ""
+				out[#out + 1] = ('        <li class="km" data-key="%s"><span class="k%s">%s</span><span class="d">%s%s</span><span class="m">%s</span></li>'):format(
+					esc(r.lhs),
+					lead and "" or " k--full",
+					spaces(shown_key),
 					esc(r.desc),
 					note,
 					r.modes
 				)
 				total = total + 1
 			end
-			out[#out + 1] = "    </ul>"
-			out[#out + 1] = "  </section>"
-			out[#out + 1] = ""
+
+			out[#out + 1] = "      </ul>"
+			out[#out + 1] = "    </section>"
 		end
 	end
-	return table.concat(out, "\n"), total
+
+	rail[#rail + 1] = "  </nav>"
+	return table.concat(rail, "\n") .. '\n  <div class="col">\n' .. table.concat(out, "\n") .. "\n  </div>", total
 end
 
 -- ── commands ────────────────────────────────────────────────────────────────
