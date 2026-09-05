@@ -25,11 +25,11 @@ return {
 				{ "<leader>n", group = "noice" },
 				{ "<leader>q", desc = "Quit all" },
 				{ "<leader>r", group = "rust" },
-				{ "<leader>t", group = "theme" },
+				{ "<leader>t", group = "terminal/theme" },
 				{ "<leader>x", group = "trouble/diagnostics" },
 
 				-- Buffer operations
-				{ "<leader>bd", desc = "Delete buffer" },
+				{ "<leader>bd", desc = "Close buffer" },
 				{ "<leader>bp", desc = "Toggle pin" },
 				{ "<leader>bP", desc = "Delete non-pinned" },
 				{ "<leader>bo", desc = "Close other buffers" },
@@ -139,6 +139,9 @@ return {
 				{ "<leader>M", desc = "Open Mason" },
 
 				-- Tabs / themes
+				{ "<leader>tt", desc = "Terminal (this window)" },
+				{ "<leader>ts", desc = "Terminal (split)" },
+				{ "<leader>tv", desc = "Terminal (vsplit)" },
 				{ "<leader>tH", desc = "Themery" },
 
 				-- Trouble

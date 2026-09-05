@@ -66,6 +66,12 @@ local GROUPS = {
 		hint = "Navigate &amp; resize splits.",
 	},
 	{
+		id = "terminal",
+		title = "terminal",
+		tags = "terminal term shell split vsplit exit insert mode",
+		hint = "<code>&lt;leader&gt;t</code> — plain <code>:terminal</code>, no plugin.",
+	},
+	{
 		id = "markdown",
 		title = "markdown &amp; compile",
 		tags = "markdown render compile build run make pty",
@@ -142,7 +148,9 @@ local ROUTE = {
 	{ "^<C%-[UDLR]", "windows" }, -- <C-Up> <C-Down> <C-Left> <C-Right>
 	{ "^<leader>m", "markdown" },
 	{ "^<F[568]>$", "markdown" },
-	{ "^<leader>tH$", "themes" },
+	{ "^<leader>tH$", "themes" }, -- must precede the <leader>t terminal prefix
+	{ "^<leader>t", "terminal" },
+	{ "^<Esc><Esc>$", "terminal" },
 	{ "^<leader>l", "lazy" },
 	{ "^<leader>n", "noice" },
 	{ "^<leader>x", "trouble" },
