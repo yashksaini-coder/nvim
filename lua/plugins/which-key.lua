@@ -25,7 +25,7 @@ return {
 				{ "<leader>n", group = "noice" },
 				{ "<leader>q", desc = "Quit all" },
 				{ "<leader>r", group = "rust" },
-				{ "<leader>t", group = "terminal/theme" },
+				{ "<leader>t", group = "theme" },
 				{ "<leader>x", group = "trouble/diagnostics" },
 
 				-- Buffer operations
@@ -139,9 +139,6 @@ return {
 				{ "<leader>M", desc = "Open Mason" },
 
 				-- Tabs / themes
-				{ "<leader>tt", desc = "Terminal (this window)" },
-				{ "<leader>ts", desc = "Terminal (split)" },
-				{ "<leader>tv", desc = "Terminal (vsplit)" },
 				{ "<leader>tH", desc = "Themery" },
 
 				-- Trouble

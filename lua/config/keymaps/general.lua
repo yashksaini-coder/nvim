@@ -54,8 +54,8 @@ vim.keymap.set("n", "<leader>bd", function()
 	end
 
 	-- A blank [No Name] window is leftover scaffolding rather than something you
-	-- opened -- `botright new` leaves one behind when the terminal it held is
-	-- closed. Deleting its buffer would just drop another empty one into the same
+	-- opened -- a `:new` split whose buffer was closed leaves one behind.
+	-- Deleting its buffer would just drop another empty one into the same
 	-- split, so close the window instead. If it is the only window left, fall
 	-- through: the dashboard below is the right thing to land on.
 	local function blank(b)
