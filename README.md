@@ -8,7 +8,7 @@ Personal Neovim config. Lua, [lazy.nvim](https://github.com/folke/lazy.nvim), Ne
 
 ## What's inside
 
-**Editing** — `nvim-cmp` completion (`LuaSnip` is the expander for LSP snippets, not a snippet library), `autopairs`, `autotag` for JSX/HTML, `mini.surround` on `gs`, `mini.ai` text objects (`af`/`if`, `ac`/`ic`), `flash.nvim` for `s`-jumps. Commenting is Neovim's built-in `gc` — it reads `commentstring` from treesitter metadata, so JSX comments come out right without a plugin.
+**Editing** — `nvim-cmp` completion (`LuaSnip` expands LSP snippets and carries the C/C++ starters — `<leader>ic` / `<leader>iC`, or the `cp` snippet), `autopairs`, `autotag` for JSX/HTML, `mini.surround` on `gs`, `mini.ai` text objects (`af`/`if`, `ac`/`ic`), `flash.nvim` for `s`-jumps. Commenting is Neovim's built-in `gc` — it reads `commentstring` from treesitter metadata, so JSX comments come out right without a plugin.
 
 **UI** — `barbar` (buffer tabs), `lualine` (statusline + winbar), `which-key` (popup), `noice` + `nvim-notify` (cmdline & notifications), `snacks.nvim` (indent guides, dashboard, bigfile/quickfile — image rendering is explicitly off), `lspkind` (completion icons), `mini.icons` (icon set).
 
@@ -100,6 +100,7 @@ Run `make site` after adding or removing a keymap; the output is deterministic, 
 ## Notes
 
 - **File tree** — `snacks.explorer` on `<leader>e`, a persistent side panel. Calling it while open closes it, so the one mapping is a toggle. It is a picker underneath: a real split (`snacks_layout_box`) hosting the list and filter input as floats — which is why lualine hides all three filetypes and barbar offsets against the box, not the list. `replace_netrw` stays off on purpose so `nvim .` lands on `snacks.dashboard`; `lua/config/autocmds.lua` then opens the side panel on `UIEnter`.
+- **Clipboard** — `y` goes to the system clipboard, `d`/`x`/`c` do not. Vim's delete operators are *cut*: they have always written to the unnamed register, so the old `clipboard = "unnamedplus"` meant every `dd` overwrote whatever you had copied from the browser. `lua/config/clipboard.lua` unsets that and mirrors yanks outward on `TextYankPost` instead, which keeps `dd` then `p` working. Pasting *from* another app is `<leader>p`, since plain `p` is the unnamed register again.
 - **Cord (Discord RP)** — needs the *native* Discord app (or Vesktop). Doesn't work with the browser/PWA Discord that Omarchy installs by default.
 - **Treesitter** — on `main` (the v1.0 rewrite; `master` is archived). Parsers *and* queries install together under `~/.local/share/nvim/site/`, which is what stops them drifting apart — a stale parser paired with newer queries dies with `Invalid node type "..."` on every file open. Feature modules are gone: highlight, indent and selection are Neovim's own, wired up in `lua/plugins/treesitter.lua`.
 - **Diffview vs Octo** — both draw a "changed files" panel with line counts, and neither substitutes for the other. `diffview` reads the local working tree, index, or any git rev, and needs no network; `octo` reads a GitHub PR over the `gh` CLI. Octo renders the diffstat as a *bar*, diffview as numeric `+N, -M`. Inside a diffview panel, `i` toggles list/tree and `<tab>`/`<s-tab>` cycle files.

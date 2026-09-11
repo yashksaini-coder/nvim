@@ -1,7 +1,6 @@
 -- Disable netrw (the snacks explorer replaces it)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.opt.clipboard = "unnamedplus"
 
 -- If launched with a single directory arg (e.g. `nvim .`), cd there and set
 -- a flag. Do NOT wipe the arg buffer — snacks.dashboard renders into it
@@ -14,6 +13,10 @@ end
 
 require("config.options")
 require("config.lazy")
+-- After config.lazy: that is where mapleader is set, and a <leader> mapping
+-- resolves the leader when it is DEFINED, not when it is pressed.
+require("config.clipboard")
+require("config.templates")
 require("config.nvim-diagnostics")
 require("config.keymaps")
 require("config.autocmds")

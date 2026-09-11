@@ -84,6 +84,15 @@ local GROUPS = {
 		hint = "Navigate &amp; resize splits.",
 	},
 	{
+		id = "template",
+		rail = "i",
+		prefix = "<leader>i",
+		shown = "<leader>i",
+		title = "templates",
+		tags = "template snippet starter boilerplate c cpp main scaffold",
+		hint = "<code>&lt;leader&gt;i</code> — drop a starter file in. Also on the <code>cp</code> snippet.",
+	},
+	{
 		id = "markdown",
 		rail = "m",
 		prefix = "<leader>m",
@@ -188,6 +197,7 @@ local ROUTE = {
 	{ "^<C%-W>", "windows" },
 	{ "^<C%-[HJKL]>$", "windows" },
 	{ "^<C%-[UDLR]", "windows" }, -- <C-Up> <C-Down> <C-Left> <C-Right>
+	{ "^<leader>i", "template" },
 	{ "^<leader>m", "markdown" },
 	{ "^<F[568]>$", "markdown" },
 	{ "^<leader>tH$", "themes" },
@@ -199,6 +209,7 @@ local ROUTE = {
 	{ "^<leader>M$", "mason" },
 	{ "^<leader>[eo]$", "code" },
 	{ "^g[xO]$", "code" },
+	{ "^<leader>[pP]$", "globals" },
 	{ "^<Esc>$", "globals" },
 	{ "^<C%-S>$", "globals" },
 	{ "^[%[%]] ?$", "globals" }, -- `[ ` / `] ` are [<Space> / ]<Space>

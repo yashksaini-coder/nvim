@@ -18,18 +18,25 @@ return {
 				{ "<leader>o", desc = "Toggle outline" },
 				{ "<leader>f", group = "file/find" },
 				{ "<leader>g", group = "git/goto" },
+				{ "<leader>i", group = "insert" },
 				{ "<leader>h", group = "git hunks" },
 				{ "<leader>k", group = "man/docs" },
 				{ "<leader>l", group = "lazy" },
 				{ "<leader>m", group = "markdown/compile" },
 				{ "<leader>n", group = "noice" },
 				{ "<leader>q", desc = "Quit all" },
+				{ "<leader>p", desc = "Paste from clipboard" },
+				{ "<leader>P", desc = "Paste from clipboard (before)" },
 				{ "<leader>r", group = "rust" },
 				{ "<leader>t", group = "theme" },
 				{ "<leader>x", group = "trouble/diagnostics" },
 
 				-- Buffer operations
 				{ "<leader>bd", desc = "Close buffer" },
+
+				-- Templates
+				{ "<leader>ic", desc = "Insert C template" },
+				{ "<leader>iC", desc = "Insert C++ template" },
 				{ "<leader>bp", desc = "Toggle pin" },
 				{ "<leader>bP", desc = "Delete non-pinned" },
 				{ "<leader>bo", desc = "Close other buffers" },

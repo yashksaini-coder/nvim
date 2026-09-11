@@ -7,11 +7,23 @@ return {
 		"hrsh7th/cmp-nvim-lsp", -- LSP source
 		"hrsh7th/cmp-buffer", -- buffer completions
 		"hrsh7th/cmp-path", -- path completions
-		-- LuaSnip is the snippet ENGINE, not a source: nvim-cmp requires a
-		-- snippet.expand implementation to accept LSP snippet completions at all.
-		-- cmp_luasnip and its `luasnip` source are gone — no snippets are defined
-		-- anywhere in this config, so that source could only ever return nothing.
-		"L3MON4D3/LuaSnip",
+		-- LuaSnip is the snippet engine nvim-cmp needs to accept LSP snippet
+		-- completions at all. It now also carries the C/C++ starters, which is why
+		-- cmp_luasnip is back: it was dropped when no snippets existed anywhere in
+		-- this config, so its source could only ever return nothing.
+		{
+			"L3MON4D3/LuaSnip",
+			config = function()
+				local ls = require("luasnip")
+				local templates = require("config.templates")
+				for _, ft in ipairs({ "c", "cpp" }) do
+					ls.add_snippets(ft, {
+						ls.snippet({ trig = "cp", desc = ft:upper() .. " starter" }, ls.text_node(templates[ft])),
+					})
+				end
+			end,
+		},
+		"saadparwaiz1/cmp_luasnip",
 		"onsails/lspkind.nvim", -- completion icons
 	},
 	config = function()
@@ -48,6 +60,7 @@ return {
 					ellipsis_char = "...",
 					menu = {
 						nvim_lsp = "[LSP]",
+						luasnip = "[Snip]",
 						lazydev = "[Lua]",
 						buffer = "[Buf]",
 						path = "[Path]",
@@ -55,6 +68,7 @@ return {
 				}),
 			},
 			sources = cmp.config.sources({
+				{ name = "luasnip" },
 				-- Its own leading group: cmp.config.sources overwrites group_index with
 				-- the group's position, so a leading group is the only way to let
 				-- lazydev's require("…") module names beat lua_ls's path guesses.
