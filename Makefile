@@ -45,11 +45,11 @@ fmt-fix:
 	$(STYLUA) .
 
 # 4. Regenerate the keymap reference site -------------------------------------
-# Rewrites everything between the GENERATED markers in site/index.html from the
-# live keymap table. Loads every plugin first so lazy-loaded `keys` register.
+# Writes site/js/keymaps.js from the live keymap table. The rest of site/ is
+# hand-owned. Loads every plugin first so lazy-loaded `keys` register.
 site:
-	@echo "→  Regenerating site/index.html from live keymaps …"
-	@nvim --headless -c 'lua local ok, res = pcall(require("config.keymap-export").export) print(ok and ("wrote " .. res .. " keymaps") or ("ERROR: " .. tostring(res))) vim.cmd(ok and "qa!" or "cq")'
+	@echo "→  Regenerating site/js/keymaps.js from live keymaps …"
+	@nvim --headless -c 'lua local ok, res = pcall(require("config.keymap-export").export) io.write((ok and ("wrote " .. res .. " bindings") or ("ERROR: " .. tostring(res))) .. "\n") vim.cmd(ok and "qa!" or "cq")'
 
 # 5. Fix trailing whitespace --------------------------------------------------
 fix-whitespace:
@@ -64,6 +64,6 @@ help:
 	@echo "  make fmt          format-check only"
 	@echo "  make lint         lint only"
 	@echo "  make fmt-fix      auto-format files in place"
-	@echo "  make site         regenerate site/index.html from live keymaps"
+	@echo "  make site         regenerate site/js/keymaps.js from live keymaps"
 	@echo "  make fix-whitespace remove trailing whitespace"
 	@echo "  make help         show this help"
