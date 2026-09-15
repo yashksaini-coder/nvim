@@ -16,9 +16,9 @@ return {
 			config = function()
 				local ls = require("luasnip")
 				local templates = require("config.templates")
-				for _, ft in ipairs({ "c", "cpp" }) do
+				for ft, lang in pairs({ c = "C", cpp = "C++" }) do
 					ls.add_snippets(ft, {
-						ls.snippet({ trig = "cp", desc = ft:upper() .. " starter" }, ls.text_node(templates[ft])),
+						ls.snippet({ trig = "cp", desc = lang .. " starter" }, ls.text_node(templates[ft])),
 					})
 				end
 			end,
