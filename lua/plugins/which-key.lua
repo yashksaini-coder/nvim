@@ -28,7 +28,7 @@ return {
 				{ "<leader>p", desc = "Paste from clipboard" },
 				{ "<leader>P", desc = "Paste from clipboard (before)" },
 				{ "<leader>r", group = "rust" },
-				{ "<leader>t", group = "theme" },
+				{ "<leader>t", group = "theme/toggle" },
 				{ "<leader>x", group = "trouble/diagnostics" },
 
 				-- Buffer operations
