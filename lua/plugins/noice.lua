@@ -46,27 +46,11 @@ return {
 					winhighlight = { Normal = "Pmenu", FloatBorder = "Pmenu" },
 				},
 			},
-
-			-- ✨ FIX: Explicitly define the Documentation view for Signature Help/Hover
-			documentation = {
-				-- Position the docs window centrally on the screen
-				relative = "editor",
-				position = {
-					row = "50%",
-					col = "50%",
-				},
-				size = {
-					width = "60%", -- Make it relative to screen width
-					height = "40%", -- Make it relative to screen height
-				},
-				border = {
-					style = "rounded",
-					padding = { 0, 1 },
-				},
-				win_options = {
-					winhighlight = { Normal = "NormalFloat", FloatBorder = "DiagnosticInfo" },
-				},
-			},
+			-- No `documentation` entry here: noice looks views up BY NAME and
+			-- `lsp.documentation.view` is the string "hover", so a view called
+			-- "documentation" is never read. Hover and signature help render in the
+			-- cursor-anchored `hover` view, bordered by the lsp_doc_border preset.
+			-- To resize them, override `lsp.documentation.opts`, not `views`.
 		},
 
 		-- III. LSP OVERRIDES -----------------------
@@ -81,8 +65,10 @@ return {
 		},
 
 		-- IV. ROUTES -------------------------------
-		-- You can remove this route entirely, as the important 'documentation' view
-		-- is now defined globally in the 'views' table above, which handles LSP docs.
+		-- A route with no `view` is how noice spells "skip": router.lua turns
+		-- `view == nil` into `opts.skip = true`. This one swallows the
+		-- `"file.lua" 42L, 1024B written` message on every save. Do NOT delete it
+		-- thinking it is dead — deleting it brings the write spam back.
 		routes = {
 			{
 				filter = {
@@ -90,7 +76,6 @@ return {
 					kind = "",
 					find = "written",
 				},
-				-- Keep the opts empty or remove the entire route if it was only for the documentation view
 				opts = {},
 			},
 		},
