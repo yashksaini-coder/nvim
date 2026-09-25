@@ -74,7 +74,11 @@ return {
 			-- compilation buffer. Without focus you would have to <C-w>w to reach it
 			-- while the program sits blocked on cin.
 			focus_compilation_buffer = true,
-			baleia_setup = true,
+			-- Was `baleia_setup = true`, deprecated upstream in v5 and removed in v6;
+			-- config/internal.lua warns and rewrites it to exactly this. "render" is
+			-- what draws SGR colors through baleia — the default "filter" only strips
+			-- the escapes, so g++/cargo output would come out monochrome.
+			ansi_color = { kind = "render" },
 			recompile_no_fail = true, -- <F5> in a fresh session prompts instead of erroring
 			max_lines = 5000, -- plugin trims its own buffer; a runaway loop can't eat the editor
 			input_word_completion = true,
