@@ -94,7 +94,14 @@ return {
 					return ("mkdir -p bin && g++ -Wall -g -o %s %s && ./%s"):format(out, file, out)
 				elseif ft == "c" then
 					return ("mkdir -p bin && gcc -Wall -g -o %s %s && ./%s"):format(out, file, out)
+				elseif ft == "python" then
+					-- No build step, so `out`/bin/ plays no part: running IS the command.
+					-- That also makes <F8> (run_last) meaningless here — it looks for
+					-- bin/<name> and will say so loudly rather than do the wrong thing.
+					return "python3 " .. file
 				end
+				-- Everything else falls through to make. A filetype with no Makefile
+				-- lands here and fails — add a branch above when you start using one.
 				return "make -k "
 			end,
 		}
