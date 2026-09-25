@@ -52,7 +52,12 @@ return {
 				livePreview = true,
 			})
 
-			-- Set default theme to Kanagawa Dragon only on first run (when no theme is persisted)
+			-- First-run default only: once you pick with <leader>tH, themery persists
+			-- it to ~/.local/share/nvim/themery/state.json and this never fires
+			-- again. Wave over Dragon because Dragon has the narrowest spread of
+			-- all twelve themes here between Comment/Keyword/String/Function/
+			-- @variable (108 vs Wave's 175) — on keyword-dense code such as Python
+			-- that reads as "treesitter is broken" when it is working perfectly.
 			vim.api.nvim_create_autocmd("VimEnter", {
 				once = true,
 				callback = function()
@@ -60,7 +65,7 @@ return {
 						local themery = require("themery")
 						local current = themery.getCurrentTheme()
 						if not current then
-							themery.setThemeByName("Kanagawa Dragon", true)
+							themery.setThemeByName("Kanagawa Wave", true)
 						end
 					end)
 				end,
