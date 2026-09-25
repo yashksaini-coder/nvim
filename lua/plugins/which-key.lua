@@ -117,6 +117,21 @@ return {
 				{ "<leader>gr", desc = "Go to references" },
 				{ "<leader>ca", desc = "Code action" },
 
+				-- Neovim's OWN LSP keys. $VIMRUNTIME/lua/vim/_core/defaults.lua maps
+				-- these unconditionally — they already work in every LSP buffer and
+				-- carry a `vim.lsp.buf.*()` desc; only the readable labels are ours.
+				-- <C-S> (the built-in insert-mode signature help) is deliberately
+				-- absent: general.lua binds it to save, which is why signature help
+				-- lives on <C-k> instead. See config/keymaps/lsp.lua.
+				{ "gr", group = "lsp (builtin)" },
+				{ "grn", desc = "Rename symbol" },
+				{ "gra", desc = "Code action" },
+				{ "grr", desc = "References" },
+				{ "gri", desc = "Goto implementation" },
+				{ "grt", desc = "Goto type definition" },
+				{ "grx", desc = "Run codelens" },
+				{ "gO", desc = "Document symbols" },
+
 				-- Diffs (diffview) / GitHub (octo)
 				{ "<leader>gv", desc = "Diffview: changed files" },
 				{ "<leader>gV", desc = "Diffview: close" },
