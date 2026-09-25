@@ -28,8 +28,7 @@ fmt:
 	echo "All files are correctly formatted." ; \
 else \
 	echo "Some files need re-formatting. Auto-formatting..." ; \
-	$(STYLUA) . ; \
-	echo "Formatting complete." ; \
+	$(STYLUA) . && echo "Formatting complete." ; \
 fi
 
 # 2. Lint ---------------------------------------------------------------------
