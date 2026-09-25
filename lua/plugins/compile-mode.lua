@@ -46,7 +46,15 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		-- Pinned to the tag upstream pins. Decodes ANSI so g++/cargo output isn't [0m soup.
-		{ "m00qek/baleia.nvim", tag = "v1.3.0" },
+		-- `submodules = false` is load-bearing, not tidiness. v1.3.0 carries two
+		-- test/vendor submodules that main tip does not, and lazy clones at main
+		-- tip before running `checkout --recurse-submodules v1.3.0`. Checking out
+		-- a commit that INTRODUCES submodules needs .git/modules/<path> to exist
+		-- already; in a fresh clone it does not, so git aborts fatal, leaves HEAD
+		-- on main tip and half-writes the v1 worktree. `Lazy sync` then refuses to
+		-- touch the plugin ("You have local changes"). The submodules are test
+		-- fixtures — nothing at runtime wants them.
+		{ "m00qek/baleia.nvim", tag = "v1.3.0", submodules = false },
 	},
 	cmd = { "Compile", "Recompile" },
 	keys = {
