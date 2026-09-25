@@ -1,6 +1,6 @@
 {
   "LuaSnip": { "branch": "master", "commit": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24" },
-  "baleia.nvim": { "branch": "main", "commit": "710537ff5cd669c5a76c5f5b6a9169fd9b913d18" },
+  "baleia.nvim": { "branch": "main", "commit": "fb3aff021b2b64ef820d0230d2c22ebfaf71bb6a" },
   "barbar.nvim": { "branch": "master", "commit": "337ecfadb8bf005050990bf2f624dc4fc828dabd" },
   "catppuccin": { "branch": "main", "commit": "edefef779ab08ce1a4a404713e3012b0d202bd35" },
   "chai.nvim": { "branch": "main", "commit": "22c7b7b5a05595ad4ee684e8bf8e594c6b61aa1e" },
