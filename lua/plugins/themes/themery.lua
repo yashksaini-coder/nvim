@@ -107,18 +107,17 @@ return {
 					-- Other themes
 					{ name = "Osmium", colorscheme = "osmium" },
 					{ name = "Chai", colorscheme = "chai" },
+					-- Gruvbox is one colorscheme whose face follows `background`, so this
+					-- `before` is what makes it dark. It matters MORE now that the Light
+					-- entry is gone, not less: pick Dayfox or Koda Light (or any other
+					-- light entry above) and then Gruvbox, and without this line gruvbox
+					-- would inherit `background=light` and render as the variant that was
+					-- just removed from this list.
 					{
 						name = "Gruvbox Dark",
 						colorscheme = "gruvbox",
 						before = [[
 							vim.opt.background = "dark"
-						]],
-					},
-					{
-						name = "Gruvbox Light",
-						colorscheme = "gruvbox",
-						before = [[
-							vim.opt.background = "light"
 						]],
 					},
 				},
@@ -127,10 +126,12 @@ return {
 
 			-- First-run default only: once you pick with <leader>tH, themery persists
 			-- it to ~/.local/share/nvim/themery/state.json and this never fires
-			-- again. Wave over Dragon because Dragon has the narrowest spread of
-			-- all twelve themes here between Comment/Keyword/String/Function/
-			-- @variable (108 vs Wave's 175) — on keyword-dense code such as Python
-			-- that reads as "treesitter is broken" when it is working perfectly.
+			-- again. Wave over Dragon because Dragon still has the narrowest spread
+			-- of all 25 entries here between Comment/Keyword/String/Function/
+			-- @variable — 108, against Wave's 175 and Cobalt's 375 — and on
+			-- keyword-dense code such as Python that reads as "treesitter is
+			-- broken" when it is working perfectly. Re-measured after each theme
+			-- added or removed; Soviet Light (110) is the only close second.
 			vim.api.nvim_create_autocmd("VimEnter", {
 				once = true,
 				callback = function()
