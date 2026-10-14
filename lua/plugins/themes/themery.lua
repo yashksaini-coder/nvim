@@ -18,11 +18,79 @@ return {
 					{ name = "Tokyo Night", colorscheme = "tokyonight" },
 					{ name = "Tokyo Night Storm", colorscheme = "tokyonight-storm" },
 					{ name = "Tokyo Night Night", colorscheme = "tokyonight-night" },
-					-- Catppuccin
-					{ name = "Catppuccin Mocha", colorscheme = "catppuccin-mocha" },
-					{ name = "Catppuccin Macchiato", colorscheme = "catppuccin-macchiato" },
-					{ name = "Catppuccin Frappe", colorscheme = "catppuccin-frappe" },
-					{ name = "Catppuccin Latte", colorscheme = "catppuccin-latte" },
+					-- Oxocarbon. ONE colorscheme whose face is chosen by `background`, so both
+					-- entries name `oxocarbon` and differ only in `before` — same shape as the
+					-- two Gruvbox entries at the end of this list.
+					{
+						name = "Oxocarbon Dark",
+						colorscheme = "oxocarbon",
+						before = [[
+							vim.opt.background = "dark"
+						]],
+					},
+					{
+						name = "Oxocarbon Light",
+						colorscheme = "oxocarbon",
+						before = [[
+							vim.opt.background = "light"
+						]],
+					},
+					-- Nightfox. Seven distinct colorschemes, and each one sets `background`
+					-- itself (verified: loading dayfox from a dark session flips it to light),
+					-- so none of them needs a `before`.
+					{ name = "Nightfox", colorscheme = "nightfox" },
+					{ name = "Duskfox", colorscheme = "duskfox" },
+					{ name = "Nordfox", colorscheme = "nordfox" },
+					{ name = "Terafox", colorscheme = "terafox" },
+					{ name = "Carbonfox", colorscheme = "carbonfox" },
+					-- dayfox/dawnfox are the two light members of the same family.
+					{ name = "Dayfox", colorscheme = "dayfox" },
+					{ name = "Dawnfox", colorscheme = "dawnfox" },
+					-- Soviet. Also sets `background` itself, so no `before`.
+					{ name = "Soviet Dark", colorscheme = "soviet-dark" },
+					{ name = "Soviet Light", colorscheme = "soviet-light" },
+					-- Koda. Each named variant pins its own palette regardless of `background`,
+					-- but NONE of them sets `background` — leaving it stale misreports the theme
+					-- to everything that keys off it (statusline, diagnostics, other plugins), so
+					-- every entry sets it explicitly. The bare `koda` colorscheme is deliberately
+					-- absent: it just follows `background` and resolves to output byte-identical
+					-- to koda-dark or koda-light, so listing it would only duplicate those two.
+					{
+						name = "Koda Dark",
+						colorscheme = "koda-dark",
+						before = [[
+							vim.opt.background = "dark"
+						]],
+					},
+					{
+						name = "Koda Moss",
+						colorscheme = "koda-moss",
+						before = [[
+							vim.opt.background = "dark"
+						]],
+					},
+					{
+						name = "Koda Light",
+						colorscheme = "koda-light",
+						before = [[
+							vim.opt.background = "light"
+						]],
+					},
+					{
+						name = "Koda Glade",
+						colorscheme = "koda-glade",
+						before = [[
+							vim.opt.background = "light"
+						]],
+					},
+					-- Cobalt. Single variant, pins its dark palette but does not set `background`.
+					{
+						name = "Cobalt",
+						colorscheme = "cobalt",
+						before = [[
+							vim.opt.background = "dark"
+						]],
+					},
 					-- Rosé Pine
 					{ name = "Rosé Pine Main", colorscheme = "rose-pine-main" },
 					{ name = "Rosé Pine Moon", colorscheme = "rose-pine-moon" },
@@ -30,7 +98,16 @@ return {
 					-- Kanagawa
 					{ name = "Kanagawa Wave", colorscheme = "kanagawa-wave" },
 					{ name = "Kanagawa Dragon", colorscheme = "kanagawa-dragon" },
-					{ name = "Kanagawa Lotus", colorscheme = "kanagawa-lotus" },
+					-- Lotus is Kanagawa's light member and, unlike wave/dragon, does not set
+					-- `background` when loaded by name — it painted a light palette while
+					-- `background` still said dark. Pre-existing; same fix as Koda/Cobalt.
+					{
+						name = "Kanagawa Lotus",
+						colorscheme = "kanagawa-lotus",
+						before = [[
+							vim.opt.background = "light"
+						]],
+					},
 					-- Other themes
 					{ name = "Osmium", colorscheme = "osmium" },
 					{ name = "Chai", colorscheme = "chai" },
