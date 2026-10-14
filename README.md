@@ -24,7 +24,7 @@ Personal Neovim config. Lua, [lazy.nvim](https://github.com/folke/lazy.nvim), Ne
 
 **Utilities** — `compile-mode.nvim` for build & run (`<leader>mm`; runs on a pty, so `scanf`/`cin` actually block for input), [`cord.nvim`](https://github.com/vyfor/cord.nvim) (Discord Rich Presence — needs a native Discord client running for the IPC socket at `/run/user/$UID/discord-ipc-0`).
 
-**Themes** — 25 variants across Tokyo Night, Oxocarbon, Nightfox, Soviet, Koda, Cobalt, Kanagawa, Gruvbox, Chai and Osmium — switch with `<leader>tH` (Themery).
+**Themes** — 30 variants across Tokyo Night, Oxocarbon, Nightfox, Soviet, Koda, Cobalt, Cyberdream, VS Code, Kanagawa, Gruvbox, Chai and Osmium — switch with `<leader>tH` (Themery).
 
 ---
 

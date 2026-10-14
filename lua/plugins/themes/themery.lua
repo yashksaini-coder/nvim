@@ -91,6 +91,47 @@ return {
 							vim.opt.background = "dark"
 						]],
 					},
+					-- Cyberdream. Three genuinely distinct colorschemes — `cyberdream` and
+					-- `cyberdream-muted` share a background (#16181a) but not a palette
+					-- (Keyword #ffbd5e vs #e3a875) — and not one of the three sets
+					-- `background`, so all three set it here.
+					{
+						name = "Cyberdream",
+						colorscheme = "cyberdream",
+						before = [[
+							vim.opt.background = "dark"
+						]],
+					},
+					{
+						name = "Cyberdream Muted",
+						colorscheme = "cyberdream-muted",
+						before = [[
+							vim.opt.background = "dark"
+						]],
+					},
+					{
+						name = "Cyberdream Light",
+						colorscheme = "cyberdream-light",
+						before = [[
+							vim.opt.background = "light"
+						]],
+					},
+					-- VS Code. One colorscheme, both faces, chosen by `background` — the
+					-- oxocarbon/gruvbox shape, not the cyberdream one.
+					{
+						name = "VS Code Dark",
+						colorscheme = "vscode",
+						before = [[
+							vim.opt.background = "dark"
+						]],
+					},
+					{
+						name = "VS Code Light",
+						colorscheme = "vscode",
+						before = [[
+							vim.opt.background = "light"
+						]],
+					},
 					-- Kanagawa
 					{ name = "Kanagawa Wave", colorscheme = "kanagawa-wave" },
 					{ name = "Kanagawa Dragon", colorscheme = "kanagawa-dragon" },
@@ -126,12 +167,14 @@ return {
 
 			-- First-run default only: once you pick with <leader>tH, themery persists
 			-- it to ~/.local/share/nvim/themery/state.json and this never fires
-			-- again. Wave over Dragon because Dragon still has the narrowest spread
-			-- of all 25 entries here between Comment/Keyword/String/Function/
-			-- @variable — 108, against Wave's 175 and Cobalt's 375 — and on
-			-- keyword-dense code such as Python that reads as "treesitter is
-			-- broken" when it is working perfectly. Re-measured after each theme
-			-- added or removed; Soviet Light (110) is the only close second.
+			-- again. Wave over Dragon because Dragon has the narrowest spread of
+			-- every entry in this list between Comment/Keyword/String/Function/
+			-- @variable — 108, against Wave's 175 and the widest, Cobalt, at 375
+			-- — and on keyword-dense code such as Python that reads as
+			-- "treesitter is broken" when it is working perfectly. Deliberately
+			-- no entry count here: it went stale twice in one sitting. Dragon has
+			-- held the floor through every theme added or removed so far, with
+			-- Soviet Light (110) the only close second.
 			vim.api.nvim_create_autocmd("VimEnter", {
 				once = true,
 				callback = function()
