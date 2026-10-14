@@ -91,10 +91,6 @@ return {
 							vim.opt.background = "dark"
 						]],
 					},
-					-- Rosé Pine
-					{ name = "Rosé Pine Main", colorscheme = "rose-pine-main" },
-					{ name = "Rosé Pine Moon", colorscheme = "rose-pine-moon" },
-					{ name = "Rosé Pine Dawn", colorscheme = "rose-pine-dawn" },
 					-- Kanagawa
 					{ name = "Kanagawa Wave", colorscheme = "kanagawa-wave" },
 					{ name = "Kanagawa Dragon", colorscheme = "kanagawa-dragon" },
