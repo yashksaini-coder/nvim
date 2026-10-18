@@ -22,7 +22,7 @@ Personal Neovim config. Lua, [lazy.nvim](https://github.com/folke/lazy.nvim), Ne
 
 **Languages** — `nvim-treesitter` on the `main` branch (the v1.0 rewrite — highlighting, indent and selection are Neovim's own features now; see the header comment in `lua/plugins/treesitter.lua`), `render-markdown.nvim`.
 
-**Utilities** — `compile-mode.nvim` for build & run (`<leader>mm`; runs on a pty, so `scanf`/`cin` actually block for input), [`cord.nvim`](https://github.com/vyfor/cord.nvim) (Discord Rich Presence — needs a native Discord client running for the IPC socket at `/run/user/$UID/discord-ipc-0`).
+**Utilities** — `compile-mode.nvim` for build & run (`<leader>mm`; runs on a pty, so `scanf`/`cin` actually block for input), a terminal on `snacks.terminal` — `<leader>ts` splits along the bottom, `<leader>tv` down the side, and both *toggle*: pressing again hides the window and leaves the shell running. Double-`<Esc>` leaves terminal mode (a single `<Esc>` still reaches the program inside), `q` hides. [`cord.nvim`](https://github.com/vyfor/cord.nvim) (Discord Rich Presence — needs a native Discord client running for the IPC socket at `/run/user/$UID/discord-ipc-0`).
 
 **Themes** — 30 variants across Tokyo Night, Oxocarbon, Nightfox, Soviet, Koda, Cobalt, Cyberdream, VS Code, Kanagawa, Gruvbox, Chai and Osmium — switch with `<leader>tH` (Themery).
 
