@@ -243,6 +243,8 @@ window.KEYMAPS = {
             { "seq": "SPC km", "key": "k", "action": "Open man page" },
             { "seq": "SPC kw", "key": "k", "action": "Man page for word under cursor" },
             { "seq": "SPC tH", "key": "t", "action": "Theme: Open Themery" },
+            { "seq": "SPC ts", "key": "t", "action": "Terminal (bottom split)" },
+            { "seq": "SPC tv", "key": "t", "action": "Terminal (side split)" },
             { "seq": "SPC M", "key": "m", "mods": ["shift"], "action": "Open Mason command menu" },
             { "seq": "SPC ?", "key": "/", "mods": ["shift"], "action": "Buffer Keymaps (which-key)" },
             { "seq": "SPC q", "key": "q", "action": "Quit all" },

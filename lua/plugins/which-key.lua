@@ -162,6 +162,8 @@ return {
 
 				-- Tabs / themes
 				{ "<leader>tH", desc = "Themery" },
+				{ "<leader>ts", desc = "Terminal (bottom split)" },
+				{ "<leader>tv", desc = "Terminal (side split)" },
 
 				-- Trouble
 				{ "<leader>xx", desc = "Diagnostics (Trouble)" },

@@ -124,6 +124,31 @@ return {
 			end,
 			desc = "Recent Projects",
 		},
+		-- Terminal. The built-in `:terminal` version of these keys lived in
+		-- config/keymaps/terminal.lua until 21f98e0 reverted it; snacks replaces
+		-- the ~57 lines it needed. Its "terminal" style already gives the
+		-- double-<Esc> escape that file hand-rolled, plus `q` to hide,
+		-- start-in-insert and stacking, so none of that is repeated here.
+		--
+		-- The counts are load-bearing. snacks keys a terminal instance by
+		-- cmd/cwd/env/count (terminal.lua M.tid) and deliberately NOT by window
+		-- position, so without two distinct counts both keys resolve to the same
+		-- id and the second one just toggles the first one's window instead of
+		-- opening a second terminal beside it.
+		{
+			"<leader>ts",
+			function()
+				require("snacks").terminal.toggle(nil, { count = 1, win = { position = "bottom" } })
+			end,
+			desc = "Terminal (bottom split)",
+		},
+		{
+			"<leader>tv",
+			function()
+				require("snacks").terminal.toggle(nil, { count = 2, win = { position = "right" } })
+			end,
+			desc = "Terminal (side split)",
+		},
 	},
 	config = function(_, opts)
 		require("snacks").setup(opts)
