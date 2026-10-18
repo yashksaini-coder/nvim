@@ -95,6 +95,8 @@ window.KEYMAPS = {
             { "seq": "Bksp", "key": "backspace", "action": "Shrink selection to child node (treesitter)" },
             { "seq": "Enter", "key": "enter", "action": "Grow selection to parent node (treesitter)" },
             { "seq": "Ctrl+/", "key": "/", "mods": ["ctrl"], "action": "Toggle comment" },
+            { "seq": "Alt+j", "key": "j", "mods": ["alt"], "action": "Move selection down" },
+            { "seq": "Alt+k", "key": "k", "mods": ["alt"], "action": "Move selection up" },
             { "seq": "Ctrl+s", "key": "s", "mods": ["ctrl"], "action": "Save file" }
           ]
         },

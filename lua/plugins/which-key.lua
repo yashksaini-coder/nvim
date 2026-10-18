@@ -221,6 +221,9 @@ return {
 				{ "<C-l>", desc = "Move to right window" },
 				{ "<S-h>", desc = "Prev buffer" },
 				{ "<S-l>", desc = "Next buffer (barbar)" },
+				-- Visual-mode only; the spec block above is mode = { "n", "x" }.
+				{ "<A-j>", desc = "Move selection down", mode = "x" },
+				{ "<A-k>", desc = "Move selection up", mode = "x" },
 				{ "s", desc = "Flash jump" },
 				{ "S", desc = "Flash treesitter" },
 

@@ -133,3 +133,17 @@ vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Increase window he
 vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Decrease window width" })
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase window width" })
+
+-- Move the selected lines up or down. `:m` is Vim's own :move, so each is a
+-- single ex command: `'>+1` is the line after the selection's end, `'<-2` the
+-- line before its start (-2 because :move places AFTER the given line). `gv`
+-- restores the selection that the :range consumed, and `=` re-indents it for
+-- its new surroundings — drop a block into an if-body and it indents itself.
+--
+-- "x", not "v". `v` means visual AND select mode, and select mode is live in
+-- this config: LuaSnip parks you there at every snippet placeholder (see the
+-- {"i","s"} map in keymaps/lsp.lua). An ex command fired from select mode
+-- would run against whatever stale '< '> marks were left from the last real
+-- visual selection, not the placeholder you are sitting on.
+vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
+vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
