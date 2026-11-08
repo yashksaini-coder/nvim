@@ -49,6 +49,11 @@ return {
 			-- shows up, and stay quiet until then.
 			local needs_toolchain = {
 				gopls = "go",
+				-- The registry entry for this one is a `build`, not an asset download:
+				-- it shells out to `ghcup install hls`. Without ghcup it fails on every
+				-- startup exactly like gopls does without go. ormolu below is a plain
+				-- GitHub release binary and needs nothing.
+				["haskell-language-server"] = "ghcup",
 			}
 
 			local function installable(packages)
@@ -74,10 +79,12 @@ return {
 					"gopls", -- Go LSP
 					"pyright", -- Python types
 					"ruff", -- Python lints, import sorting and formatting (runs as `ruff server`)
+					"haskell-language-server", -- Haskell LSP (needs ghcup; see the gate above)
 					-- Formatters
 					"stylua", -- Lua formatter
 					"prettier", -- Web development formatter (JS/TS/CSS/HTML/JSON)
 					"prettierd", -- Prettier daemon (faster, preferred by conform)
+					"ormolu", -- Haskell formatter
 					-- Linters: none. luacheck is consumed by `make lint`, not the editor
 					-- (there is no nvim-lint here), and mason is the wrong source for it:
 					-- mason builds it against whatever Lua is current, and the 5.5 build

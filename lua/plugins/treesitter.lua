@@ -9,6 +9,7 @@
 local ENSURE_INSTALLED = {
 	"rust",
 	"python",
+	"haskell",
 	"typescript",
 	"javascript",
 	"c",

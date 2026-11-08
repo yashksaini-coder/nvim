@@ -57,6 +57,7 @@ return {
 			ocamllsp = "ocamllsp",
 			zls = "zls",
 			sourcekit = "sourcekit-lsp",
+			hls = "haskell-language-server-wrapper", -- mason package: haskell-language-server
 		}
 
 		for server, cmd in pairs(servers) do

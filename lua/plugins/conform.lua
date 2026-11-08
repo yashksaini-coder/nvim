@@ -25,6 +25,10 @@ return {
 			-- isort+black pair was never installed, so saving a .py file did nothing.
 			python = { "ruff_organize_imports", "ruff_format" },
 
+			-- Haskell. lsp_format fallback so formatting still works from HLS
+			-- alone on a machine without ormolu.
+			haskell = { "ormolu", lsp_format = "fallback" },
+
 			-- Rust
 			rust = { "rustfmt", lsp_format = "fallback" },
 
