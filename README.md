@@ -2,8 +2,6 @@
 
 Personal Neovim config. Lua, [lazy.nvim](https://github.com/folke/lazy.nvim), Neovim 0.11+ native LSP. Runs happily on [Omarchy](https://omarchy.org/) (Arch + Hyprland + Wayland).
 
-**All keymaps live at [yashksaini-coder.github.io/nvim](https://yashksaini-coder.github.io/nvim/)** — searchable, up to date, organized by prefix. Reach it from inside nvim with `<leader>kk`.
-
 ---
 
 ## What's inside
@@ -47,21 +45,18 @@ init.lua
 lazy-lock.json
 lua/
   config/           options, lazy bootstrap, diagnostics, keymap requires
-    keymap-export.lua  builds the site's keymap rows from the live keymaps
   plugins/          one file per plugin (mini/ and themes/ grouped)
   lsps/             per-server LSP settings (clangd, gopls, pyright, tailwindcss, ts_ls)
-site/               KMOS keymap terminal (js/keymaps.js is GENERATED)
 .github/
   workflows/
     update-plugins.yml    daily `Lazy sync` + lockfile commit
-    pages.yml             deploys site/ to GitHub Pages
 ```
 
 ---
 
 ## Checks
 
-`make` runs both gates: `stylua` (format — auto-fixes in place) and `luacheck` (lint — expect 0 warnings across 63 files). `make fmt` and `make lint` run them separately. `make site` regenerates the keymap site (below).
+`make` runs both gates: `stylua` (format — auto-fixes in place) and `luacheck` (lint — expect 0 warnings across 63 files). `make fmt` and `make lint` run them separately.
 
 `stylua` comes from Mason. `luacheck` deliberately does not — Mason builds it against whatever Lua is current, and the 5.5 build dies on its own source with `attempt to assign to const variable 'field_name'`, so it is not in `ensure_installed`. Install a working one instead:
 
@@ -74,34 +69,9 @@ The Makefile puts `~/.luarocks/bin` ahead of Mason's on `PATH`, so either choice
 
 ---
 
-## Keymap site
-
-The site is **KMOS**, a retro terminal: a boot sequence, a shell (`help`, `ls`, `man nvim`, `nvim [normal|insert|visual|operator|leader]` — `neovim` works too; `vim` and `vi` deliberately do not), and a 60% ANSI keyboard. **Scroll the bindings list to drive it**: the binding at the top of the list is the selected one, and the keyboard lights its key plus any modifiers it needs — scrolling onto `Ctrl+h` lights CTRL and H. The list snaps so a row always rests flush at the top, which keeps the highlighted binding and the one you are reading the same. Arrow keys and PageUp/PageDown scroll it natively; clicking a row jumps to it. Tab cycles modes, Esc returns to the shell.
-
-The on-screen keyboard is **display-only**. Pressing your own keys or clicking the board does nothing to it — the list is the only thing that chooses what it shows.
-
-`site/index.html`, `site/js/app.js` and `site/css/style.css` are hand-owned. **`site/js/keymaps.js` is generated** — by `:KeymapExport` or `make site`, which reads the live keymap table after force-loading every plugin. Don't edit it by hand.
-
-The board lights one physical key per binding: the *first* keystroke of its sequence. `<leader>gv` lights `g` in the LEADER layer, and pressing `g` there lists every `<leader>g…` binding — which-key's model. So `lua/config/keymap-export.lua` splits each lhs into keystrokes and resolves the first to a key on that board plus the modifiers held for it: `H` is Shift+h, `$` is Shift+4, `<C-W><C-D>` lights `w` under Ctrl. There is no function row on a 60% board, so `<F5>` is shown the way one produces it — Fn+5 — which is how the compile-mode keys appear.
-
-Three tables in that file are maintained by hand because nothing can derive them:
-
-- **`GROUPS`** — the order bindings are listed in within each mode. The site's list is flat, so this is what keeps related keys adjacent.
-- **`ROUTE`** — which group a key belongs to; first match wins, fallthrough is `misc`.
-- **`BUFLOCAL`** — buffer-local maps. `nvim_get_keymap` cannot see rustaceanvim's `<leader>r*`, gitsigns' `<leader>h*` / `<leader>gb` / `<leader>t{b,w}`, or the LSP maps, because they do not exist until the right buffer is open. They are listed explicitly, with the owning plugin in parentheses.
-
-There is also a **`DENY`** list. A raw dump is mostly noise — Neovim's own bracket maps (`[A` → `:rewind`), its built-in LSP defaults (`gra`), and mini.surround's full l/n variant matrix would bury the keys you actually look up. Plugin-internal panel keys stay out for the same reason: on a per-mode board, diffview's panel `i` would light `i` in NORMAL as if it were remapped globally.
-
-Snippets are listed too. The exporter asks LuaSnip for every registered snippet at export time — nothing is hand-listed — so the C/C++ `cp` starter appears in INSERT as `C starter (snippet)` and `C++ starter (snippet)`, and any snippet added later shows up on the next `make site`.
-
-Run `make site` after adding or removing a keymap; the output is deterministic, so a no-op change produces an empty diff.
-
----
-
 ## CI
 
 - **`update-plugins.yml`** — runs daily at 00:00 UTC. `Lazy sync` + `Lazy update` + `Lazy restore`, commits any `lazy-lock.json` drift as `ci: update all plugins to latest [skip ci]`. This is why `git pull` sometimes conflicts on `lazy-lock.json` — take the newer hash, it's monotonic.
-- **`pages.yml`** — triggers on any change under `site/**`; builds nothing (vanilla HTML/CSS/JS) and deploys via `actions/deploy-pages`.
 
 ---
 
