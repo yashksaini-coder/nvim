@@ -56,7 +56,7 @@ lua/
 
 ## Checks
 
-`make` runs both gates: `stylua` (format — auto-fixes in place) and `luacheck` (lint — expect 0 warnings across 63 files). `make fmt` and `make lint` run them separately.
+`make` runs both gates: `stylua` (format — auto-fixes in place) and `luacheck` (lint — expect 0 warnings). `make fmt` and `make lint` run them separately.
 
 `stylua` comes from Mason. `luacheck` deliberately does not — Mason builds it against whatever Lua is current, and the 5.5 build dies on its own source with `attempt to assign to const variable 'field_name'`, so it is not in `ensure_installed`. Install a working one instead:
 

@@ -43,13 +43,13 @@ lint:
 fmt-fix:
 	$(STYLUA) .
 
-# 5. Fix trailing whitespace --------------------------------------------------
+# 4. Fix trailing whitespace --------------------------------------------------
 fix-whitespace:
 	@echo "→  Removing trailing whitespace from Lua files …"
 	@find $(ROOT)/lua -name '*.lua' -type f -exec sed -i 's/[[:space:]]*$$//' {} +
 	@echo "Whitespace cleanup complete."
 
-# 6. Help / list --------------------------------------------------------------
+# 5. Help / list --------------------------------------------------------------
 help:
 	@echo "Available targets:"
 	@echo "  make              format-check + lint (default)"

@@ -20,7 +20,7 @@ return {
 				{ "<leader>g", group = "git/goto" },
 				{ "<leader>i", group = "insert" },
 				{ "<leader>h", group = "git hunks" },
-				{ "<leader>k", group = "man/docs" },
+				{ "<leader>k", group = "man" },
 				{ "<leader>l", group = "lazy" },
 				{ "<leader>m", group = "markdown/compile" },
 				{ "<leader>n", group = "noice" },
@@ -152,7 +152,7 @@ return {
 				-- Markdown
 				{ "<leader>mp", desc = "Toggle markdown preview" },
 
-				-- Man pages / docs
+				-- Man pages
 				{ "<leader>km", desc = "Open man page" },
 				{ "<leader>kw", desc = "Man page for word under cursor" },
 
