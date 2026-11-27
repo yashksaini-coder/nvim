@@ -153,7 +153,6 @@ return {
 				{ "<leader>mp", desc = "Toggle markdown preview" },
 
 				-- Man pages / docs
-				{ "<leader>kk", desc = "Open keymap reference site" },
 				{ "<leader>km", desc = "Open man page" },
 				{ "<leader>kw", desc = "Man page for word under cursor" },
 

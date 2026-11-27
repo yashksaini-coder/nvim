@@ -31,12 +31,6 @@ return {
 					{ icon = "󰭎 ", key = "g", desc = "Live Grep", action = ":Telescope live_grep" },
 					{ icon = "󱋢 ", key = "r", desc = "Recent Files", action = ":Telescope oldfiles" },
 					{ icon = "󰋚 ", key = "p", desc = "Recent Projects", action = ":lua Snacks.picker.projects()" },
-					{
-						icon = "󰋖 ",
-						key = "k",
-						desc = "Keymap Docs",
-						action = ":lua vim.ui.open('https://yashksaini-coder.github.io/nvim/')",
-					},
 					{ icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
 					{ icon = "󰗼 ", key = "q", desc = "Quit", action = ":qa" },
 				},
